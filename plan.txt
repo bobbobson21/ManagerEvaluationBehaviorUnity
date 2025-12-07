@@ -1,0 +1,7 @@
+   --o do chain section support
+   --o finish off blackboard code
+   --o Do managers who can get a value
+   --o make evaluators
+   o Do UI
+   o Do basic managers (like move to)
+   o make Director Threaded

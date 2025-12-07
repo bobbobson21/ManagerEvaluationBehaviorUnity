@@ -1,0 +1,21 @@
+using System;
+using MEBS.Runtime;
+
+public class UserBlackboard_[IDHere] : MEB_BaseBlackboard
+{
+    public override object GetObject(string key)
+    {
+        return null;
+    }
+
+    public override void SetObject(string key, object data)
+    {
+
+    }
+
+    public override Type GetObjectAsType(string key)
+    {
+        return null;
+    }
+}
+
