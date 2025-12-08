@@ -18,7 +18,6 @@ namespace MEBS.Editor
         }
     }
 
-
     public class MEB_UI_BehaviourEditor : EditorWindow
     {
         private List<MEB_BaseBehaviourData_ChainScopeItemWapper> m_loadedData = null;
@@ -63,7 +62,7 @@ namespace MEBS.Editor
 
         public static void OpenWindow(MEB_BaseBehaviourData data)
         {
-            MEB_UI_BehaviourEditor window = GetWindow<MEB_UI_BehaviourEditor>("MEB manager behaviour editor"); //cant have more than one
+            MEB_UI_BehaviourEditor window = GetWindow<MEB_UI_BehaviourEditor>("MEB manager evaluation behaviour editor"); //cant have more than one
             window.position = new Rect(500, 0, Screen.currentResolution.width / 2, Screen.currentResolution.height / 2);
 
             if (data.m_items == null)

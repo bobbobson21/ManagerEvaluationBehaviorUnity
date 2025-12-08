@@ -2,9 +2,24 @@ using MEBS.Runtime;
 using System.Collections.Generic;
 using UnityEngine;
 
+public class MEB_C_DirectorLodInterface : MEB_DirectorBase
+{
+    private MEB_C_DirectorLod m_parent = null;
+
+    public MEB_C_DirectorLodInterface(MEB_C_DirectorLod parent)
+    { 
+        m_parent = parent;
+    }
+
+    public override void ForceRedoEval()
+    {
+        m_parent.ResetEval();
+    }
+}
+
 public class MEB_C_DirectorLod : MonoBehaviour
 {
-    public MEB_DirectorBase m_directorInterface = new MEB_DirectorBase();
+    public MEB_C_DirectorLodInterface m_directorInterface = null;
 
     public MEB_BaseBehaviourData m_behaviorSet;
     public MEB_BaseBlackboard m_blackboard;
@@ -15,8 +30,15 @@ public class MEB_C_DirectorLod : MonoBehaviour
 
     private float m_currentDelay = 0;
 
+    public void ResetEval()
+    { 
+        m_currentDelay = 0;
+    }
+
     private void Start()
     {
+        m_directorInterface = new MEB_C_DirectorLodInterface(this);
+
         m_directorInterface.m_blackboard = m_blackboard;
         m_directorInterface.m_gameObject = gameObject;
 

@@ -50,5 +50,10 @@ namespace MEBS.Runtime
         { 
             return m_managers[index];
         }
+
+        public virtual void ForceRedoEval()
+        { 
+        
+        }
     }
 }
