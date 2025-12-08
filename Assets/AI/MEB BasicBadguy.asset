@@ -28,9 +28,10 @@ MonoBehaviour:
         m_runAfterEval:
         - rid: 324396789511487489
         m_useInEval:
-        - rid: 324396789511487491
         - rid: 324396789511487492
-        - rid: 324396789511487493
+        - rid: 4792260105386852633
+        - rid: 4792260105386852504
+        - rid: 4792260105386852503
         m_evalurators:
         - rid: 324396789511487490
         m_noneEvalurationManager:
@@ -52,7 +53,7 @@ MonoBehaviour:
         m_displayCustomSettingExpanded: 0
         m_displayDebugSettingsExpanded: 0
         m_runtimeManager:
-          rid: 324396789511487557
+          rid: 4792260105386852628
     - rid: 324396789511487490
       type: {class: MEB_BaseBehaviourData_ItemSettings, ns: MEBS.Runtime, asm: Assembly-CSharp}
       data:
@@ -68,26 +69,7 @@ MonoBehaviour:
         m_displayCustomSettingExpanded: 0
         m_displayDebugSettingsExpanded: 0
         m_runtimeManager:
-          rid: 324396789511487561
-    - rid: 324396789511487491
-      type: {class: MEB_BaseBehaviourData_ItemSettings, ns: MEBS.Runtime, asm: Assembly-CSharp}
-      data:
-        m_class: UserManger_GetClose
-        m_displayName: UserManger_GetClose
-        m_displayDiscription: "Gets us close to the target if there is one. \n\nvaild
-          blackboard data: \nstoreTargetLocationIn: (vector3BlackboardKeyAsString)\ngetAttackObjectFrom:
-          (gameObjectBlackboardKeyAsString)"
-        m_blackboardIdenifyers:
-        - getAttackObjectFrom
-        - storeTargetLocationIn
-        m_blackboardKeys:
-        - attackerObj
-        - movePos
-        m_displayBlackboardSettingExpanded: 0
-        m_displayCustomSettingExpanded: 0
-        m_displayDebugSettingsExpanded: 0
-        m_runtimeManager:
-          rid: 324396789511487558
+          rid: 4792260105386852632
     - rid: 324396789511487492
       type: {class: MEB_BaseBehaviourData_ItemSettings, ns: MEBS.Runtime, asm: Assembly-CSharp}
       data:
@@ -105,9 +87,9 @@ MonoBehaviour:
         m_displayCustomSettingExpanded: 0
         m_displayDebugSettingsExpanded: 0
         m_runtimeManager:
-          rid: 324396789511487559
-    - rid: 324396789511487493
-      type: {class: WanderSettings, ns: , asm: Assembly-CSharp}
+          rid: 4792260105386852629
+    - rid: 4792260105386852503
+      type: {class: Manager_WanderSettings, ns: , asm: Assembly-CSharp}
       data:
         m_class: UserManger_Wander
         m_displayName: UserManger_Wander
@@ -121,10 +103,32 @@ MonoBehaviour:
         m_displayCustomSettingExpanded: 0
         m_displayDebugSettingsExpanded: 0
         m_runtimeManager:
-          rid: 324396789511487560
-        m_radius: 18
-        m_delayBetweenWandering: 1.8
-    - rid: 324396789511487557
+          rid: 4792260105386852631
+        m_radius: 10
+        m_delayBetweenWandering: 1
+    - rid: 4792260105386852504
+      type: {class: Manager_GetCloseSettings, ns: , asm: Assembly-CSharp}
+      data:
+        m_class: UserManger_GetClose
+        m_displayName: UserManger_GetClose
+        m_displayDiscription: "Gets us close to the target if there is one. \n\nvaild
+          blackboard data: \nstoreTargetLocationIn: (vector3BlackboardKeyAsString)\ngetAttackObjectFrom:
+          (gameObjectBlackboardKeyAsString)"
+        m_blackboardIdenifyers:
+        - getAttackObjectFrom
+        - storeTargetLocationIn
+        m_blackboardKeys:
+        - attackerObj
+        - movePos
+        m_displayBlackboardSettingExpanded: 1
+        m_displayCustomSettingExpanded: 0
+        m_displayDebugSettingsExpanded: 0
+        m_runtimeManager:
+          rid: 4792260105386852630
+        m_saftyRadius: 5
+        m_minimumVelocity: 0.1
+        m_randMoveRadius: 2
+    - rid: 4792260105386852628
       type: {class: MEB_M_WalkTo, ns: MEBS.Runtime, asm: Assembly-CSharp}
       data:
         m_chainState: 3
@@ -142,32 +146,11 @@ MonoBehaviour:
           m_displayCustomSettingExpanded: 0
           m_displayDebugSettingsExpanded: 0
           m_runtimeManager:
-            rid: 324396789511487557
-    - rid: 324396789511487558
-      type: {class: UserManger_GetClose, ns: , asm: Assembly-CSharp}
-      data:
-        m_chainState: 1
-        m_itemSettings:
-          m_class: UserManger_GetClose
-          m_displayName: UserManger_GetClose
-          m_displayDiscription: "Gets us close to the target if there is one. \n\nvaild
-            blackboard data: \nstoreTargetLocationIn: (vector3BlackboardKeyAsString)\ngetAttackObjectFrom:
-            (gameObjectBlackboardKeyAsString)"
-          m_blackboardIdenifyers:
-          - getAttackObjectFrom
-          - storeTargetLocationIn
-          m_blackboardKeys:
-          - attackerObj
-          - movePos
-          m_displayBlackboardSettingExpanded: 0
-          m_displayCustomSettingExpanded: 0
-          m_displayDebugSettingsExpanded: 0
-          m_runtimeManager:
-            rid: 324396789511487558
-    - rid: 324396789511487559
+            rid: 4792260105386852628
+    - rid: 4792260105386852629
       type: {class: UserManger_Flee, ns: , asm: Assembly-CSharp}
       data:
-        m_chainState: 2
+        m_chainState: 1
         m_itemSettings:
           m_class: UserManger_Flee
           m_displayName: UserManger_Flee
@@ -183,8 +166,29 @@ MonoBehaviour:
           m_displayCustomSettingExpanded: 0
           m_displayDebugSettingsExpanded: 0
           m_runtimeManager:
-            rid: 324396789511487559
-    - rid: 324396789511487560
+            rid: 4792260105386852629
+    - rid: 4792260105386852630
+      type: {class: UserManger_GetClose, ns: , asm: Assembly-CSharp}
+      data:
+        m_chainState: 2
+        m_itemSettings:
+          m_class: UserManger_GetClose
+          m_displayName: UserManger_GetClose
+          m_displayDiscription: "Gets us close to the target if there is one. \n\nvaild
+            blackboard data: \nstoreTargetLocationIn: (vector3BlackboardKeyAsString)\ngetAttackObjectFrom:
+            (gameObjectBlackboardKeyAsString)"
+          m_blackboardIdenifyers:
+          - getAttackObjectFrom
+          - storeTargetLocationIn
+          m_blackboardKeys:
+          - attackerObj
+          - movePos
+          m_displayBlackboardSettingExpanded: 1
+          m_displayCustomSettingExpanded: 1
+          m_displayDebugSettingsExpanded: 0
+          m_runtimeManager:
+            rid: 4792260105386852630
+    - rid: 4792260105386852631
       type: {class: UserManger_Wander, ns: , asm: Assembly-CSharp}
       data:
         m_chainState: 2
@@ -201,10 +205,10 @@ MonoBehaviour:
           m_displayCustomSettingExpanded: 0
           m_displayDebugSettingsExpanded: 0
           m_runtimeManager:
-            rid: 324396789511487560
-        m_radius: 18
-        m_delayBetweenWandering: 1.8
-    - rid: 324396789511487561
+            rid: 4792260105386852631
+        m_radius: 10
+        m_delayBetweenWandering: 1
+    - rid: 4792260105386852632
       type: {class: MEB_E_EvalHighest, ns: MEBS.Runtime, asm: Assembly-CSharp}
       data:
         m_chainState: 2
@@ -221,4 +225,25 @@ MonoBehaviour:
           m_displayCustomSettingExpanded: 0
           m_displayDebugSettingsExpanded: 0
           m_runtimeManager:
-            rid: 324396789511487561
+            rid: 4792260105386852632
+    - rid: 4792260105386852633
+      type: {class: MEB_BaseBehaviourData_ItemSettings, ns: MEBS.Runtime, asm: Assembly-CSharp}
+      data:
+        m_class: UserManger_GetItem
+        m_displayName: UserManger_GetItem
+        m_displayDiscription: "moves the npc to the location of an item \n\nvaild
+          blackboard data: \nstoreTargetLocationIn: (vector3BlackboardKeyAsString)\ngetHealthObjectFrom:
+          (gameObjectBlackboardKeyAsString)\ngetAmmoObjectFromKey: (gameObjectBlackboardKeyAsString)"
+        m_blackboardIdenifyers:
+        - storeTargetLocationIn
+        - getHealthObjectFrom
+        - getAmmoObjectFrom
+        m_blackboardKeys:
+        - movePos
+        - 
+        - 
+        m_displayBlackboardSettingExpanded: 0
+        m_displayCustomSettingExpanded: 0
+        m_displayDebugSettingsExpanded: 0
+        m_runtimeManager:
+          rid: -2

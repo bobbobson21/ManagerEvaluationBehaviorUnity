@@ -167,14 +167,28 @@ namespace MEBS.Editor
             return null;
         }
 
-        private bool RenderManager(MEB_BaseBehaviourData_ItemSettings item)
+        private int RenderScopeIndexField(int itemIndex)
         {
-            bool returnDeleteManager = false;
+            int indexButtonWidth = 120;
+            int indexButtonHeight = 19;
+            int tempIndex = 0;
 
+            int.TryParse(EditorGUILayout.TextField(itemIndex.ToString(), EditorStyles.helpBox, GUILayout.Width(indexButtonWidth), GUILayout.Height(indexButtonHeight), GUILayout.MinHeight(indexButtonHeight)), out tempIndex);
+
+            if (tempIndex >= 0)
+            {
+                itemIndex = tempIndex;
+            }
+
+            return itemIndex;
+        }
+
+        private int RenderManager(MEB_BaseBehaviourData_ItemSettings item, int itemIndex)
+        {
             int bigSpace = 8;
             int smallSpace = 4;
 
-            int indexWidth = 40;
+            int arrayindexWidth = 40;
             int buttonWidth = 44;
 
             int xPadding = 8;
@@ -195,9 +209,11 @@ namespace MEBS.Editor
                 EditorGUILayout.Toggle(item.m_runtimeManager.IsAllowedToExecute(), GUILayout.Width(22));
             }
 
+            itemIndex = RenderScopeIndexField(itemIndex);
+
             if (GUILayout.Button("delete", GUILayout.Width(buttonWidth *2)) == true)
             {
-                returnDeleteManager = true;
+                itemIndex = -1;
             }
              GUILayout.EndHorizontal();
 
@@ -217,7 +233,7 @@ namespace MEBS.Editor
                 for (int i = 0; i < item.m_blackboardKeys.Count; i++) //renders keys
                 {
                     GUILayout.BeginHorizontal();
-                    GUILayout.Label($"{i}: ", GUILayout.Width(indexWidth));
+                    GUILayout.Label($"{i}: ", GUILayout.Width(arrayindexWidth));
                     item.m_blackboardIdenifyers[i] = EditorGUILayout.TextField(item.m_blackboardIdenifyers[i]);
                     item.m_blackboardKeys[i] = EditorGUILayout.TextField(item.m_blackboardKeys[i]);
                     GUILayout.EndHorizontal();
@@ -253,14 +269,13 @@ namespace MEBS.Editor
 
             GUILayout.Space(yPadding);
 
-            return returnDeleteManager;
+            return itemIndex;
         }
 
-        private bool RenderEvalScope(MEB_BaseBehaviourData_Item item)
+        private int RenderEvalScope(MEB_BaseBehaviourData_Item item, int itemIndex)
         {
-            bool returnDeleteManager = false;
-
             int buttonWidth = 44;
+
             int xPadding = 8;
             int yPadding = 8;
 
@@ -270,10 +285,14 @@ namespace MEBS.Editor
             GUILayout.BeginVertical(EditorStyles.helpBox);
 
             GUILayout.BeginHorizontal();
+
             GUILayout.FlexibleSpace();
+
+            itemIndex = RenderScopeIndexField(itemIndex);
+
             if (GUILayout.Button("delete", GUILayout.Width(buttonWidth * 2)) == true)
             {
-                returnDeleteManager = true;
+                itemIndex = -1;
             }
             GUILayout.EndHorizontal();
 
@@ -288,9 +307,20 @@ namespace MEBS.Editor
 
             for (int i = 0; i < item.m_runBeforeEval.Count; i++)
             {
-                if (RenderManager(item.m_runBeforeEval[i]) == true)
+                int moveToIndex = RenderManager(item.m_runBeforeEval[i], i);
+
+                if (moveToIndex < 0)
                 {
                     item.m_runBeforeEval.RemoveAt(i);
+                }
+                else
+                {
+                    if (moveToIndex != i && moveToIndex < item.m_runBeforeEval.Count)
+                    {
+                        MEB_BaseBehaviourData_ItemSettings subItem = item.m_runBeforeEval[i];
+                        item.m_runBeforeEval.RemoveAt(i);
+                        item.m_runBeforeEval.Insert(moveToIndex, subItem);
+                    }
                 }
             }
             GUILayout.EndVertical();//section divide
@@ -306,9 +336,20 @@ namespace MEBS.Editor
 
             for (int i = 0; i < item.m_evalurators.Count; i++)
             {
-                if (RenderManager(item.m_evalurators[i]) == true)
+                int moveToIndex = RenderManager(item.m_evalurators[i], i);
+
+                if (moveToIndex < 0)
                 {
                     item.m_evalurators.RemoveAt(i);
+                }
+                else
+                {
+                    if (moveToIndex != i && moveToIndex < item.m_evalurators.Count)
+                    {
+                        MEB_BaseBehaviourData_ItemSettings subItem = item.m_evalurators[i];
+                        item.m_evalurators.RemoveAt(i);
+                        item.m_evalurators.Insert(moveToIndex, subItem);
+                    }
                 }
             }
             GUILayout.EndVertical(); //section divide
@@ -324,9 +365,20 @@ namespace MEBS.Editor
 
             for (int i = 0; i < item.m_useInEval.Count; i++)
             {
-                if (RenderManager(item.m_useInEval[i]) == true)
+                int moveToIndex = RenderManager(item.m_useInEval[i], i);
+
+                if (moveToIndex < 0)
                 {
                     item.m_useInEval.RemoveAt(i);
+                }
+                else
+                {
+                    if (moveToIndex != i && moveToIndex < item.m_useInEval.Count)
+                    {
+                        MEB_BaseBehaviourData_ItemSettings subItem = item.m_useInEval[i];
+                        item.m_useInEval.RemoveAt(i);
+                        item.m_useInEval.Insert(moveToIndex, subItem);
+                    }
                 }
             }
             GUILayout.EndVertical(); //section divide
@@ -342,9 +394,20 @@ namespace MEBS.Editor
 
             for (int i = 0; i < item.m_runAfterEval.Count; i++)
             {
-                if (RenderManager(item.m_runAfterEval[i]) == true)
+                int moveToIndex = RenderManager(item.m_runAfterEval[i], i);
+
+                if (moveToIndex < 0)
                 {
                     item.m_runAfterEval.RemoveAt(i);
+                }
+                else
+                {
+                    if (moveToIndex != i && moveToIndex < item.m_runAfterEval.Count)
+                    {
+                        MEB_BaseBehaviourData_ItemSettings subItem = item.m_runAfterEval[i];
+                        item.m_runAfterEval.RemoveAt(i);
+                        item.m_runAfterEval.Insert(moveToIndex, subItem);
+                    }
                 }
             }
 
@@ -356,12 +419,11 @@ namespace MEBS.Editor
 
             GUILayout.Space(yPadding);
 
-            return returnDeleteManager;
+            return itemIndex;
         }
 
-        private bool RenderScopeStart(MEB_BaseBehaviourData_ChainScopeItemWapper item)
+        private int RenderScopeStart(MEB_BaseBehaviourData_ChainScopeItemWapper item, int itemIndex)
         {
-            bool returnDeleteManager = false;
             int buttonWidth = 44;
 
             int xPadding = 8;
@@ -376,10 +438,14 @@ namespace MEBS.Editor
             MEB_BaseBehaviourData_ItemSettings managerData = RenderAddManagerField(true, false);
             MEB_BaseBehaviourData_Item evalData = RenderAddEvalField();
 
+
             GUILayout.FlexibleSpace();
+
+            itemIndex = RenderScopeIndexField(itemIndex);
+
             if (GUILayout.Button("delete", GUILayout.Width(buttonWidth * 2)) == true)
             {
-                returnDeleteManager = true;
+                itemIndex = -1;
             }
             GUILayout.EndHorizontal();
             GUILayout.Space(yPadding);
@@ -396,7 +462,7 @@ namespace MEBS.Editor
                 item.m_items.Add(evalData);
             }
 
-            return returnDeleteManager;
+            return itemIndex;
         }
 
         private void RenderScopeEnd()
@@ -409,6 +475,44 @@ namespace MEBS.Editor
             GUILayout.EndHorizontal();
 
             GUILayout.Space(yPadding);
+        }
+
+        private bool RootManagerMovement(int moveLoc, int oldLoc, int i, int j)
+        {
+            if (moveLoc >= 0 && moveLoc != oldLoc) //handles movment
+            {
+                if (m_loadedData[i].m_isScoped == false) //has to move scope as well
+                {
+                    if (moveLoc < m_loadedData.Count)
+                    {
+                        MEB_BaseBehaviourData_ChainScopeItemWapper item = m_loadedData[i];
+                        m_loadedData.RemoveAt(i);
+                        m_loadedData.Insert(moveLoc, item);
+                    }
+                }
+                else
+                {
+                    if (moveLoc < m_loadedData[i].m_items.Count)
+                    {
+                        MEB_BaseBehaviourData_Item item = m_loadedData[i].m_items[j];
+                        m_loadedData[i].m_items.RemoveAt(j);
+                        m_loadedData[i].m_items.Insert(moveLoc, item);
+                    }
+                }
+            }
+
+            if (moveLoc < 0)
+            {
+                m_loadedData[i].m_items.RemoveAt(j);
+
+                if (m_loadedData[i].m_isScoped == false)
+                {
+                    m_loadedData.RemoveAt(i);
+                    return true;
+                }
+            }
+
+            return false;
         }
 
         private void OnGUI()
@@ -443,41 +547,45 @@ namespace MEBS.Editor
 
             for (int i = 0; i < m_loadedData.Count; i++)
             {
-                bool deleteScope = false;
+                int scopeMovement = i;
 
-                if (m_loadedData[i].m_isScoped == true)
+                if (m_loadedData[i].m_isScoped == true) //this is a scope render the scope wapper
                 {
-                    deleteScope = RenderScopeStart(m_loadedData[i]);
+                    scopeMovement = RenderScopeStart(m_loadedData[i], i);
                 }
 
-                for (int j = 0; j < m_loadedData[i].m_items.Count; j++)
+                for (int j = 0; j < m_loadedData[i].m_items.Count; j++) //go thougth items
                 {
-                    if (m_loadedData[i].m_items[j].m_isNormalManager == true)
+                    if (m_loadedData[i].m_items[j].m_isNormalManager == true) //is not evaluration scope
                     {
-                        if (RenderManager(m_loadedData[i].m_items[j].m_noneEvalurationManager) == true)
+                        int managerIndexDecomposed = j; //get its index
+                        if(m_loadedData[i].m_isScoped == false)
                         {
-                            m_loadedData[i].m_items.RemoveAt(j);
+                            managerIndexDecomposed = i;
+                        }
 
-                            if (m_loadedData[i].m_isScoped == false)
-                            { 
-                                m_loadedData.RemoveAt(i);
-                                EditorGUILayout.EndScrollView();
-                                return;
-                            }
+                        int managerMovment = RenderManager(m_loadedData[i].m_items[j].m_noneEvalurationManager, managerIndexDecomposed); //render manager
+
+                        if (RootManagerMovement(managerMovment, managerIndexDecomposed, i, j) == true)
+                        {
+                            EditorGUILayout.EndScrollView();
+                            return;
                         }
                     }
-                    else
+                    else //is evaluration scope
                     {
-                        if (RenderEvalScope(m_loadedData[i].m_items[j]) == true)
+                        int evalIndexDecomposed = j;
+                        if (m_loadedData[i].m_isScoped == false)
                         {
-                            m_loadedData[i].m_items.RemoveAt(j);
+                            evalIndexDecomposed = i;
+                        }
 
-                            if (m_loadedData[i].m_isScoped == false)
-                            {
-                                m_loadedData.RemoveAt(i);
-                                EditorGUILayout.EndScrollView();
-                                return;
-                            }
+                        int evalMovement = RenderEvalScope(m_loadedData[i].m_items[j], evalIndexDecomposed);
+
+                        if (RootManagerMovement(evalMovement, evalIndexDecomposed, i, j) == true)
+                        {
+                            EditorGUILayout.EndScrollView();
+                            return;
                         }
                     }
                 }
@@ -486,11 +594,17 @@ namespace MEBS.Editor
                 {
                     RenderScopeEnd();
 
-                    if (deleteScope == true)
+                    if (scopeMovement < 0)
                     {
                         m_loadedData.RemoveAt(i);
                         EditorGUILayout.EndScrollView();
                         return;
+                    }
+                    else if (scopeMovement != i && i < m_loadedData.Count)
+                    {
+                        MEB_BaseBehaviourData_ChainScopeItemWapper item = m_loadedData[i];
+                        m_loadedData.RemoveAt(i);
+                        m_loadedData.Insert(scopeMovement, item);
                     }
                 }
             }

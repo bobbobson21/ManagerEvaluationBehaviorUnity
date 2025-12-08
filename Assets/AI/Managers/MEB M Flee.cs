@@ -72,19 +72,36 @@ public class UserManger_Flee : MEB_BaseManager, MEB_I_IntScoop
 
     public override void OnUpdate(float delta, int index)
     {
-        //put update code here
+        GameObject obj = ((GameObject)m_director.m_blackboard.GetObject(m_getAttackObjectFromKey));
+        Vector3 destanation = m_director.m_gameObject.transform.position;
+
+        destanation = destanation + ((m_director.m_gameObject.transform.position -obj.transform.position).normalized * 2);
+
+        m_director.m_blackboard.SetObject(m_storeTargetLocationInKey, destanation);
     }
 
     public int GetIntEvalValue()
     {
+        int importance = 0;
+
         if (((int)m_director.m_blackboard.GetObject("health")) <= 25 || ((int)m_director.m_blackboard.GetObject("ammo")) <= 5)
         {
-            if (((GameObject)m_director.m_blackboard.GetObject(m_getAttackObjectFromKey)) != null)
+            GameObject target = ((GameObject)m_director.m_blackboard.GetObject(m_getAttackObjectFromKey));
+
+            if (target != null)
             {
-                return 100;
+                importance = 20;
+            }
+
+            RaycastHit hitInfo;
+            Physics.Linecast(m_director.m_gameObject.transform.position + new Vector3(0, 0, 110), target.transform.position, out hitInfo);
+
+            if (hitInfo.collider.gameObject == target)
+            {
+                importance = 40;
             }
         }
 
-        return 0;
+        return importance;
     }
 }

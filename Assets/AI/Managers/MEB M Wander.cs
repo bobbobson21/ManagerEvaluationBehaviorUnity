@@ -7,7 +7,7 @@ using UnityEngine;
 using static UnityEditor.Progress;
 
 #if UNITY_EDITOR
-public class WanderSettings : MEB_BaseBehaviourData_ItemSettings
+public class Manager_WanderSettings : MEB_BaseBehaviourData_ItemSettings
 {
     public float m_radius = 10;
     public float m_delayBetweenWandering = 1;
@@ -42,7 +42,7 @@ public class UserManger_Wander_UI : MEB_UI_BehaviourEditor_ManagerData
 
     public override MEB_BaseBehaviourData_ItemSettings CreateInstance()
     {
-        WanderSettings data = new WanderSettings();
+        Manager_WanderSettings data = new Manager_WanderSettings();
         data.m_class = "UserManger_Wander";
         data.m_displayName = m_name;
         data.m_displayDiscription = "Makes the NPC wander around the place at will.\n\nvaild blackboard data: \nstoreTargetLocationIn: (vector3BlackboardKeyAsString)";
@@ -79,7 +79,7 @@ public class UserManger_Wander : MEB_BaseManager, MEB_I_IntScoop
 
     public override void OnInitialized()
     {
-        WanderSettings settings = (WanderSettings)m_itemSettings;
+        Manager_WanderSettings settings = (Manager_WanderSettings)m_itemSettings;
 
         if (settings != null)
         { 
