@@ -81,16 +81,16 @@ public class UserManger_GetItem : MEB_BaseManager, MEB_I_IntScoop
 
     public override void OnUpdate(float delta, int index)
     {
-        int maxHealth = 100;
-        int maxAmmo = 25;
+        int maxHealth = ((int)m_director.m_blackboard.GetObject("healthMax"));
+        int maxAmmo = ((int)m_director.m_blackboard.GetObject("ammoMax"));
+
+        int health = (int)m_director.m_blackboard.GetObject("health");
+        int ammo = (int)m_director.m_blackboard.GetObject("ammo");
 
         Vector3 destanation = Vector2.zero;
 
         GameObject objHealth = ((GameObject)m_director.m_blackboard.GetObject(m_getHealthObjectFromKey));
         GameObject objAmmo = ((GameObject)m_director.m_blackboard.GetObject(m_getAmmoObjectFromKey));
-
-        int health = (int)m_director.m_blackboard.GetObject("health");
-        int ammo = (int)m_director.m_blackboard.GetObject("ammo");
 
         float healthDis = float.MaxValue;
         float ammoDis = float.MaxValue;
@@ -119,19 +119,19 @@ public class UserManger_GetItem : MEB_BaseManager, MEB_I_IntScoop
 
     public int GetIntEvalValue()
     {
-        int maxHealth = 100;
-        int maxAmmo = 25;
+        int maxHealth = (int)m_director.m_blackboard.GetObject("healthMax");
+        int maxAmmo = (int)m_director.m_blackboard.GetObject("ammoMax");
 
         GameObject objHealth = ((GameObject)m_director.m_blackboard.GetObject(m_getHealthObjectFromKey));
         GameObject objAmmo = ((GameObject)m_director.m_blackboard.GetObject(m_getAmmoObjectFromKey));
 
 
-        if ((((int)m_director.m_blackboard.GetObject("health")) < maxHealth && objHealth != null) || (((int)m_director.m_blackboard.GetObject("ammo")) < maxAmmo && objAmmo != null))
+        if ((((int)m_director.m_blackboard.GetObject("health")) < maxHealth && objHealth != null) || (((int)m_director.m_blackboard.GetObject("ammoTotal")) < maxAmmo && objAmmo != null))
         {
             return 30;
         }
 
-        if ((((int)m_director.m_blackboard.GetObject("health")) <= 20 && objHealth != null) || (((int)m_director.m_blackboard.GetObject("ammo")) < maxAmmo && objAmmo != null))
+        if ((((int)m_director.m_blackboard.GetObject("health")) <= 20 && objHealth != null) || (((int)m_director.m_blackboard.GetObject("ammoTotal")) < maxAmmo && objAmmo != null))
         {
             return 50;
         }

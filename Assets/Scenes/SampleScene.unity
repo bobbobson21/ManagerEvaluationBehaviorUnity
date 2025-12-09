@@ -3461,7 +3461,7 @@ NavMeshAgent:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1680097280}
-  m_Enabled: 1
+  m_Enabled: 0
   m_AgentTypeID: 0
   m_Radius: 0.5
   m_Speed: 3.5
@@ -3538,7 +3538,7 @@ Transform:
   m_GameObject: {fileID: 1680097280}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 3, z: 0}
+  m_LocalPosition: {x: 2.21, y: 3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -3562,8 +3562,11 @@ MonoBehaviour:
   m_ammoObject: {fileID: 0}
   m_eyeObject: {fileID: 0}
   m_movePos: {x: 0, y: 0, z: 0}
+  m_healthMax: 100
   m_health: 4
-  m_ammo: 4
+  m_ammoMax: 25
+  m_ammoTotal: 25
+  m_ammoClip: 25
 --- !u!114 &1680097287
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3602,9 +3605,9 @@ Rigidbody:
   m_ImplicitTensor: 1
   m_UseGravity: 1
   m_IsKinematic: 0
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_Constraints: 112
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!65 &1680097289
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3615,7 +3618,7 @@ BoxCollider:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 4294967295
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -4151,6 +4154,7 @@ GameObject:
   - component: {fileID: 1854164959}
   - component: {fileID: 1854164958}
   - component: {fileID: 1854164957}
+  - component: {fileID: 1854164960}
   m_Layer: 0
   m_Name: Gun
   m_TagString: Untagged
@@ -4301,6 +4305,26 @@ MonoBehaviour:
   m_activationTime: 0.1
   m_deactivationTime: 120
   m_eyePosition: {x: 0, y: 110, z: 0}
+--- !u!114 &1854164960
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1854164951}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec015fd5f50a1ff4eb0128804d5e23f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ClipSize: 25
+  m_totalAmmoCount: 50
+  m_maxShotFiredPerFiring: 2
+  m_delayBetweenShots: 0.1
+  m_parentOfGun: {fileID: 1680097280}
+  m_objectOffset: 0.7
+  m_aimOffset: 20
+  m_bulletMaxTravleDistance: 100
 --- !u!4 &1868528839 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6860460315295165702, guid: 0bbf0c2ff9e16e74ebf853228b0b3238, type: 3}

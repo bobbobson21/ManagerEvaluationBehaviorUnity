@@ -84,7 +84,7 @@ public class UserManger_Flee : MEB_BaseManager, MEB_I_IntScoop
     {
         int importance = 0;
 
-        if (((int)m_director.m_blackboard.GetObject("health")) <= 25 || ((int)m_director.m_blackboard.GetObject("ammo")) <= 5)
+        if (((int)m_director.m_blackboard.GetObject("health")) <= 25 || ((int)m_director.m_blackboard.GetObject("ammoCurrentClip")) <= 5)
         {
             GameObject target = ((GameObject)m_director.m_blackboard.GetObject(m_getAttackObjectFromKey));
 

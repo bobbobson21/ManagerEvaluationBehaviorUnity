@@ -29,8 +29,6 @@ public class SpawnItemScript : MonoBehaviour
                 {
                     int index = Random.Range(0, m_items.Count);
 
-                    Debug.Log(index);
-
                     m_lastitem = Instantiate(m_items[index], transform);
                 }
 

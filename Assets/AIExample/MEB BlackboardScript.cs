@@ -10,8 +10,12 @@ public class UserBlackboard_BasicBadguy : MEB_BaseBlackboard
     public GameObject m_eyeObject = null;
 
     public Vector3 m_movePos = Vector3.zero;
+    public int m_healthMax = 100;
     public int m_health = 100;
-    public int m_ammo = 25;
+
+    public int m_ammoMax = 50;
+    public int m_ammoTotal = 50;
+    public int m_ammoClip = 25;
 
     public override object GetObject(string key)
     {
@@ -32,11 +36,20 @@ public class UserBlackboard_BasicBadguy : MEB_BaseBlackboard
             case "movePos":
                 return m_movePos;
 
+            case "healthMax":
+                return m_healthMax;
+
             case "health":
                 return m_health;
 
-            case "ammo":
-                return m_ammo;
+            case "ammoTotal":
+                return m_ammoTotal;
+
+            case "ammoMax":
+                return m_ammoMax;
+
+            case "ammoCurrentClip":
+                return m_ammoClip;
 
             default:
                 return null;
@@ -67,12 +80,24 @@ public class UserBlackboard_BasicBadguy : MEB_BaseBlackboard
                 m_movePos = (Vector3)data;
                 break;
 
+            case "healthMax":
+                m_healthMax = (int)data;
+                break;
+
             case "health":
                 m_health = (int)data;
                 break;
 
-            case "ammo":
-                m_ammo = (int)data;
+            case "ammoTotal":
+                m_ammoTotal = (int)data;
+                break;
+
+            case "ammoMax":
+                m_ammoMax = (int)data;
+                break;
+
+            case "ammoCurrentClip":
+                m_ammoClip = (int)data;
                 break;
 
             default:
