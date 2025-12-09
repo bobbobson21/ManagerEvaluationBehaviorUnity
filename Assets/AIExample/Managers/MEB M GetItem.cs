@@ -4,6 +4,7 @@ using MEBS.Runtime;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
+using Unity.VisualScripting;
 
 
 #if UNITY_EDITOR
@@ -91,14 +92,24 @@ public class UserManger_GetItem : MEB_BaseManager, MEB_I_IntScoop
         int health = (int)m_director.m_blackboard.GetObject("health");
         int ammo = (int)m_director.m_blackboard.GetObject("ammo");
 
-        float healthDis = ((m_director.m_gameObject.transform.position - objHealth.transform.position).magnitude) * ((health / 1.5f) / 100);
-        float ammoDis = ((m_director.m_gameObject.transform.position - objAmmo.transform.position).magnitude) * ((ammo / 1.0f) / maxAmmo);
+        float healthDis = float.MaxValue;
+        float ammoDis = float.MaxValue;
 
-        if (health < maxHealth && (healthDis < ammoDis || ammoDis == maxAmmo))
+        if (objHealth != null)
+        {
+            healthDis = ((m_director.m_gameObject.transform.position - objHealth.transform.position).magnitude) * ((health / 1.5f) / 100);
+        }
+
+        if (objAmmo != null)
+        {
+            ammoDis = ((m_director.m_gameObject.transform.position - objAmmo.transform.position).magnitude) * ((ammo / 1.0f) / maxAmmo);
+        }
+
+        if (health < maxHealth && objHealth != null && (healthDis < ammoDis || ammoDis == maxAmmo))
         {
             destanation = objHealth.transform.position;
         }
-        else
+        else if(objAmmo != null)
         {
             destanation = objAmmo.transform.position;
         }
@@ -108,9 +119,21 @@ public class UserManger_GetItem : MEB_BaseManager, MEB_I_IntScoop
 
     public int GetIntEvalValue()
     {
-        if (((int)m_director.m_blackboard.GetObject("health")) <= 25 || ((int)m_director.m_blackboard.GetObject("ammo")) <= 5)
+        int maxHealth = 100;
+        int maxAmmo = 25;
+
+        GameObject objHealth = ((GameObject)m_director.m_blackboard.GetObject(m_getHealthObjectFromKey));
+        GameObject objAmmo = ((GameObject)m_director.m_blackboard.GetObject(m_getAmmoObjectFromKey));
+
+
+        if ((((int)m_director.m_blackboard.GetObject("health")) < maxHealth && objHealth != null) || (((int)m_director.m_blackboard.GetObject("ammo")) < maxAmmo && objAmmo != null))
         {
             return 30;
+        }
+
+        if ((((int)m_director.m_blackboard.GetObject("health")) <= 20 && objHealth != null) || (((int)m_director.m_blackboard.GetObject("ammo")) < maxAmmo && objAmmo != null))
+        {
+            return 50;
         }
 
         return 0;

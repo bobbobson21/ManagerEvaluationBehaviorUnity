@@ -91,14 +91,14 @@ public class UserManger_Flee : MEB_BaseManager, MEB_I_IntScoop
             if (target != null)
             {
                 importance = 20;
-            }
 
-            RaycastHit hitInfo;
-            Physics.Linecast(m_director.m_gameObject.transform.position + new Vector3(0, 0, 110), target.transform.position, out hitInfo);
+                RaycastHit hitInfo;
+                Physics.Linecast(m_director.m_gameObject.transform.position + new Vector3(0, 0, 110), target.transform.position, out hitInfo);
 
-            if (hitInfo.collider.gameObject == target)
-            {
-                importance = 40;
+                if (hitInfo.collider.gameObject == target)
+                {
+                    importance = 40;
+                }
             }
         }
 

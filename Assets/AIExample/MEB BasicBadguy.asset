@@ -53,7 +53,7 @@ MonoBehaviour:
         m_displayCustomSettingExpanded: 0
         m_displayDebugSettingsExpanded: 0
         m_runtimeManager:
-          rid: 4792260105386852628
+          rid: 324396814437449930
     - rid: 324396789511487490
       type: {class: MEB_BaseBehaviourData_ItemSettings, ns: MEBS.Runtime, asm: Assembly-CSharp}
       data:
@@ -69,7 +69,7 @@ MonoBehaviour:
         m_displayCustomSettingExpanded: 0
         m_displayDebugSettingsExpanded: 0
         m_runtimeManager:
-          rid: 4792260105386852632
+          rid: 324396814437449935
     - rid: 324396789511487492
       type: {class: MEB_BaseBehaviourData_ItemSettings, ns: MEBS.Runtime, asm: Assembly-CSharp}
       data:
@@ -87,7 +87,128 @@ MonoBehaviour:
         m_displayCustomSettingExpanded: 0
         m_displayDebugSettingsExpanded: 0
         m_runtimeManager:
-          rid: 4792260105386852629
+          rid: 324396814437449931
+    - rid: 324396814437449930
+      type: {class: MEB_M_WalkTo, ns: MEBS.Runtime, asm: Assembly-CSharp}
+      data:
+        m_chainState: 3
+        m_itemSettings:
+          m_class: MEBS.Runtime.MEB_M_WalkTo
+          m_displayName: MEB_M_WalkTo
+          m_displayDiscription: "Makes the NPC move towards a desired location. \n\nvalid
+            blackboard data: \ntarget: (vector3BlackboardKeyAsString) \nspeed: (floatBlackboardKeyAsString)
+            def = (navAgentSpeed)"
+          m_blackboardIdenifyers:
+          - target
+          m_blackboardKeys:
+          - movePos
+          m_displayBlackboardSettingExpanded: 0
+          m_displayCustomSettingExpanded: 0
+          m_displayDebugSettingsExpanded: 0
+          m_runtimeManager:
+            rid: 324396814437449930
+    - rid: 324396814437449931
+      type: {class: UserManger_Flee, ns: , asm: Assembly-CSharp}
+      data:
+        m_chainState: 1
+        m_itemSettings:
+          m_class: UserManger_Flee
+          m_displayName: UserManger_Flee
+          m_displayDiscription: "Makes the AI flee.\n\nvaild blackboard data: \nstoreTargetLocationIn:
+            (vector3BlackboardKeyAsString)\ngetAttackObjectFrom: (gameObjectBlackboardKeyAsString)"
+          m_blackboardIdenifyers:
+          - getAttackObjectFrom
+          - storeTargetLocationIn
+          m_blackboardKeys:
+          - attackerObj
+          - movePos
+          m_displayBlackboardSettingExpanded: 0
+          m_displayCustomSettingExpanded: 0
+          m_displayDebugSettingsExpanded: 0
+          m_runtimeManager:
+            rid: 324396814437449931
+    - rid: 324396814437449932
+      type: {class: UserManger_GetItem, ns: , asm: Assembly-CSharp}
+      data:
+        m_chainState: 2
+        m_itemSettings:
+          m_class: UserManger_GetItem
+          m_displayName: UserManger_GetItem
+          m_displayDiscription: "moves the npc to the location of an item \n\nvaild
+            blackboard data: \nstoreTargetLocationIn: (vector3BlackboardKeyAsString)\ngetHealthObjectFrom:
+            (gameObjectBlackboardKeyAsString)\ngetAmmoObjectFromKey: (gameObjectBlackboardKeyAsString)"
+          m_blackboardIdenifyers:
+          - storeTargetLocationIn
+          - getHealthObjectFrom
+          - getAmmoObjectFrom
+          m_blackboardKeys:
+          - movePos
+          - healthObject
+          - ammoObject
+          m_displayBlackboardSettingExpanded: 1
+          m_displayCustomSettingExpanded: 0
+          m_displayDebugSettingsExpanded: 0
+          m_runtimeManager:
+            rid: 324396814437449932
+    - rid: 324396814437449933
+      type: {class: UserManger_GetClose, ns: , asm: Assembly-CSharp}
+      data:
+        m_chainState: 2
+        m_itemSettings:
+          m_class: UserManger_GetClose
+          m_displayName: UserManger_GetClose
+          m_displayDiscription: "Gets us close to the target if there is one. \n\nvaild
+            blackboard data: \nstoreTargetLocationIn: (vector3BlackboardKeyAsString)\ngetAttackObjectFrom:
+            (gameObjectBlackboardKeyAsString)"
+          m_blackboardIdenifyers:
+          - getAttackObjectFrom
+          - storeTargetLocationIn
+          m_blackboardKeys:
+          - attackerObj
+          - movePos
+          m_displayBlackboardSettingExpanded: 1
+          m_displayCustomSettingExpanded: 0
+          m_displayDebugSettingsExpanded: 0
+          m_runtimeManager:
+            rid: 324396814437449933
+    - rid: 324396814437449934
+      type: {class: UserManger_Wander, ns: , asm: Assembly-CSharp}
+      data:
+        m_chainState: 2
+        m_itemSettings:
+          m_class: UserManger_Wander
+          m_displayName: UserManger_Wander
+          m_displayDiscription: "Makes the NPC wander around the place at will.\n\nvaild
+            blackboard data: \nstoreTargetLocationIn: (vector3BlackboardKeyAsString)"
+          m_blackboardIdenifyers:
+          - storeTargetLocationIn
+          m_blackboardKeys:
+          - movePos
+          m_displayBlackboardSettingExpanded: 0
+          m_displayCustomSettingExpanded: 0
+          m_displayDebugSettingsExpanded: 0
+          m_runtimeManager:
+            rid: 324396814437449934
+        m_radius: 10
+        m_delayBetweenWandering: 1
+    - rid: 324396814437449935
+      type: {class: MEB_E_EvalHighest, ns: MEBS.Runtime, asm: Assembly-CSharp}
+      data:
+        m_chainState: 2
+        m_itemSettings:
+          m_class: MEBS.Runtime.MEB_E_EvalHighest
+          m_displayName: MEB_E_EvalHighest
+          m_displayDiscription: Gets all the managers in the 'managers to evalurate'
+            section to return an int thougth MEB_I_IntScoop.GetIntEvalValue(). The
+            one that returns the higest value, that also isn't already blocked, moves
+            on the rest are blocked from execution.
+          m_blackboardIdenifyers: []
+          m_blackboardKeys: []
+          m_displayBlackboardSettingExpanded: 0
+          m_displayCustomSettingExpanded: 0
+          m_displayDebugSettingsExpanded: 0
+          m_runtimeManager:
+            rid: 324396814437449935
     - rid: 4792260105386852503
       type: {class: Manager_WanderSettings, ns: , asm: Assembly-CSharp}
       data:
@@ -103,7 +224,7 @@ MonoBehaviour:
         m_displayCustomSettingExpanded: 0
         m_displayDebugSettingsExpanded: 0
         m_runtimeManager:
-          rid: 4792260105386852631
+          rid: 324396814437449934
         m_radius: 10
         m_delayBetweenWandering: 1
     - rid: 4792260105386852504
@@ -124,108 +245,10 @@ MonoBehaviour:
         m_displayCustomSettingExpanded: 0
         m_displayDebugSettingsExpanded: 0
         m_runtimeManager:
-          rid: 4792260105386852630
+          rid: 324396814437449933
         m_saftyRadius: 5
         m_minimumVelocity: 0.1
         m_randMoveRadius: 2
-    - rid: 4792260105386852628
-      type: {class: MEB_M_WalkTo, ns: MEBS.Runtime, asm: Assembly-CSharp}
-      data:
-        m_chainState: 3
-        m_itemSettings:
-          m_class: MEBS.Runtime.MEB_M_WalkTo
-          m_displayName: MEB_M_WalkTo
-          m_displayDiscription: "Makes the NPC move towards a desired location. \n\nvalid
-            blackboard data: \ntarget: (vector3BlackboardKeyAsString) \nspeed: (floatBlackboardKeyAsString)
-            def = (navAgentSpeed)"
-          m_blackboardIdenifyers:
-          - target
-          m_blackboardKeys:
-          - movePos
-          m_displayBlackboardSettingExpanded: 0
-          m_displayCustomSettingExpanded: 0
-          m_displayDebugSettingsExpanded: 0
-          m_runtimeManager:
-            rid: 4792260105386852628
-    - rid: 4792260105386852629
-      type: {class: UserManger_Flee, ns: , asm: Assembly-CSharp}
-      data:
-        m_chainState: 1
-        m_itemSettings:
-          m_class: UserManger_Flee
-          m_displayName: UserManger_Flee
-          m_displayDiscription: "Makes the AI flee.\n\nvaild blackboard data: \nstoreTargetLocationIn:
-            (vector3BlackboardKeyAsString)\ngetAttackObjectFrom: (gameObjectBlackboardKeyAsString)"
-          m_blackboardIdenifyers:
-          - getAttackObjectFrom
-          - storeTargetLocationIn
-          m_blackboardKeys:
-          - attackerObj
-          - movePos
-          m_displayBlackboardSettingExpanded: 0
-          m_displayCustomSettingExpanded: 0
-          m_displayDebugSettingsExpanded: 0
-          m_runtimeManager:
-            rid: 4792260105386852629
-    - rid: 4792260105386852630
-      type: {class: UserManger_GetClose, ns: , asm: Assembly-CSharp}
-      data:
-        m_chainState: 2
-        m_itemSettings:
-          m_class: UserManger_GetClose
-          m_displayName: UserManger_GetClose
-          m_displayDiscription: "Gets us close to the target if there is one. \n\nvaild
-            blackboard data: \nstoreTargetLocationIn: (vector3BlackboardKeyAsString)\ngetAttackObjectFrom:
-            (gameObjectBlackboardKeyAsString)"
-          m_blackboardIdenifyers:
-          - getAttackObjectFrom
-          - storeTargetLocationIn
-          m_blackboardKeys:
-          - attackerObj
-          - movePos
-          m_displayBlackboardSettingExpanded: 1
-          m_displayCustomSettingExpanded: 1
-          m_displayDebugSettingsExpanded: 0
-          m_runtimeManager:
-            rid: 4792260105386852630
-    - rid: 4792260105386852631
-      type: {class: UserManger_Wander, ns: , asm: Assembly-CSharp}
-      data:
-        m_chainState: 2
-        m_itemSettings:
-          m_class: UserManger_Wander
-          m_displayName: UserManger_Wander
-          m_displayDiscription: "Makes the NPC wander around the place at will.\n\nvaild
-            blackboard data: \nstoreTargetLocationIn: (vector3BlackboardKeyAsString)"
-          m_blackboardIdenifyers:
-          - storeTargetLocationIn
-          m_blackboardKeys:
-          - movePos
-          m_displayBlackboardSettingExpanded: 0
-          m_displayCustomSettingExpanded: 0
-          m_displayDebugSettingsExpanded: 0
-          m_runtimeManager:
-            rid: 4792260105386852631
-        m_radius: 10
-        m_delayBetweenWandering: 1
-    - rid: 4792260105386852632
-      type: {class: MEB_E_EvalHighest, ns: MEBS.Runtime, asm: Assembly-CSharp}
-      data:
-        m_chainState: 2
-        m_itemSettings:
-          m_class: MEBS.Runtime.MEB_E_EvalHighest
-          m_displayName: MEB_E_EvalHighest
-          m_displayDiscription: Gets all the managers in the 'managers to evalurate'
-            section to return an int thougth MEB_I_IntScoop.GetIntEvalValue(). The
-            one that returns the higest value, that also isn't already blocked, moves
-            on the rest are blocked from execution.
-          m_blackboardIdenifyers: []
-          m_blackboardKeys: []
-          m_displayBlackboardSettingExpanded: 0
-          m_displayCustomSettingExpanded: 0
-          m_displayDebugSettingsExpanded: 0
-          m_runtimeManager:
-            rid: 4792260105386852632
     - rid: 4792260105386852633
       type: {class: MEB_BaseBehaviourData_ItemSettings, ns: MEBS.Runtime, asm: Assembly-CSharp}
       data:
@@ -240,10 +263,10 @@ MonoBehaviour:
         - getAmmoObjectFrom
         m_blackboardKeys:
         - movePos
-        - 
-        - 
-        m_displayBlackboardSettingExpanded: 0
+        - healthObject
+        - ammoObject
+        m_displayBlackboardSettingExpanded: 1
         m_displayCustomSettingExpanded: 0
         m_displayDebugSettingsExpanded: 0
         m_runtimeManager:
-          rid: -2
+          rid: 324396814437449932
