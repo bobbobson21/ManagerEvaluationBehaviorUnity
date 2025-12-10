@@ -72,6 +72,8 @@ public class UserManger_Flee : MEB_BaseManager, MEB_I_IntScoop
 
     public override void OnUpdate(float delta, int index)
     {
+        //Debug.Log("flee");
+
         GameObject obj = ((GameObject)m_director.m_blackboard.GetObject(m_getAttackObjectFromKey));
         Vector3 destanation = m_director.m_gameObject.transform.position;
 
@@ -98,7 +100,7 @@ public class UserManger_Flee : MEB_BaseManager, MEB_I_IntScoop
                 RaycastHit hitInfo;
                 Physics.Linecast(m_director.m_gameObject.transform.position + new Vector3(0, 0, 110), target.transform.position, out hitInfo);
 
-                if (hitInfo.collider.gameObject == target)
+                if (hitInfo.collider.gameObject == target && (target.transform.position -m_director.m_gameObject.transform.position).magnitude < 6)
                 {
                     importance = 40;
                 }

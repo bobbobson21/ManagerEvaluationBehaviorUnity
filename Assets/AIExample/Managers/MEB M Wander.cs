@@ -100,6 +100,8 @@ public class UserManger_Wander : MEB_BaseManager, MEB_I_IntScoop
 
     public override void OnUpdate(float delta, int index)
     {
+        //Debug.Log("wander");
+
         m_currentTimeLeftTillNextWanderCycle -= delta;
 
         if (m_currentTimeLeftTillNextWanderCycle < 0)

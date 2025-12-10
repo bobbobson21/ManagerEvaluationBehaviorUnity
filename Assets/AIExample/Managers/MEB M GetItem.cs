@@ -81,6 +81,8 @@ public class UserManger_GetItem : MEB_BaseManager, MEB_I_IntScoop
 
     public override void OnUpdate(float delta, int index)
     {
+        //Debug.Log("getItem");
+
         int maxHealth = ((int)m_director.m_blackboard.GetObject("healthMax"));
         int maxAmmo = ((int)m_director.m_blackboard.GetObject("ammoMax"));
 
@@ -129,11 +131,6 @@ public class UserManger_GetItem : MEB_BaseManager, MEB_I_IntScoop
         if ((((int)m_director.m_blackboard.GetObject("health")) < maxHealth && objHealth != null) || (((int)m_director.m_blackboard.GetObject("ammoTotal")) < maxAmmo && objAmmo != null))
         {
             return 30;
-        }
-
-        if ((((int)m_director.m_blackboard.GetObject("health")) <= 20 && objHealth != null) || (((int)m_director.m_blackboard.GetObject("ammoTotal")) < maxAmmo && objAmmo != null))
-        {
-            return 50;
         }
 
         return 0;

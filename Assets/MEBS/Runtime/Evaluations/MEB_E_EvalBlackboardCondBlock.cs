@@ -7,16 +7,16 @@ namespace MEBS.Editor
 {
 #if UNITY_EDITOR
     [InitializeOnLoad]
-    public class MEB_E_EvalBlackboardCond_UI : MEB_UI_BehaviourEditor_ManagerData
+    public class MEB_E_EvalBlackboardCondBlock_UI : MEB_UI_BehaviourEditor_ManagerData
     {
-        static MEB_E_EvalBlackboardCond_UI()
+        static MEB_E_EvalBlackboardCondBlock_UI()
         {
-            MEB_UI_BehaviourEditor.AddEvalManager(new MEB_E_EvalBlackboardCond_UI());
+            MEB_UI_BehaviourEditor.AddEvalManager(new MEB_E_EvalBlackboardCondBlock_UI());
         }
 
-        public MEB_E_EvalBlackboardCond_UI()
+        public MEB_E_EvalBlackboardCondBlock_UI()
         {
-            m_name = "MEB_E_EvalBlackboardCond";
+            m_name = "MEB_E_EvalBlackboardCondBlock";
         }
 
         public override MEB_BaseBehaviourData_ItemSettings CreateInstance()
@@ -24,7 +24,7 @@ namespace MEBS.Editor
             MEB_BaseBehaviourData_ItemSettings data = new MEB_BaseBehaviourData_ItemSettings();
             data.m_class = "MEBS.Runtime." + m_name;
             data.m_displayName = m_name;
-            data.m_displayDiscription = "If every bool registed to this managers black board list returns true the all managers in 'managers to evalurate' section after the first one are blocked, if one of the bools equals false the first manager is blocked. \n\nvalid blackboard data: \n???: (BoolBlackboardKeyAsString)";
+            data.m_displayDiscription = "If any bool registed to this managers black board list returns false all the managers int 'managers to evalurate' section are blocked from being exacuted not just the first one. \n\nvalid blackboard data: \n???: (BoolBlackboardKeyAsString)";
 
             return data;
         }
@@ -34,7 +34,7 @@ namespace MEBS.Editor
 
 namespace MEBS.Runtime
 {
-    public class MEB_E_EvalBlackboardCond : MEB_BaseManager, MEB_I_EvalScope
+    public class MEB_E_EvalBlackboardCondBlock : MEB_BaseManager, MEB_I_EvalScope
     {
         private int m_startPointOfScope = 0;
         private int m_endPointOfScope = 0;
@@ -68,7 +68,7 @@ namespace MEBS.Runtime
                 }
                 catch
                 {
-                    Debug.LogError($"ERROR: MEB_EBC_ES_TC==F: EvalBlackboardCond failed to obtain value from blackboard with key ({m_boolsToEval[i]}, {i}) for unkown reasons");
+                    Debug.LogError($"ERROR: MEB_EBCB_ES_TC==F: EvalBlackboardCondBlock failed to obtain value from blackboard with key ({m_boolsToEval[i]}, {i}) for unkown reasons");
                 }
             }
 
@@ -79,19 +79,10 @@ namespace MEBS.Runtime
 
                 if (conditionOfEval == false)
                 {
-                    if (i == 0)
-                    {
-                        manager.BlockMoveToExecutionForCycle();
-                    }
-                }
-                else
-                {
-                    if (i != 0)
-                    {
-                        manager.BlockMoveToExecutionForCycle();
-                    }
+                    manager.BlockMoveToExecutionForCycle();
                 }
             }
+
         }
 
         public override void EvaluationEnd(int index)

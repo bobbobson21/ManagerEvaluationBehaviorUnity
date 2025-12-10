@@ -9,7 +9,7 @@ using UnityEngine;
 
 public class Manager_FireGunSettings : MEB_BaseBehaviourData_ItemSettings
 {
-    public float m_range = 0.25f;
+    public float m_shootScope = 0.9f;
 
     public float m_speed = 10;
     public float m_speedMedium = 12;
@@ -22,7 +22,7 @@ public class Manager_FireGunSettings : MEB_BaseBehaviourData_ItemSettings
 
         if (m_displayCustomSettingExpanded == true)
         {
-            float.TryParse(EditorGUILayout.TextField("shoot range", m_range.ToString()), out m_range);
+            float.TryParse(EditorGUILayout.TextField("shoot if in scope of", m_shootScope.ToString()), out m_shootScope);
             GUILayout.Space(8);
             float.TryParse(EditorGUILayout.TextField("gun movement speed", m_speed.ToString()), out m_speed);
             float.TryParse(EditorGUILayout.TextField("speed at 50% health", m_speedMedium.ToString()), out m_speedMedium);
@@ -51,7 +51,7 @@ public class UserManger_FireGun_UI : MEB_UI_BehaviourEditor_ManagerData
         Manager_FireGunSettings data = new Manager_FireGunSettings();
         data.m_class = "UserManger_FireGun";
         data.m_displayName = m_name;
-        data.m_displayDiscription = "=Fires a gun towards the attacker. \n\nvaild blackboard data: \ngetAttackObjectFrom: (gameObjectBlackboardKeyAsString)";
+        data.m_displayDiscription = "Fires a gun towards the attacker. \n\nvaild blackboard data: \ngetAttackObjectFrom: (gameObjectBlackboardKeyAsString)";
 
         return data;
     }
@@ -62,6 +62,8 @@ public class UserManger_FireGun : MEB_BaseManager, MEB_I_IntScoop
 {
     private string m_getAttackObjectFromKey = "";
     private AICGun m_gunObject = null;
+
+    private float m_shootScope = 0.9f;
 
     private float m_speed = 10;
     private float m_speedMedium = 12;
@@ -94,6 +96,7 @@ public class UserManger_FireGun : MEB_BaseManager, MEB_I_IntScoop
 
         if (settings != null)
         {
+            m_shootScope = settings.m_shootScope;
             m_speed = settings.m_speed;
             m_speedMedium = settings.m_speedMedium;
             m_speedFast = settings.m_speedFast;
@@ -132,11 +135,16 @@ public class UserManger_FireGun : MEB_BaseManager, MEB_I_IntScoop
             speed = m_speedFast;
         }
 
-        m_gunObject.RotateGun(obj.transform.position, speed * Time.deltaTime);
+        m_gunObject.RotateGun(obj.transform.position, speed * delta);
 
-        if (m_gunObject.CanFire() == true)
-        { 
-            if(Vector3.Dot(m_gunObject.gameObject.transform.position.normalized, obj.transform.position) <= 0.1f)
+        if (m_gunObject.CanFire() == true && (m_gunObject.gameObject.transform.position  - obj.transform.position).magnitude < 4)
+        {
+           
+            //Debug.Log(Vector3.Dot((m_gunObject.gameObject.transform.position - m_director.m_gameObject.transform.position).normalized, (obj.transform.position - m_director.m_gameObject.transform.position).normalized));
+
+            float dotScope = Vector3.Dot((m_gunObject.gameObject.transform.position - m_director.m_gameObject.transform.position).normalized, (obj.transform.position - m_director.m_gameObject.transform.position).normalized);
+
+            if (dotScope >= m_shootScope)
             {
                 m_gunObject.FireGun();
             }
@@ -149,7 +157,7 @@ public class UserManger_FireGun : MEB_BaseManager, MEB_I_IntScoop
 
         if (obj != null)
         {
-            return 10;
+            return 20;
         }
 
         return 0;

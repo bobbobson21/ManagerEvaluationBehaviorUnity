@@ -41,6 +41,8 @@ namespace MEBS.Runtime
         private string m_targetKey = "";
         private NavMeshAgent m_agent = null;
 
+        private Vector3 m_lastLocation = Vector3.zero;
+
         public override void SetBlackboardKeys(List<string> idenifyers, List<string> keys)
         {
             for (int i = 0; i < idenifyers.Count; i++)
@@ -72,7 +74,14 @@ namespace MEBS.Runtime
 
         public override void OnUpdate(float delta, int index)
         {
-            m_agent.SetDestination(((Vector3)m_director.m_blackboard.GetObject(m_targetKey)));
+            Vector3 currentLocation = (Vector3)m_director.m_blackboard.GetObject(m_targetKey);
+
+            if ((m_lastLocation - currentLocation).magnitude <= 0.5f)
+            {
+                m_agent.SetDestination(currentLocation);
+            }
+
+            m_lastLocation = currentLocation;
 
             if (m_speedKey != "")
             {

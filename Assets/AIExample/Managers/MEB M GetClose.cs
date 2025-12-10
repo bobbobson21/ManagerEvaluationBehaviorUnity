@@ -70,6 +70,8 @@ public class UserManger_GetClose : MEB_BaseManager, MEB_I_IntScoop
     private Vector3 m_randomOffset = Vector3.zero;
     private NavMeshAgent m_navMeshAgent;
 
+    private float m_shutoffTime = 0;
+
     public override void SetBlackboardKeys(List<string> idenifyers, List<string> keys)
     {
         for (int i = 0; i < idenifyers.Count; i++)
@@ -115,15 +117,20 @@ public class UserManger_GetClose : MEB_BaseManager, MEB_I_IntScoop
 
     public override void OnUpdate(float delta, int index)
     {
+        //Debug.Log("get close");
+
         GameObject obj = ((GameObject)m_director.m_blackboard.GetObject(m_getAttackObjectFromKey));
         Vector3 destanation = obj.transform.position;
 
         destanation = destanation + ((m_director.m_gameObject.transform.position - destanation).normalized * m_saftyRadius);
 
+        m_shutoffTime -= delta;
+
         if ((m_director.m_gameObject.transform.position - destanation).magnitude < m_randMoveRadius)
         {
-            if (m_navMeshAgent.velocity.magnitude < m_minimumVelocity)
+            if (m_navMeshAgent.velocity.magnitude < m_minimumVelocity && m_shutoffTime <= 0)
             {
+                m_shutoffTime = 0.1f;
                 m_randomOffset = (new Vector3(Random.Range(-1.0f, 1.0f), 0, Random.Range(-1.0f, 1.0f)).normalized) * Random.Range(0.0f, m_randMoveRadius);
             }
 
