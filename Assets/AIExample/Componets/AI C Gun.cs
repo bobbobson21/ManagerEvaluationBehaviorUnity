@@ -1,16 +1,20 @@
+using MEBS.Runtime;
 using System.Security.Cryptography;
 using UnityEngine;
+using static UnityEngine.GraphicsBuffer;
 
 public class AICGun : MonoBehaviour
 {
     [Header("ammo")]
     public int m_ClipSize = 25;
-    public int m_totalAmmoCount = 50;
+    public int m_totalAmmoCountMax = 50;
     public int m_maxShotFiredPerFiring = 2;
 
     public float m_delayBetweenShots = 0.1f;
+    public float m_delayBetweenReload = 0.2f;
 
     private float m_currentdelayBetweenShots = 0;
+    private int m_totalAmmoCount = 0;
     private int m_ammoInClip = 0;
 
     [Header("transform")]
@@ -18,6 +22,24 @@ public class AICGun : MonoBehaviour
     public float m_objectOffset = 110;
     public float m_aimOffset = 20;
     public float m_bulletMaxTravleDistance = 100;
+    public float m_bulletSpread = 2;
+
+    [Header("damage")]
+    public int m_minDamage = 1;
+    public int m_maxDamage = 4;
+
+    [Header("render")]
+    public ParticleSystem m_particleSystem = null;
+
+    public void AddAmmoToTotalClip(int ammo)
+    {
+        m_totalAmmoCount += ammo;
+
+        if (ammo > m_totalAmmoCountMax)
+        {
+            m_totalAmmoCount = m_totalAmmoCountMax;
+        }
+    }
 
     public void Reload()
     { 
@@ -62,8 +84,21 @@ public class AICGun : MonoBehaviour
                 Vector3 firePosStart = m_parentOfGun.transform.position + (currentNormal * (m_objectOffset + m_aimOffset));
 
                 Vector3 firePosEnd = firePosStart + (currentNormal * m_bulletMaxTravleDistance);
+                firePosEnd += ((new Vector3(Random.Range(-1.0f, 1.0f), Random.Range(-1.0f, 1.0f), Random.Range(-1.0f, 1.0f)).normalized) * Random.Range(0.0f, m_bulletSpread));
+
+                RaycastHit hitInfo;
+                Physics.Linecast(firePosStart, firePosEnd, out hitInfo);
+
+                MEB_BaseBlackboard baseBlackboard = hitInfo.collider.gameObject.GetComponent<MEB_BaseBlackboard>();
+
+                if (baseBlackboard != null)
+                {
+                    baseBlackboard.SetObject("health", ((int)baseBlackboard.GetObject("health")) - Random.Range(m_minDamage, m_maxDamage));
+                }
             }
         }
+
+        m_particleSystem.Play();
     }
 
     public bool CanFire()
@@ -71,10 +106,23 @@ public class AICGun : MonoBehaviour
         return ((m_currentdelayBetweenShots < 0) && (m_ammoInClip > 0));
     }
 
+    public int GetAmmoInClip()
+    {
+        return m_ammoInClip;
+    }
+
+    public int GetTotalAmmo()
+    {
+        return m_totalAmmoCount;
+    }
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+        m_totalAmmoCount = m_totalAmmoCountMax;
+        Reload();
+
+        m_currentdelayBetweenShots = 0;
     }
 
     // Update is called once per frame
@@ -82,6 +130,7 @@ public class AICGun : MonoBehaviour
     {
         m_currentdelayBetweenShots -= Time.deltaTime;
 
+        //FireGun();
         //RotateGun(Vector2.zero, 10.0f * Time.deltaTime);
     }
 }

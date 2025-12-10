@@ -105,11 +105,11 @@ public class UserManger_GetClose : MEB_BaseManager, MEB_I_IntScoop
         m_navMeshAgent = m_director.m_gameObject.GetComponent<NavMeshAgent>();
     }
 
-    /*public virtual void OnStart() //put stuff in these if you need something to happen when the manager leaves or enters exacuteion
+    /*public override void OnStart() //put stuff in these if you need something to happen when the manager leaves or enters exacuteion
     {
     }
 
-    public virtual void OnEnd()
+    public override void OnEnd()
     {
     }*/
 

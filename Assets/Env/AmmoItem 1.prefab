@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6860460315295165702}
   - component: {fileID: 1719348628120133171}
   - component: {fileID: 5024493030942788034}
-  - component: {fileID: 5073701569344868569}
+  - component: {fileID: 6810041645145431316}
   - component: {fileID: 86500034032356745}
   - component: {fileID: 2756229615588389281}
   m_Layer: 0
@@ -89,7 +89,7 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &5073701569344868569
+--- !u!114 &6810041645145431316
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -98,14 +98,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 5255464440238701802}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3144b812e2089ec4f8ea7303473e5586, type: 3}
+  m_Script: {fileID: 11500000, guid: de9b5276c454b2046bfaefe307a35936, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  keyOfIntValueToMinulate: ammo
-  addToBlackboardValue: 10
-  minCap: 0
-  MaxCap: 25
-  m_removeOnTrigger: 1
+  m_maxAmmo: 5
+  m_minAmmo: 2
 --- !u!135 &86500034032356745
 SphereCollider:
   m_ObjectHideFlags: 0

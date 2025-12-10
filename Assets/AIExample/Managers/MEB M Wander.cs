@@ -90,11 +90,11 @@ public class UserManger_Wander : MEB_BaseManager, MEB_I_IntScoop
         //put on loaded into game code here
     }
 
-    /*public virtual void OnStart() //put stuff in these if you need something to happen when the manager leaves or enters exacuteion
+    /*public override void OnStart() //put stuff in these if you need something to happen when the manager leaves or enters exacuteion
     {
     }
 
-    public virtual void OnEnd()
+    public override void OnEnd()
     {
     }*/
 

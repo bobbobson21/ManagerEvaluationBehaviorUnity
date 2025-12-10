@@ -71,11 +71,11 @@ public class UserManger_GetItem : MEB_BaseManager, MEB_I_IntScoop
         //put on loaded into game code here
     }
 
-    /*public virtual void OnStart() //put stuff in these if you need something to happen when the manager leaves or enters exacuteion
+    /*public override void OnStart() //put stuff in these if you need something to happen when the manager leaves or enters exacuteion
     {
     }
 
-    public virtual void OnEnd()
+    public override void OnEnd()
     {
     }*/
 
@@ -85,7 +85,7 @@ public class UserManger_GetItem : MEB_BaseManager, MEB_I_IntScoop
         int maxAmmo = ((int)m_director.m_blackboard.GetObject("ammoMax"));
 
         int health = (int)m_director.m_blackboard.GetObject("health");
-        int ammo = (int)m_director.m_blackboard.GetObject("ammo");
+        int ammo = (int)m_director.m_blackboard.GetObject("ammoTotal");
 
         Vector3 destanation = Vector2.zero;
 
