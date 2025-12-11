@@ -154,12 +154,23 @@ namespace MEBS.Editor
         private MEB_BaseBehaviourData_ChainScopeItemWapper RenderAddScopeField()
         {
             int width = 44;
+            int widthButtonMain = 132;
 
             if (GUILayout.Button("{}+", GUILayout.Width(width)) == true)
             {
                 MEB_BaseBehaviourData_ChainScopeItemWapper item = new MEB_BaseBehaviourData_ChainScopeItemWapper();
                 item.m_items = new List<MEB_BaseBehaviourData_Item>();
                 item.m_isScoped = true;
+
+                return item;
+            }
+
+            if (GUILayout.Button("{}+ (main thread)", GUILayout.Width(widthButtonMain)) == true)
+            {
+                MEB_BaseBehaviourData_ChainScopeItemWapper item = new MEB_BaseBehaviourData_ChainScopeItemWapper();
+                item.m_items = new List<MEB_BaseBehaviourData_Item>();
+                item.m_isScoped = true;
+                item.m_isForMainThread = true;
 
                 return item;
             }
@@ -422,7 +433,7 @@ namespace MEBS.Editor
             return itemIndex;
         }
 
-        private int RenderScopeStart(MEB_BaseBehaviourData_ChainScopeItemWapper item, int itemIndex)
+        private int RenderScopeStart(MEB_BaseBehaviourData_ChainScopeItemWapper item, int itemIndex, bool isMainThreadScope)
         {
             int buttonWidth = 44;
 
@@ -450,11 +461,22 @@ namespace MEBS.Editor
             GUILayout.EndHorizontal();
             GUILayout.Space(yPadding);
 
+            if (isMainThreadScope == true)
+            {
+                GUILayout.Label("main thread scope data:", EditorStyles.boldLabel);
+                GUILayout.Space(yPadding);
+
+                GUILayout.BeginVertical(EditorStyles.helpBox);
+            }
+            else 
+            {
+                GUILayout.BeginVertical();
+            }
 
             if (managerData != null)
             {
                 item.m_items.Add(new MEB_BaseBehaviourData_Item());
-                item.m_items[item.m_items.Count -1].m_noneEvalurationManager = managerData;
+                item.m_items[item.m_items.Count - 1].m_noneEvalurationManager = managerData;
             }
 
             if (evalData != null)
@@ -470,6 +492,7 @@ namespace MEBS.Editor
             int xPadding = 8;
             int yPadding = 8;
 
+            GUILayout.EndVertical();
             GUILayout.EndVertical();
             GUILayout.Space(xPadding);
             GUILayout.EndHorizontal();
@@ -551,7 +574,7 @@ namespace MEBS.Editor
 
                 if (m_loadedData[i].m_isScoped == true) //this is a scope render the scope wapper
                 {
-                    scopeMovement = RenderScopeStart(m_loadedData[i], i);
+                    scopeMovement = RenderScopeStart(m_loadedData[i], i, m_loadedData[i].m_isForMainThread);
                 }
 
                 for (int j = 0; j < m_loadedData[i].m_items.Count; j++) //go thougth items

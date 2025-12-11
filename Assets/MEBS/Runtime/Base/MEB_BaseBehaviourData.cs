@@ -192,6 +192,10 @@ namespace MEBS.Runtime
 
         [SerializeField]
         public bool m_isScoped = false;
+
+        [SerializeField]
+        public bool m_isForMainThread = false;
+
         public List<MEB_BaseManager> Export()
         {
             List<MEB_BaseManager> returnList = new List<MEB_BaseManager>();

@@ -16,12 +16,15 @@ MonoBehaviour:
   - m_items:
     - rid: 8164751483659092274
     m_isScoped: 0
+    m_isForMainThread: 0
   - m_items:
     - rid: 324396789511487488
     m_isScoped: 0
+    m_isForMainThread: 0
   - m_items:
     - rid: 324396837991612652
     m_isScoped: 0
+    m_isForMainThread: 0
   references:
     version: 2
     RefIds:
