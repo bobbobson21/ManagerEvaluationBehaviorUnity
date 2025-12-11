@@ -24,7 +24,7 @@ namespace MEBS.Editor
             MEB_BaseBehaviourData_ItemSettings data = new MEB_BaseBehaviourData_ItemSettings();
             data.m_class = "MEBS.Runtime." + m_name;
             data.m_displayName = m_name;
-            data.m_displayDiscription = "If every bool registed to this managers black board list returns true the all managers in 'managers to evalurate' section after the first one are blocked, if one of the bools equals false the first manager is blocked. \n\nvalid blackboard data: \n???: (BoolBlackboardKeyAsString)";
+            data.m_displayDiscription = "If every bool registed to this managers black board list returns true then all managers in 'managers to evalurate' section after the first unblocked one are blocked, if one of the bools equals false the first unblocked manager is blocked. \n\nvalid blackboard data: \n???: (BoolBlackboardKeyAsString)";
 
             return data;
         }
@@ -72,21 +72,28 @@ namespace MEBS.Runtime
                 }
             }
 
+            int firstUnblockedIndex = 0;
+
             for (int i = 0; i < arrayLength; i++)
             {
                 int otherManagerIndex = (index - arrayLength) + i;
                 MEB_BaseManager manager = m_director.GetManagerByIndex(otherManagerIndex);
 
+                if (manager.IsAllowedToExecute() == false)
+                {
+                    firstUnblockedIndex++;
+                }
+
                 if (conditionOfEval == false)
                 {
-                    if (i == 0)
+                    if (i == firstUnblockedIndex)
                     {
                         manager.BlockMoveToExecutionForCycle();
                     }
                 }
                 else
                 {
-                    if (i != 0)
+                    if (i != firstUnblockedIndex)
                     {
                         manager.BlockMoveToExecutionForCycle();
                     }

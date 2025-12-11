@@ -21,9 +21,6 @@ public class UserBlackboard_BasicBadguy : MEB_BaseBlackboard
     {
         switch (key)
         {
-            case "eyeObject":
-                return m_eyeObject;
-
             case "attackerObj":
                 return m_attackerObj;
 
@@ -60,12 +57,12 @@ public class UserBlackboard_BasicBadguy : MEB_BaseBlackboard
     {
         switch (key)
         {
-            case "eyeObject":
-                m_eyeObject = (GameObject)data;
-                break;
-
             case "attackerObj":
                 m_attackerObj = (GameObject)data;
+                break;
+
+            case "eyeObject":
+                m_eyeObject = (GameObject)data;
                 break;
 
             case "healthObject":
