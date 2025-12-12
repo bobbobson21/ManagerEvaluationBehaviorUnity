@@ -6,7 +6,7 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.AI;
 
-#if UNITY_EDITOR
+
 public class Manager_MakeEyeFollowPathSettings : MEB_BaseBehaviourData_ItemSettings
 {
     public float m_speed = 10;
@@ -25,6 +25,8 @@ public class Manager_MakeEyeFollowPathSettings : MEB_BaseBehaviourData_ItemSetti
     }
 }
 
+
+#if UNITY_EDITOR
 [InitializeOnLoad]
 public class UserManger_MakeEyeFollowPath_UI : MEB_UI_BehaviourEditor_ManagerData
 {

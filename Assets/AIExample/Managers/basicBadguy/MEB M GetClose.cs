@@ -7,7 +7,6 @@ using UnityEngine;
 using UnityEngine.AI;
 using static UnityEditor.PlayerSettings;
 
-#if UNITY_EDITOR
 
 public class Manager_GetCloseSettings : MEB_BaseBehaviourData_ItemSettings
 {
@@ -15,7 +14,7 @@ public class Manager_GetCloseSettings : MEB_BaseBehaviourData_ItemSettings
     public float m_minimumVelocity = 0.1f;
 
     public float m_randMoveRadius = 4.0f;
-    
+
     public override void OnGUI()
     {
         GUILayout.BeginVertical(EditorStyles.helpBox); //start of blackboard settings
@@ -32,6 +31,7 @@ public class Manager_GetCloseSettings : MEB_BaseBehaviourData_ItemSettings
     }
 }
 
+#if UNITY_EDITOR
 [InitializeOnLoad]
 public class UserManger_GetClose_UI : MEB_UI_BehaviourEditor_ManagerData
 {

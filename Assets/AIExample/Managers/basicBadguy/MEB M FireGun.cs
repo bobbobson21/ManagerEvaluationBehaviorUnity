@@ -5,7 +5,6 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
-#if UNITY_EDITOR
 
 public class Manager_FireGunSettings : MEB_BaseBehaviourData_ItemSettings
 {
@@ -33,6 +32,7 @@ public class Manager_FireGunSettings : MEB_BaseBehaviourData_ItemSettings
     }
 }
 
+#if UNITY_EDITOR
 [InitializeOnLoad]
 public class UserManger_FireGun_UI : MEB_UI_BehaviourEditor_ManagerData
 {

@@ -6,7 +6,7 @@ using UnityEditor;
 using UnityEngine;
 using static UnityEditor.Progress;
 
-#if UNITY_EDITOR
+
 public class Manager_WanderSettings : MEB_BaseBehaviourData_ItemSettings
 {
     public float m_radius = 10;
@@ -27,6 +27,7 @@ public class Manager_WanderSettings : MEB_BaseBehaviourData_ItemSettings
     }
 }
 
+#if UNITY_EDITOR
 [InitializeOnLoad]
 public class UserManger_Wander_UI : MEB_UI_BehaviourEditor_ManagerData
 {

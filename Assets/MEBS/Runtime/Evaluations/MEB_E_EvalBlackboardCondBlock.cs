@@ -21,7 +21,7 @@ namespace MEBS.Editor
 
         public override MEB_BaseBehaviourData_ItemSettings CreateInstance()
         {
-            MEB_BaseBehaviourData_ItemSettings data = new MEB_BaseBehaviourData_ItemSettings();
+            MEB_BaseBehaviourData_BlackboardCondBlockSettings data = new MEB_BaseBehaviourData_BlackboardCondBlockSettings();
             data.m_class = "MEBS.Runtime." + m_name;
             data.m_displayName = m_name;
             data.m_displayDiscription = "If any bool registed to this managers black board list returns false all the managers int 'managers to evalurate' section are blocked from being exacuted not just the first one. \n\nvalid blackboard data: \n???: (BoolBlackboardKeyAsString)";
@@ -34,8 +34,39 @@ namespace MEBS.Editor
 
 namespace MEBS.Runtime
 {
+    public class MEB_BaseBehaviourData_BlackboardCondBlockSettings : MEB_BaseBehaviourData_ItemSettings
+    {
+        public bool m_inverted = false;
+
+        public int m_blockRangeStartPoint = 0;
+        public int m_blockRangeEndPoint = int.MaxValue;
+
+        public override void OnGUI()
+        {
+            int spaceY = 8;
+
+            GUILayout.BeginVertical(EditorStyles.helpBox); //start of blackboard settings
+            m_displayCustomSettingExpanded = EditorGUILayout.Foldout(m_displayCustomSettingExpanded, "custom values");
+
+            if (m_displayCustomSettingExpanded == true)
+            {
+                m_inverted = EditorGUILayout.Toggle("invert logic", m_inverted);
+                GUILayout.Space(spaceY);
+
+                int.TryParse(EditorGUILayout.TextField("block range start", m_blockRangeStartPoint.ToString()), out m_blockRangeStartPoint);
+                int.TryParse(EditorGUILayout.TextField("block range end", m_blockRangeEndPoint.ToString()), out m_blockRangeEndPoint);
+            }
+
+            GUILayout.EndVertical();
+        }
+    }
+
     public class MEB_E_EvalBlackboardCondBlock : MEB_BaseManager, MEB_I_EvalScope
     {
+        private bool m_inverted = false;
+        private int m_blockRangeStartPoint = 0;
+        private int m_blockRangeEndPoint = int.MaxValue;
+
         private int m_startPointOfScope = 0;
         private int m_endPointOfScope = 0;
         private List<string> m_boolsToEval = new List<string>();
@@ -51,10 +82,22 @@ namespace MEBS.Runtime
             m_boolsToEval = keys;
         }
 
+        public override void OnInitialized()
+        {
+            MEB_BaseBehaviourData_BlackboardCondBlockSettings settings = (MEB_BaseBehaviourData_BlackboardCondBlockSettings)m_itemSettings;
+
+            if (settings != null)
+            {
+                m_inverted = settings.m_inverted;
+                m_blockRangeStartPoint = settings.m_blockRangeStartPoint;
+                m_blockRangeEndPoint = settings.m_blockRangeEndPoint;
+            }
+        }
+
         public override void EvaluationStart(int index)
         {
             int arrayLength = (m_endPointOfScope - m_startPointOfScope);
-            bool conditionOfEval = true;
+            bool conditionOfEval = !m_inverted;
 
             for (int i = 0; i < m_boolsToEval.Count; i++) //if a bool is false we enter fail
             {
@@ -62,7 +105,7 @@ namespace MEBS.Runtime
                 {
                     if (((bool)m_director.m_blackboard.GetObject(m_boolsToEval[i])) == false)
                     {
-                        conditionOfEval = false;
+                        conditionOfEval = m_inverted;
                         break;
                     }
                 }
@@ -77,7 +120,7 @@ namespace MEBS.Runtime
                 int otherManagerIndex = (index - arrayLength) + i;
                 MEB_BaseManager manager = m_director.GetManagerByIndex(otherManagerIndex);
 
-                if (conditionOfEval == false)
+                if (conditionOfEval == false && i >= m_blockRangeStartPoint && i <= m_blockRangeStartPoint)
                 {
                     manager.BlockMoveToExecutionForCycle();
                 }
