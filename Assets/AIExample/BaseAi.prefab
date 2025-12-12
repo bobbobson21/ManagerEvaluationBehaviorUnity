@@ -5214,6 +5214,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_behaviorSet: {fileID: 11400000, guid: 7970831d8773989469b183b0f07e1767, type: 2}
   m_blackboard: {fileID: 2367188205530176646}
+  m_exportManagersWithDebugConnection: 0
 --- !u!114 &2367188205530176646
 MonoBehaviour:
   m_ObjectHideFlags: 0

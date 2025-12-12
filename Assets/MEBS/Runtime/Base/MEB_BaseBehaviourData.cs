@@ -31,7 +31,7 @@ namespace MEBS.Runtime
         [SerializeField]
         public bool m_displayDebugSettingsExpanded = false;
 
-        [SerializeReference]
+        [NonSerialized]
         public MEB_BaseManager m_runtimeManager;
 
         public virtual void OnGUI()
@@ -61,7 +61,7 @@ namespace MEBS.Runtime
         [SerializeField]
         public bool m_isNormalManager = true;
 
-        public List<MEB_BaseManager> Export()
+        public List<MEB_BaseManager> Export(bool doDebug)
         {
             List<MEB_BaseManager> returnList = new List<MEB_BaseManager>();
 
@@ -74,7 +74,11 @@ namespace MEBS.Runtime
                     instance.SetBlackboardKeys(m_noneEvalurationManager.m_blackboardIdenifyers, m_noneEvalurationManager.m_blackboardKeys);
                     instance.m_chainState = MEB_BaseManager_ChainState.ChainMiddle;
                     instance.m_itemSettings = m_noneEvalurationManager;
-                    m_noneEvalurationManager.m_runtimeManager = instance;
+
+                    if (doDebug == true)
+                    {
+                        m_noneEvalurationManager.m_runtimeManager = instance;
+                    }
 
                     returnList.Add(instance);
                 }
@@ -94,7 +98,11 @@ namespace MEBS.Runtime
                         instance.SetBlackboardKeys(m_runBeforeEval[i].m_blackboardIdenifyers, m_runBeforeEval[i].m_blackboardKeys);
                         instance.m_chainState = MEB_BaseManager_ChainState.ChainMiddle;
                         instance.m_itemSettings = m_runBeforeEval[i];
-                        m_runBeforeEval[i].m_runtimeManager = instance;
+
+                        if (doDebug == true)
+                        {
+                            m_runBeforeEval[i].m_runtimeManager = instance;
+                        }
 
                         returnList.Add(instance);
                     }
@@ -115,7 +123,11 @@ namespace MEBS.Runtime
                         instance.SetBlackboardKeys(m_useInEval[i].m_blackboardIdenifyers, m_useInEval[i].m_blackboardKeys);
                         instance.m_chainState = MEB_BaseManager_ChainState.ChainMiddle;
                         instance.m_itemSettings = m_useInEval[i];
-                        m_useInEval[i].m_runtimeManager = instance;
+
+                        if (doDebug == true)
+                        {
+                            m_useInEval[i].m_runtimeManager = instance;
+                        }
 
                         returnList.Add(instance);
                     }
@@ -141,7 +153,11 @@ namespace MEBS.Runtime
                         instance.SetBlackboardKeys(m_evalurators[i].m_blackboardIdenifyers, m_evalurators[i].m_blackboardKeys);
                         instance.m_chainState = MEB_BaseManager_ChainState.ChainMiddle;
                         instance.m_itemSettings = m_evalurators[i];
-                        m_evalurators[i].m_runtimeManager = instance;
+
+                        if (doDebug == true)
+                        {
+                            m_evalurators[i].m_runtimeManager = instance;
+                        }
 
                         returnList.Add(instance);
                     }
@@ -160,7 +176,11 @@ namespace MEBS.Runtime
                         instance.SetBlackboardKeys(m_runAfterEval[i].m_blackboardIdenifyers, m_runAfterEval[i].m_blackboardKeys);
                         instance.m_chainState = MEB_BaseManager_ChainState.ChainMiddle;
                         instance.m_itemSettings = m_runAfterEval[i];
-                        m_runAfterEval[i].m_runtimeManager = instance;
+
+                        if (doDebug == true)
+                        {
+                            m_runAfterEval[i].m_runtimeManager = instance;
+                        }
 
                         returnList.Add(instance);
                     }
@@ -196,13 +216,13 @@ namespace MEBS.Runtime
         [SerializeField]
         public bool m_isForMainThread = false;
 
-        public List<MEB_BaseManager> Export()
+        public List<MEB_BaseManager> Export(bool doDebug)
         {
             List<MEB_BaseManager> returnList = new List<MEB_BaseManager>();
 
             for (int i = 0; i < m_items.Count; i++)
             {
-                List<MEB_BaseManager> data = m_items[i].Export();
+                List<MEB_BaseManager> data = m_items[i].Export(doDebug);
 
                 for (int j = 0; j < data.Count; j++)
                 {

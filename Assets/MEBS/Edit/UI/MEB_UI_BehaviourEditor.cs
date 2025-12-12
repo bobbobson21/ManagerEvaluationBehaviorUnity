@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEditor.Callbacks;
 using UnityEngine;
+using static UnityEditor.Progress;
 
 #if UNITY_EDITOR
 
@@ -27,6 +28,9 @@ namespace MEBS.Editor
 
         private static List<MEB_UI_BehaviourEditor_ManagerData> m_listDataNormal = new List<MEB_UI_BehaviourEditor_ManagerData>();
         private static List<MEB_UI_BehaviourEditor_ManagerData> m_listDataEval = new List<MEB_UI_BehaviourEditor_ManagerData>();
+
+        private float m_refreshRateMax = 0.1f;
+        private float m_currentRefreshRatePoint = 0;
 
         public static void AddNormalManager(MEB_UI_BehaviourEditor_ManagerData manager)
         {
@@ -536,6 +540,20 @@ namespace MEBS.Editor
             }
 
             return false;
+        }
+
+        private void Update()
+        {
+            if (Application.isPlaying == true)
+            {
+                m_currentRefreshRatePoint += Time.deltaTime;
+
+                if (m_currentRefreshRatePoint >= m_refreshRateMax)
+                {
+                    Repaint();
+                    m_currentRefreshRatePoint = 0;
+                }
+            }
         }
 
         private void OnGUI()

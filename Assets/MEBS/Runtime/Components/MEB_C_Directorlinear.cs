@@ -10,6 +10,10 @@ public class MEB_C_Directorlinear : MonoBehaviour
     public MEB_BaseBehaviourData m_behaviorSet;
     public MEB_BaseBlackboard m_blackboard;
 
+    [Header("debug")]
+    [Tooltip("If true this manager will be able to send debug data back to the UI window. DO NOT USE ON MORE THAN ONE AI USING THE SAME SET.")]
+    public bool m_exportManagersWithDebugConnection = false;
+
     private void Start()
     {
         m_directorInterface.m_blackboard = m_blackboard;
@@ -17,7 +21,7 @@ public class MEB_C_Directorlinear : MonoBehaviour
 
         for (int i = 0; i < m_behaviorSet.m_items.Count; i++)
         {
-            List<MEB_BaseManager> itemsExposed = m_behaviorSet.m_items[i].Export();
+            List<MEB_BaseManager> itemsExposed = m_behaviorSet.m_items[i].Export(m_exportManagersWithDebugConnection);
 
             for (int j = 0; j < itemsExposed.Count; j++)
             {

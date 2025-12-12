@@ -23,10 +23,17 @@ public class MEB_C_DirectorLod : MonoBehaviour
 
     public MEB_BaseBehaviourData m_behaviorSet;
     public MEB_BaseBlackboard m_blackboard;
+
+    [Header("lod")]
+    [Tooltip("The object whos distance to us determins the level of detail/ lod.")]
     public GameObject m_player = null;
 
     public float m_ThinkDelayTimesDistance = 0.1f;
     public float m_maxThinkDelay = 1.0f;
+
+    [Header("debug")]
+    [Tooltip("If true this manager will be able to send debug data back to the UI window. DO NOT USE ON MORE THAN ONE AI USING THE SAME SET.")]
+    public bool m_exportManagersWithDebugConnection = false;
 
     private float m_currentDelay = 0;
 
@@ -44,7 +51,7 @@ public class MEB_C_DirectorLod : MonoBehaviour
 
         for (int i = 0; i < m_behaviorSet.m_items.Count; i++)
         {
-            List<MEB_BaseManager> itemsExposed = m_behaviorSet.m_items[i].Export();
+            List<MEB_BaseManager> itemsExposed = m_behaviorSet.m_items[i].Export(m_exportManagersWithDebugConnection);
 
             for (int j = 0; j < itemsExposed.Count; j++)
             {
