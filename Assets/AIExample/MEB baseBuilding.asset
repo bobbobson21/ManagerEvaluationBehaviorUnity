@@ -14,7 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_items:
   - m_items:
-    - rid: 324396895616106564
+    - rid: 324396917020688467
+    m_isScoped: 0
+    m_isForMainThread: 0
+  - m_items:
+    - rid: 324396921821331516
     m_isScoped: 0
     m_isForMainThread: 0
   - m_items:
@@ -26,53 +30,6 @@ MonoBehaviour:
     RefIds:
     - rid: -2
       type: {class: , ns: , asm: }
-    - rid: 324396895616106564
-      type: {class: MEB_BaseBehaviourData_Item, ns: MEBS.Runtime, asm: Assembly-CSharp}
-      data:
-        m_runBeforeEval: []
-        m_runAfterEval: []
-        m_useInEval:
-        - rid: 324396895616106565
-        m_evalurators:
-        - rid: 324396895616106567
-        m_noneEvalurationManager:
-          rid: -2
-        m_isNormalManager: 0
-    - rid: 324396895616106565
-      type: {class: Manager_BBMineSettings, ns: , asm: Assembly-CSharp}
-      data:
-        m_class: UserManger_BBMine
-        m_displayName: UserManger_BBMine
-        m_displayDiscription: "Destroys trees near NPC. \n\nvaild blackboard data:
-          \nstoreWoodCountIn: (intBlackboardKeyAsString)"
-        m_blackboardIdenifyers:
-        - storeWoodCountIn
-        m_blackboardKeys:
-        - woodCount
-        m_displayBlackboardSettingExpanded: 0
-        m_displayCustomSettingExpanded: 0
-        m_displayDebugSettingsExpanded: 0
-        m_mineSpeed: 2
-        m_cooldownSpeed: 0.3
-        m_mineRadius: 2
-        m_mineTag: mineable
-    - rid: 324396895616106567
-      type: {class: MEB_BaseBehaviourData_BlackboardCondSettings, ns: MEBS.Runtime, asm: Assembly-CSharp}
-      data:
-        m_class: MEBS.Runtime.MEB_E_EvalBlackboardCondBlock
-        m_displayName: MEB_E_EvalBlackboardCondBlock
-        m_displayDiscription: "If any bool registed to this managers black board
-          list returns false all the managers int 'managers to evalurate' section
-          are blocked from being exacuted not just the first one. \n\nvalid blackboard
-          data: \n???: (BoolBlackboardKeyAsString)"
-        m_blackboardIdenifyers:
-        - 0:???
-        m_blackboardKeys:
-        - hasHouse
-        m_displayBlackboardSettingExpanded: 0
-        m_displayCustomSettingExpanded: 0
-        m_displayDebugSettingsExpanded: 0
-        m_inverted: 1
     - rid: 324396895616106568
       type: {class: MEB_BaseBehaviourData_Item, ns: MEBS.Runtime, asm: Assembly-CSharp}
       data:
@@ -81,7 +38,11 @@ MonoBehaviour:
         - rid: 324396895616106569
         m_useInEval:
         - rid: 324396895616106571
+        - rid: 324396917020688456
+        - rid: 324396921821331519
         m_evalurators:
+        - rid: 324396917020688481
+        - rid: 324396917020688482
         - rid: 324396895616106570
         m_noneEvalurationManager:
           rid: -2
@@ -131,3 +92,138 @@ MonoBehaviour:
         m_displayDebugSettingsExpanded: 0
         m_radius: 10
         m_delayBetweenWandering: 1
+    - rid: 324396917020688456
+      type: {class: MEB_BaseBehaviourData_ItemSettings, ns: MEBS.Runtime, asm: Assembly-CSharp}
+      data:
+        m_class: UserManger_BBMoveToMineable
+        m_displayName: UserManger_BBMoveToMineable
+        m_displayDiscription: "Move to the nearest minable object. \n\nvaild blackboard
+          data: \nstoreTargetLocationIn: (vector3BlackboardKeyAsString)\ngetMineObjectFrom:
+          (gameObjectBlackboardKeyAsString)"
+        m_blackboardIdenifyers:
+        - storeTargetLocationIn
+        - getMineObjectFrom
+        m_blackboardKeys:
+        - movePos
+        - mineObj
+        m_displayBlackboardSettingExpanded: 0
+        m_displayCustomSettingExpanded: 0
+        m_displayDebugSettingsExpanded: 0
+    - rid: 324396917020688467
+      type: {class: MEB_BaseBehaviourData_Item, ns: MEBS.Runtime, asm: Assembly-CSharp}
+      data:
+        m_runBeforeEval: []
+        m_runAfterEval: []
+        m_useInEval: []
+        m_evalurators: []
+        m_noneEvalurationManager:
+          rid: 324396917020688468
+        m_isNormalManager: 1
+    - rid: 324396917020688468
+      type: {class: Manager_BBMineSettings, ns: , asm: Assembly-CSharp}
+      data:
+        m_class: UserManger_BBMine
+        m_displayName: UserManger_BBMine
+        m_displayDiscription: "Destroys trees near NPC. \n\nvaild blackboard data:
+          \nstoreWoodCountIn: (intBlackboardKeyAsString)"
+        m_blackboardIdenifyers:
+        - storeWoodCountIn
+        m_blackboardKeys:
+        - mineCount
+        m_displayBlackboardSettingExpanded: 0
+        m_displayCustomSettingExpanded: 0
+        m_displayDebugSettingsExpanded: 0
+        m_mineSpeed: 2
+        m_cooldownSpeed: 0.3
+        m_mineRadius: 2
+        m_mineTag: mineable
+    - rid: 324396917020688481
+      type: {class: MEB_BaseBehaviourData_BlackboardCondBlockSettings, ns: MEBS.Runtime, asm: Assembly-CSharp}
+      data:
+        m_class: MEBS.Runtime.MEB_E_EvalBlackboardCondBlock
+        m_displayName: MEB_E_EvalBlackboardCondBlock
+        m_displayDiscription: "If any bool registed to this managers black board
+          list returns false all the managers int 'managers to evalurate' section
+          are blocked from being exacuted not just the first one. \n\nvalid blackboard
+          data: \n???: (BoolBlackboardKeyAsString)"
+        m_blackboardIdenifyers:
+        - 0:???
+        m_blackboardKeys:
+        - 'hasGotEnougthToBuild '
+        m_displayBlackboardSettingExpanded: 0
+        m_displayCustomSettingExpanded: 0
+        m_displayDebugSettingsExpanded: 0
+        m_inverted: 1
+        m_blockRangeStartPoint: 1
+        m_blockRangeEndPoint: 1
+    - rid: 324396917020688482
+      type: {class: MEB_BaseBehaviourData_BlackboardCondBlockSettings, ns: MEBS.Runtime, asm: Assembly-CSharp}
+      data:
+        m_class: MEBS.Runtime.MEB_E_EvalBlackboardCondBlock
+        m_displayName: MEB_E_EvalBlackboardCondBlock
+        m_displayDiscription: "If any bool registed to this managers black board
+          list returns false all the managers int 'managers to evalurate' section
+          are blocked from being exacuted not just the first one. \n\nvalid blackboard
+          data: \n???: (BoolBlackboardKeyAsString)"
+        m_blackboardIdenifyers:
+        - 0:???
+        m_blackboardKeys:
+        - hasGotEnougthToBuild
+        m_displayBlackboardSettingExpanded: 0
+        m_displayCustomSettingExpanded: 0
+        m_displayDebugSettingsExpanded: 0
+        m_inverted: 0
+        m_blockRangeStartPoint: 2
+        m_blockRangeEndPoint: 2147483647
+    - rid: 324396921821331516
+      type: {class: MEB_BaseBehaviourData_Item, ns: MEBS.Runtime, asm: Assembly-CSharp}
+      data:
+        m_runBeforeEval: []
+        m_runAfterEval: []
+        m_useInEval: []
+        m_evalurators: []
+        m_noneEvalurationManager:
+          rid: 324396921821331517
+        m_isNormalManager: 1
+    - rid: 324396921821331517
+      type: {class: MEB_BaseBehaviourData_ItemSettings, ns: MEBS.Runtime, asm: Assembly-CSharp}
+      data:
+        m_class: UserManger_BBPlanBuilding
+        m_displayName: UserManger_BBPlanBuilding
+        m_displayDiscription: "Figures out what building is needed and how much is
+          needed to build it.\n\nvaild blackboard data: \ngetCityBuiltSoFarFrom:
+          (list<InfrstructerObject>BlackboardKeyAsString) \ngetResourceCountFrom:
+          (intBlackboardKeyAsString) \nstoreDesiredBuildingTypeIn: (intBlackboardKeyAsString)\nstoreHasGotEnougthToBuildIn:
+          (boolBlackboardKeyAsString)"
+        m_blackboardIdenifyers:
+        - getCityBuiltSoFarFrom
+        - getResourceCountFrom
+        - storeDesiredBuildingTypeIn
+        - storeHasGotEnougthToBuildIn
+        m_blackboardKeys:
+        - cityBuiltSoFar
+        - mineCount
+        - desiredBuildingType
+        - hasGotEnougthToBuild
+        m_displayBlackboardSettingExpanded: 0
+        m_displayCustomSettingExpanded: 0
+        m_displayDebugSettingsExpanded: 0
+    - rid: 324396921821331519
+      type: {class: MEB_BaseBehaviourData_ItemSettings, ns: MEBS.Runtime, asm: Assembly-CSharp}
+      data:
+        m_class: UserManger_BBMoveToBuildPos
+        m_displayName: UserManger_BBMoveToBuildPos
+        m_displayDiscription: "Moves us towards a buildable location. \n\nvaild blackboard
+          data: \nstoreTargetLocationIn: (vector3BlackboardKeyAsString)\ngetDesiredBuildingTypeFrom:
+          (intBlackboardKeyAsString)\ngetCityBuiltSoFarFrom: (list<InfrstructerObject>BlackboardKeyAsString)"
+        m_blackboardIdenifyers:
+        - getDesiredBuildingTypeFrom
+        - getCityBuiltSoFarFrom
+        - storeTargetLocationIn
+        m_blackboardKeys:
+        - desiredBuildingType
+        - cityBuiltSoFar
+        - movePos
+        m_displayBlackboardSettingExpanded: 0
+        m_displayCustomSettingExpanded: 0
+        m_displayDebugSettingsExpanded: 0
