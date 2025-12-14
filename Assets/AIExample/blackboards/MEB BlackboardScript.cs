@@ -17,6 +17,11 @@ public class UserBlackboard_BasicBadguy : MEB_BaseBlackboard
     public int m_ammoTotal = 50;
     public int m_ammoClip = 25;
 
+    public int m_resourceCount = 0;
+    public int m_desiredResourceCount = 0;
+    public bool m_wantsToExtract = false;
+    public bool m_extraAgressive = false;
+
     public override object GetObject(string key)
     {
         switch (key)
@@ -47,6 +52,18 @@ public class UserBlackboard_BasicBadguy : MEB_BaseBlackboard
 
             case "ammoCurrentClip":
                 return m_ammoClip;
+
+            case "resourceCount":
+                return m_resourceCount;
+
+            case "desiredResourceCount":
+                return m_desiredResourceCount;
+
+            case "wantsToExtract":
+                return m_wantsToExtract;
+
+            case "extraAgressive":
+                return m_extraAgressive;
 
             default:
                 return null;
@@ -95,6 +112,22 @@ public class UserBlackboard_BasicBadguy : MEB_BaseBlackboard
 
             case "ammoCurrentClip":
                 m_ammoClip = (int)data;
+                break;
+
+            case "resourceCount":
+                m_resourceCount = (int)data;
+                break;
+
+            case "desiredResourceCount":
+                m_desiredResourceCount = (int)data;
+                break;
+
+            case "wantsToExtract":
+                m_wantsToExtract = (bool)data;
+                break;
+
+            case "extraAgressive":
+                m_extraAgressive = (bool)data;
                 break;
 
             default:

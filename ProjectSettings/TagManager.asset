@@ -7,8 +7,8 @@ TagManager:
   - AIUnit
   - Health
   - Ammo
-  - buildPoint
-  - mineable
+  - resource
+  - extractPoint
   layers:
   - Default
   - TransparentFX

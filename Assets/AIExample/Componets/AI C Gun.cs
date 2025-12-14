@@ -111,6 +111,7 @@ public class AICGun : MonoBehaviour
                     {
                         m_renderAsSuccessfulDebug = true;
 
+                        baseBlackboard.SetObject("attackerObj", m_parentOfGun);
                         baseBlackboard.SetObject("health", ((int)baseBlackboard.GetObject("health")) - Random.Range(m_minDamage, m_maxDamage));
                     }
                 }

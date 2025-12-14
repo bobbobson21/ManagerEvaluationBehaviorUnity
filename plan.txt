@@ -1,7 +1,3 @@
-   --o do chain section support
-   --o finish off blackboard code
-   --o Do managers who can get a value
-   --o make evaluators
-   o Do UI
-   o Do basic managers (like move to)
-   o make Director Threaded
+   o add a get resource manager
+   o add a go to extraction manager
+   o add more aggressive managers
