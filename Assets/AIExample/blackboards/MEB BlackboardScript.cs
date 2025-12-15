@@ -8,6 +8,7 @@ public class UserBlackboard_BasicBadguy : MEB_BaseBlackboard
     public GameObject m_healthObject = null;
     public GameObject m_ammoObject = null;
     public GameObject m_eyeObject = null;
+    public GameObject m_resourceObject = null;
 
     public Vector3 m_movePos = Vector3.zero;
     public int m_healthMax = 100;
@@ -34,6 +35,9 @@ public class UserBlackboard_BasicBadguy : MEB_BaseBlackboard
 
             case "ammoObject":
                 return m_ammoObject;
+
+            case "resourceObject":
+                return m_resourceObject;
 
             case "movePos":
                 return m_movePos;
@@ -88,6 +92,10 @@ public class UserBlackboard_BasicBadguy : MEB_BaseBlackboard
 
             case "ammoObject":
                 m_ammoObject = (GameObject)data;
+                break;
+
+            case "resourceObject":
+                m_resourceObject = (GameObject)data;
                 break;
 
             case "movePos":

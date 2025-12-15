@@ -64,6 +64,7 @@ MonoBehaviour:
         - rid: 324396940330795071
         m_useInEval:
         - rid: 324396940330795070
+        - rid: 324396951961075791
         - rid: 324396940330795110
         - rid: 324396940330795093
         m_evalurators:
@@ -278,7 +279,7 @@ MonoBehaviour:
         m_displayCustomSettingExpanded: 0
         m_displayDebugSettingsExpanded: 0
         m_inverted: 0
-        m_blockRangeStartPoint: 2
+        m_blockRangeStartPoint: 3
         m_blockRangeEndPoint: 2147483647
     - rid: 324396942948302923
       type: {class: MEB_BaseBehaviourData_Item, ns: MEBS.Runtime, asm: Assembly-CSharp}
@@ -328,6 +329,23 @@ MonoBehaviour:
         m_blackboardKeys:
         - extraAgressive
         - attackerObj
+        m_displayBlackboardSettingExpanded: 0
+        m_displayCustomSettingExpanded: 0
+        m_displayDebugSettingsExpanded: 0
+    - rid: 324396951961075791
+      type: {class: MEB_BaseBehaviourData_ItemSettings, ns: MEBS.Runtime, asm: Assembly-CSharp}
+      data:
+        m_class: UserManger_GoToResource
+        m_displayName: UserManger_GoToResource
+        m_displayDiscription: "Makes the npc move to a resource\n\nvaild blackboard
+          data: \ngetResourceObjectFrom: (gameObjectBlackboardKeyAsString)\nstoreTargetLocationIn:
+          (vector3BlackboardKeyAsString)"
+        m_blackboardIdenifyers:
+        - getResourceObjectFrom
+        - storeTargetLocationIn
+        m_blackboardKeys:
+        - resourceObject
+        - movePos
         m_displayBlackboardSettingExpanded: 0
         m_displayCustomSettingExpanded: 0
         m_displayDebugSettingsExpanded: 0
