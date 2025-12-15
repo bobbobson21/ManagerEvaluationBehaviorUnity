@@ -49,7 +49,7 @@ public class UserManger_GoToResource : MEB_BaseManager, MEB_I_IntScoop
                 m_getResourceObjectFromKey = keys[i];
             }
 
-            if (idenifyers[i] == "getAttackObjectFrom")
+            if (idenifyers[i] == "storeTargetLocationIn")
             {
                 m_storeTargetLocationInKey = keys[i];
             }
