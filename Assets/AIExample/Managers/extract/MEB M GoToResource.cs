@@ -86,7 +86,7 @@ public class UserManger_GoToResource : MEB_BaseManager, MEB_I_IntScoop
 
     public int GetIntEvalValue()
     {
-        if (m_director.m_blackboard.GetObject(m_getResourceObjectFromKey) != null)
+        if (((GameObject)m_director.m_blackboard.GetObject(m_getResourceObjectFromKey)) != null)
         {
             return 5;
         }

@@ -9,6 +9,7 @@ public class UserBlackboard_BasicBadguy : MEB_BaseBlackboard
     public GameObject m_ammoObject = null;
     public GameObject m_eyeObject = null;
     public GameObject m_resourceObject = null;
+    public GameObject m_extractObject = null;
 
     public Vector3 m_movePos = Vector3.zero;
     public int m_healthMax = 100;
@@ -38,6 +39,9 @@ public class UserBlackboard_BasicBadguy : MEB_BaseBlackboard
 
             case "resourceObject":
                 return m_resourceObject;
+
+            case "extractObject":
+                return m_extractObject;
 
             case "movePos":
                 return m_movePos;
@@ -98,6 +102,10 @@ public class UserBlackboard_BasicBadguy : MEB_BaseBlackboard
                 m_resourceObject = (GameObject)data;
                 break;
 
+            case "extractObject":
+                m_extractObject = (GameObject)data;
+                break;
+
             case "movePos":
                 m_movePos = (Vector3)data;
                 break;
@@ -146,6 +154,11 @@ public class UserBlackboard_BasicBadguy : MEB_BaseBlackboard
     public override Type GetObjectAsType(string key)
     {
         return null;
+    }
+
+    private void Start()
+    {
+        m_desiredResourceCount = UnityEngine.Random.Range(0, 60);
     }
 }
 

@@ -142,7 +142,7 @@ public class UserManger_GetClose : MEB_BaseManager, MEB_I_IntScoop
 
     public int GetIntEvalValue()
     {
-        if (((GameObject)m_director.m_blackboard.GetObject(m_getAttackObjectFromKey)) != null)
+        if (m_director.m_blackboard.GetObject(m_getAttackObjectFromKey) != null)
         {
             return 10;
         }

@@ -117,10 +117,10 @@ namespace MEBS.Runtime
 
             for (int i = 0; i < arrayLength; i++)
             {
-                int otherManagerIndex = (index - arrayLength) + i;
+                int otherManagerIndex = ((index + m_endPointOfScope) - arrayLength) + i;
                 MEB_BaseManager manager = m_director.GetManagerByIndex(otherManagerIndex);
 
-                if (conditionOfEval == false && i >= m_blockRangeStartPoint && i <= m_blockRangeStartPoint)
+                if (conditionOfEval == false && i >= m_blockRangeStartPoint && i <= m_blockRangeEndPoint)
                 {
                     manager.BlockMoveToExecutionForCycle();
                 }

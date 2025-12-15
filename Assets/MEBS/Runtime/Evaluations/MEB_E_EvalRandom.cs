@@ -54,7 +54,7 @@ namespace MEBS.Runtime
 
             for (int i = 0; i < arrayLength; i++) //find highest value
             {
-                int otherManagerIndex = (index - arrayLength) + i;
+                int otherManagerIndex = ((index + m_endPointOfScope) - arrayLength) + i;
                 MEB_BaseManager manager = m_director.GetManagerByIndex(otherManagerIndex);
 
                 if (manager.IsAllowedToExecute() == true)

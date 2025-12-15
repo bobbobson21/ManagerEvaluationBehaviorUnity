@@ -55,7 +55,7 @@ namespace MEBS.Runtime
             {
                 try
                 {
-                    int otherManagerIndex = (index - arrayLength) + i;
+                    int otherManagerIndex = ((index + m_endPointOfScope) - arrayLength) + i;
                     MEB_BaseManager manager = m_director.GetManagerByIndex(otherManagerIndex);
                     int testValue = ((MEB_I_IntScoop)manager).GetIntEvalValue();
 
@@ -73,7 +73,7 @@ namespace MEBS.Runtime
 
             for (int i = 0; i < arrayLength; i++) //blocks all but highest evalurated item from entering exacuteion
             {
-                int otherManagerIndex = (index - arrayLength) + i;
+                int otherManagerIndex = ((index + m_endPointOfScope) - arrayLength) + i;
                 MEB_BaseManager manager = m_director.GetManagerByIndex(otherManagerIndex);
 
                 if (indexOfLowestRatedManagerSoFar != i)

@@ -9,6 +9,7 @@ using UnityEngine;
 public class Manager_FireGunSettings : MEB_BaseBehaviourData_ItemSettings
 {
     public float m_shootScope = 0.9f;
+    public float m_shootDistance = 4;
 
     public float m_speed = 10;
     public float m_speedMedium = 12;
@@ -22,6 +23,7 @@ public class Manager_FireGunSettings : MEB_BaseBehaviourData_ItemSettings
         if (m_displayCustomSettingExpanded == true)
         {
             float.TryParse(EditorGUILayout.TextField("shoot if in scope of", m_shootScope.ToString()), out m_shootScope);
+            float.TryParse(EditorGUILayout.TextField("shoot if in scope of", m_shootDistance.ToString()), out m_shootDistance);
             GUILayout.Space(8);
             float.TryParse(EditorGUILayout.TextField("gun movement speed", m_speed.ToString()), out m_speed);
             float.TryParse(EditorGUILayout.TextField("speed at 50% health", m_speedMedium.ToString()), out m_speedMedium);
@@ -64,6 +66,7 @@ public class UserManger_FireGun : MEB_BaseManager, MEB_I_IntScoop
     private AICGun m_gunObject = null;
 
     private float m_shootScope = 0.9f;
+    private float m_shootDistance = 4.0f;
 
     private float m_speed = 10;
     private float m_speedMedium = 12;
@@ -97,6 +100,8 @@ public class UserManger_FireGun : MEB_BaseManager, MEB_I_IntScoop
         if (settings != null)
         {
             m_shootScope = settings.m_shootScope;
+            m_shootDistance = settings.m_shootDistance;
+
             m_speed = settings.m_speed;
             m_speedMedium = settings.m_speedMedium;
             m_speedFast = settings.m_speedFast;
@@ -137,7 +142,7 @@ public class UserManger_FireGun : MEB_BaseManager, MEB_I_IntScoop
 
         m_gunObject.RotateGun(obj.transform.position, speed * delta);
 
-        if (m_gunObject.CanFire() == true && (m_gunObject.gameObject.transform.position  - obj.transform.position).magnitude < 4)
+        if (m_gunObject.CanFire() == true && (m_gunObject.gameObject.transform.position  - obj.transform.position).magnitude < m_shootDistance)
         {
            
             //Debug.Log(Vector3.Dot((m_gunObject.gameObject.transform.position - m_director.m_gameObject.transform.position).normalized, (obj.transform.position - m_director.m_gameObject.transform.position).normalized));

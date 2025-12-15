@@ -101,8 +101,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3144b812e2089ec4f8ea7303473e5586, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  keyOfIntValueToMinulate: resource
-  addToBlackboardValue: 5
+  keyOfIntValueToMinulate: resourceCount
+  addToBlackboardValue: 1
   minCap: 0
   MaxCap: 999
   m_removeOnTrigger: 1

@@ -65,6 +65,7 @@ MonoBehaviour:
         m_useInEval:
         - rid: 324396940330795070
         - rid: 324396951961075791
+        - rid: 6310419742603346003
         - rid: 324396940330795110
         - rid: 324396940330795093
         m_evalurators:
@@ -99,10 +100,10 @@ MonoBehaviour:
         m_blackboardKeys:
         - movePos
         m_displayBlackboardSettingExpanded: 0
-        m_displayCustomSettingExpanded: 0
+        m_displayCustomSettingExpanded: 1
         m_displayDebugSettingsExpanded: 0
-        m_radius: 10
-        m_delayBetweenWandering: 1
+        m_radius: 20
+        m_delayBetweenWandering: 4
     - rid: 324396940330795071
       type: {class: MEB_BaseBehaviourData_ItemSettings, ns: MEBS.Runtime, asm: Assembly-CSharp}
       data:
@@ -203,7 +204,8 @@ MonoBehaviour:
         m_displayBlackboardSettingExpanded: 0
         m_displayCustomSettingExpanded: 0
         m_displayDebugSettingsExpanded: 0
-        m_shootScope: 0.9
+        m_shootScope: 0.8
+        m_shootDistance: 6
         m_speed: 10
         m_speedMedium: 12
         m_speedFast: 16
@@ -279,7 +281,7 @@ MonoBehaviour:
         m_displayCustomSettingExpanded: 0
         m_displayDebugSettingsExpanded: 0
         m_inverted: 0
-        m_blockRangeStartPoint: 3
+        m_blockRangeStartPoint: 4
         m_blockRangeEndPoint: 2147483647
     - rid: 324396942948302923
       type: {class: MEB_BaseBehaviourData_Item, ns: MEBS.Runtime, asm: Assembly-CSharp}
@@ -349,3 +351,26 @@ MonoBehaviour:
         m_displayBlackboardSettingExpanded: 0
         m_displayCustomSettingExpanded: 0
         m_displayDebugSettingsExpanded: 0
+    - rid: 6310419742603346003
+      type: {class: Manager_GoToExtractSettings, ns: , asm: Assembly-CSharp}
+      data:
+        m_class: UserManger_GoToExtract
+        m_displayName: UserManger_GoToExtract
+        m_displayDiscription: "Makes the npc move to the exit.\n\nvaild blackboard
+          data: \ngetExtractObjectFrom: (gameObjectBlackboardKeyAsString)\nstoreTargetLocationIn:
+          (vector3BlackboardKeyAsString)\ngetResourceCountFrom :(intBlackboardKeyAsString)\ngetdesiredResourceCountFrom
+          :(intBlackboardKeyAsString)"
+        m_blackboardIdenifyers:
+        - storeTargetLocationIn
+        - getExtractObjectFrom
+        - getResourceCountFrom
+        - getDesiredResourceCountFrom
+        m_blackboardKeys:
+        - movePos
+        - extractObject
+        - resourceCount
+        - desiredResourceCount
+        m_displayBlackboardSettingExpanded: 0
+        m_displayCustomSettingExpanded: 0
+        m_displayDebugSettingsExpanded: 0
+        m_extractIn: 20
