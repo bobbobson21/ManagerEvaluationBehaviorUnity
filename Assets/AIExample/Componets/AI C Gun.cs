@@ -113,6 +113,16 @@ public class AICGun : MonoBehaviour
 
                         baseBlackboard.SetObject("attackerObj", m_parentOfGun);
                         baseBlackboard.SetObject("health", ((int)baseBlackboard.GetObject("health")) - Random.Range(m_minDamage, m_maxDamage));
+
+                        if ((int)baseBlackboard.GetObject("health") <= 0)
+                        {
+                            MEB_BaseBlackboard parentBlackboard = m_parentOfGun.GetComponent<MEB_BaseBlackboard>();
+
+                            if(parentBlackboard != null)
+                            {
+                                parentBlackboard.SetObject("resourceCount", ((int)parentBlackboard.GetObject("resourceCount")) + ((int)baseBlackboard.GetObject("resourceCount")));
+                            }
+                        }
                     }
                 }
             }

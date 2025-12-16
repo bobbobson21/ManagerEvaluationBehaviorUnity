@@ -9,6 +9,7 @@ TagManager:
   - Ammo
   - resource
   - extractPoint
+  - deadAI
   layers:
   - Default
   - TransparentFX

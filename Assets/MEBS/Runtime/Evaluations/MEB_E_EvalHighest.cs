@@ -67,6 +67,10 @@ namespace MEBS.Runtime
                 }
                 catch
                 {
+                    int otherManagerIndex = ((index + m_endPointOfScope) - arrayLength) + i; //for debuging
+                    MEB_BaseManager manager = m_director.GetManagerByIndex(otherManagerIndex);
+                    int testValue = ((MEB_I_IntScoop)manager).GetIntEvalValue();
+
                     Debug.LogError($"ERROR: MEB_EH_ES_TC==F: EvalHighest failed to eval item at index ({i}) for unkown reasons");
                 }
             }

@@ -20,11 +20,11 @@ public class EnCExtractPoint : MonoBehaviour
         {
             if (npcData.m_resourceCount >= npcData.m_desiredResourceCount)
             {
-                Debug.Log($"npc {obj.name} failed to complete there mission");
+                Debug.Log($"npc {obj.name} completed there mission");
             }
             else
             {
-                Debug.Log($"npc {obj.name} completed there mission");
+                Debug.Log($"npc {obj.name} failed to complete there mission");
             }
 
             Destroy(obj);

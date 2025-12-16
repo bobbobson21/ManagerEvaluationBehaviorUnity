@@ -102,7 +102,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   keyOfIntValueToMinulate: resourceCount
-  addToBlackboardValue: 1
+  addToBlackboardValue: 3
   minCap: 0
   MaxCap: 999
   m_removeOnTrigger: 1

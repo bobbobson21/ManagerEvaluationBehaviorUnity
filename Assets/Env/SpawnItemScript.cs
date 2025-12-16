@@ -13,7 +13,12 @@ public class SpawnItemScript : MonoBehaviour
 
     void Start()
     {
+        MeshRenderer render = gameObject.GetComponent<MeshRenderer>();
 
+        if (render != null)
+        { 
+            Destroy(render);
+        }
     }
 
     // Update is called once per frame

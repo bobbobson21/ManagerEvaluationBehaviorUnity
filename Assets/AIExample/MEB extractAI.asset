@@ -20,6 +20,7 @@ MonoBehaviour:
   - m_items:
     - rid: 324396942948302923
     - rid: 324396942948302925
+    - rid: 324396972871516242
     m_isScoped: 1
     m_isForMainThread: 1
   - m_items:
@@ -66,6 +67,7 @@ MonoBehaviour:
         - rid: 324396940330795070
         - rid: 324396951961075791
         - rid: 6310419742603346003
+        - rid: 324396972871516244
         - rid: 324396940330795110
         - rid: 324396940330795093
         m_evalurators:
@@ -100,7 +102,7 @@ MonoBehaviour:
         m_blackboardKeys:
         - movePos
         m_displayBlackboardSettingExpanded: 0
-        m_displayCustomSettingExpanded: 1
+        m_displayCustomSettingExpanded: 0
         m_displayDebugSettingsExpanded: 0
         m_radius: 20
         m_delayBetweenWandering: 4
@@ -281,7 +283,7 @@ MonoBehaviour:
         m_displayCustomSettingExpanded: 0
         m_displayDebugSettingsExpanded: 0
         m_inverted: 0
-        m_blockRangeStartPoint: 4
+        m_blockRangeStartPoint: 5
         m_blockRangeEndPoint: 2147483647
     - rid: 324396942948302923
       type: {class: MEB_BaseBehaviourData_Item, ns: MEBS.Runtime, asm: Assembly-CSharp}
@@ -351,6 +353,55 @@ MonoBehaviour:
         m_displayBlackboardSettingExpanded: 0
         m_displayCustomSettingExpanded: 0
         m_displayDebugSettingsExpanded: 0
+    - rid: 324396972871516242
+      type: {class: MEB_BaseBehaviourData_Item, ns: MEBS.Runtime, asm: Assembly-CSharp}
+      data:
+        m_runBeforeEval: []
+        m_runAfterEval: []
+        m_useInEval: []
+        m_evalurators: []
+        m_noneEvalurationManager:
+          rid: 324396972871516243
+        m_isNormalManager: 1
+    - rid: 324396972871516243
+      type: {class: Manager_GreedyAgressionSettings, ns: , asm: Assembly-CSharp}
+      data:
+        m_class: UserManger_GreedyAgression
+        m_displayName: UserManger_GreedyAgression
+        m_displayDiscription: "Makes the AI agressive if the amout of items needed
+          is to high.\n\nvaild blackboard data: \ngetResourceCountFrom :(intBlackboardKeyAsString)\ngetdesiredResourceCountFrom
+          :(intBlackboardKeyAsString)\nstoreIsAgressiveIn: (boolBlackboardKeyAsString)"
+        m_blackboardIdenifyers:
+        - getResourceCountFrom
+        - getdesiredResourceCountFrom
+        - storeIsAgressiveIn
+        m_blackboardKeys:
+        - resourceCount
+        - desiredResourceCount
+        - extraAgressive
+        m_displayBlackboardSettingExpanded: 0
+        m_displayCustomSettingExpanded: 0
+        m_displayDebugSettingsExpanded: 0
+        m_greedAmount: 45
+    - rid: 324396972871516244
+      type: {class: MEB_BaseBehaviourData_ItemSettings, ns: MEBS.Runtime, asm: Assembly-CSharp}
+      data:
+        m_class: UserManger_GetItem
+        m_displayName: UserManger_GetItem
+        m_displayDiscription: "moves the npc to the location of an item \n\nvaild
+          blackboard data: \nstoreTargetLocationIn: (vector3BlackboardKeyAsString)\ngetHealthObjectFrom:
+          (gameObjectBlackboardKeyAsString)\ngetAmmoObjectFromKey: (gameObjectBlackboardKeyAsString)"
+        m_blackboardIdenifyers:
+        - storeTargetLocationIn
+        - getHealthObjectFrom
+        - getAmmoObjectFrom
+        m_blackboardKeys:
+        - movePos
+        - healthObject
+        - ammoObject
+        m_displayBlackboardSettingExpanded: 0
+        m_displayCustomSettingExpanded: 0
+        m_displayDebugSettingsExpanded: 0
     - rid: 6310419742603346003
       type: {class: Manager_GoToExtractSettings, ns: , asm: Assembly-CSharp}
       data:
@@ -373,4 +424,4 @@ MonoBehaviour:
         m_displayBlackboardSettingExpanded: 0
         m_displayCustomSettingExpanded: 0
         m_displayDebugSettingsExpanded: 0
-        m_extractIn: 20
+        m_extractIn: 240

@@ -14,6 +14,8 @@ GameObject:
   - component: {fileID: 2188039010333478865}
   - component: {fileID: 5200228457455301454}
   - component: {fileID: 1122099354575024655}
+  - component: {fileID: 4306655261103073577}
+  - component: {fileID: 701750821329183620}
   - component: {fileID: 7832060520106513687}
   - component: {fileID: 2766877438823596588}
   - component: {fileID: 1893430572501682336}
@@ -127,7 +129,7 @@ MonoBehaviour:
   m_inputLocation: resourceObject
   m_searchingFor: resource
   m_eyePosition: {x: 0, y: 1.1, z: 0}
-  m_removeFromBlackboardIfNotVisible: 1
+  m_removeFromBlackboardIfNotVisible: 0
   m_removeObjectAfterTime: 2
 --- !u!114 &1122099354575024655
 MonoBehaviour:
@@ -141,12 +143,48 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 206572450bdaaa545a45f19f3e77c2a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_blackboardToInputDataInto: {fileID: 0}
+  m_blackboardToInputDataInto: {fileID: 2367188205530176646}
   m_inputLocation: extractObject
   m_searchingFor: extractPoint
   m_eyePosition: {x: 0, y: 1.1, z: 0}
   m_removeFromBlackboardIfNotVisible: 0
   m_removeObjectAfterTime: 999
+--- !u!114 &4306655261103073577
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3278393024848284375}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 206572450bdaaa545a45f19f3e77c2a6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_blackboardToInputDataInto: {fileID: 2367188205530176646}
+  m_inputLocation: healthObject
+  m_searchingFor: Health
+  m_eyePosition: {x: 0, y: 1.1, z: 0}
+  m_removeFromBlackboardIfNotVisible: 0
+  m_removeObjectAfterTime: 1
+--- !u!114 &701750821329183620
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3278393024848284375}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 206572450bdaaa545a45f19f3e77c2a6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_blackboardToInputDataInto: {fileID: 2367188205530176646}
+  m_inputLocation: ammoObject
+  m_searchingFor: Ammo
+  m_eyePosition: {x: 0, y: 1.1, z: 0}
+  m_removeFromBlackboardIfNotVisible: 0
+  m_removeObjectAfterTime: 1
 --- !u!65 &7832060520106513687
 BoxCollider:
   m_ObjectHideFlags: 0
