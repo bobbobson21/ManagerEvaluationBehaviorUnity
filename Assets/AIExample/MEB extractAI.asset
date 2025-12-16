@@ -14,8 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_items:
   - m_items:
-    - rid: 324396940330795066
-    m_isScoped: 0
+    - rid: 6310419766989553724
+    - rid: 6310419766989553722
+    m_isScoped: 1
     m_isForMainThread: 0
   - m_items:
     - rid: 324396942948302923
@@ -36,27 +37,6 @@ MonoBehaviour:
     RefIds:
     - rid: -2
       type: {class: , ns: , asm: }
-    - rid: 324396940330795066
-      type: {class: MEB_BaseBehaviourData_Item, ns: MEBS.Runtime, asm: Assembly-CSharp}
-      data:
-        m_runBeforeEval: []
-        m_runAfterEval: []
-        m_useInEval: []
-        m_evalurators: []
-        m_noneEvalurationManager:
-          rid: 324396940330795067
-        m_isNormalManager: 1
-    - rid: 324396940330795067
-      type: {class: MEB_BaseBehaviourData_ItemSettings, ns: MEBS.Runtime, asm: Assembly-CSharp}
-      data:
-        m_class: UserManger_DeathHandler
-        m_displayName: UserManger_DeathHandler
-        m_displayDiscription: make the npc die correctly
-        m_blackboardIdenifyers: []
-        m_blackboardKeys: []
-        m_displayBlackboardSettingExpanded: 0
-        m_displayCustomSettingExpanded: 0
-        m_displayDebugSettingsExpanded: 0
     - rid: 324396940330795068
       type: {class: MEB_BaseBehaviourData_Item, ns: MEBS.Runtime, asm: Assembly-CSharp}
       data:
@@ -425,3 +405,49 @@ MonoBehaviour:
         m_displayCustomSettingExpanded: 0
         m_displayDebugSettingsExpanded: 0
         m_extractIn: 240
+        m_lable: extract is in
+    - rid: 6310419766989553722
+      type: {class: MEB_BaseBehaviourData_Item, ns: MEBS.Runtime, asm: Assembly-CSharp}
+      data:
+        m_runBeforeEval: []
+        m_runAfterEval: []
+        m_useInEval: []
+        m_evalurators: []
+        m_noneEvalurationManager:
+          rid: 6310419766989553723
+        m_isNormalManager: 1
+    - rid: 6310419766989553723
+      type: {class: MEB_BaseBehaviourData_ItemSettings, ns: MEBS.Runtime, asm: Assembly-CSharp}
+      data:
+        m_class: UserManger_DeathHandler
+        m_displayName: UserManger_DeathHandler
+        m_displayDiscription: make the npc die correctly
+        m_blackboardIdenifyers: []
+        m_blackboardKeys: []
+        m_displayBlackboardSettingExpanded: 0
+        m_displayCustomSettingExpanded: 0
+        m_displayDebugSettingsExpanded: 0
+    - rid: 6310419766989553724
+      type: {class: MEB_BaseBehaviourData_Item, ns: MEBS.Runtime, asm: Assembly-CSharp}
+      data:
+        m_runBeforeEval: []
+        m_runAfterEval: []
+        m_useInEval: []
+        m_evalurators: []
+        m_noneEvalurationManager:
+          rid: 6310419766989553725
+        m_isNormalManager: 1
+    - rid: 6310419766989553725
+      type: {class: Manager_GoToExtractSettings, ns: , asm: Assembly-CSharp}
+      data:
+        m_class: UserManger_FailedToExtractDeath
+        m_displayName: UserManger_FailedToExtractDeath
+        m_displayDiscription: Kills the AI after the time has passed if it has not
+          extracted.
+        m_blackboardIdenifyers: []
+        m_blackboardKeys: []
+        m_displayBlackboardSettingExpanded: 0
+        m_displayCustomSettingExpanded: 0
+        m_displayDebugSettingsExpanded: 0
+        m_extractIn: 360
+        m_lable: kill AI in

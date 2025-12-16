@@ -10,6 +10,7 @@ using System.Collections.Generic;
 public class Manager_GoToExtractSettings : MEB_BaseBehaviourData_ItemSettings
 {
     public float m_extractIn = 20;
+    public string m_lable = "extract is in";
 
     public override void OnGUI()
     {
@@ -18,7 +19,7 @@ public class Manager_GoToExtractSettings : MEB_BaseBehaviourData_ItemSettings
 
         if (m_displayCustomSettingExpanded == true)
         {
-            float.TryParse(EditorGUILayout.TextField("extract is in", m_extractIn.ToString()), out m_extractIn);
+            float.TryParse(EditorGUILayout.TextField(m_lable, m_extractIn.ToString()), out m_extractIn);
         }
 
         GUILayout.EndVertical();
