@@ -3,6 +3,7 @@ using MEBS.Runtime;
 
 using System.Collections.Generic;
 using UnityEditor;
+using UnityEngine;
 
 #if UNITY_EDITOR
 [InitializeOnLoad]
@@ -48,7 +49,7 @@ public class UserManger_FailedToExtractDeath : MEB_BaseManager//, MEB_I_IntScoop
 
     public override void OnInitialized()
     {
-        Manager_GoToExtractSettings settings = new Manager_GoToExtractSettings();
+        Manager_GoToExtractSettings settings = (Manager_GoToExtractSettings)m_itemSettings;
 
         if (settings != null)
         {
@@ -70,7 +71,9 @@ public class UserManger_FailedToExtractDeath : MEB_BaseManager//, MEB_I_IntScoop
 
         if (m_lifeTime <= 0)
         {
+            Debug.Log($"AI ({m_director.m_gameObject.transform.parent.gameObject}) failed to extract in time and they will now die.")
             m_director.m_blackboard.SetObject("health", 0);
+            m_doneJob = true;
         }
     }
 }

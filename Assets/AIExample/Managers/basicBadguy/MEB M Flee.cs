@@ -100,9 +100,12 @@ public class UserManger_Flee : MEB_BaseManager, MEB_I_IntScoop
                 RaycastHit hitInfo;
                 Physics.Linecast(m_director.m_gameObject.transform.position + new Vector3(0, 0, 110), target.transform.position, out hitInfo);
 
-                if (hitInfo.collider.gameObject == target && (target.transform.position -m_director.m_gameObject.transform.position).magnitude < 6)
+                if(hitInfo.collider != null && hitInfo.collider.gameObject != null)
                 {
-                    importance = 40;
+                    if (hitInfo.collider.gameObject == target && (target.transform.position -m_director.m_gameObject.transform.position).magnitude < 6)
+                    {
+                        importance = 40;
+                    }
                 }
             }
         }

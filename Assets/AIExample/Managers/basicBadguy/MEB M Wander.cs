@@ -4,6 +4,7 @@ using MEBS.Runtime;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.AI;
 using static UnityEditor.Progress;
 
 
@@ -109,10 +110,25 @@ public class UserManger_Wander : MEB_BaseManager, MEB_I_IntScoop
         {
             m_currentTimeLeftTillNextWanderCycle = m_delayBetweenWandering;
 
-            Vector3 pos = m_director.m_gameObject.transform.position;
-            pos += (new Vector3(Random.Range(-1.0f, 1.0f), 0, Random.Range(-1.0f, 1.0f)).normalized) * Random.Range(0.0f, m_radius);
+            Vector3 finalpos = m_director.m_gameObject.transform.position;
+            bool foundPos = false;
+            int maxAttemptsToFindPos = 8;
 
-            m_director.m_blackboard.SetObject(m_storeTargetLocationInKey, pos);
+            for (int i = 0; i < maxAttemptsToFindPos && foundPos == false; i++)
+            {
+                Vector3 pos = m_director.m_gameObject.transform.position;
+                pos += (new Vector3(Random.Range(-1.0f, 1.0f), 0, Random.Range(-1.0f, 1.0f)).normalized) * Random.Range(0.0f, m_radius);
+
+                NavMeshHit hit;
+                Vector3 finalPosition = Vector3.zero;
+                if (NavMesh.SamplePosition(pos, out hit, m_radius, 1))
+                {
+                    finalpos = hit.position;
+                    foundPos = true;
+                }
+            }
+
+            m_director.m_blackboard.SetObject(m_storeTargetLocationInKey, finalpos);
         }
     }
 
