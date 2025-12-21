@@ -22,6 +22,7 @@ MonoBehaviour:
     - rid: 324396942948302923
     - rid: 324396942948302925
     - rid: 324396972871516242
+    - rid: 324397068597854295
     m_isScoped: 1
     m_isForMainThread: 1
   - m_items:
@@ -44,9 +45,9 @@ MonoBehaviour:
         m_runAfterEval:
         - rid: 324396940330795071
         m_useInEval:
-        - rid: 324396940330795070
+        - rid: 324397064904507455
+        - rid: 324397064904507485
         - rid: 324396951961075791
-        - rid: 6310419742603346003
         - rid: 324396972871516244
         - rid: 324396940330795110
         - rid: 324396940330795093
@@ -70,22 +71,6 @@ MonoBehaviour:
         m_displayBlackboardSettingExpanded: 0
         m_displayCustomSettingExpanded: 0
         m_displayDebugSettingsExpanded: 0
-    - rid: 324396940330795070
-      type: {class: Manager_WanderSettings, ns: , asm: Assembly-CSharp}
-      data:
-        m_class: UserManger_Wander
-        m_displayName: UserManger_Wander
-        m_displayDiscription: "Makes the NPC wander around the place at will.\n\nvaild
-          blackboard data: \nstoreTargetLocationIn: (vector3BlackboardKeyAsString)"
-        m_blackboardIdenifyers:
-        - storeTargetLocationIn
-        m_blackboardKeys:
-        - movePos
-        m_displayBlackboardSettingExpanded: 0
-        m_displayCustomSettingExpanded: 0
-        m_displayDebugSettingsExpanded: 0
-        m_radius: 80
-        m_delayBetweenWandering: 8
     - rid: 324396940330795071
       type: {class: MEB_BaseBehaviourData_ItemSettings, ns: MEBS.Runtime, asm: Assembly-CSharp}
       data:
@@ -402,34 +387,87 @@ MonoBehaviour:
         m_blackboardIdenifyers: []
         m_blackboardKeys: []
         m_displayBlackboardSettingExpanded: 0
-        m_displayCustomSettingExpanded: 1
+        m_displayCustomSettingExpanded: 0
         m_displayDebugSettingsExpanded: 0
         m_extractIn: 360
         m_lable: kill AI in
-    - rid: 6310419742603346003
+    - rid: 324397064904507455
+      type: {class: Manager_WanderUniqueSetting, ns: , asm: Assembly-CSharp}
+      data:
+        m_class: UserManger_WanderUnique
+        m_displayName: UserManger_WanderUnique
+        m_displayDiscription: "Makes the NPC wander around the place at will.\n\nvaild
+          blackboard data: \nstoreTargetLocationIn: (vector3BlackboardKeyAsString)"
+        m_blackboardIdenifyers:
+        - storeTargetLocationIn
+        m_blackboardKeys:
+        - movePos
+        m_displayBlackboardSettingExpanded: 0
+        m_displayCustomSettingExpanded: 0
+        m_displayDebugSettingsExpanded: 0
+        m_radius: 80
+        m_minRadius: 44
+        m_delayBetweenWandering: 16
+        m_uniquePointCount: 6
+        m_maxAttemptsForUniquePoint: 6
+        m_uniqueRadius: 40
+    - rid: 324397064904507485
       type: {class: Manager_GoToExtractSettings, ns: , asm: Assembly-CSharp}
       data:
         m_class: UserManger_GoToExtract
         m_displayName: UserManger_GoToExtract
         m_displayDiscription: "Makes the npc move to the exit.\n\nvaild blackboard
-          data: \ngetExtractObjectFrom: (gameObjectBlackboardKeyAsString)\nstoreTargetLocationIn:
-          (vector3BlackboardKeyAsString)\ngetResourceCountFrom :(intBlackboardKeyAsString)\ngetdesiredResourceCountFrom
-          :(intBlackboardKeyAsString)"
+          data: \nstoreTargetLocationIn: (vector3BlackboardKeyAsString)\ngetExtractObjectFrom:
+          (gameObjectBlackboardKeyAsString)\ngetResourceObjectFrom: (gameObjectBlackboardKeyAsString)\ngetResourceCountFrom
+          :(intBlackboardKeyAsString)\ngetDesiredResourceCountFrom :(intBlackboardKeyAsString)"
         m_blackboardIdenifyers:
         - storeTargetLocationIn
         - getExtractObjectFrom
         - getResourceCountFrom
         - getDesiredResourceCountFrom
+        - getResourceObjectFrom
         m_blackboardKeys:
         - movePos
         - extractObject
         - resourceCount
         - desiredResourceCount
+        - resourceObject
         m_displayBlackboardSettingExpanded: 0
         m_displayCustomSettingExpanded: 0
         m_displayDebugSettingsExpanded: 0
         m_extractIn: 240
         m_lable: extract is in
+    - rid: 324397068597854295
+      type: {class: MEB_BaseBehaviourData_Item, ns: MEBS.Runtime, asm: Assembly-CSharp}
+      data:
+        m_runBeforeEval: []
+        m_runAfterEval: []
+        m_useInEval: []
+        m_evalurators: []
+        m_noneEvalurationManager:
+          rid: 324397068597854296
+        m_isNormalManager: 1
+    - rid: 324397068597854296
+      type: {class: Manager_PanicAgressionSettings, ns: , asm: Assembly-CSharp}
+      data:
+        m_class: UserManger_PanicAgression
+        m_displayName: UserManger_PanicAgression
+        m_displayDiscription: "Makes the AI agressive if the amout of items needed
+          is to high.\n\nvaild blackboard data: \ngetResourceCountFrom :(intBlackboardKeyAsString)\ngetDesiredResourceCountFrom
+          :(intBlackboardKeyAsString)\nstoreIsAgressiveIn: (boolBlackboardKeyAsString)"
+        m_blackboardIdenifyers:
+        - getResourceCountFrom
+        - getDesiredResourceCountFrom
+        - storeIsAgressiveIn
+        m_blackboardKeys:
+        - resourceCount
+        - desiredResourceCount
+        - extraAgressive
+        m_displayBlackboardSettingExpanded: 0
+        m_displayCustomSettingExpanded: 0
+        m_displayDebugSettingsExpanded: 0
+        m_panicIn: 180
+        m_panicIfFraction: 0.75
     - rid: 6310419766989553722
       type: {class: MEB_BaseBehaviourData_Item, ns: MEBS.Runtime, asm: Assembly-CSharp}
       data:

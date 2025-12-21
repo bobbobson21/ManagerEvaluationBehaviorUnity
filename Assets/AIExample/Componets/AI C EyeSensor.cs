@@ -45,6 +45,11 @@ public class AI_C_EyeSensor : MonoBehaviour
     {
         GameObject returnObject = null;
 
+        if(m_nearestObject != null && m_nearestObject.tag != m_searchingFor)
+        {
+            m_nearestObject = null;
+        }
+
         if (m_nearestObject != null)
         {
             RaycastHit hitInfo;
@@ -64,9 +69,9 @@ public class AI_C_EyeSensor : MonoBehaviour
                     m_nearestObject = null;
                 }
             }
-
-            m_blackboardToInputDataInto.SetObject(m_inputLocation, returnObject);
         }
+
+        m_blackboardToInputDataInto.SetObject(m_inputLocation, returnObject);
     }
 
 }

@@ -128,6 +128,11 @@ public class UserManger_GetItem : MEB_BaseManager, MEB_I_IntScoop
         GameObject objAmmo = ((GameObject)m_director.m_blackboard.GetObject(m_getAmmoObjectFromKey));
 
 
+        if ((((int)m_director.m_blackboard.GetObject("health")) < (maxHealth /4) && objHealth != null) || (((int)m_director.m_blackboard.GetObject("ammoTotal")) < (maxAmmo /4) && objAmmo != null))
+        {
+            return 35;
+        }
+
         if ((((int)m_director.m_blackboard.GetObject("health")) < maxHealth && objHealth != null) || (((int)m_director.m_blackboard.GetObject("ammoTotal")) < maxAmmo && objAmmo != null))
         {
             return 30;

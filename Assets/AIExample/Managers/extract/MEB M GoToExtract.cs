@@ -47,11 +47,11 @@ public class UserManger_GoToExtract_UI : MEB_UI_BehaviourEditor_ManagerData
         data.m_displayName = m_name;
         data.m_displayDiscription = "Makes the npc move to the exit." +
             "\n\nvaild blackboard data: " +
-            "\ngetExtractObjectFrom: (gameObjectBlackboardKeyAsString)" +
             "\nstoreTargetLocationIn: (vector3BlackboardKeyAsString)" +
+            "\ngetExtractObjectFrom: (gameObjectBlackboardKeyAsString)" +
+            "\ngetResourceObjectFrom: (gameObjectBlackboardKeyAsString)" + 
             "\ngetResourceCountFrom :(intBlackboardKeyAsString)" +
-            "\ngetdesiredResourceCountFrom :(intBlackboardKeyAsString)";
-
+            "\ngetDesiredResourceCountFrom :(intBlackboardKeyAsString)";
 
         return data;
     }
@@ -64,6 +64,7 @@ public class UserManger_GoToExtract : MEB_BaseManager, MEB_I_IntScoop
 
     private string m_storeTargetLocationInKey = "";
     private string m_getExtractObjectFromKey = "";
+    private string m_getResourceObjectFromKey = "";
     private string m_getResourceCountFromKey = "";
     private string m_getDesiredResourceCountFromKey = "";
 
@@ -79,6 +80,11 @@ public class UserManger_GoToExtract : MEB_BaseManager, MEB_I_IntScoop
             if (idenifyers[i] == "getExtractObjectFrom")
             {
                 m_getExtractObjectFromKey = keys[i];
+            }
+
+         if (idenifyers[i] == "getResourceObjectFrom")
+            {
+                m_getResourceObjectFromKey = keys[i];
             }
 
             if (idenifyers[i] == "getResourceCountFrom")
@@ -133,8 +139,9 @@ public class UserManger_GoToExtract : MEB_BaseManager, MEB_I_IntScoop
     public int GetIntEvalValue()
     {
         m_extractIn -= Time.deltaTime; //this is cheacky but it dose work if the AI isnt muiltythreaded which it shouldnt because movement dosent support that
+        GameObject obj = ((GameObject)m_director.m_blackboard.GetObject(m_getResourceObjectFromKey));
 
-        if (m_extractIn < 0 || ((int)m_director.m_blackboard.GetObject(m_getResourceCountFromKey)) >= ((int)m_director.m_blackboard.GetObject(m_getDesiredResourceCountFromKey)))
+        if ((m_extractIn < 0 && (obj == null || m_extractIn > -40)) || ((int)m_director.m_blackboard.GetObject(m_getResourceCountFromKey)) >= ((int)m_director.m_blackboard.GetObject(m_getDesiredResourceCountFromKey)))
         {
             return 100;
         }

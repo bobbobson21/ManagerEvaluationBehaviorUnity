@@ -120,7 +120,7 @@ public class UserManger_FireGun : MEB_BaseManager, MEB_I_IntScoop
     {
         GameObject obj = ((GameObject)m_director.m_blackboard.GetObject(m_getAttackObjectFromKey));
 
-        if (obj == null)
+        if (obj == null && Mathf.Abs(obj.transform.position.y -m_director.m_gameObject.transform.position.y) <= 0.1f)
         {
             return;
         }

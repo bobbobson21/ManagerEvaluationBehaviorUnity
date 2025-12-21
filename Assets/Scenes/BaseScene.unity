@@ -6013,7 +6013,7 @@ Transform:
   m_GameObject: {fileID: 659904866}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 21.2, y: 22.099976, z: -39.46}
+  m_LocalPosition: {x: 21.2, y: 20.38, z: -39.46}
   m_LocalScale: {x: 34.932, y: 43.119, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -7975,13 +7975,20 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4670219777722272495, guid: 2fd9d069a9a0f7d44b75d08e88aec846, type: 3}
+      propertyPath: m_exportManagersWithDebugConnection
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5678638223050428760, guid: 2fd9d069a9a0f7d44b75d08e88aec846, type: 3}
       propertyPath: m_Name
       value: extractAI (22)
       objectReference: {fileID: 0}
+    - target: {fileID: 7069780575666296514, guid: 2fd9d069a9a0f7d44b75d08e88aec846, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -28.5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects:
-    - {fileID: 7532682592863108319, guid: 2fd9d069a9a0f7d44b75d08e88aec846, type: 3}
+    m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2fd9d069a9a0f7d44b75d08e88aec846, type: 3}
@@ -9361,7 +9368,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6860460315295165702, guid: 3e36771ad23aa7147a3c8dd90a8233bf, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 34.80005
+      value: 34.88
       objectReference: {fileID: 0}
     - target: {fileID: 6860460315295165702, guid: 3e36771ad23aa7147a3c8dd90a8233bf, type: 3}
       propertyPath: m_LocalPosition.z
@@ -9704,6 +9711,14 @@ PrefabInstance:
     - target: {fileID: 5678638223050428760, guid: 2fd9d069a9a0f7d44b75d08e88aec846, type: 3}
       propertyPath: m_Name
       value: extractAI (9)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7069780575666296514, guid: 2fd9d069a9a0f7d44b75d08e88aec846, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 13.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7069780575666296514, guid: 2fd9d069a9a0f7d44b75d08e88aec846, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -29.1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

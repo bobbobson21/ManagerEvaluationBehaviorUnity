@@ -69,7 +69,7 @@ public class UserManger_GunBlackboardInterface : MEB_BaseManager//, MEB_I_IntSco
     {
         m_gun = m_director.m_gameObject.GetComponentInChildren<AICGun>();
 
-        m_director.m_blackboard.SetObject(m_storeAmmoClipIn, m_gun.m_totalAmmoCountMax);
+        m_director.m_blackboard.SetObject(m_storeAmmoMaxIn, m_gun.m_totalAmmoCountMax);
     }
 
     public override void OnUpdate(float delta, int index)

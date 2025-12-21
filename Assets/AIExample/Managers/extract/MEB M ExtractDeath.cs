@@ -71,7 +71,7 @@ public class UserManger_FailedToExtractDeath : MEB_BaseManager//, MEB_I_IntScoop
 
         if (m_lifeTime <= 0)
         {
-            Debug.Log($"AI ({m_director.m_gameObject.transform.parent.gameObject}) failed to extract in time and they will now die.")
+            Debug.Log($"AI ({m_director.m_gameObject.transform.parent.gameObject}) failed to extract in time and they will now die.");
             m_director.m_blackboard.SetObject("health", 0);
             m_doneJob = true;
         }

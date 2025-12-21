@@ -1,4 +1,4 @@
-using MEBS.Editor;
+﻿using MEBS.Editor;
 using MEBS.Runtime;
 
 using System.Collections.Generic;
@@ -8,11 +8,15 @@ using UnityEngine.AI;
 using static UnityEditor.Progress;
 
 
-public class Manager_WanderSettings : MEB_BaseBehaviourData_ItemSettings
+public class Manager_WanderUniqueSetting : MEB_BaseBehaviourData_ItemSettings
 {
-    public float m_minRadius = 5;
     public float m_radius = 10;
+    public float m_minRadius = 5;
     public float m_delayBetweenWandering = 1;
+
+    public int m_uniquePointCount = 6;
+    public int m_maxAttemptsForUniquePoint = 6;
+    public float m_uniqueRadius = 4;
 
     public override void OnGUI()
     {
@@ -26,6 +30,11 @@ public class Manager_WanderSettings : MEB_BaseBehaviourData_ItemSettings
             GUILayout.Space(8);
 
             float.TryParse(EditorGUILayout.TextField("delay", m_delayBetweenWandering.ToString()), out m_delayBetweenWandering);
+            GUILayout.Space(8);
+
+            int.TryParse(EditorGUILayout.TextField("unique point count", m_uniquePointCount.ToString()), out m_uniquePointCount);
+            int.TryParse(EditorGUILayout.TextField("unique point attempts", m_uniquePointCount.ToString()), out m_maxAttemptsForUniquePoint);
+            float.TryParse(EditorGUILayout.TextField("unique radius", m_uniqueRadius.ToString()), out m_uniqueRadius);
         }
 
         GUILayout.EndVertical();
@@ -34,22 +43,22 @@ public class Manager_WanderSettings : MEB_BaseBehaviourData_ItemSettings
 
 #if UNITY_EDITOR
 [InitializeOnLoad]
-public class UserManger_Wander_UI : MEB_UI_BehaviourEditor_ManagerData
+public class UserManger_WanderUnique_UI : MEB_UI_BehaviourEditor_ManagerData
 {
-    static UserManger_Wander_UI()
+    static UserManger_WanderUnique_UI()
     {
-        MEB_UI_BehaviourEditor.AddNormalManager(new UserManger_Wander_UI());
+        MEB_UI_BehaviourEditor.AddNormalManager(new UserManger_WanderUnique_UI());
     }
 
-    public UserManger_Wander_UI()
+    public UserManger_WanderUnique_UI()
     {
-        m_name = "UserManger_Wander";
+        m_name = "UserManger_WanderUnique";
     }
 
     public override MEB_BaseBehaviourData_ItemSettings CreateInstance()
     {
-        Manager_WanderSettings data = new Manager_WanderSettings();
-        data.m_class = "UserManger_Wander";
+        Manager_WanderUniqueSetting data = new Manager_WanderUniqueSetting();
+        data.m_class = "UserManger_WanderUnique";
         data.m_displayName = m_name;
         data.m_displayDiscription = "Makes the NPC wander around the place at will.\n\nvaild blackboard data: \nstoreTargetLocationIn: (vector3BlackboardKeyAsString)";
 
@@ -58,14 +67,20 @@ public class UserManger_Wander_UI : MEB_UI_BehaviourEditor_ManagerData
 }
 #endif
 
-public class UserManger_Wander : MEB_BaseManager, MEB_I_IntScoop
+public class UserManger_WanderUnique : MEB_BaseManager, MEB_I_IntScoop
 {
     private float m_radius = 10;
     private float m_minRadius = 5;
     private float m_delayBetweenWandering = 1;
 
-    private string m_storeTargetLocationInKey = "";
+    private int m_uniquePointCount = 6;
+    private int m_maxAttemptsForUniquePoint = 6;
+    private float m_uniqueRadius = 15;
 
+    private int m_currentUniquePointCount = 0;
+    private List<Vector3> m_uniquePoints = new List<Vector3>();
+
+    private string m_storeTargetLocationInKey = "";
     private float m_currentTimeLeftTillNextWanderCycle = 0;
 
     public override void SetBlackboardKeys(List<string> idenifyers, List<string> keys)
@@ -86,16 +101,23 @@ public class UserManger_Wander : MEB_BaseManager, MEB_I_IntScoop
 
     public override void OnInitialized()
     {
-        Manager_WanderSettings settings = (Manager_WanderSettings)m_itemSettings;
+        Manager_WanderUniqueSetting settings = (Manager_WanderUniqueSetting)m_itemSettings;
 
         if (settings != null)
-        { 
+        {
             m_radius = settings.m_radius;
             m_minRadius = settings.m_minRadius;
             m_delayBetweenWandering = settings.m_delayBetweenWandering;
+
+            m_uniquePointCount = settings.m_uniquePointCount;
+            m_maxAttemptsForUniquePoint = settings.m_maxAttemptsForUniquePoint;
+            m_uniqueRadius = settings.m_uniqueRadius;
         }
 
-        //put on loaded into game code here
+        for (int i = 0; i < m_uniquePointCount; i++)
+        {
+            m_uniquePoints.Add(Vector3.negativeInfinity);
+        }
     }
 
     /*public override void OnStart() //put stuff in these if you need something to happen when the manager leaves or enters exacuteion
@@ -115,12 +137,11 @@ public class UserManger_Wander : MEB_BaseManager, MEB_I_IntScoop
         if (m_currentTimeLeftTillNextWanderCycle < 0)
         {
             m_currentTimeLeftTillNextWanderCycle = m_delayBetweenWandering;
-
             Vector3 finalpos = m_director.m_gameObject.transform.position;
-            bool foundPos = false;
-            int maxAttemptsToFindPos = 8;
 
-            for (int i = 0; i < maxAttemptsToFindPos && foundPos == false; i++)
+            bool foundPos = false;
+
+            for (int i = 0; i < m_maxAttemptsForUniquePoint && foundPos == false; i++)
             {
                 Vector3 pos = m_director.m_gameObject.transform.position;
                 pos += (new Vector3(Random.Range(-1.0f, 1.0f), 0, Random.Range(-1.0f, 1.0f)).normalized) * Random.Range(m_minRadius, m_radius);
@@ -131,6 +152,26 @@ public class UserManger_Wander : MEB_BaseManager, MEB_I_IntScoop
                 {
                     finalpos = hit.position;
                     foundPos = true;
+
+                    for (int o = 0; o < m_uniquePoints.Count; o++)
+                    {
+                        if ((m_director.m_gameObject.transform.position - m_uniquePoints[o]).magnitude <= m_uniqueRadius)
+                        { 
+                            foundPos = false;
+                            break;
+                        }
+                    }
+
+                    if (foundPos == true)
+                    {
+                        if (m_currentUniquePointCount >= m_uniquePointCount)
+                        {
+                            m_currentUniquePointCount = 0;
+                        }
+
+                        m_uniquePoints[m_currentUniquePointCount] = finalpos;
+                        m_currentUniquePointCount++;
+                    }
                 }
             }
 
