@@ -153,6 +153,7 @@ MonoBehaviour:
         m_displayCustomSettingExpanded: 1
         m_displayDebugSettingsExpanded: 0
         m_shootScope: 0.97
+        m_shootDistance: 4
         m_speed: 10
         m_speedMedium: 12
         m_speedFast: 14
@@ -181,6 +182,7 @@ MonoBehaviour:
         m_displayBlackboardSettingExpanded: 1
         m_displayCustomSettingExpanded: 1
         m_displayDebugSettingsExpanded: 0
+        m_minRadius: 5
         m_radius: 10
         m_delayBetweenWandering: 1
     - rid: 4792260105386852504

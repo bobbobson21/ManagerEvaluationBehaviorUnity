@@ -1,3 +1,0 @@
-   --o add a get resource manager
-   --o add a go to extraction manager
-   o add more aggressive managers
