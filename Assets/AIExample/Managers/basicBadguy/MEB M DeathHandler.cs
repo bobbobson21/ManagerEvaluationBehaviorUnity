@@ -4,6 +4,7 @@ using MEBS.Runtime;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.AI;
 
 #if UNITY_EDITOR
 [InitializeOnLoad]
@@ -72,8 +73,11 @@ public class UserManger_DeathHandler : MEB_BaseManager//, MEB_I_IntScoop
         MEB_C_Directorlinear directior = m_director.m_gameObject.GetComponent<MEB_C_Directorlinear>();
         MEB_C_DirectorLod directiorlod = m_director.m_gameObject.GetComponent<MEB_C_DirectorLod>();
 
+        NavMeshAgent agent = m_director.m_gameObject.GetComponent<NavMeshAgent>();
+
         if (directior != null) { Object.Destroy(directior); }
         if (directiorlod != null) { Object.Destroy(directiorlod); }
+        if (agent != null) { Object.Destroy(agent); }
 
     }
 }

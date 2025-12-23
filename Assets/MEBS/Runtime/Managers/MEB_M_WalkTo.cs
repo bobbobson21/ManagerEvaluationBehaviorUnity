@@ -79,11 +79,6 @@ namespace MEBS.Runtime
             if ((m_lastLocation - currentLocation).magnitude <= 0.5f)
             {
                 m_agent.SetDestination(currentLocation);
-
-                if(m_agent.isOnNavMesh == false)
-                {
-                    Debug.Log($"{m_director.m_gameObject.transform.parent.gameObject}");
-                }
             }
 
             m_lastLocation = currentLocation;

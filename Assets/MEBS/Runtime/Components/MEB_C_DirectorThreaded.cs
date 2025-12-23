@@ -100,7 +100,7 @@ public class MEB_C_DirectorThreaded : MonoBehaviour
             m_directorInterface.Evaluate(m_directorInterface.m_managers[i], i);
         }
 
-        for (int i = 0; i < m_threadedManagersList.Count; i++)
+        for (int i = 0; i < m_mainThreadManagerList.Count; i++)
         {
             m_directorInterface.Exacute(m_mainThreadManagerList[i], Time.deltaTime, i);
         }

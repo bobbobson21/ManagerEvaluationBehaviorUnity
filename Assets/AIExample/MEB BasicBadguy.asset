@@ -58,7 +58,7 @@ MonoBehaviour:
         - target
         m_blackboardKeys:
         - movePos
-        m_displayBlackboardSettingExpanded: 1
+        m_displayBlackboardSettingExpanded: 0
         m_displayCustomSettingExpanded: 0
         m_displayDebugSettingsExpanded: 0
     - rid: 324396789511487490
@@ -88,7 +88,7 @@ MonoBehaviour:
         m_blackboardKeys:
         - attackerObj
         - movePos
-        m_displayBlackboardSettingExpanded: 1
+        m_displayBlackboardSettingExpanded: 0
         m_displayCustomSettingExpanded: 0
         m_displayDebugSettingsExpanded: 0
     - rid: 324396837991612652
@@ -121,7 +121,7 @@ MonoBehaviour:
         - ammoMax
         - ammoTotal
         - ammoCurrentClip
-        m_displayBlackboardSettingExpanded: 1
+        m_displayBlackboardSettingExpanded: 0
         m_displayCustomSettingExpanded: 0
         m_displayDebugSettingsExpanded: 0
     - rid: 324396837991612654
@@ -149,8 +149,8 @@ MonoBehaviour:
         - getAttackObjectFrom
         m_blackboardKeys:
         - attackerObj
-        m_displayBlackboardSettingExpanded: 1
-        m_displayCustomSettingExpanded: 1
+        m_displayBlackboardSettingExpanded: 0
+        m_displayCustomSettingExpanded: 0
         m_displayDebugSettingsExpanded: 0
         m_shootScope: 0.97
         m_shootDistance: 4
@@ -179,8 +179,8 @@ MonoBehaviour:
         - storeTargetLocationIn
         m_blackboardKeys:
         - movePos
-        m_displayBlackboardSettingExpanded: 1
-        m_displayCustomSettingExpanded: 1
+        m_displayBlackboardSettingExpanded: 0
+        m_displayCustomSettingExpanded: 0
         m_displayDebugSettingsExpanded: 0
         m_minRadius: 5
         m_radius: 10
@@ -199,8 +199,8 @@ MonoBehaviour:
         m_blackboardKeys:
         - attackerObj
         - movePos
-        m_displayBlackboardSettingExpanded: 1
-        m_displayCustomSettingExpanded: 1
+        m_displayBlackboardSettingExpanded: 0
+        m_displayCustomSettingExpanded: 0
         m_displayDebugSettingsExpanded: 0
         m_saftyRadius: 5
         m_minimumVelocity: 0.1
@@ -221,7 +221,7 @@ MonoBehaviour:
         - movePos
         - healthObject
         - ammoObject
-        m_displayBlackboardSettingExpanded: 1
+        m_displayBlackboardSettingExpanded: 0
         m_displayCustomSettingExpanded: 0
         m_displayDebugSettingsExpanded: 0
     - rid: 8164751483659092182
@@ -233,7 +233,7 @@ MonoBehaviour:
         m_blackboardIdenifyers: []
         m_blackboardKeys: []
         m_displayBlackboardSettingExpanded: 0
-        m_displayCustomSettingExpanded: 1
+        m_displayCustomSettingExpanded: 0
         m_displayDebugSettingsExpanded: 0
         m_speed: 10
     - rid: 8164751483659092274

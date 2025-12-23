@@ -27,6 +27,12 @@ namespace MEBS.Runtime
             OnInitialized();
         }
 
+
+        public MEB_DirectorBase GetDirector()
+        {
+            return m_director;
+        } 
+
         /// <summary>
         /// disables this manager for a cycle; block will last till next evaluration cycle
         /// </summary>

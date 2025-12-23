@@ -120,6 +120,8 @@ public class UserManger_GetClose : MEB_BaseManager, MEB_I_IntScoop
         //Debug.Log("get close");
 
         GameObject obj = ((GameObject)m_director.m_blackboard.GetObject(m_getAttackObjectFromKey));
+        if(obj == null) { return; }
+
         Vector3 destanation = obj.transform.position;
 
         destanation = destanation + ((m_director.m_gameObject.transform.position - destanation).normalized * m_saftyRadius);
