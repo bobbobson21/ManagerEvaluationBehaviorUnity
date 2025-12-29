@@ -34,7 +34,7 @@ namespace MEBS.Editor
 
 namespace MEBS.Runtime
 {
-    public class MEB_E_EvalRandom : MEB_BaseManager, MEB_I_EvalScope
+    public class MEB_E_EvalRandom : MEB_BaseManager, MEB_I_EvalScoop
     {
         private int m_startPointOfScope = 0;
         private int m_endPointOfScope = 0;

@@ -5,7 +5,7 @@ using UnityEngine;
 
 internal class MEB_C_DirectorThreaded_ThreadData
 {
-    public List<MEB_BaseManager> m_managersToExcute;
+    public List<int> m_managersToExcute;
     public MEB_DirectorBase m_director;
     public float m_time;
 }
@@ -20,8 +20,8 @@ public class MEB_C_DirectorThreaded : MonoBehaviour
     [Header("threads")]
     public int m_threadCount = 0;
 
-    private List<MEB_BaseManager> m_mainThreadManagerList = new List<MEB_BaseManager>();
-    private List<List<MEB_BaseManager>> m_threadedManagersList = new List<List<MEB_BaseManager>>();
+    private List<int> m_mainThreadManagerList = new List<int>();
+    private List<List<int>> m_threadedManagersList = new List<List<int>>();
 
     [Header("debug")]
     [Tooltip("If true this manager will be able to send debug data back to the UI window. DO NOT USE ON MORE THAN ONE AI USING THE SAME SET.")]
@@ -32,51 +32,51 @@ public class MEB_C_DirectorThreaded : MonoBehaviour
         m_directorInterface.m_blackboard = m_blackboard;
         m_directorInterface.m_gameObject = gameObject;
 
-        List<MEB_BaseManager> threadedManagers = new List<MEB_BaseManager>();
+        List<int> threadedManagers = new List<int>();
 
         for (int i = 0; i < m_behaviorSet.m_items.Count; i++)
         {
             List<MEB_BaseManager> itemsExposed = m_behaviorSet.m_items[i].Export(m_exportManagersWithDebugConnection);
 
-            for (int j = 0; j < itemsExposed.Count; j++)
+            for (int j = 0; j < itemsExposed.Count; j++)//sorts managers based on if its for the main thread or not
             {
-                m_directorInterface.AddManager(itemsExposed[j]);
+                int currentItemId = m_directorInterface.AddManager(itemsExposed[j]);
 
                 if (m_behaviorSet.m_items[i].m_isForMainThread == false)
                 {
-                    threadedManagers.Add(itemsExposed[j]);
+                    threadedManagers.Add(currentItemId);
                 }
                 else
                 {
-                    m_mainThreadManagerList.Add(itemsExposed[j]);
+                    m_mainThreadManagerList.Add(currentItemId);
                 }
             }
         }
 
-        for (int i = 0; i < m_threadCount; i++)
+        for (int i = 0; i < m_threadCount; i++) //creates room
         {
-            m_threadedManagersList.Add(new List<MEB_BaseManager>());
+            m_threadedManagersList.Add(new List<int>());
         }
 
         int scopeIndex = 0;
         int threadIndex = 0;
 
-        for (int i = 0; i < threadedManagers.Count; i++)
+        for (int i = 0; i < threadedManagers.Count; i++) //the threaded managers are then sorted into this directors diffrent threads
         {
-            if (threadedManagers[i].m_chainState == MEB_BaseManager_ChainState.ChainStart)
+            if (m_directorInterface.GetManagerByIndex(threadedManagers[i]).m_chainState == MEB_BaseManager_ChainState.ChainStart) //used to find out what level of scope we are currently in
             {
                 scopeIndex++;
             }
 
-            if (threadedManagers[i].m_chainState == MEB_BaseManager_ChainState.ChainEnd)
+            if (m_directorInterface.GetManagerByIndex(threadedManagers[i]).m_chainState == MEB_BaseManager_ChainState.ChainEnd)
             {
                 scopeIndex--;
                 if (scopeIndex < 0) { scopeIndex = 0; }
             }
 
-            m_threadedManagersList[threadIndex].Add(m_directorInterface.m_managers[i]);
+            m_threadedManagersList[threadIndex].Add(threadedManagers[i]);
 
-            if (scopeIndex == 0)
+            if (scopeIndex == 0) //if we are in no scope/top level scope altanate what thread is used
             {
                 threadIndex = threadIndex + 1 % m_threadCount;
             }
@@ -89,20 +89,20 @@ public class MEB_C_DirectorThreaded : MonoBehaviour
 
         for (int i = 0; i < input.m_managersToExcute.Count; i++)
         {
-            input.m_director.Exacute(input.m_managersToExcute[i], input.m_time, i);
+            input.m_director.Exacute(input.m_managersToExcute[i], input.m_time);
         }
     }
 
     private void Update()
     {
-        for (int i = 0; i < m_directorInterface.m_managers.Count; i++)
+        for (int i = 0; i < m_directorInterface.GetManagerCount(); i++)
         {
-            m_directorInterface.Evaluate(m_directorInterface.m_managers[i], i);
+            m_directorInterface.Evaluate(i);
         }
 
         for (int i = 0; i < m_mainThreadManagerList.Count; i++)
         {
-            m_directorInterface.Exacute(m_mainThreadManagerList[i], Time.deltaTime, i);
+           m_directorInterface.Exacute(i, Time.deltaTime);
         }
 
         for (int i = 0; i < m_threadCount; i++)

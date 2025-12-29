@@ -403,14 +403,14 @@ MonoBehaviour:
         m_blackboardKeys:
         - movePos
         m_displayBlackboardSettingExpanded: 0
-        m_displayCustomSettingExpanded: 0
+        m_displayCustomSettingExpanded: 1
         m_displayDebugSettingsExpanded: 0
-        m_radius: 80
-        m_minRadius: 44
-        m_delayBetweenWandering: 16
+        m_radius: 20
+        m_minRadius: 10
+        m_delayBetweenWandering: 6
         m_uniquePointCount: 6
-        m_maxAttemptsForUniquePoint: 6
-        m_uniqueRadius: 40
+        m_maxAttemptsForUniquePoint: 12
+        m_uniqueRadius: 5
     - rid: 324397064904507485
       type: {class: Manager_GoToExtractSettings, ns: , asm: Assembly-CSharp}
       data:

@@ -61,7 +61,7 @@ namespace MEBS.Runtime
         }
     }
 
-    public class MEB_E_EvalBlackboardCondBlock : MEB_BaseManager, MEB_I_EvalScope
+    public class MEB_E_EvalBlackboardCondBlock : MEB_BaseManager, MEB_I_EvalScoop
     {
         private bool m_inverted = false;
         private int m_blockRangeStartPoint = 0;

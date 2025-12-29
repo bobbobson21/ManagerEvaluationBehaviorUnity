@@ -127,7 +127,7 @@ public class UserManger_Wander : MEB_BaseManager, MEB_I_IntScoop
 
                 NavMeshHit hit;
                 Vector3 finalPosition = Vector3.zero;
-                if (NavMesh.SamplePosition(pos, out hit, m_radius, 1))
+                if (NavMesh.SamplePosition(pos, out hit, m_radius, NavMesh.AllAreas))
                 {
                     finalpos = hit.position;
                     foundPos = true;

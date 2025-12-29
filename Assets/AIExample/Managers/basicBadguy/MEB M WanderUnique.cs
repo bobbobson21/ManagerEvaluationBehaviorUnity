@@ -15,7 +15,7 @@ public class Manager_WanderUniqueSetting : MEB_BaseBehaviourData_ItemSettings
     public float m_delayBetweenWandering = 1;
 
     public int m_uniquePointCount = 6;
-    public int m_maxAttemptsForUniquePoint = 6;
+    public int m_maxAttemptsForUniquePoint = 12;
     public float m_uniqueRadius = 4;
 
     public override void OnGUI()
@@ -33,7 +33,7 @@ public class Manager_WanderUniqueSetting : MEB_BaseBehaviourData_ItemSettings
             GUILayout.Space(8);
 
             int.TryParse(EditorGUILayout.TextField("unique point count", m_uniquePointCount.ToString()), out m_uniquePointCount);
-            int.TryParse(EditorGUILayout.TextField("unique point attempts", m_uniquePointCount.ToString()), out m_maxAttemptsForUniquePoint);
+            int.TryParse(EditorGUILayout.TextField("unique point attempts", m_maxAttemptsForUniquePoint.ToString()), out m_maxAttemptsForUniquePoint);
             float.TryParse(EditorGUILayout.TextField("unique radius", m_uniqueRadius.ToString()), out m_uniqueRadius);
         }
 
@@ -74,7 +74,7 @@ public class UserManger_WanderUnique : MEB_BaseManager, MEB_I_IntScoop
     private float m_delayBetweenWandering = 1;
 
     private int m_uniquePointCount = 6;
-    private int m_maxAttemptsForUniquePoint = 6;
+    private int m_maxAttemptsForUniquePoint = 12;
     private float m_uniqueRadius = 15;
 
     private int m_currentUniquePointCount = 0;
@@ -136,9 +136,7 @@ public class UserManger_WanderUnique : MEB_BaseManager, MEB_I_IntScoop
 
         if (m_currentTimeLeftTillNextWanderCycle < 0)
         {
-            m_currentTimeLeftTillNextWanderCycle = m_delayBetweenWandering;
             Vector3 finalpos = m_director.m_gameObject.transform.position;
-
             bool foundPos = false;
 
             for (int i = 0; i < m_maxAttemptsForUniquePoint && foundPos == false; i++)
@@ -147,8 +145,7 @@ public class UserManger_WanderUnique : MEB_BaseManager, MEB_I_IntScoop
                 pos += (new Vector3(Random.Range(-1.0f, 1.0f), 0, Random.Range(-1.0f, 1.0f)).normalized) * Random.Range(m_minRadius, m_radius);
 
                 NavMeshHit hit;
-                Vector3 finalPosition = Vector3.zero;
-                if (NavMesh.SamplePosition(pos, out hit, m_radius, 1))
+                if (NavMesh.SamplePosition(pos, out hit, m_radius, NavMesh.AllAreas))
                 {
                     finalpos = hit.position;
                     foundPos = true;
@@ -169,6 +166,7 @@ public class UserManger_WanderUnique : MEB_BaseManager, MEB_I_IntScoop
                             m_currentUniquePointCount = 0;
                         }
 
+                        m_currentTimeLeftTillNextWanderCycle = m_delayBetweenWandering;
                         m_uniquePoints[m_currentUniquePointCount] = finalpos;
                         m_currentUniquePointCount++;
                     }

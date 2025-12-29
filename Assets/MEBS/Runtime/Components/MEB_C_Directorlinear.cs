@@ -33,14 +33,14 @@ public class MEB_C_Directorlinear : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
-        for (int i = 0; i < m_directorInterface.m_managers.Count; i++)
+        for (int i = 0; i < m_directorInterface.GetManagerCount(); i++)
         {
-            m_directorInterface.Evaluate(m_directorInterface.m_managers[i], i);
+            m_directorInterface.Evaluate(i);
         }
 
-        for (int i = 0; i < m_directorInterface.m_managers.Count; i++)
+        for (int i = 0; i < m_directorInterface.GetManagerCount(); i++)
         {
-            m_directorInterface.Exacute(m_directorInterface.m_managers[i], Time.deltaTime, i);
+            m_directorInterface.Exacute(i, Time.deltaTime);
         }
     }
 }

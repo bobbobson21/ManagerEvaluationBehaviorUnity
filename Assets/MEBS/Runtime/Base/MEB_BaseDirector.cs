@@ -5,50 +5,73 @@ namespace MEBS.Runtime
 {
     public class MEB_DirectorBase
     {
-        public List<MEB_BaseManager> m_managers = new List<MEB_BaseManager>();
+        private List<MEB_BaseManager> m_managers = new List<MEB_BaseManager>();
         public MEB_BaseBlackboard m_blackboard = null;
         public GameObject m_gameObject = null;
 
-        public void Evaluate(MEB_BaseManager manager, int index)
+        public void Evaluate(int index)
         {
-            manager.ResetMoveState();
+            m_managers[index].ResetMoveState();
 
-            manager.EvaluationStart(index);
-            manager.EvaluationEnd(index);
+            m_managers[index].EvaluationStart(index);
+            m_managers[index].EvaluationEnd(index);
         }
 
-        public void Exacute(MEB_BaseManager manager, float delta, int index)
+        public void Exacute(int index, float delta)
         {
-            manager.AssessMoveResponce();
+            m_managers[index].AssessMoveResponce();
 
-            if (manager.IsAllowedToExecute() == true)
+            if (m_managers[index].IsAllowedToExecute() == true)
             {
-                manager.OnUpdate(delta, index);
+                m_managers[index].OnUpdate(delta, index);
             }
         }
+        
+        public bool IsManagerUnderDirector(MEB_BaseManager manager)
+        {
+            return m_managers.Contains(manager);
+        }
 
-        public void AddManager(MEB_BaseManager manager)
+        public int AddManager(MEB_BaseManager manager)
         {
             manager.InitLoad(this);
             m_managers.Add(manager);
+
+            return m_managers.Count -1;
         }
 
-        public void RemoveManager(MEB_BaseManager manager)
+        /*public void RemoveManager(int index) //dont remove managers post runtime (unless you are in non garbage collection coding lang) it can be bad but the code is here incase you really really want to but you have been warned
         {
-            m_managers.Remove(manager);
+            m_managers.RemoveAt(index);
         }
+
         public void RemoveAllManagers()
         { 
             m_managers.Clear();
+        }*/
+
+        public MEB_BaseManager GetManagerByIndex(int index)
+        {
+            if (index < 0 || index >= m_managers.Count) { return null; }
+            return m_managers[index];
         }
 
-        public bool IsManagerUnderDirector(MEB_BaseManager manager)
-        { 
-            return m_managers.Contains(manager);
+        public int GetIndexOfManager(MEB_BaseManager manager)
+        {
+            for (int i = 0; i < m_managers.Count; i++)
+            {
+                if (m_managers[i] == manager)
+                {
+                    return i;
+                }
+            }
+
+            return int.MinValue;
         }
-        public MEB_BaseManager GetManagerByIndex(int index)
+
+        public int GetManagerCount()
         { 
-            return m_managers[index];
+            return m_managers.Count;
         }
 
         public virtual void ForceRedoEval()

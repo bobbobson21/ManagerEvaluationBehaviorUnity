@@ -148,7 +148,7 @@ namespace MEBS.Runtime
                         Type type = Type.GetType(m_evalurators[i].m_class);
                         MEB_BaseManager instance = (MEB_BaseManager)Activator.CreateInstance(type);
 
-                        ((MEB_I_EvalScope)instance).SetEvaluationScope(scopeStart, scopeEnd);
+                        ((MEB_I_EvalScoop)instance).SetEvaluationScope(scopeStart, scopeEnd);
 
                         instance.SetBlackboardKeys(m_evalurators[i].m_blackboardIdenifyers, m_evalurators[i].m_blackboardKeys);
                         instance.m_chainState = MEB_BaseManager_ChainState.ChainMiddle;

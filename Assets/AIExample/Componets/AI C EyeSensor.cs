@@ -24,7 +24,7 @@ public class AI_C_EyeSensor : MonoBehaviour
             RaycastHit hitInfo;
             Physics.Linecast(gameObject.transform.position + m_eyePosition, collision.gameObject.transform.position, out hitInfo, Physics.AllLayers, QueryTriggerInteraction.Ignore);
 
-            if (hitInfo.collider.gameObject == collision.gameObject)
+            if (hitInfo.collider != null && hitInfo.collider.gameObject != null && hitInfo.collider.gameObject == collision.gameObject)
             {
                 float newDist = (collision.gameObject.transform.position - transform.position).magnitude;
                 if (m_nearestObject == null || newDist < (m_nearestObject.transform.position - transform.position).magnitude)

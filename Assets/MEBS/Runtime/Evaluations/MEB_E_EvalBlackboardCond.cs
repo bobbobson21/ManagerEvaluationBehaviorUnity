@@ -53,7 +53,7 @@ namespace MEBS.Runtime
     }
 
 
-    public class MEB_E_EvalBlackboardCond : MEB_BaseManager, MEB_I_EvalScope
+    public class MEB_E_EvalBlackboardCond : MEB_BaseManager, MEB_I_EvalScoop
     {
         private bool m_inverted = false;
 

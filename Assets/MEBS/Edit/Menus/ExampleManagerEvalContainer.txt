@@ -30,7 +30,7 @@ public class UserManger_Eval_[IDHere]_UI : MEB_UI_BehaviourEditor_ManagerData
 }
 #endif
 
-public class UserManger_Eval_[IDHere] : MEB_BaseManager//, MEB_I_IntScoop
+public class UserManger_Eval_[IDHere] : MEB_BaseManager, MEB_I_EvalScoop
 {
     private int m_startPointOfScope = 0;
     private int m_endPointOfScope = 0;
@@ -48,7 +48,13 @@ public class UserManger_Eval_[IDHere] : MEB_BaseManager//, MEB_I_IntScoop
 
     public override void EvaluationStart(int index)
     { 
-    
+        int arrayLength = (m_endPointOfScope - m_startPointOfScope);
+        
+        for (int i = 0; i < arrayLength; i++)
+        {
+            int otherManagerIndex = ((index + m_endPointOfScope) - arrayLength) + i; //calulates the managers true index
+            MEB_BaseManager manager = m_director.GetManagerByIndex(otherManagerIndex); //gets the manager
+        }
     }
 
     public override void EvaluationEnd(int index)
