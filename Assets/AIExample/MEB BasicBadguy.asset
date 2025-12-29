@@ -180,11 +180,11 @@ MonoBehaviour:
         m_blackboardKeys:
         - movePos
         m_displayBlackboardSettingExpanded: 0
-        m_displayCustomSettingExpanded: 0
+        m_displayCustomSettingExpanded: 1
         m_displayDebugSettingsExpanded: 0
         m_minRadius: 5
         m_radius: 10
-        m_delayBetweenWandering: 1
+        m_delayBetweenWandering: 4
     - rid: 4792260105386852504
       type: {class: Manager_GetCloseSettings, ns: , asm: Assembly-CSharp}
       data:

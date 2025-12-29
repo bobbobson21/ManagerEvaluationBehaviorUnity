@@ -83,7 +83,7 @@ MonoBehaviour:
         - target
         m_blackboardKeys:
         - movePos
-        m_displayBlackboardSettingExpanded: 1
+        m_displayBlackboardSettingExpanded: 0
         m_displayCustomSettingExpanded: 0
         m_displayDebugSettingsExpanded: 0
     - rid: 324396940330795072
@@ -117,7 +117,7 @@ MonoBehaviour:
         - ammoMax
         - ammoTotal
         - ammoCurrentClip
-        m_displayBlackboardSettingExpanded: 1
+        m_displayBlackboardSettingExpanded: 0
         m_displayCustomSettingExpanded: 0
         m_displayDebugSettingsExpanded: 0
     - rid: 324396940330795074
@@ -168,8 +168,8 @@ MonoBehaviour:
         - getAttackObjectFrom
         m_blackboardKeys:
         - attackerObj
-        m_displayBlackboardSettingExpanded: 1
-        m_displayCustomSettingExpanded: 1
+        m_displayBlackboardSettingExpanded: 0
+        m_displayCustomSettingExpanded: 0
         m_displayDebugSettingsExpanded: 0
         m_shootScope: 0.8
         m_shootDistance: 6
@@ -190,8 +190,8 @@ MonoBehaviour:
         m_blackboardKeys:
         - movePos
         - attackerObj
-        m_displayBlackboardSettingExpanded: 1
-        m_displayCustomSettingExpanded: 1
+        m_displayBlackboardSettingExpanded: 0
+        m_displayCustomSettingExpanded: 0
         m_displayDebugSettingsExpanded: 0
         m_saftyRadius: 5
         m_minimumVelocity: 0.1
@@ -209,7 +209,7 @@ MonoBehaviour:
         m_blackboardKeys:
         - movePos
         - attackerObj
-        m_displayBlackboardSettingExpanded: 1
+        m_displayBlackboardSettingExpanded: 0
         m_displayCustomSettingExpanded: 0
         m_displayDebugSettingsExpanded: 0
     - rid: 324396942948302921
@@ -225,8 +225,8 @@ MonoBehaviour:
         - 0:???
         m_blackboardKeys:
         - extraAgressive
-        m_displayBlackboardSettingExpanded: 1
-        m_displayCustomSettingExpanded: 1
+        m_displayBlackboardSettingExpanded: 0
+        m_displayCustomSettingExpanded: 0
         m_displayDebugSettingsExpanded: 0
         m_inverted: 0
         m_blockRangeStartPoint: 2
@@ -244,8 +244,8 @@ MonoBehaviour:
         - 0:???
         m_blackboardKeys:
         - extraAgressive
-        m_displayBlackboardSettingExpanded: 1
-        m_displayCustomSettingExpanded: 1
+        m_displayBlackboardSettingExpanded: 0
+        m_displayCustomSettingExpanded: 0
         m_displayDebugSettingsExpanded: 0
         m_inverted: 0
         m_blockRangeStartPoint: 5
@@ -271,7 +271,7 @@ MonoBehaviour:
         - storeIsAgressiveIn
         m_blackboardKeys:
         - extraAgressive
-        m_displayBlackboardSettingExpanded: 1
+        m_displayBlackboardSettingExpanded: 0
         m_displayCustomSettingExpanded: 0
         m_displayDebugSettingsExpanded: 0
     - rid: 324396942948302925
@@ -298,7 +298,7 @@ MonoBehaviour:
         m_blackboardKeys:
         - extraAgressive
         - attackerObj
-        m_displayBlackboardSettingExpanded: 1
+        m_displayBlackboardSettingExpanded: 0
         m_displayCustomSettingExpanded: 0
         m_displayDebugSettingsExpanded: 0
     - rid: 324396951961075791
@@ -315,7 +315,7 @@ MonoBehaviour:
         m_blackboardKeys:
         - resourceObject
         - movePos
-        m_displayBlackboardSettingExpanded: 1
+        m_displayBlackboardSettingExpanded: 0
         m_displayCustomSettingExpanded: 0
         m_displayDebugSettingsExpanded: 0
     - rid: 324396972871516242
@@ -344,8 +344,8 @@ MonoBehaviour:
         - resourceCount
         - desiredResourceCount
         - extraAgressive
-        m_displayBlackboardSettingExpanded: 1
-        m_displayCustomSettingExpanded: 1
+        m_displayBlackboardSettingExpanded: 0
+        m_displayCustomSettingExpanded: 0
         m_displayDebugSettingsExpanded: 0
         m_greedAmount: 45
     - rid: 324396972871516244
@@ -387,7 +387,7 @@ MonoBehaviour:
         m_blackboardIdenifyers: []
         m_blackboardKeys: []
         m_displayBlackboardSettingExpanded: 0
-        m_displayCustomSettingExpanded: 1
+        m_displayCustomSettingExpanded: 0
         m_displayDebugSettingsExpanded: 0
         m_extractIn: 360
         m_lable: kill AI in
@@ -402,8 +402,8 @@ MonoBehaviour:
         - storeTargetLocationIn
         m_blackboardKeys:
         - movePos
-        m_displayBlackboardSettingExpanded: 1
-        m_displayCustomSettingExpanded: 1
+        m_displayBlackboardSettingExpanded: 0
+        m_displayCustomSettingExpanded: 0
         m_displayDebugSettingsExpanded: 0
         m_radius: 80
         m_minRadius: 44
@@ -432,8 +432,8 @@ MonoBehaviour:
         - resourceCount
         - desiredResourceCount
         - resourceObject
-        m_displayBlackboardSettingExpanded: 1
-        m_displayCustomSettingExpanded: 1
+        m_displayBlackboardSettingExpanded: 0
+        m_displayCustomSettingExpanded: 0
         m_displayDebugSettingsExpanded: 0
         m_extractIn: 240
         m_lable: extract is in
@@ -463,8 +463,8 @@ MonoBehaviour:
         - resourceCount
         - desiredResourceCount
         - extraAgressive
-        m_displayBlackboardSettingExpanded: 1
-        m_displayCustomSettingExpanded: 1
+        m_displayBlackboardSettingExpanded: 0
+        m_displayCustomSettingExpanded: 0
         m_displayDebugSettingsExpanded: 0
         m_panicIn: 180
         m_panicIfFraction: 0.75
