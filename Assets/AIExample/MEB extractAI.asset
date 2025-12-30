@@ -403,7 +403,7 @@ MonoBehaviour:
         m_blackboardKeys:
         - movePos
         m_displayBlackboardSettingExpanded: 0
-        m_displayCustomSettingExpanded: 1
+        m_displayCustomSettingExpanded: 0
         m_displayDebugSettingsExpanded: 0
         m_radius: 20
         m_minRadius: 10
