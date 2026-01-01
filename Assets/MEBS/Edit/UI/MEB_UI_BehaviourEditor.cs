@@ -26,11 +26,17 @@ namespace MEBS.Editor
 
         private Vector2 m_scrollPos = Vector2.zero;
 
+        private static List<MEB_UI_BehaviourEditor_ManagerData> m_listDataNormalScoped = new List<MEB_UI_BehaviourEditor_ManagerData>();
         private static List<MEB_UI_BehaviourEditor_ManagerData> m_listDataNormal = new List<MEB_UI_BehaviourEditor_ManagerData>();
         private static List<MEB_UI_BehaviourEditor_ManagerData> m_listDataEval = new List<MEB_UI_BehaviourEditor_ManagerData>();
 
         private float m_refreshRateMax = 0.1f;
         private float m_currentRefreshRatePoint = 0;
+
+        public static void AddNormalManagerWithScopeRequirement(MEB_UI_BehaviourEditor_ManagerData manager)
+        {
+            m_listDataNormalScoped.Add(manager);
+        }
 
         public static void AddNormalManager(MEB_UI_BehaviourEditor_ManagerData manager)
         {
@@ -78,14 +84,14 @@ namespace MEBS.Editor
             window.m_loadedObject = data;
         }
 
-        private MEB_BaseBehaviourData_ItemSettings RenderAddManagerField(bool displayNormalManagers, bool displayEvalManagers)
+        private MEB_BaseBehaviourData_ItemSettings RenderAddManagerField(bool displayNormalManagers,  bool displayNormalManagersScoped, bool displayEvalManagers)
         {
             int width = 256;
             int height = 19;
 
             int arrayLength = 1;
-
             if (displayNormalManagers == true) { arrayLength += m_listDataNormal.Count; }
+            if (displayNormalManagersScoped == true) {arrayLength += m_listDataNormalScoped.Count; }
             if (displayEvalManagers == true) { arrayLength += m_listDataEval.Count; }
 
             MEB_UI_BehaviourEditor_ManagerData[] resultExacuteableList = new MEB_UI_BehaviourEditor_ManagerData[arrayLength];
@@ -101,6 +107,16 @@ namespace MEBS.Editor
                 {
                     resultExacuteableList[writePoint] = m_listDataNormal[i];
                     resultList[writePoint] = m_listDataNormal[i].m_name;
+                    writePoint++;
+                }
+            }
+
+            if (displayNormalManagersScoped == true)
+            {
+                for (int i = 0; i < m_listDataNormalScoped.Count; i++)
+                {
+                    resultExacuteableList[writePoint] = m_listDataNormalScoped[i];
+                    resultList[writePoint] = m_listDataNormalScoped[i].m_name;
                     writePoint++;
                 }
             }
@@ -313,7 +329,7 @@ namespace MEBS.Editor
 
             GUILayout.BeginVertical(EditorStyles.helpBox, GUILayout.Height(0));
             GUILayout.Label("before evaluration", EditorStyles.boldLabel); //before eval
-            MEB_BaseBehaviourData_ItemSettings managerData = RenderAddManagerField(true, false);
+            MEB_BaseBehaviourData_ItemSettings managerData = RenderAddManagerField(true, false, false);
 
             if (managerData != null)
             {
@@ -342,7 +358,7 @@ namespace MEBS.Editor
 
             GUILayout.BeginVertical(EditorStyles.helpBox, GUILayout.Height(2));
             GUILayout.Label("evaluators", EditorStyles.boldLabel); //eval
-            managerData = RenderAddManagerField(false, true);
+            managerData = RenderAddManagerField(false, false, true);
 
             if (managerData != null)
             {
@@ -371,7 +387,7 @@ namespace MEBS.Editor
 
             GUILayout.BeginVertical(EditorStyles.helpBox, GUILayout.Height(2));
             GUILayout.Label("managers to evalurate", EditorStyles.boldLabel); //eval data
-            managerData = RenderAddManagerField(true, false);
+            managerData = RenderAddManagerField(true, false, false);
 
             if (managerData != null)
             {
@@ -400,7 +416,7 @@ namespace MEBS.Editor
 
             GUILayout.BeginVertical(EditorStyles.helpBox, GUILayout.Height(2));
             GUILayout.Label("after evaluration", EditorStyles.boldLabel); //after eval
-            managerData = RenderAddManagerField(true, false);
+            managerData = RenderAddManagerField(true, false, false);
 
             if (managerData != null)
             {
@@ -450,7 +466,7 @@ namespace MEBS.Editor
             GUILayout.BeginVertical(EditorStyles.helpBox);
 
             GUILayout.BeginHorizontal();
-            MEB_BaseBehaviourData_ItemSettings managerData = RenderAddManagerField(true, false);
+            MEB_BaseBehaviourData_ItemSettings managerData = RenderAddManagerField(true, true, false);
             MEB_BaseBehaviourData_Item evalData = RenderAddEvalField();
 
 
@@ -559,7 +575,7 @@ namespace MEBS.Editor
         private void OnGUI()
         {
             GUILayout.BeginHorizontal();
-            MEB_BaseBehaviourData_ItemSettings managerData = RenderAddManagerField(true, false);
+            MEB_BaseBehaviourData_ItemSettings managerData = RenderAddManagerField(true, false, false);
             MEB_BaseBehaviourData_Item evalData = RenderAddEvalField();
             MEB_BaseBehaviourData_ChainScopeItemWapper scopeData = RenderAddScopeField();
             GUILayout.EndHorizontal();

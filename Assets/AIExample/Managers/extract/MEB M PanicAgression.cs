@@ -31,7 +31,7 @@ public class UserManger_PanicAgression_UI : MEB_UI_BehaviourEditor_ManagerData
 {
     static UserManger_PanicAgression_UI()
     {
-        MEB_UI_BehaviourEditor.AddNormalManager(new UserManger_PanicAgression_UI());
+        MEB_UI_BehaviourEditor.AddNormalManagerWithScopeRequirement(new UserManger_PanicAgression_UI());
     }
 
     public UserManger_PanicAgression_UI()

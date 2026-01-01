@@ -10,7 +10,7 @@ public class UserManger_AgressionReset_UI : MEB_UI_BehaviourEditor_ManagerData
 {
     static UserManger_AgressionReset_UI()
     {
-        MEB_UI_BehaviourEditor.AddNormalManager(new UserManger_AgressionReset_UI());
+        MEB_UI_BehaviourEditor.AddNormalManagerWithScopeRequirement(new UserManger_AgressionReset_UI());
     }
 
     public UserManger_AgressionReset_UI()

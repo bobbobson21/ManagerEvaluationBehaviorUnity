@@ -66,7 +66,7 @@ public class UserManger_DeathHandler : MEB_BaseManager//, MEB_I_IntScoop
             return;
         }
 
-        Debug.Log($"AI {m_director.m_gameObject.transform.parent.gameObject} has died.");
+        Debug.Log($"AI {m_director.m_gameObject} has died.");
 
         m_director.m_gameObject.tag = "deadAI";
 

@@ -29,7 +29,7 @@ public class UserManger_GreedyAgression_UI : MEB_UI_BehaviourEditor_ManagerData
 {
     static UserManger_GreedyAgression_UI()
     {
-        MEB_UI_BehaviourEditor.AddNormalManager(new UserManger_GreedyAgression_UI());
+        MEB_UI_BehaviourEditor.AddNormalManagerWithScopeRequirement(new UserManger_GreedyAgression_UI());
     }
 
     public UserManger_GreedyAgression_UI()

@@ -143,7 +143,7 @@ MonoBehaviour:
         m_blackboardIdenifyers: []
         m_blackboardKeys: []
         m_displayBlackboardSettingExpanded: 0
-        m_displayCustomSettingExpanded: 1
+        m_displayCustomSettingExpanded: 0
         m_displayDebugSettingsExpanded: 0
         m_speed: 10
     - rid: 324396940330795076

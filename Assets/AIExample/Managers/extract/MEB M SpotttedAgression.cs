@@ -11,7 +11,7 @@ public class UserManger_SpottedAgression_UI : MEB_UI_BehaviourEditor_ManagerData
 {
     static UserManger_SpottedAgression_UI()
     {
-        MEB_UI_BehaviourEditor.AddNormalManager(new UserManger_SpottedAgression_UI());
+        MEB_UI_BehaviourEditor.AddNormalManagerWithScopeRequirement(new UserManger_SpottedAgression_UI());
     }
 
     public UserManger_SpottedAgression_UI()
