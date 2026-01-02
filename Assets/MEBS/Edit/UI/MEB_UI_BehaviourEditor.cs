@@ -312,139 +312,143 @@ namespace MEBS.Editor
 
             GUILayout.BeginHorizontal();
             GUILayout.Space(xPadding);
-
+      
             GUILayout.BeginVertical(EditorStyles.helpBox);
 
-            GUILayout.BeginHorizontal();
+           item.m_nonColapsed = EditorGUILayout.Foldout(item.m_nonColapsed, "evaluration section");
+            if(item.m_nonColapsed == true)
+            { 
+                GUILayout.BeginHorizontal();
+                GUILayout.FlexibleSpace();
 
-            GUILayout.FlexibleSpace();
+                itemIndex = RenderScopeIndexField(itemIndex);
+        
 
-            itemIndex = RenderScopeIndexField(itemIndex);
-
-            if (GUILayout.Button("delete", GUILayout.Width(buttonWidth * 2)) == true)
-            {
-                itemIndex = -1;
-            }
-            GUILayout.EndHorizontal();
-
-            GUILayout.BeginVertical(EditorStyles.helpBox, GUILayout.Height(0));
-            GUILayout.Label("before evaluration", EditorStyles.boldLabel); //before eval
-            MEB_BaseBehaviourData_ItemSettings managerData = RenderAddManagerField(true, false, false);
-
-            if (managerData != null)
-            {
-                item.m_runBeforeEval.Add( managerData );
-            }
-
-            for (int i = 0; i < item.m_runBeforeEval.Count; i++)
-            {
-                int moveToIndex = RenderManager(item.m_runBeforeEval[i], i);
-
-                if (moveToIndex < 0)
+                if (GUILayout.Button("delete", GUILayout.Width(buttonWidth * 2)) == true)
                 {
-                    item.m_runBeforeEval.RemoveAt(i);
+                    itemIndex = -1;
                 }
-                else
+                GUILayout.EndHorizontal();
+
+                GUILayout.BeginVertical(EditorStyles.helpBox, GUILayout.Height(0));
+                GUILayout.Label("before evaluration", EditorStyles.boldLabel); //before eval
+                MEB_BaseBehaviourData_ItemSettings managerData = RenderAddManagerField(true, false, false);
+
+                if (managerData != null)
                 {
-                    if (moveToIndex != i && moveToIndex < item.m_runBeforeEval.Count)
+                    item.m_runBeforeEval.Add( managerData );
+                }
+
+                for (int i = 0; i < item.m_runBeforeEval.Count; i++)
+                {
+                    int moveToIndex = RenderManager(item.m_runBeforeEval[i], i);
+
+                    if (moveToIndex < 0)
                     {
-                        MEB_BaseBehaviourData_ItemSettings subItem = item.m_runBeforeEval[i];
                         item.m_runBeforeEval.RemoveAt(i);
-                        item.m_runBeforeEval.Insert(moveToIndex, subItem);
+                    }
+                    else
+                    {
+                        if (moveToIndex != i && moveToIndex < item.m_runBeforeEval.Count)
+                        {
+                            MEB_BaseBehaviourData_ItemSettings subItem = item.m_runBeforeEval[i];
+                            item.m_runBeforeEval.RemoveAt(i);
+                            item.m_runBeforeEval.Insert(moveToIndex, subItem);
+                        }
                     }
                 }
-            }
-            GUILayout.EndVertical();//section divide
+                GUILayout.EndVertical();//section divide
 
-            GUILayout.BeginVertical(EditorStyles.helpBox, GUILayout.Height(2));
-            GUILayout.Label("evaluators", EditorStyles.boldLabel); //eval
-            managerData = RenderAddManagerField(false, false, true);
+                GUILayout.BeginVertical(EditorStyles.helpBox, GUILayout.Height(2));
+                GUILayout.Label("evaluators", EditorStyles.boldLabel); //eval
+                managerData = RenderAddManagerField(false, false, true);
 
-            if (managerData != null)
-            {
-                item.m_evalurators.Add(managerData);
-            }
-
-            for (int i = 0; i < item.m_evalurators.Count; i++)
-            {
-                int moveToIndex = RenderManager(item.m_evalurators[i], i);
-
-                if (moveToIndex < 0)
+                if (managerData != null)
                 {
-                    item.m_evalurators.RemoveAt(i);
+                    item.m_evalurators.Add(managerData);
                 }
-                else
+
+                for (int i = 0; i < item.m_evalurators.Count; i++)
                 {
-                    if (moveToIndex != i && moveToIndex < item.m_evalurators.Count)
+                    int moveToIndex = RenderManager(item.m_evalurators[i], i);
+
+                    if (moveToIndex < 0)
                     {
-                        MEB_BaseBehaviourData_ItemSettings subItem = item.m_evalurators[i];
                         item.m_evalurators.RemoveAt(i);
-                        item.m_evalurators.Insert(moveToIndex, subItem);
+                    }
+                    else
+                    {
+                        if (moveToIndex != i && moveToIndex < item.m_evalurators.Count)
+                        {
+                            MEB_BaseBehaviourData_ItemSettings subItem = item.m_evalurators[i];
+                            item.m_evalurators.RemoveAt(i);
+                            item.m_evalurators.Insert(moveToIndex, subItem);
+                        }
                     }
                 }
-            }
-            GUILayout.EndVertical(); //section divide
+                GUILayout.EndVertical(); //section divide
 
-            GUILayout.BeginVertical(EditorStyles.helpBox, GUILayout.Height(2));
-            GUILayout.Label("managers to evalurate", EditorStyles.boldLabel); //eval data
-            managerData = RenderAddManagerField(true, false, false);
+                GUILayout.BeginVertical(EditorStyles.helpBox, GUILayout.Height(2));
+                GUILayout.Label("managers to evalurate", EditorStyles.boldLabel); //eval data
+                managerData = RenderAddManagerField(true, false, false);
 
-            if (managerData != null)
-            {
-                item.m_useInEval.Add(managerData);
-            }
-
-            for (int i = 0; i < item.m_useInEval.Count; i++)
-            {
-                int moveToIndex = RenderManager(item.m_useInEval[i], i);
-
-                if (moveToIndex < 0)
+                if (managerData != null)
                 {
-                    item.m_useInEval.RemoveAt(i);
+                    item.m_useInEval.Add(managerData);
                 }
-                else
+
+                for (int i = 0; i < item.m_useInEval.Count; i++)
                 {
-                    if (moveToIndex != i && moveToIndex < item.m_useInEval.Count)
+                    int moveToIndex = RenderManager(item.m_useInEval[i], i);
+
+                    if (moveToIndex < 0)
                     {
-                        MEB_BaseBehaviourData_ItemSettings subItem = item.m_useInEval[i];
                         item.m_useInEval.RemoveAt(i);
-                        item.m_useInEval.Insert(moveToIndex, subItem);
                     }
-                }
-            }
-            GUILayout.EndVertical(); //section divide
-
-            GUILayout.BeginVertical(EditorStyles.helpBox, GUILayout.Height(2));
-            GUILayout.Label("after evaluration", EditorStyles.boldLabel); //after eval
-            managerData = RenderAddManagerField(true, false, false);
-
-            if (managerData != null)
-            {
-                item.m_runAfterEval.Add(managerData);
-            }
-
-            for (int i = 0; i < item.m_runAfterEval.Count; i++)
-            {
-                int moveToIndex = RenderManager(item.m_runAfterEval[i], i);
-
-                if (moveToIndex < 0)
-                {
-                    item.m_runAfterEval.RemoveAt(i);
-                }
-                else
-                {
-                    if (moveToIndex != i && moveToIndex < item.m_runAfterEval.Count)
+                    else
                     {
-                        MEB_BaseBehaviourData_ItemSettings subItem = item.m_runAfterEval[i];
-                        item.m_runAfterEval.RemoveAt(i);
-                        item.m_runAfterEval.Insert(moveToIndex, subItem);
+                        if (moveToIndex != i && moveToIndex < item.m_useInEval.Count)
+                        {
+                            MEB_BaseBehaviourData_ItemSettings subItem = item.m_useInEval[i];
+                            item.m_useInEval.RemoveAt(i);
+                            item.m_useInEval.Insert(moveToIndex, subItem);
+                        }
                     }
                 }
+                GUILayout.EndVertical(); //section divide
+
+                GUILayout.BeginVertical(EditorStyles.helpBox, GUILayout.Height(2));
+                GUILayout.Label("after evaluration", EditorStyles.boldLabel); //after eval
+                managerData = RenderAddManagerField(true, false, false);
+
+                if (managerData != null)
+                {
+                    item.m_runAfterEval.Add(managerData);
+                }
+
+                for (int i = 0; i < item.m_runAfterEval.Count; i++)
+                {
+                    int moveToIndex = RenderManager(item.m_runAfterEval[i], i);
+
+                    if (moveToIndex < 0)
+                    {
+                        item.m_runAfterEval.RemoveAt(i);
+                    }
+                    else
+                    {
+                        if (moveToIndex != i && moveToIndex < item.m_runAfterEval.Count)
+                        {
+                            MEB_BaseBehaviourData_ItemSettings subItem = item.m_runAfterEval[i];
+                            item.m_runAfterEval.RemoveAt(i);
+                            item.m_runAfterEval.Insert(moveToIndex, subItem);
+                        }
+                    }
+                }
+
+                GUILayout.EndVertical(); //section divide
             }
-
-            GUILayout.EndVertical(); //section divide
             GUILayout.EndVertical();
-
+            
             GUILayout.Space(xPadding);
             GUILayout.EndHorizontal();
 
@@ -465,43 +469,54 @@ namespace MEBS.Editor
 
             GUILayout.BeginVertical(EditorStyles.helpBox);
 
-            GUILayout.BeginHorizontal();
-            MEB_BaseBehaviourData_ItemSettings managerData = RenderAddManagerField(true, true, false);
-            MEB_BaseBehaviourData_Item evalData = RenderAddEvalField();
+           item.m_nonColapsed = EditorGUILayout.Foldout(item.m_nonColapsed, "scope section");
+            if(item.m_nonColapsed == true)
+            { 
+                GUILayout.BeginHorizontal();
+                MEB_BaseBehaviourData_ItemSettings managerData = RenderAddManagerField(true, true, false);
+                MEB_BaseBehaviourData_Item evalData = RenderAddEvalField();
 
 
-            GUILayout.FlexibleSpace();
+                GUILayout.FlexibleSpace();
 
-            itemIndex = RenderScopeIndexField(itemIndex);
+                itemIndex = RenderScopeIndexField(itemIndex);
 
-            if (GUILayout.Button("delete", GUILayout.Width(buttonWidth * 2)) == true)
-            {
-                itemIndex = -1;
-            }
-            GUILayout.EndHorizontal();
-            GUILayout.Space(yPadding);
-
-            if (isMainThreadScope == true)
-            {
-                GUILayout.Label("main thread scope data:", EditorStyles.boldLabel);
+                if (GUILayout.Button("delete", GUILayout.Width(buttonWidth * 2)) == true)
+                {
+                    itemIndex = -1;
+                }
+                GUILayout.EndHorizontal();
                 GUILayout.Space(yPadding);
 
-                GUILayout.BeginVertical(EditorStyles.helpBox);
+                if (isMainThreadScope == true)
+                {
+                    GUILayout.Label("main thread scope data:", EditorStyles.boldLabel);
+                    GUILayout.Space(yPadding);
+
+                    GUILayout.BeginVertical(EditorStyles.helpBox);
+                }
+                else 
+                {
+                    GUILayout.BeginVertical();
+                }
+
+                if (managerData != null)
+                {
+                    item.m_items.Add(new MEB_BaseBehaviourData_Item());
+                    item.m_items[item.m_items.Count - 1].m_noneEvalurationManager = managerData;
+                }
+
+                if (evalData != null)
+                {
+                    item.m_items.Add(evalData);
+                }
+
+                return itemIndex;
             }
-            else 
+            else
             {
                 GUILayout.BeginVertical();
-            }
-
-            if (managerData != null)
-            {
-                item.m_items.Add(new MEB_BaseBehaviourData_Item());
-                item.m_items[item.m_items.Count - 1].m_noneEvalurationManager = managerData;
-            }
-
-            if (evalData != null)
-            {
-                item.m_items.Add(evalData);
+                itemIndex = -2;
             }
 
             return itemIndex;
@@ -611,38 +626,41 @@ namespace MEBS.Editor
                     scopeMovement = RenderScopeStart(m_loadedData[i], i, m_loadedData[i].m_isForMainThread);
                 }
 
-                for (int j = 0; j < m_loadedData[i].m_items.Count; j++) //go thougth items
+                if(scopeMovement >= 0)
                 {
-                    if (m_loadedData[i].m_items[j].m_isNormalManager == true) //is not evaluration scope
+                    for (int j = 0; j < m_loadedData[i].m_items.Count; j++) //go thougth items
                     {
-                        int managerIndexDecomposed = j; //get its index
-                        if(m_loadedData[i].m_isScoped == false)
+                        if (m_loadedData[i].m_items[j].m_isNormalManager == true) //is not evaluration scope
                         {
-                            managerIndexDecomposed = i;
+                            int managerIndexDecomposed = j; //get its index
+                            if(m_loadedData[i].m_isScoped == false)
+                            {
+                                managerIndexDecomposed = i;
+                            }
+
+                            int managerMovment = RenderManager(m_loadedData[i].m_items[j].m_noneEvalurationManager, managerIndexDecomposed); //render manager
+
+                            if (RootManagerMovement(managerMovment, managerIndexDecomposed, i, j) == true)
+                            {
+                                EditorGUILayout.EndScrollView();
+                                return;
+                            }
                         }
-
-                        int managerMovment = RenderManager(m_loadedData[i].m_items[j].m_noneEvalurationManager, managerIndexDecomposed); //render manager
-
-                        if (RootManagerMovement(managerMovment, managerIndexDecomposed, i, j) == true)
+                        else //is evaluration scope
                         {
-                            EditorGUILayout.EndScrollView();
-                            return;
-                        }
-                    }
-                    else //is evaluration scope
-                    {
-                        int evalIndexDecomposed = j;
-                        if (m_loadedData[i].m_isScoped == false)
-                        {
-                            evalIndexDecomposed = i;
-                        }
+                            int evalIndexDecomposed = j;
+                            if (m_loadedData[i].m_isScoped == false)
+                            {
+                                evalIndexDecomposed = i;
+                            }
 
-                        int evalMovement = RenderEvalScope(m_loadedData[i].m_items[j], evalIndexDecomposed);
+                            int evalMovement = RenderEvalScope(m_loadedData[i].m_items[j], evalIndexDecomposed);
 
-                        if (RootManagerMovement(evalMovement, evalIndexDecomposed, i, j) == true)
-                        {
-                            EditorGUILayout.EndScrollView();
-                            return;
+                            if (RootManagerMovement(evalMovement, evalIndexDecomposed, i, j) == true)
+                            {
+                                EditorGUILayout.EndScrollView();
+                                return;
+                            }
                         }
                     }
                 }
@@ -651,13 +669,13 @@ namespace MEBS.Editor
                 {
                     RenderScopeEnd();
 
-                    if (scopeMovement < 0)
+                    if (scopeMovement == -1)
                     {
                         m_loadedData.RemoveAt(i);
                         EditorGUILayout.EndScrollView();
                         return;
                     }
-                    else if (scopeMovement != i && i < m_loadedData.Count)
+                    else if (scopeMovement > 0 && scopeMovement != i && i < m_loadedData.Count)
                     {
                         MEB_BaseBehaviourData_ChainScopeItemWapper item = m_loadedData[i];
                         m_loadedData.RemoveAt(i);

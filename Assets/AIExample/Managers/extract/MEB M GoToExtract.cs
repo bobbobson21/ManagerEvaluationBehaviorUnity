@@ -141,7 +141,7 @@ public class UserManger_GoToExtract : MEB_BaseManager, MEB_I_IntScoop
         m_extractIn -= Time.deltaTime; //this is cheacky but it dose work if the AI isnt muiltythreaded which it shouldnt because movement dosent support that
         GameObject obj = ((GameObject)m_director.m_blackboard.GetObject(m_getResourceObjectFromKey));
 
-        if ((m_extractIn < 0 && (obj == null || m_extractIn > -40)) || ((int)m_director.m_blackboard.GetObject(m_getResourceCountFromKey)) >= ((int)m_director.m_blackboard.GetObject(m_getDesiredResourceCountFromKey)))
+        if ((m_extractIn < 0 && (obj == null || m_extractIn > -30)) || ((int)m_director.m_blackboard.GetObject(m_getResourceCountFromKey)) >= ((int)m_director.m_blackboard.GetObject(m_getDesiredResourceCountFromKey)))
         {
             return 100;
         }

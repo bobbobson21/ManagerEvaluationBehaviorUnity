@@ -18,6 +18,7 @@ MonoBehaviour:
     - rid: 6310419766989553722
     m_isScoped: 1
     m_isForMainThread: 0
+    m_nonColapsed: 0
   - m_items:
     - rid: 324396942948302923
     - rid: 324396942948302925
@@ -25,14 +26,17 @@ MonoBehaviour:
     - rid: 324397068597854295
     m_isScoped: 1
     m_isForMainThread: 1
+    m_nonColapsed: 0
   - m_items:
     - rid: 324396940330795068
     m_isScoped: 0
     m_isForMainThread: 0
+    m_nonColapsed: 1
   - m_items:
     - rid: 324396940330795072
     m_isScoped: 0
     m_isForMainThread: 0
+    m_nonColapsed: 1
   references:
     version: 2
     RefIds:
@@ -48,15 +52,20 @@ MonoBehaviour:
         - rid: 324397064904507455
         - rid: 324397064904507485
         - rid: 324396951961075791
+        - rid: 8401229870979350592
+        - rid: 8401229870979350587
         - rid: 324396972871516244
         - rid: 324396940330795110
+        - rid: 8401229870979350590
         - rid: 324396940330795093
         m_evalurators:
+        - rid: 8401229870979350591
         - rid: 324396942948302922
         - rid: 324396940330795069
         m_noneEvalurationManager:
           rid: -2
         m_isNormalManager: 0
+        m_nonColapsed: 0
     - rid: 324396940330795069
       type: {class: MEB_BaseBehaviourData_ItemSettings, ns: MEBS.Runtime, asm: Assembly-CSharp}
       data:
@@ -102,6 +111,7 @@ MonoBehaviour:
         m_noneEvalurationManager:
           rid: -2
         m_isNormalManager: 0
+        m_nonColapsed: 0
     - rid: 324396940330795073
       type: {class: MEB_BaseBehaviourData_ItemSettings, ns: MEBS.Runtime, asm: Assembly-CSharp}
       data:
@@ -248,7 +258,7 @@ MonoBehaviour:
         m_displayCustomSettingExpanded: 0
         m_displayDebugSettingsExpanded: 0
         m_inverted: 0
-        m_blockRangeStartPoint: 5
+        m_blockRangeStartPoint: 8
         m_blockRangeEndPoint: 2147483647
     - rid: 324396942948302923
       type: {class: MEB_BaseBehaviourData_Item, ns: MEBS.Runtime, asm: Assembly-CSharp}
@@ -260,6 +270,7 @@ MonoBehaviour:
         m_noneEvalurationManager:
           rid: 324396942948302924
         m_isNormalManager: 1
+        m_nonColapsed: 1
     - rid: 324396942948302924
       type: {class: MEB_BaseBehaviourData_ItemSettings, ns: MEBS.Runtime, asm: Assembly-CSharp}
       data:
@@ -284,6 +295,7 @@ MonoBehaviour:
         m_noneEvalurationManager:
           rid: 324396942948302926
         m_isNormalManager: 1
+        m_nonColapsed: 1
     - rid: 324396942948302926
       type: {class: MEB_BaseBehaviourData_ItemSettings, ns: MEBS.Runtime, asm: Assembly-CSharp}
       data:
@@ -328,6 +340,7 @@ MonoBehaviour:
         m_noneEvalurationManager:
           rid: 324396972871516243
         m_isNormalManager: 1
+        m_nonColapsed: 1
     - rid: 324396972871516243
       type: {class: Manager_GreedyAgressionSettings, ns: , asm: Assembly-CSharp}
       data:
@@ -377,6 +390,7 @@ MonoBehaviour:
         m_noneEvalurationManager:
           rid: 324397009209655357
         m_isNormalManager: 1
+        m_nonColapsed: 1
     - rid: 324397009209655357
       type: {class: Manager_GoToExtractSettings, ns: , asm: Assembly-CSharp}
       data:
@@ -447,6 +461,7 @@ MonoBehaviour:
         m_noneEvalurationManager:
           rid: 324397068597854296
         m_isNormalManager: 1
+        m_nonColapsed: 1
     - rid: 324397068597854296
       type: {class: Manager_PanicAgressionSettings, ns: , asm: Assembly-CSharp}
       data:
@@ -478,6 +493,7 @@ MonoBehaviour:
         m_noneEvalurationManager:
           rid: 6310419766989553723
         m_isNormalManager: 1
+        m_nonColapsed: 1
     - rid: 6310419766989553723
       type: {class: MEB_BaseBehaviourData_ItemSettings, ns: MEBS.Runtime, asm: Assembly-CSharp}
       data:
@@ -486,6 +502,70 @@ MonoBehaviour:
         m_displayDiscription: make the npc die correctly
         m_blackboardIdenifyers: []
         m_blackboardKeys: []
+        m_displayBlackboardSettingExpanded: 0
+        m_displayCustomSettingExpanded: 0
+        m_displayDebugSettingsExpanded: 0
+    - rid: 8401229870979350587
+      type: {class: MEB_BaseBehaviourData_ItemSettings, ns: MEBS.Runtime, asm: Assembly-CSharp}
+      data:
+        m_class: UserManger_EvadeAvoidanceAreas
+        m_displayName: UserManger_EvadeAvoidanceAreas
+        m_displayDiscription: "keeps us out of areas of the map that we should avoid\n\nvaild
+          blackboard data: \nstoreTargetLocationIn: (vector3BlackboardKeyAsString)"
+        m_blackboardIdenifyers:
+        - storeTargetLocationIn
+        m_blackboardKeys:
+        - movePos
+        m_displayBlackboardSettingExpanded: 0
+        m_displayCustomSettingExpanded: 0
+        m_displayDebugSettingsExpanded: 0
+    - rid: 8401229870979350590
+      type: {class: MEB_BaseBehaviourData_ItemSettings, ns: MEBS.Runtime, asm: Assembly-CSharp}
+      data:
+        m_class: UserManger_SafetyFlee
+        m_displayName: UserManger_SafetyFlee
+        m_displayDiscription: "Makes the AI flee if it see the npc only.\n\nvaild
+          blackboard data: \nstoreTargetLocationIn: (vector3BlackboardKeyAsString)\ngetAttackObjectFrom:
+          (gameObjectBlackboardKeyAsString)"
+        m_blackboardIdenifyers:
+        - storeTargetLocationIn
+        - getAttackObjectFrom
+        m_blackboardKeys:
+        - movePos
+        - attackerObj
+        m_displayBlackboardSettingExpanded: 0
+        m_displayCustomSettingExpanded: 0
+        m_displayDebugSettingsExpanded: 0
+    - rid: 8401229870979350591
+      type: {class: MEB_BaseBehaviourData_BlackboardCondBlockSettings, ns: MEBS.Runtime, asm: Assembly-CSharp}
+      data:
+        m_class: MEBS.Runtime.MEB_E_EvalBlackboardCondBlock
+        m_displayName: MEB_E_EvalBlackboardCondBlock
+        m_displayDiscription: "If any bool registed to this managers black board
+          list returns false all the managers int 'managers to evalurate' section
+          are blocked from being exacuted not just the first one. \n\nvalid blackboard
+          data: \n???: (BoolBlackboardKeyAsString)"
+        m_blackboardIdenifyers:
+        - 0:???
+        m_blackboardKeys:
+        - extraAgressive
+        m_displayBlackboardSettingExpanded: 0
+        m_displayCustomSettingExpanded: 0
+        m_displayDebugSettingsExpanded: 0
+        m_inverted: 1
+        m_blockRangeStartPoint: 7
+        m_blockRangeEndPoint: 7
+    - rid: 8401229870979350592
+      type: {class: MEB_BaseBehaviourData_ItemSettings, ns: MEBS.Runtime, asm: Assembly-CSharp}
+      data:
+        m_class: UserManger_SearchNearByRooms
+        m_displayName: UserManger_SearchNearByRooms
+        m_displayDiscription: "finds rooms that are near by and searchs them\n\nvaild
+          blackboard data: \nstoreTargetLocationIn: (vector3BlackboardKeyAsString)"
+        m_blackboardIdenifyers:
+        - storeTargetLocationIn
+        m_blackboardKeys:
+        - movePos
         m_displayBlackboardSettingExpanded: 0
         m_displayCustomSettingExpanded: 0
         m_displayDebugSettingsExpanded: 0

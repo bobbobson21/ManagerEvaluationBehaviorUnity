@@ -110,6 +110,8 @@ public class UserManger_GreedyAgression : MEB_BaseManager//, MEB_I_IntScoop
         if (((int)m_director.m_blackboard.GetObject(m_getResourceCountFromKey)) <= m_greedAmount) { return; }
         if (((int)m_director.m_blackboard.GetObject(m_getResourceCountFromKey)) >= ((int)m_director.m_blackboard.GetObject(m_getdesiredResourceCountFromKey))) { return; }
 
+        if (((int)m_director.m_blackboard.GetObject("health")) <= 50 || ((int)m_director.m_blackboard.GetObject("ammoCurrentClip")) <= ((int)m_director.m_blackboard.GetObject("ammoMax")) /3) { return; }
+
         m_director.m_blackboard.SetObject(m_storeIsAgressiveInKey, true);
     }
 }

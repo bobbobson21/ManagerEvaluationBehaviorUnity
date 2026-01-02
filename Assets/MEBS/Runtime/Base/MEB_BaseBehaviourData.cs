@@ -61,6 +61,9 @@ namespace MEBS.Runtime
         [SerializeField]
         public bool m_isNormalManager = true;
 
+        [SerializeField]
+        public bool m_nonColapsed = true;
+
         public List<MEB_BaseManager> Export(bool doDebug)
         {
             List<MEB_BaseManager> returnList = new List<MEB_BaseManager>();
@@ -216,6 +219,9 @@ namespace MEBS.Runtime
         [SerializeField]
         public bool m_isForMainThread = false;
 
+        [SerializeField]
+        public bool m_nonColapsed = true;
+
         public List<MEB_BaseManager> Export(bool doDebug)
         {
             List<MEB_BaseManager> returnList = new List<MEB_BaseManager>();
@@ -249,7 +255,7 @@ namespace MEBS.Runtime
     [Serializable]
     public class MEB_BaseBehaviourData : ScriptableObject
     {
-        [HideInInspector]
+        //[HideInInspector]
         public List<MEB_BaseBehaviourData_ChainScopeItemWapper> m_items;
     }
 }

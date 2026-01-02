@@ -7,31 +7,31 @@ using UnityEditor;
 
 #if UNITY_EDITOR
 [InitializeOnLoad]
-public class UserManger_Flee_UI : MEB_UI_BehaviourEditor_ManagerData
+public class UserManger_SafetyFlee_UI : MEB_UI_BehaviourEditor_ManagerData
 {
-    static UserManger_Flee_UI()
+    static UserManger_SafetyFlee_UI()
     {
-        MEB_UI_BehaviourEditor.AddNormalManager(new UserManger_Flee_UI());
+        MEB_UI_BehaviourEditor.AddNormalManager(new UserManger_SafetyFlee_UI());
     }
 
-    public UserManger_Flee_UI()
+    public UserManger_SafetyFlee_UI()
     {
-        m_name = "UserManger_Flee";
+        m_name = "UserManger_SafetyFlee";
     }
 
     public override MEB_BaseBehaviourData_ItemSettings CreateInstance()
     {
         MEB_BaseBehaviourData_ItemSettings data = new MEB_BaseBehaviourData_ItemSettings();
-        data.m_class = "UserManger_Flee";
+        data.m_class = "UserManger_SafetyFlee";
         data.m_displayName = m_name;
-        data.m_displayDiscription = "Makes the AI flee.\n\nvaild blackboard data: \nstoreTargetLocationIn: (vector3BlackboardKeyAsString)\ngetAttackObjectFrom: (gameObjectBlackboardKeyAsString)";
+        data.m_displayDiscription = "Makes the AI flee if it see the npc only.\n\nvaild blackboard data: \nstoreTargetLocationIn: (vector3BlackboardKeyAsString)\ngetAttackObjectFrom: (gameObjectBlackboardKeyAsString)";
 
         return data;
     }
 }
 #endif
 
-public class UserManger_Flee : MEB_BaseManager, MEB_I_IntScoop
+public class UserManger_SafetyFlee : MEB_BaseManager, MEB_I_IntScoop
 {
     private string m_storeTargetLocationInKey = "";
     private string m_getAttackObjectFromKey = "";
@@ -72,7 +72,7 @@ public class UserManger_Flee : MEB_BaseManager, MEB_I_IntScoop
 
     public override void OnUpdate(float delta, int index)
     {
-        //Debug.Log("flee");
+        //Debug.Log("safty flee");
 
         GameObject obj = ((GameObject)m_director.m_blackboard.GetObject(m_getAttackObjectFromKey));
         Vector3 destanation = m_director.m_gameObject.transform.position;
@@ -86,30 +86,24 @@ public class UserManger_Flee : MEB_BaseManager, MEB_I_IntScoop
     {
         int importance = 0;
         
-        bool hasLittleAmmo = (((int)m_director.m_blackboard.GetObject("ammoCurrentClip")) <= 5 && ((int)m_director.m_blackboard.GetObject("ammoTotal")) <= 0);
-        bool hadLittleHealth = (((int)m_director.m_blackboard.GetObject("health")) <= 25);
+        GameObject target = ((GameObject)m_director.m_blackboard.GetObject(m_getAttackObjectFromKey));
 
-        if (hadLittleHealth || hasLittleAmmo)
+        if (target != null)
         {
-            GameObject target = ((GameObject)m_director.m_blackboard.GetObject(m_getAttackObjectFromKey));
+            importance = 3;
 
-            if (target != null)
+            RaycastHit hitInfo;
+            Physics.Linecast(m_director.m_gameObject.transform.position + new Vector3(0, 0, 2), target.transform.position, out hitInfo);
+
+            if(hitInfo.collider != null && hitInfo.collider.gameObject != null)
             {
-                importance = 20;
-
-                RaycastHit hitInfo;
-                Physics.Linecast(m_director.m_gameObject.transform.position + new Vector3(0, 0, 2), target.transform.position, out hitInfo);
-
-                if(hitInfo.collider != null && hitInfo.collider.gameObject != null)
+                if (hitInfo.collider.gameObject == target)
                 {
-                    if (hitInfo.collider.gameObject == target && (target.transform.position -m_director.m_gameObject.transform.position).magnitude < 6)
-                    {
-                        importance = 40;
-                    }
+                    importance = 40;
                 }
             }
         }
-
+        
         return importance;
     }
 }
