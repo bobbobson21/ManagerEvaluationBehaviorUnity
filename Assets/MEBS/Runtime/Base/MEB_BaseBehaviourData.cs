@@ -255,7 +255,7 @@ namespace MEBS.Runtime
     [Serializable]
     public class MEB_BaseBehaviourData : ScriptableObject
     {
-        //[HideInInspector]
+        [HideInInspector]
         public List<MEB_BaseBehaviourData_ChainScopeItemWapper> m_items;
     }
 }
