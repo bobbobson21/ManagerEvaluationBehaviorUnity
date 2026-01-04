@@ -52,7 +52,7 @@ public class UserManger_Flee : MEB_BaseManager, MEB_I_IntScoop
         }
     }
 
-    public override void EvaluationEnd(int index)
+    public override void EvaluationEnd(int index, float delta)
     {
         //put self evaluration code here use BlockMoveToExecutionForCycle if self eval dosent look good
     }
@@ -82,7 +82,7 @@ public class UserManger_Flee : MEB_BaseManager, MEB_I_IntScoop
         m_director.m_blackboard.SetObject(m_storeTargetLocationInKey, destanation);
     }
 
-    public int GetIntEvalValue()
+    public int GetIntEvalValue(float delta)
     {
         int importance = 0;
         

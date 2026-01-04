@@ -29,7 +29,6 @@ public class UserManger_GoToResource_UI : MEB_UI_BehaviourEditor_ManagerData
             "\ngetResourceObjectFrom: (gameObjectBlackboardKeyAsString)" +
             "\nstoreTargetLocationIn: (vector3BlackboardKeyAsString)";
 
-
         return data;
     }
 }
@@ -56,7 +55,7 @@ public class UserManger_GoToResource : MEB_BaseManager, MEB_I_IntScoop
         }
     }
 
-    public override void EvaluationEnd(int index)
+    public override void EvaluationEnd(int index, float delta)
     {
         //put self evaluration code here use BlockMoveToExecutionForCycle if self eval dosent look good
     }
@@ -84,7 +83,7 @@ public class UserManger_GoToResource : MEB_BaseManager, MEB_I_IntScoop
         }
     }
 
-    public int GetIntEvalValue()
+    public int GetIntEvalValue(float delta)
     {
         if (((GameObject)m_director.m_blackboard.GetObject(m_getResourceObjectFromKey)) != null)
         {

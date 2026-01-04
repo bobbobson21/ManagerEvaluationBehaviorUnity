@@ -83,7 +83,7 @@ public class UserManger_FireGun : MEB_BaseManager, MEB_I_IntScoop
         }
     }
 
-    public override void EvaluationEnd(int index)
+    public override void EvaluationEnd(int index, float delta)
     {
         if (m_gunObject == null || m_gunObject.GetAmmoInClip() <= 0)
         { 
@@ -156,7 +156,7 @@ public class UserManger_FireGun : MEB_BaseManager, MEB_I_IntScoop
         }
     }
 
-    public int GetIntEvalValue()
+    public int GetIntEvalValue(float delta)
     {
         GameObject obj = ((GameObject)m_director.m_blackboard.GetObject(m_getAttackObjectFromKey));
 

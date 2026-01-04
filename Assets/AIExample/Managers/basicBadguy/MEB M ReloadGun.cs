@@ -41,7 +41,7 @@ public class UserManger_ReloadGun : MEB_BaseManager, MEB_I_IntScoop
 
     }
 
-    public override void EvaluationEnd(int index)
+    public override void EvaluationEnd(int index, float delta)
     {
         if (m_gunObject.GetAmmoInClip() >= m_gunObject.m_ClipSize || m_gunObject.GetTotalAmmo() <= 0)
         { 
@@ -70,7 +70,7 @@ public class UserManger_ReloadGun : MEB_BaseManager, MEB_I_IntScoop
         //put update code here
     }
 
-    public int GetIntEvalValue()
+    public int GetIntEvalValue(float delta)
     {
         return 10;
     }

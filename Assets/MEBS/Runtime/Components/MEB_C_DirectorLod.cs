@@ -49,6 +49,11 @@ public class MEB_C_DirectorLod : MonoBehaviour
         m_directorInterface.m_blackboard = m_blackboard;
         m_directorInterface.m_gameObject = gameObject;
 
+        if (m_exportManagersWithDebugConnection == true)
+        {
+            m_behaviorSet.m_runtimeName = $"({gameObject.transform.parent.gameObject.name}) -> ({gameObject.name}) -> (MEB_C_DirectorLod)";
+        }
+
         for (int i = 0; i < m_behaviorSet.m_items.Count; i++)
         {
             List<MEB_BaseManager> itemsExposed = m_behaviorSet.m_items[i].Export(m_exportManagersWithDebugConnection);
@@ -74,7 +79,7 @@ public class MEB_C_DirectorLod : MonoBehaviour
 
             for (int i = 0; i < m_directorInterface.GetManagerCount(); i++)
             {
-                m_directorInterface.Evaluate(i);
+                m_directorInterface.Evaluate(i, m_currentDelay + Time.deltaTime);
             }
         }
 

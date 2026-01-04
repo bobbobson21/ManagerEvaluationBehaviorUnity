@@ -21,9 +21,10 @@ namespace MEBS.Editor
 
     public class MEB_UI_BehaviourEditor : EditorWindow
     {
+        private string m_debugTittle = "";
+
         private List<MEB_BaseBehaviourData_ChainScopeItemWapper> m_loadedData = null;
         private MEB_BaseBehaviourData m_loadedObject = null;
-
         private Vector2 m_scrollPos = Vector2.zero;
 
         private static List<MEB_UI_BehaviourEditor_ManagerData> m_listDataNormalScoped = new List<MEB_UI_BehaviourEditor_ManagerData>();
@@ -80,6 +81,7 @@ namespace MEBS.Editor
                 data.m_items = new List<MEB_BaseBehaviourData_ChainScopeItemWapper>();
             }
 
+            window.m_debugTittle = data.m_runtimeName;
             window.m_loadedData = data.m_items;
             window.m_loadedObject = data;
         }
@@ -594,6 +596,12 @@ namespace MEBS.Editor
             MEB_BaseBehaviourData_Item evalData = RenderAddEvalField();
             MEB_BaseBehaviourData_ChainScopeItemWapper scopeData = RenderAddScopeField();
             GUILayout.EndHorizontal();
+
+
+            if (Application.isPlaying == true && m_debugTittle != "")
+            {
+                GUILayout.Label($"debug data is from object: {m_debugTittle}");
+            }
 
             m_scrollPos = EditorGUILayout.BeginScrollView(m_scrollPos);
 

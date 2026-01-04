@@ -32,6 +32,11 @@ public class MEB_C_DirectorThreaded : MonoBehaviour
         m_directorInterface.m_blackboard = m_blackboard;
         m_directorInterface.m_gameObject = gameObject;
 
+        if (m_exportManagersWithDebugConnection == true)
+        {
+            m_behaviorSet.m_runtimeName = $"({gameObject.transform.parent.gameObject.name}) -> ({gameObject.name}) -> (MEB_C_DirectorThreaded)";
+        }
+
         List<int> threadedManagers = new List<int>();
 
         for (int i = 0; i < m_behaviorSet.m_items.Count; i++)
@@ -97,7 +102,7 @@ public class MEB_C_DirectorThreaded : MonoBehaviour
     {
         for (int i = 0; i < m_directorInterface.GetManagerCount(); i++)
         {
-            m_directorInterface.Evaluate(i);
+            m_directorInterface.Evaluate(i, Time.deltaTime);
         }
 
         for (int i = 0; i < m_mainThreadManagerList.Count; i++)

@@ -60,7 +60,7 @@ public class UserManger_GunBlackboardInterface : MEB_BaseManager//, MEB_I_IntSco
         }
     }
 
-    public override void EvaluationEnd(int index)
+    public override void EvaluationEnd(int index, float delta)
     {
         //put self evaluration code here use BlockMoveToExecutionForCycle if self eval dosent look good
     }

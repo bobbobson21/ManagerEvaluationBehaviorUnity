@@ -9,12 +9,12 @@ namespace MEBS.Runtime
         public MEB_BaseBlackboard m_blackboard = null;
         public GameObject m_gameObject = null;
 
-        public void Evaluate(int index)
+        public void Evaluate(int index, float delta)
         {
             m_managers[index].ResetMoveState();
 
-            m_managers[index].EvaluationStart(index);
-            m_managers[index].EvaluationEnd(index);
+            m_managers[index].EvaluationStart(index, delta);
+            m_managers[index].EvaluationEnd(index, delta);
         }
 
         public void Exacute(int index, float delta)

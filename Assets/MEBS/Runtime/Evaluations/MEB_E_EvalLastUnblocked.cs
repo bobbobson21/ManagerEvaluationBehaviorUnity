@@ -46,7 +46,7 @@ public class MEB_E_EvalLastUnblocked : MEB_BaseManager, MEB_I_EvalScoop
 
     }
 
-    public override void EvaluationStart(int index)
+    public override void EvaluationStart(int index, float delta)
     {
         int arrayLength = (m_endPointOfScope - m_startPointOfScope);
         bool foundResult = false;
@@ -67,7 +67,7 @@ public class MEB_E_EvalLastUnblocked : MEB_BaseManager, MEB_I_EvalScoop
         }
     }
 
-    public override void EvaluationEnd(int index)
+    public override void EvaluationEnd(int index, float delta)
     {
         BlockMoveToExecutionForCycle();
     }

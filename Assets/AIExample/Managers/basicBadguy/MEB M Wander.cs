@@ -79,7 +79,7 @@ public class UserManger_Wander : MEB_BaseManager, MEB_I_IntScoop
         }
     }
 
-    public override void EvaluationEnd(int index)
+    public override void EvaluationEnd(int index, float delta)
     {
         //put self evaluration code here use BlockMoveToExecutionForCycle if self eval dosent look good
     }
@@ -138,7 +138,7 @@ public class UserManger_Wander : MEB_BaseManager, MEB_I_IntScoop
         }
     }
 
-    public int GetIntEvalValue()
+    public int GetIntEvalValue(float delta)
     {
         return 1;
     }

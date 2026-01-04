@@ -14,6 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_items:
   - m_items:
+    - rid: 8401229911979720835
+    m_isScoped: 0
+    m_isForMainThread: 0
+    m_nonColapsed: 1
+  - m_items:
     - rid: 324397009209655356
     - rid: 6310419766989553722
     m_isScoped: 1
@@ -61,6 +66,8 @@ MonoBehaviour:
         m_evalurators:
         - rid: 8401229870979350591
         - rid: 324396942948302922
+        - rid: 8401229911979720763
+        - rid: 8401229911979720799
         - rid: 324396940330795069
         m_noneEvalurationManager:
           rid: -2
@@ -569,3 +576,68 @@ MonoBehaviour:
         m_displayBlackboardSettingExpanded: 0
         m_displayCustomSettingExpanded: 0
         m_displayDebugSettingsExpanded: 0
+    - rid: 8401229911979720763
+      type: {class: UserManger_Eval_TimeBlockSettings, ns: , asm: Assembly-CSharp}
+      data:
+        m_class: UserManger_Eval_TimeBlock
+        m_displayName: UserManger_Eval_TimeBlock
+        m_displayDiscription: Blocks manager in evaluration from exacuteing after
+          X amount of time.
+        m_blackboardIdenifyers: []
+        m_blackboardKeys: []
+        m_displayBlackboardSettingExpanded: 0
+        m_displayCustomSettingExpanded: 0
+        m_displayDebugSettingsExpanded: 0
+        m_blockInStart: 260
+        m_blockInEnd: 3.402823e+38
+        m_blockRangeStartPoint: 2
+        m_blockRangeEndPoint: 2147483647
+    - rid: 8401229911979720799
+      type: {class: MEB_BaseBehaviourData_BlackboardCondBlockSettings, ns: MEBS.Runtime, asm: Assembly-CSharp}
+      data:
+        m_class: MEBS.Runtime.MEB_E_EvalBlackboardCondBlock
+        m_displayName: MEB_E_EvalBlackboardCondBlock
+        m_displayDiscription: "If any bool registed to this managers black board
+          list returns false all the managers int 'managers to evalurate' section
+          are blocked from being exacuted not just the first one. \n\nvalid blackboard
+          data: \n???: (BoolBlackboardKeyAsString)"
+        m_blackboardIdenifyers:
+        - 0:???
+        m_blackboardKeys:
+        - wantsToExtract
+        m_displayBlackboardSettingExpanded: 0
+        m_displayCustomSettingExpanded: 0
+        m_displayDebugSettingsExpanded: 0
+        m_inverted: 1
+        m_blockRangeStartPoint: 2
+        m_blockRangeEndPoint: 4
+    - rid: 8401229911979720835
+      type: {class: MEB_BaseBehaviourData_Item, ns: MEBS.Runtime, asm: Assembly-CSharp}
+      data:
+        m_runBeforeEval: []
+        m_runAfterEval: []
+        m_useInEval: []
+        m_evalurators: []
+        m_noneEvalurationManager:
+          rid: 8401229911979720836
+        m_isNormalManager: 1
+        m_nonColapsed: 1
+    - rid: 8401229911979720836
+      type: {class: Manager_GoToExtractSettings, ns: , asm: Assembly-CSharp}
+      data:
+        m_class: UserManger_WantsToExtractEarly
+        m_displayName: UserManger_WantsToExtractEarly
+        m_displayDiscription: "Makes the npc want to exit early if the require resource
+          count is met.\n\nvaild blackboard data: \ngetResourceCountFrom :(intBlackboardKeyAsString)\ngetDesiredResourceCountFrom
+          :(intBlackboardKeyAsString)"
+        m_blackboardIdenifyers:
+        - getResourceCountFrom
+        - getDesiredResourceCountFrom
+        m_blackboardKeys:
+        - resourceCount
+        - desiredResourceCount
+        m_displayBlackboardSettingExpanded: 0
+        m_displayCustomSettingExpanded: 1
+        m_displayDebugSettingsExpanded: 0
+        m_extractIn: 30
+        m_lable: early extract in

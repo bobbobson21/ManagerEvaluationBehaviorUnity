@@ -99,8 +99,10 @@ public class UserManger_GoToExtract : MEB_BaseManager, MEB_I_IntScoop
         }
     }
 
-    public override void EvaluationEnd(int index)
+    public override void EvaluationEnd(int index, float delta)
     {
+        m_extractIn -= delta;
+
         if (((GameObject)m_director.m_blackboard.GetObject(m_getExtractObjectFromKey)) == null)
         {
             BlockMoveToExecutionForCycle();
@@ -136,9 +138,8 @@ public class UserManger_GoToExtract : MEB_BaseManager, MEB_I_IntScoop
         }
     }
 
-    public int GetIntEvalValue()
+    public int GetIntEvalValue(float delta)
     {
-        m_extractIn -= Time.deltaTime; //this is cheacky but it dose work if the AI isnt muiltythreaded which it shouldnt because movement dosent support that
         GameObject obj = ((GameObject)m_director.m_blackboard.GetObject(m_getResourceObjectFromKey));
 
         if ((m_extractIn < 0 && (obj == null || m_extractIn > -30)) || ((int)m_director.m_blackboard.GetObject(m_getResourceCountFromKey)) >= ((int)m_director.m_blackboard.GetObject(m_getDesiredResourceCountFromKey)))

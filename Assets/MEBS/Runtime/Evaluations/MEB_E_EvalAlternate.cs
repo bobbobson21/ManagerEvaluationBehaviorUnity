@@ -45,7 +45,7 @@ namespace MEBS.Runtime
             m_endPointOfScope = end;
         }
 
-        public override void EvaluationStart(int index)
+        public override void EvaluationStart(int index, float delta)
         {
             int arrayLength = (m_endPointOfScope - m_startPointOfScope);
 
@@ -68,7 +68,7 @@ namespace MEBS.Runtime
             }
         }
 
-        public override void EvaluationEnd(int index)
+        public override void EvaluationEnd(int index, float delta)
         {
             BlockMoveToExecutionForCycle();
         }

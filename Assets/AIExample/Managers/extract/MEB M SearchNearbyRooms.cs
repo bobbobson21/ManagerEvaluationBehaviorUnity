@@ -48,7 +48,7 @@ public class UserManger_SearchNearByRooms : MEB_BaseManager, MEB_I_IntScoop
         }
     }
 
-    public override void EvaluationEnd(int index)
+    public override void EvaluationEnd(int index, float delta)
     {
         AICRoomPoints destanationRoom = null;
         float destanationDist = float.MaxValue;
@@ -96,6 +96,8 @@ public class UserManger_SearchNearByRooms : MEB_BaseManager, MEB_I_IntScoop
 
     public override void OnUpdate(float delta, int index)
     {
+        //Debug.Log("search near by rooms");
+
         m_director.m_blackboard.SetObject(m_storeTargetLocationInKey, m_currentRoom.transform.position);
 
         if((m_director.m_gameObject.transform.position - m_currentRoom.gameObject.transform.position).magnitude <= m_currentRoom.m_clearRadius)
@@ -105,7 +107,7 @@ public class UserManger_SearchNearByRooms : MEB_BaseManager, MEB_I_IntScoop
         }
     }
 
-    public int GetIntEvalValue()
+    public int GetIntEvalValue(float delta)
     {
         return 2;
     }

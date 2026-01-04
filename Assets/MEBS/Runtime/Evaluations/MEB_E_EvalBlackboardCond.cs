@@ -82,7 +82,7 @@ namespace MEBS.Runtime
             }
         }
 
-        public override void EvaluationStart(int index)
+        public override void EvaluationStart(int index, float delta)
         {
             int arrayLength = (m_endPointOfScope - m_startPointOfScope);
             bool conditionOfEval = !m_inverted;
@@ -132,7 +132,7 @@ namespace MEBS.Runtime
             }
         }
 
-        public override void EvaluationEnd(int index)
+        public override void EvaluationEnd(int index, float delta)
         {
             BlockMoveToExecutionForCycle();
         }

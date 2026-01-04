@@ -42,7 +42,7 @@ public class UserManger_FailedToExtractDeath : MEB_BaseManager//, MEB_I_IntScoop
 
     }
 
-    public override void EvaluationEnd(int index)
+    public override void EvaluationEnd(int index, float delta)
     {
         if (m_doneJob == true) { BlockMoveToExecutionForCycle(); }
     }

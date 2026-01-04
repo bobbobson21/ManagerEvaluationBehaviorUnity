@@ -91,7 +91,7 @@ namespace MEBS.Runtime
         /// </summary>
         /// <returns>importance of this function</returns>
         /// <param name="index">our index in the directors vector</param>
-        public virtual void EvaluationStart(int index)
+        public virtual void EvaluationStart(int index, float delta)
         {
         }
 
@@ -99,7 +99,7 @@ namespace MEBS.Runtime
         /// use this in evalurating mannagers stage
         /// </summary>
         /// <param name="index">our index in the directors vector</param>
-        public virtual void EvaluationEnd(int index)
+        public virtual void EvaluationEnd(int index, float delta)
         {
         }
 

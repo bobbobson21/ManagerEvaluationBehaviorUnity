@@ -23,7 +23,7 @@ namespace MEBS.Editor
             MEB_BaseBehaviourData_ItemSettings data = new MEB_BaseBehaviourData_ItemSettings();
             data.m_class = "MEBS.Runtime." + m_name;
             data.m_displayName = m_name;
-            data.m_displayDiscription = "Gets all the managers in the 'managers to evalurate' section to return an int thougth MEB_I_IntScoop.GetIntEvalValue(). The one that returns the lowest value, that also isn't already blocked, moves on the rest are blocked from execution.";
+            data.m_displayDiscription = "Gets all the managers in the 'managers to evalurate' section to return an int thougth MEB_I_IntScoop.GetIntEvalValue(float delta). The one that returns the lowest value, that also isn't already blocked, moves on the rest are blocked from execution.";
 
             return data;
         }
@@ -44,7 +44,7 @@ namespace MEBS.Runtime
             m_endPointOfScope = end;
         }
 
-        public override void EvaluationStart(int index)
+        public override void EvaluationStart(int index, float delta)
         {
             int arrayLength = (m_endPointOfScope - m_startPointOfScope);
 
@@ -57,7 +57,7 @@ namespace MEBS.Runtime
                 {
                     int otherManagerIndex = ((index + m_endPointOfScope) - arrayLength) + i;
                     MEB_BaseManager manager = m_director.GetManagerByIndex(otherManagerIndex);
-                    int testValue = ((MEB_I_IntScoop)manager).GetIntEvalValue();
+                    int testValue = ((MEB_I_IntScoop)manager).GetIntEvalValue(delta);
 
                     if (testValue < LowestValueSoFar && manager.IsAllowedToExecute() == true)
                     {
@@ -83,7 +83,7 @@ namespace MEBS.Runtime
             }
         }
 
-        public override void EvaluationEnd(int index)
+        public override void EvaluationEnd(int index, float delta)
         {
             BlockMoveToExecutionForCycle();
         }

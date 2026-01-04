@@ -59,7 +59,7 @@ namespace MEBS.Runtime
             }
         }
 
-        public override void EvaluationEnd(int index)
+        public override void EvaluationEnd(int index, float delta)
         {
             if (((Vector3)m_director.m_blackboard.GetObject(m_targetKey)) == Vector3.zero)
             {

@@ -53,7 +53,7 @@ public class UserManger_EvadeAvoidanceAreas : MEB_BaseManager, MEB_I_IntScoop
         }
     }
 
-    public override void EvaluationEnd(int index)
+    public override void EvaluationEnd(int index, float delta)
     {
         m_currentArea = null;
         m_holdTime -= Time.deltaTime;
@@ -113,7 +113,7 @@ public class UserManger_EvadeAvoidanceAreas : MEB_BaseManager, MEB_I_IntScoop
         m_director.m_blackboard.SetObject(m_storeTargetLocationInKey, destanation);
     }
 
-    public int GetIntEvalValue()
+    public int GetIntEvalValue(float delta)
     {
         return 3;
     }

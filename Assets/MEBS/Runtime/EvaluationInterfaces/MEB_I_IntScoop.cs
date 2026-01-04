@@ -4,6 +4,6 @@ namespace MEBS.Runtime
 {
     public interface MEB_I_IntScoop
     {
-        int GetIntEvalValue();
+        int GetIntEvalValue(float delta);
     }
 }
