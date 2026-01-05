@@ -2,9 +2,9 @@
 using MEBS.Runtime;
 using UnityEditor;
 
+#if UNITY_EDITOR
 namespace MEBS.Editor
 {
-#if UNITY_EDITOR
     [InitializeOnLoad]
     public class MEB_E_EvalAlternate_UI : MEB_UI_BehaviourEditor_ManagerData
     {
@@ -28,8 +28,8 @@ namespace MEBS.Editor
             return data;
         }
     }
-#endif
 }
+#endif
 
 namespace MEBS.Runtime
 {

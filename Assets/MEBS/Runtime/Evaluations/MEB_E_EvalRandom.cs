@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
+#if UNITY_EDITOR 
 namespace MEBS.Editor
 {
-#if UNITY_EDITOR
     [InitializeOnLoad]
     public class MEB_E_EvalRandom_UI : MEB_UI_BehaviourEditor_ManagerData
     {

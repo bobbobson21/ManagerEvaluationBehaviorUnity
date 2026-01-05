@@ -72,7 +72,7 @@ MonoBehaviour:
         m_noneEvalurationManager:
           rid: -2
         m_isNormalManager: 0
-        m_nonColapsed: 0
+        m_nonColapsed: 1
     - rid: 324396940330795069
       type: {class: MEB_BaseBehaviourData_ItemSettings, ns: MEBS.Runtime, asm: Assembly-CSharp}
       data:
@@ -118,7 +118,7 @@ MonoBehaviour:
         m_noneEvalurationManager:
           rid: -2
         m_isNormalManager: 0
-        m_nonColapsed: 0
+        m_nonColapsed: 1
     - rid: 324396940330795073
       type: {class: MEB_BaseBehaviourData_ItemSettings, ns: MEBS.Runtime, asm: Assembly-CSharp}
       data:

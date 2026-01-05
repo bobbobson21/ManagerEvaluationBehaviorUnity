@@ -4,71 +4,77 @@ using MEBS.Runtime;
 using System.Collections.Generic;
 using UnityEditor;
 
-#if UNITY_EDITOR
-[InitializeOnLoad]
-public class MEB_E_EvalLastUnblocked_UI : MEB_UI_BehaviourEditor_ManagerData
+#if UNITY_EDITOR 
+namespace MEBS.Editor
 {
-    static MEB_E_EvalLastUnblocked_UI()
+    [InitializeOnLoad]
+    public class MEB_E_EvalLastUnblocked_UI : MEB_UI_BehaviourEditor_ManagerData
     {
-        MEB_UI_BehaviourEditor.AddEvalManager(new MEB_E_EvalLastUnblocked_UI());
-    }
+        static MEB_E_EvalLastUnblocked_UI()
+        {
+            MEB_UI_BehaviourEditor.AddEvalManager(new MEB_E_EvalLastUnblocked_UI());
+        }
 
-    public MEB_E_EvalLastUnblocked_UI()
-    {
-        m_name = "MEB_E_EvalLastUnblocked";
-    }
+        public MEB_E_EvalLastUnblocked_UI()
+        {
+            m_name = "MEB_E_EvalLastUnblocked";
+        }
 
-    public override MEB_BaseBehaviourData_ItemSettings CreateInstance()
-    {
-        MEB_BaseBehaviourData_ItemSettings data = new MEB_BaseBehaviourData_ItemSettings();
-        data.m_class = "MEB_E_EvalLastUnblocked";
-        data.m_displayName = m_name;
-        data.m_displayDiscription = "Blocks all managers from moving down to execution apart from the last unblocked one in the scope of managers to evalurate.";
+        public override MEB_BaseBehaviourData_ItemSettings CreateInstance()
+        {
+            MEB_BaseBehaviourData_ItemSettings data = new MEB_BaseBehaviourData_ItemSettings();
+            data.m_class = "MEB_E_EvalLastUnblocked";
+            data.m_displayName = m_name;
+            data.m_displayDiscription = "Blocks all managers from moving down to execution apart from the last unblocked one in the scope of managers to evalurate.";
 
-        return data;
+            return data;
+        }
     }
 }
 #endif
 
-public class MEB_E_EvalLastUnblocked : MEB_BaseManager, MEB_I_EvalScoop
+namespace MEBS.Runtime
 {
-    private int m_startPointOfScope = 0;
-    private int m_endPointOfScope = 0;
-
-    public void SetEvaluationScope(int start, int end)
+    public class MEB_E_EvalLastUnblocked : MEB_BaseManager, MEB_I_EvalScoop
     {
-        m_startPointOfScope = start;
-        m_endPointOfScope = end;
-    }
+        private int m_startPointOfScope = 0;
+        private int m_endPointOfScope = 0;
 
-    public override void SetBlackboardKeys(List<string> idenifyers, List<string> keys)
-    {
-
-    }
-
-    public override void EvaluationStart(int index, float delta)
-    {
-        int arrayLength = (m_endPointOfScope - m_startPointOfScope);
-        bool foundResult = false;
-
-        for (int i = arrayLength -1; i >= 0; i--)
+        public void SetEvaluationScope(int start, int end)
         {
-            int otherManagerIndex = ((index + m_endPointOfScope) - arrayLength) + i;
-            MEB_BaseManager manager = m_director.GetManagerByIndex(otherManagerIndex);
+            m_startPointOfScope = start;
+            m_endPointOfScope = end;
+        }
 
-            if (foundResult == true)
+        public override void SetBlackboardKeys(List<string> idenifyers, List<string> keys)
+        {
+
+        }
+
+        public override void EvaluationStart(int index, float delta)
+        {
+            int arrayLength = (m_endPointOfScope - m_startPointOfScope);
+            bool foundResult = false;
+
+            for (int i = arrayLength - 1; i >= 0; i--)
             {
-                manager.BlockMoveToExecutionForCycle();
-            }
-            else if (manager.IsAllowedToExecute() == true)
-            { 
-                foundResult = true;
+                int otherManagerIndex = ((index + m_endPointOfScope) - arrayLength) + i;
+                MEB_BaseManager manager = m_director.GetManagerByIndex(otherManagerIndex);
+
+                if (foundResult == true)
+                {
+                    manager.BlockMoveToExecutionForCycle();
+                }
+                else if (manager.IsAllowedToExecute() == true)
+                {
+                    foundResult = true;
+                }
             }
         }
-    }
 
-    public override void EvaluationEnd(int index, float delta)
-    {
-        BlockMoveToExecutionForCycle();
+        public override void EvaluationEnd(int index, float delta)
+        {
+            BlockMoveToExecutionForCycle();
+        }
     }
 }
