@@ -31940,7 +31940,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4670219777722272495, guid: 2fd9d069a9a0f7d44b75d08e88aec846, type: 3}
       propertyPath: m_exportManagersWithDebugConnection
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5678638223050428760, guid: 2fd9d069a9a0f7d44b75d08e88aec846, type: 3}
       propertyPath: m_Name
