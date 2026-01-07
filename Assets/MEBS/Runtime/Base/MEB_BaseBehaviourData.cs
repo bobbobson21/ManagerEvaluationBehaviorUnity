@@ -64,7 +64,7 @@ namespace MEBS.Runtime
         [SerializeField]
         public bool m_nonColapsed = true;
 
-        public List<MEB_BaseManager> Export(bool doDebug)
+        public List<MEB_BaseManager> Export()
         {
             List<MEB_BaseManager> returnList = new List<MEB_BaseManager>();
 
@@ -77,11 +77,6 @@ namespace MEBS.Runtime
                     instance.SetBlackboardKeys(m_noneEvalurationManager.m_blackboardIdenifyers, m_noneEvalurationManager.m_blackboardKeys);
                     instance.m_chainState = MEB_BaseManager_ChainState.ChainMiddle;
                     instance.m_itemSettings = m_noneEvalurationManager;
-
-                    if (doDebug == true)
-                    {
-                        m_noneEvalurationManager.m_runtimeManager = instance;
-                    }
 
                     returnList.Add(instance);
                 }
@@ -102,11 +97,6 @@ namespace MEBS.Runtime
                         instance.m_chainState = MEB_BaseManager_ChainState.ChainMiddle;
                         instance.m_itemSettings = m_runBeforeEval[i];
 
-                        if (doDebug == true)
-                        {
-                            m_runBeforeEval[i].m_runtimeManager = instance;
-                        }
-
                         returnList.Add(instance);
                     }
                     catch
@@ -126,11 +116,6 @@ namespace MEBS.Runtime
                         instance.SetBlackboardKeys(m_useInEval[i].m_blackboardIdenifyers, m_useInEval[i].m_blackboardKeys);
                         instance.m_chainState = MEB_BaseManager_ChainState.ChainMiddle;
                         instance.m_itemSettings = m_useInEval[i];
-
-                        if (doDebug == true)
-                        {
-                            m_useInEval[i].m_runtimeManager = instance;
-                        }
 
                         returnList.Add(instance);
                     }
@@ -157,11 +142,6 @@ namespace MEBS.Runtime
                         instance.m_chainState = MEB_BaseManager_ChainState.ChainMiddle;
                         instance.m_itemSettings = m_evalurators[i];
 
-                        if (doDebug == true)
-                        {
-                            m_evalurators[i].m_runtimeManager = instance;
-                        }
-
                         returnList.Add(instance);
                     }
                     catch
@@ -179,11 +159,6 @@ namespace MEBS.Runtime
                         instance.SetBlackboardKeys(m_runAfterEval[i].m_blackboardIdenifyers, m_runAfterEval[i].m_blackboardKeys);
                         instance.m_chainState = MEB_BaseManager_ChainState.ChainMiddle;
                         instance.m_itemSettings = m_runAfterEval[i];
-
-                        if (doDebug == true)
-                        {
-                            m_runAfterEval[i].m_runtimeManager = instance;
-                        }
 
                         returnList.Add(instance);
                     }
@@ -222,13 +197,13 @@ namespace MEBS.Runtime
         [SerializeField]
         public bool m_nonColapsed = true;
 
-        public List<MEB_BaseManager> Export(bool doDebug)
+        public List<MEB_BaseManager> Export()
         {
             List<MEB_BaseManager> returnList = new List<MEB_BaseManager>();
 
             for (int i = 0; i < m_items.Count; i++)
             {
-                List<MEB_BaseManager> data = m_items[i].Export(doDebug);
+                List<MEB_BaseManager> data = m_items[i].Export();
 
                 for (int j = 0; j < data.Count; j++)
                 {

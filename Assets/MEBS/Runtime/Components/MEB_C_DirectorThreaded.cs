@@ -23,25 +23,16 @@ public class MEB_C_DirectorThreaded : MonoBehaviour
     private List<int> m_mainThreadManagerList = new List<int>();
     private List<List<int>> m_threadedManagersList = new List<List<int>>();
 
-    [Header("debug")]
-    [Tooltip("If true this manager will be able to send debug data back to the UI window. DO NOT USE ON MORE THAN ONE AI USING THE SAME SET.")]
-    public bool m_exportManagersWithDebugConnection = false;
-
     private void Start()
     {
         m_directorInterface.m_blackboard = m_blackboard;
         m_directorInterface.m_gameObject = gameObject;
 
-        if (m_exportManagersWithDebugConnection == true)
-        {
-            m_behaviorSet.m_runtimeName = $"({gameObject.transform.parent.gameObject.name}) -> ({gameObject.name}) -> (MEB_C_DirectorThreaded)";
-        }
-
         List<int> threadedManagers = new List<int>();
 
         for (int i = 0; i < m_behaviorSet.m_items.Count; i++)
         {
-            List<MEB_BaseManager> itemsExposed = m_behaviorSet.m_items[i].Export(m_exportManagersWithDebugConnection);
+            List<MEB_BaseManager> itemsExposed = m_behaviorSet.m_items[i].Export();
 
             for (int j = 0; j < itemsExposed.Count; j++)//sorts managers based on if its for the main thread or not
             {
