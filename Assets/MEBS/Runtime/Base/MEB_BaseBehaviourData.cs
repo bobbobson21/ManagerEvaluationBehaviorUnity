@@ -234,6 +234,7 @@ namespace MEBS.Runtime
         public List<MEB_BaseBehaviourData_ChainScopeItemWapper> m_items;
 
         [NonSerialized]
+        [HideInInspector]
         public string m_runtimeName = "";
     }
 }

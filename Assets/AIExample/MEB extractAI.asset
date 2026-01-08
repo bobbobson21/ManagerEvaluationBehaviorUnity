@@ -52,7 +52,7 @@ MonoBehaviour:
       data:
         m_runBeforeEval: []
         m_runAfterEval:
-        - rid: 324396940330795071
+        - rid: 3689934830379204670
         m_useInEval:
         - rid: 324397064904507455
         - rid: 324397064904507485
@@ -72,7 +72,7 @@ MonoBehaviour:
         m_noneEvalurationManager:
           rid: -2
         m_isNormalManager: 0
-        m_nonColapsed: 1
+        m_nonColapsed: 0
     - rid: 324396940330795069
       type: {class: MEB_BaseBehaviourData_ItemSettings, ns: MEBS.Runtime, asm: Assembly-CSharp}
       data:
@@ -84,21 +84,6 @@ MonoBehaviour:
           on the rest are blocked from execution.
         m_blackboardIdenifyers: []
         m_blackboardKeys: []
-        m_displayBlackboardSettingExpanded: 0
-        m_displayCustomSettingExpanded: 0
-        m_displayDebugSettingsExpanded: 0
-    - rid: 324396940330795071
-      type: {class: MEB_BaseBehaviourData_ItemSettings, ns: MEBS.Runtime, asm: Assembly-CSharp}
-      data:
-        m_class: MEBS.Runtime.MEB_M_WalkTo
-        m_displayName: MEB_M_WalkTo
-        m_displayDiscription: "Makes the NPC move towards a desired location. \n\nvalid
-          blackboard data: \ntarget: (vector3BlackboardKeyAsString) \nspeed: (floatBlackboardKeyAsString)
-          def = (navAgentSpeed)"
-        m_blackboardIdenifyers:
-        - target
-        m_blackboardKeys:
-        - movePos
         m_displayBlackboardSettingExpanded: 0
         m_displayCustomSettingExpanded: 0
         m_displayDebugSettingsExpanded: 0
@@ -490,6 +475,21 @@ MonoBehaviour:
         m_displayDebugSettingsExpanded: 0
         m_panicIn: 180
         m_panicIfFraction: 0.75
+    - rid: 3689934830379204670
+      type: {class: MEB_BaseBehaviourData_ItemSettings, ns: MEBS.Runtime, asm: Assembly-CSharp}
+      data:
+        m_class: MEBS.Runtime.MEB_M_WalkTo
+        m_displayName: MEB_M_WalkTo
+        m_displayDiscription: "Makes the NPC move towards a desired location. \n\nvalid
+          blackboard data: \ntarget: (vector3BlackboardKeyAsString) \nspeed: (floatBlackboardKeyAsString)
+          def = (navAgentSpeed)\nshouldMove: (boolBlackboardKeyAsString) def = true"
+        m_blackboardIdenifyers:
+        - target
+        m_blackboardKeys:
+        - movePos
+        m_displayBlackboardSettingExpanded: 0
+        m_displayCustomSettingExpanded: 0
+        m_displayDebugSettingsExpanded: 0
     - rid: 6310419766989553722
       type: {class: MEB_BaseBehaviourData_Item, ns: MEBS.Runtime, asm: Assembly-CSharp}
       data:
