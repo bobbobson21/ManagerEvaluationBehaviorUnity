@@ -2,6 +2,15 @@ using MEBS.Runtime;
 using System.Collections.Generic;
 using UnityEngine;
 
+
+public enum AI_C_EyeSensor_ReturnType
+{
+    Nearest,
+    Farest,
+    First,
+    Last,
+}
+
 public class AI_C_EyeSensor : MonoBehaviour
 {
     [Header("blackboard settings")]
@@ -13,24 +22,60 @@ public class AI_C_EyeSensor : MonoBehaviour
     public Vector3 m_eyePosition = Vector3.zero;
     public bool m_removeFromBlackboardIfNotVisible = false;
     public float m_removeObjectAfterTime = 1f;
+    public float m_beginSearchForObjestAfterXTime = 0;
+    public AI_C_EyeSensor_ReturnType m_returnType = AI_C_EyeSensor_ReturnType.Nearest;
 
     private float m_visiblityTime = 0f;
-    private GameObject m_nearestObject = null;
+    private GameObject m_returnObject = null;
 
     private void OnTriggerEnter(Collider collision)
     {
+        if (m_beginSearchForObjestAfterXTime > 0)
+        {
+            return;
+        }
+
         if (collision.gameObject.tag == m_searchingFor && collision.gameObject.activeSelf == true)
         {
             RaycastHit hitInfo;
             Physics.Linecast(gameObject.transform.position + m_eyePosition, collision.gameObject.transform.position, out hitInfo, Physics.AllLayers, QueryTriggerInteraction.Ignore);
+            float newDist = 0;
 
             if (hitInfo.collider != null && hitInfo.collider.gameObject != null && hitInfo.collider.gameObject == collision.gameObject)
             {
-                float newDist = (collision.gameObject.transform.position - transform.position).magnitude;
-                if (m_nearestObject == null || newDist < (m_nearestObject.transform.position - transform.position).magnitude)
+                switch (m_returnType)
                 {
-                    m_nearestObject = collision.gameObject;
-                    m_visiblityTime = m_removeObjectAfterTime;
+                    case AI_C_EyeSensor_ReturnType.Nearest:
+                        newDist = (collision.gameObject.transform.position - transform.position).sqrMagnitude;
+                        if (m_returnObject == null || newDist < (m_returnObject.transform.position - transform.position).sqrMagnitude)
+                        {
+                            m_returnObject = collision.gameObject;
+                            m_visiblityTime = m_removeObjectAfterTime;
+                        }
+
+                        break;
+                    case AI_C_EyeSensor_ReturnType.Farest:
+                        newDist = (collision.gameObject.transform.position - transform.position).sqrMagnitude;
+                        if (m_returnObject == null || newDist > (m_returnObject.transform.position - transform.position).sqrMagnitude)
+                        {
+                            m_returnObject = collision.gameObject;
+                            m_visiblityTime = m_removeObjectAfterTime;
+                        }
+
+                        break;
+                    case AI_C_EyeSensor_ReturnType.First:
+                        if (m_returnObject == null)
+                        {
+                            m_returnObject = collision.gameObject;
+                        }
+
+                        break;
+                    case AI_C_EyeSensor_ReturnType.Last:
+                        m_returnObject = collision.gameObject;
+
+                        break;
+                    default:
+                        break;
                 }
             }
         }
@@ -43,30 +88,36 @@ public class AI_C_EyeSensor : MonoBehaviour
 
     private void Update()
     {
-        GameObject returnObject = null;
-
-        if(m_nearestObject != null && m_nearestObject.tag != m_searchingFor)
+        m_beginSearchForObjestAfterXTime -= Time.deltaTime;
+        if (m_beginSearchForObjestAfterXTime > 0)
         {
-            m_nearestObject = null;
+            return;
         }
 
-        if (m_nearestObject != null)
+        GameObject returnObject = null;
+
+        if(m_returnObject != null && m_returnObject.tag != m_searchingFor)
+        {
+            m_returnObject = null;
+        }
+
+        if (m_returnObject != null)
         {
             RaycastHit hitInfo;
-            Physics.Linecast(gameObject.transform.position + m_eyePosition, m_nearestObject.transform.position, out hitInfo, Physics.AllLayers, QueryTriggerInteraction.Ignore);
+            Physics.Linecast(gameObject.transform.position + m_eyePosition, m_returnObject.transform.position, out hitInfo, Physics.AllLayers, QueryTriggerInteraction.Ignore);
 
-            if ((m_removeFromBlackboardIfNotVisible == false) || (hitInfo.collider != null && hitInfo.collider.gameObject == m_nearestObject))
+            if ((m_removeFromBlackboardIfNotVisible == false) || (hitInfo.collider != null && hitInfo.collider.gameObject == m_returnObject))
             { 
-                returnObject = m_nearestObject;
+                returnObject = m_returnObject;
             }
 
-            if (hitInfo.collider == null || hitInfo.collider.gameObject != m_nearestObject)
+            if (hitInfo.collider == null || hitInfo.collider.gameObject != m_returnObject)
             {
                 m_visiblityTime -= Time.deltaTime;
 
                 if (m_visiblityTime <= 0)
                 {
-                    m_nearestObject = null;
+                    m_returnObject = null;
                 }
             }
         }

@@ -84,7 +84,10 @@ public class UserManger_GreedyAgression : MEB_BaseManager//, MEB_I_IntScoop
 
     public override void EvaluationEnd(int index, float delta)
     {
-        //put self evaluration code here use BlockMoveToExecutionForCycle if self eval dosent look good
+        if (((int)m_director.m_blackboard.GetObject(m_getdesiredResourceCountFromKey)) <= m_greedAmount) { BlockMoveToExecutionForCycle(); return; }
+        if (((int)m_director.m_blackboard.GetObject(m_getResourceCountFromKey)) >= ((int)m_director.m_blackboard.GetObject(m_getdesiredResourceCountFromKey))) { BlockMoveToExecutionForCycle(); return; }
+
+        if (((int)m_director.m_blackboard.GetObject("health")) <= 50 || ((int)m_director.m_blackboard.GetObject("ammoCurrentClip")) <= ((int)m_director.m_blackboard.GetObject("ammoMax")) / 2) { BlockMoveToExecutionForCycle(); return; }
     }
 
     public override void OnInitialized()
@@ -107,11 +110,6 @@ public class UserManger_GreedyAgression : MEB_BaseManager//, MEB_I_IntScoop
 
     public override void OnUpdate(float delta, int index)
     {
-        if (((int)m_director.m_blackboard.GetObject(m_getResourceCountFromKey)) <= m_greedAmount) { return; }
-        if (((int)m_director.m_blackboard.GetObject(m_getResourceCountFromKey)) >= ((int)m_director.m_blackboard.GetObject(m_getdesiredResourceCountFromKey))) { return; }
-
-        if (((int)m_director.m_blackboard.GetObject("health")) <= 50 || ((int)m_director.m_blackboard.GetObject("ammoCurrentClip")) <= ((int)m_director.m_blackboard.GetObject("ammoMax")) /3) { return; }
-
         m_director.m_blackboard.SetObject(m_storeIsAgressiveInKey, true);
     }
 }

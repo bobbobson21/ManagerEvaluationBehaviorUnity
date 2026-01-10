@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 3602489407667506205}
   - component: {fileID: 5863827556940038448}
   - component: {fileID: 2188039010333478865}
+  - component: {fileID: 8697443871707343381}
   - component: {fileID: 5200228457455301454}
   - component: {fileID: 1122099354575024655}
   - component: {fileID: 4306655261103073577}
@@ -113,7 +114,9 @@ MonoBehaviour:
   m_eyePosition: {x: 0, y: 1.1, z: 0}
   m_removeFromBlackboardIfNotVisible: 0
   m_removeObjectAfterTime: 1
---- !u!114 &5200228457455301454
+  m_beginSearchForObjestAfterXTime: 0
+  m_returnType: 0
+--- !u!114 &8697443871707343381
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -121,6 +124,25 @@ MonoBehaviour:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3278393024848284375}
   m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 25f416b981e73e14d8016f48919c4e3e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_blackboardToInputDataInto: {fileID: 2367188205530176646}
+  m_inputLocation: resourceObject
+  m_searchingFor: resource
+  m_eyePosition: {x: 0, y: 1.1, z: 0}
+  m_removeObjectAfterTime: 999
+  m_beginSearchForObjestAfterXTime: 0
+  m_returnType: 0
+--- !u!114 &5200228457455301454
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3278393024848284375}
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 206572450bdaaa545a45f19f3e77c2a6, type: 3}
   m_Name: 
@@ -131,6 +153,8 @@ MonoBehaviour:
   m_eyePosition: {x: 0, y: 1.1, z: 0}
   m_removeFromBlackboardIfNotVisible: 0
   m_removeObjectAfterTime: 999
+  m_beginSearchForObjestAfterXTime: 0
+  m_returnType: 0
 --- !u!114 &1122099354575024655
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -149,6 +173,8 @@ MonoBehaviour:
   m_eyePosition: {x: 0, y: 1.1, z: 0}
   m_removeFromBlackboardIfNotVisible: 0
   m_removeObjectAfterTime: 9999
+  m_beginSearchForObjestAfterXTime: 0
+  m_returnType: 0
 --- !u!114 &4306655261103073577
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -167,6 +193,8 @@ MonoBehaviour:
   m_eyePosition: {x: 0, y: 1.1, z: 0}
   m_removeFromBlackboardIfNotVisible: 0
   m_removeObjectAfterTime: 4
+  m_beginSearchForObjestAfterXTime: 0
+  m_returnType: 0
 --- !u!114 &701750821329183620
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -185,6 +213,8 @@ MonoBehaviour:
   m_eyePosition: {x: 0, y: 1.1, z: 0}
   m_removeFromBlackboardIfNotVisible: 0
   m_removeObjectAfterTime: 4
+  m_beginSearchForObjestAfterXTime: 0
+  m_returnType: 0
 --- !u!65 &7832060520106513687
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -5252,7 +5282,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_behaviorSet: {fileID: 11400000, guid: 650a62d9671176647947f3c7a879c1da, type: 2}
   m_blackboard: {fileID: 2367188205530176646}
-  m_exportManagersWithDebugConnection: 0
 --- !u!114 &2367188205530176646
 MonoBehaviour:
   m_ObjectHideFlags: 0

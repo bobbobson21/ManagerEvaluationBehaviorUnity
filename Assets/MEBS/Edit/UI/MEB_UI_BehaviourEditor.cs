@@ -21,8 +21,6 @@ namespace MEBS.Editor
 
     public class MEB_UI_BehaviourEditor : EditorWindow
     {
-        private string m_debugTittle = "";
-
         private MEB_BaseBehaviourData m_loadedObject = null;
         private Vector2 m_scrollPos = Vector2.zero;
 
@@ -73,14 +71,17 @@ namespace MEBS.Editor
         public static void OpenWindow(MEB_BaseBehaviourData data)
         {
             MEB_UI_BehaviourEditor window = GetWindow<MEB_UI_BehaviourEditor>("MEB manager evaluation behaviour editor"); //cant have more than one
-            window.position = new Rect(500, 0, Screen.currentResolution.width / 2, Screen.currentResolution.height / 2);
+
+            if (window.m_loadedObject == null)
+            {
+                window.position = new Rect(500, 0, Screen.currentResolution.width / 2, Screen.currentResolution.height / 2);
+            }
 
             if (data.m_items == null)
             {
                 data.m_items = new List<MEB_BaseBehaviourData_ChainScopeItemWapper>();
             }
 
-            window.m_debugTittle = data.m_runtimeName;
             window.m_loadedObject = data;
         }
 
@@ -595,6 +596,11 @@ namespace MEBS.Editor
 
         private void Update()
         {
+            if (m_loadedObject == null)
+            {
+                Close();
+            }
+
             if (Application.isPlaying == true)
             {
                 m_currentRefreshRatePoint += Time.deltaTime;
@@ -616,9 +622,9 @@ namespace MEBS.Editor
             GUILayout.EndHorizontal();
 
 
-            if (Application.isPlaying == true && m_debugTittle != "")
+            if (Application.isPlaying == true && m_loadedObject.m_runtimeName != "")
             {
-                GUILayout.Label($"debug data is from object: {m_debugTittle}");
+                GUILayout.Label($"debug data is from object: {m_loadedObject.m_runtimeName}");
             }
 
             m_scrollPos = EditorGUILayout.BeginScrollView(m_scrollPos);

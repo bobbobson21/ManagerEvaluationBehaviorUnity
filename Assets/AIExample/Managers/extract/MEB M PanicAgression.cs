@@ -88,7 +88,13 @@ public class UserManger_PanicAgression : MEB_BaseManager//, MEB_I_IntScoop
 
     public override void EvaluationEnd(int index, float delta)
     {
-        //put self evaluration code here use BlockMoveToExecutionForCycle if self eval dosent look good
+        float data = (float)((int)m_director.m_blackboard.GetObject(m_getResourceCountFromKey)) / (float)((int)m_director.m_blackboard.GetObject(m_getDesiredResourceCountFromKey));
+        m_panicIn -= delta;
+
+        if (m_panicIn > 0 || data > m_panicIfFraction)
+        {
+            BlockMoveToExecutionForCycle();
+        }
     }
 
     public override void OnInitialized()
@@ -112,12 +118,6 @@ public class UserManger_PanicAgression : MEB_BaseManager//, MEB_I_IntScoop
 
     public override void OnUpdate(float delta, int index)
     {
-        float data = (float)((int)m_director.m_blackboard.GetObject(m_getResourceCountFromKey)) / (float)((int)m_director.m_blackboard.GetObject(m_getDesiredResourceCountFromKey));
-        m_panicIn -= delta;
-
-        if(m_panicIn <= 0 && data <= m_panicIfFraction)
-        {
-            m_director.m_blackboard.SetObject(m_storeIsAgressiveInKey, true);
-        }
+        m_director.m_blackboard.SetObject(m_storeIsAgressiveInKey, true);
     }
 }

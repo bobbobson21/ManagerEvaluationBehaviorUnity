@@ -10,7 +10,7 @@ using static UnityEditor.Progress;
 
 public class Manager_WanderUniqueSetting : MEB_BaseBehaviourData_ItemSettings
 {
-    public float m_radius = 10;
+    public float m_maxRadius = 10;
     public float m_minRadius = 5;
     public float m_delayBetweenWandering = 1;
 
@@ -25,7 +25,7 @@ public class Manager_WanderUniqueSetting : MEB_BaseBehaviourData_ItemSettings
 
         if (m_displayCustomSettingExpanded == true)
         {
-            float.TryParse(EditorGUILayout.TextField("radius", m_radius.ToString()), out m_radius);
+            float.TryParse(EditorGUILayout.TextField("max radius", m_maxRadius.ToString()), out m_maxRadius);
             float.TryParse(EditorGUILayout.TextField("min radius", m_minRadius.ToString()), out m_minRadius);
             GUILayout.Space(8);
 
@@ -69,7 +69,7 @@ public class UserManger_WanderUnique_UI : MEB_UI_BehaviourEditor_ManagerData
 
 public class UserManger_WanderUnique : MEB_BaseManager, MEB_I_IntScoop
 {
-    private float m_radius = 10;
+    private float m_maxRadius = 10;
     private float m_minRadius = 5;
     private float m_delayBetweenWandering = 1;
 
@@ -105,7 +105,7 @@ public class UserManger_WanderUnique : MEB_BaseManager, MEB_I_IntScoop
 
         if (settings != null)
         {
-            m_radius = settings.m_radius;
+            m_maxRadius = settings.m_maxRadius;
             m_minRadius = settings.m_minRadius;
             m_delayBetweenWandering = settings.m_delayBetweenWandering;
 
@@ -142,10 +142,10 @@ public class UserManger_WanderUnique : MEB_BaseManager, MEB_I_IntScoop
             for (int i = 0; i < m_maxAttemptsForUniquePoint && foundPos == false; i++)
             {
                 Vector3 pos = m_director.m_gameObject.transform.position;
-                pos += (new Vector3(Random.Range(-1.0f, 1.0f), 0, Random.Range(-1.0f, 1.0f)).normalized) * Random.Range(m_minRadius, m_radius);
+                pos += (new Vector3(Random.Range(-1.0f, 1.0f), Random.Range(-1.0f, 1.0f), Random.Range(-1.0f, 1.0f)).normalized) * Random.Range(m_minRadius, m_maxRadius);
 
                 NavMeshHit hit;
-                if (NavMesh.SamplePosition(pos, out hit, m_radius, NavMesh.AllAreas))
+                if (NavMesh.SamplePosition(pos, out hit, m_maxRadius, NavMesh.AllAreas))
                 {
                     finalpos = hit.position;
                     foundPos = true;
@@ -171,6 +171,13 @@ public class UserManger_WanderUnique : MEB_BaseManager, MEB_I_IntScoop
                         m_currentUniquePointCount++;
                     }
                 }
+            }
+
+            if (foundPos == false && (m_director.m_gameObject.transform.position - m_uniquePoints[0]).magnitude > m_uniqueRadius)
+            {
+                foundPos = true;
+                finalpos = m_uniquePoints[0];
+                m_currentTimeLeftTillNextWanderCycle = m_delayBetweenWandering;
             }
 
             m_director.m_blackboard.SetObject(m_storeTargetLocationInKey, finalpos);

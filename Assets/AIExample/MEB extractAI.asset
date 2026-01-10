@@ -29,9 +29,10 @@ MonoBehaviour:
     - rid: 324396942948302925
     - rid: 324396972871516242
     - rid: 324397068597854295
+    - rid: 8401230053211373626
     m_isScoped: 1
     m_isForMainThread: 1
-    m_nonColapsed: 0
+    m_nonColapsed: 1
   - m_items:
     - rid: 324396940330795068
     m_isScoped: 0
@@ -424,9 +425,9 @@ MonoBehaviour:
         m_blackboardKeys:
         - movePos
         m_displayBlackboardSettingExpanded: 0
-        m_displayCustomSettingExpanded: 0
+        m_displayCustomSettingExpanded: 1
         m_displayDebugSettingsExpanded: 0
-        m_radius: 20
+        m_maxRadius: 15
         m_minRadius: 10
         m_delayBetweenWandering: 6
         m_uniquePointCount: 6
@@ -641,3 +642,28 @@ MonoBehaviour:
         m_displayDebugSettingsExpanded: 0
         m_extractIn: 30
         m_lable: early extract in
+    - rid: 8401230053211373626
+      type: {class: MEB_BaseBehaviourData_Item, ns: MEBS.Runtime, asm: Assembly-CSharp}
+      data:
+        m_runBeforeEval: []
+        m_runAfterEval: []
+        m_useInEval: []
+        m_evalurators: []
+        m_noneEvalurationManager:
+          rid: 8401230053211373627
+        m_isNormalManager: 1
+        m_nonColapsed: 1
+    - rid: 8401230053211373627
+      type: {class: Manager_InitalAgressionSettings, ns: , asm: Assembly-CSharp}
+      data:
+        m_class: UserManger_InitalAgression
+        m_displayName: UserManger_InitalAgression
+        m_displayDiscription: "makes us not agressive untill a certain amout of time
+          has passed.\n\nvaild blackboard data: \nstoreIsAgressiveIn: (boolBlackboardKeyAsString)"
+        m_blackboardIdenifyers: []
+        m_blackboardKeys: []
+        m_displayBlackboardSettingExpanded: 0
+        m_displayCustomSettingExpanded: 1
+        m_displayDebugSettingsExpanded: 0
+        m_allowAgressionInMin: 4
+        m_allowAgressionInMax: 6

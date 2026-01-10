@@ -57,7 +57,30 @@ public class UserManger_SpottedAgression : MEB_BaseManager//, MEB_I_IntScoop
 
     public override void EvaluationEnd(int index, float delta)
     {
-        //put self evaluration code here use BlockMoveToExecutionForCycle if self eval dosent look good
+        GameObject them = (GameObject)m_director.m_blackboard.GetObject(m_getAttackObjectFromKey);
+
+        if (them == null)
+        {
+            BlockMoveToExecutionForCycle();
+        }
+        else
+        {
+            MEB_BaseBlackboard themData = them.GetComponent<MEB_BaseBlackboard>();
+
+            if (themData == null)
+            {
+                BlockMoveToExecutionForCycle();
+            }
+            else
+            {
+                GameObject us = (GameObject)themData.GetObject(m_getAttackObjectFromKey);
+
+                if (us != m_director.m_gameObject)
+                {
+                    BlockMoveToExecutionForCycle();
+                }
+            }
+        }
     }
 
     public override void OnInitialized()
@@ -75,22 +98,6 @@ public class UserManger_SpottedAgression : MEB_BaseManager//, MEB_I_IntScoop
 
     public override void OnUpdate(float delta, int index)
     {
-        GameObject them = (GameObject)m_director.m_blackboard.GetObject(m_getAttackObjectFromKey);
-
-        if (them != null)
-        {
-            MEB_BaseBlackboard themData = them.GetComponent<MEB_BaseBlackboard>();
-
-            if (themData != null)
-            {
-                GameObject us = (GameObject)themData.GetObject(m_getAttackObjectFromKey);
-
-                if (us == m_director.m_gameObject)
-                {
-                    m_director.m_blackboard.SetObject(m_storeIsAgressiveInKey, true);
-                    return;
-                }
-            }
-        }
+        m_director.m_blackboard.SetObject(m_storeIsAgressiveInKey, true);
     }
 }
