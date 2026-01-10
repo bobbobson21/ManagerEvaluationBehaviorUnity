@@ -73,7 +73,7 @@ MonoBehaviour:
         m_noneEvalurationManager:
           rid: -2
         m_isNormalManager: 0
-        m_nonColapsed: 0
+        m_nonColapsed: 1
     - rid: 324396940330795069
       type: {class: MEB_BaseBehaviourData_ItemSettings, ns: MEBS.Runtime, asm: Assembly-CSharp}
       data:
@@ -410,7 +410,7 @@ MonoBehaviour:
         m_blackboardKeys:
         - movePos
         m_displayBlackboardSettingExpanded: 0
-        m_displayCustomSettingExpanded: 1
+        m_displayCustomSettingExpanded: 0
         m_displayDebugSettingsExpanded: 0
         m_maxRadius: 15
         m_minRadius: 10
@@ -660,10 +660,12 @@ MonoBehaviour:
         m_displayName: UserManger_InitalAgression
         m_displayDiscription: "makes us not agressive untill a certain amout of time
           has passed.\n\nvaild blackboard data: \nstoreIsAgressiveIn: (boolBlackboardKeyAsString)"
-        m_blackboardIdenifyers: []
-        m_blackboardKeys: []
+        m_blackboardIdenifyers:
+        - storeIsAgressiveIn
+        m_blackboardKeys:
+        - extraAgressive
         m_displayBlackboardSettingExpanded: 0
         m_displayCustomSettingExpanded: 1
         m_displayDebugSettingsExpanded: 0
-        m_allowAgressionInMin: 4
-        m_allowAgressionInMax: 6
+        m_allowAgressionInMin: 8
+        m_allowAgressionInMax: 12

@@ -166,7 +166,6 @@ public class UserManger_WanderUnique : MEB_BaseManager, MEB_I_IntScoop
                             m_currentUniquePointCount = 0;
                         }
 
-                        m_currentTimeLeftTillNextWanderCycle = m_delayBetweenWandering;
                         m_uniquePoints[m_currentUniquePointCount] = finalpos;
                         m_currentUniquePointCount++;
                     }
@@ -177,9 +176,9 @@ public class UserManger_WanderUnique : MEB_BaseManager, MEB_I_IntScoop
             {
                 foundPos = true;
                 finalpos = m_uniquePoints[0];
-                m_currentTimeLeftTillNextWanderCycle = m_delayBetweenWandering;
             }
 
+            m_currentTimeLeftTillNextWanderCycle = m_delayBetweenWandering;
             m_director.m_blackboard.SetObject(m_storeTargetLocationInKey, finalpos);
         }
     }
