@@ -25,7 +25,7 @@ namespace MEBS.Editor
             MEB_BaseBehaviourData_ItemSettings data = new MEB_BaseBehaviourData_ItemSettings();
             data.m_class = "MEBS.Runtime." + m_name;
             data.m_displayName = m_name;
-            data.m_displayDiscription = "Makes the NPC move towards a desired location. \n\nvalid blackboard data: \ntarget: (vector3BlackboardKeyAsString) \nspeed: (floatBlackboardKeyAsString) def = (navAgentSpeed)";
+            data.m_displayDiscription = "Makes the NPC move towards a desired location. \n\nvalid blackboard data: \ntarget: (vector3BlackboardKeyAsString) \nspeed: (floatBlackboardKeyAsString) def = (navAgentSpeed)\nshouldMove: (boolBlackboardKeyAsString) def = true";
 
             return data;
         }
@@ -39,6 +39,7 @@ namespace MEBS.Runtime
     {
         private string m_speedKey = "";
         private string m_targetKey = "";
+        private string m_shouldMove = "";
         private NavMeshAgent m_agent = null;
 
         private Vector3 m_lastLocation = Vector3.zero;
@@ -56,11 +57,22 @@ namespace MEBS.Runtime
                 {
                     m_speedKey = keys[i];
                 }
+
+                if (idenifyers[i] == "shouldMove")
+                {
+                    m_shouldMove = keys[i];
+                }
             }
         }
 
         public override void EvaluationEnd(int index, float delta)
         {
+            if (m_shouldMove != "" && ((bool)m_director.m_blackboard.GetObject(m_shouldMove)) == false)
+            {
+                BlockMoveToExecutionForCycle();
+                return;
+            }
+
             if (((Vector3)m_director.m_blackboard.GetObject(m_targetKey)) == Vector3.zero)
             {
                 BlockMoveToExecutionForCycle();
@@ -76,12 +88,11 @@ namespace MEBS.Runtime
         {
             Vector3 currentLocation = (Vector3)m_director.m_blackboard.GetObject(m_targetKey);
 
-            if ((m_lastLocation - currentLocation).magnitude <= 0.5f)
+            if ((m_lastLocation - currentLocation).magnitude >= 0.5f)
             {
                 m_agent.SetDestination(currentLocation);
+                m_lastLocation = currentLocation;
             }
-
-            m_lastLocation = currentLocation;
 
             if (m_speedKey != "")
             {
