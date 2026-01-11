@@ -25,8 +25,13 @@ public class AI_C_EyeSensor : MonoBehaviour
     public float m_beginSearchForObjestAfterXTime = 0;
     public AI_C_EyeSensor_ReturnType m_returnType = AI_C_EyeSensor_ReturnType.Nearest;
 
+    [Header("team")]
+    public AICTeamOparator m_teamOparator = null;
+    public bool m_doTeamBlackbaordCheck = true;
+
     private float m_visiblityTime = 0f;
     private GameObject m_returnObject = null;
+
 
     private void OnTriggerEnter(Collider collision)
     {
@@ -37,6 +42,22 @@ public class AI_C_EyeSensor : MonoBehaviour
 
         if (collision.gameObject.tag == m_searchingFor && collision.gameObject.activeSelf == true)
         {
+            if (m_teamOparator != null && m_teamOparator.IsOnSameTeam(collision.gameObject) == true)
+            {
+                return;
+            }
+
+            if (m_teamOparator != null && m_doTeamBlackbaordCheck == true)
+            {
+                for (int i = 0; i < m_teamOparator.GetAllOnMyTeam().Count; i++)
+                {
+                    if (m_teamOparator.GetBlackboardOfTeamMate(i) != null && ((GameObject)m_teamOparator.GetBlackboardOfTeamMate(i).GetObject(m_inputLocation)) == collision.gameObject)
+                    { 
+                        return;
+                    }
+                }
+            }
+
             RaycastHit hitInfo;
             Physics.Linecast(gameObject.transform.position + m_eyePosition, collision.gameObject.transform.position, out hitInfo, Physics.AllLayers, QueryTriggerInteraction.Ignore);
             float newDist = 0;
@@ -84,6 +105,10 @@ public class AI_C_EyeSensor : MonoBehaviour
     private void OnTriggerExit(Collider collision)
     {
 
+    }
+
+    private void Start()
+    {
     }
 
     private void Update()

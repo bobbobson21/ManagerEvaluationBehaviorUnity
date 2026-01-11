@@ -73,7 +73,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: 66766313a02eba34f80ea50127b346cd, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -115,8 +115,8 @@ MonoBehaviour:
   m_removeObjectAfterTime: 1
   m_beginSearchForObjestAfterXTime: 0
   m_returnType: 0
-  m_teamOparator: {fileID: 0}
-  m_doTeamBlackbaordCheck: 1
+  m_teamOparator: {fileID: 7153689478510602468}
+  m_doTeamBlackbaordCheck: 0
 --- !u!114 &8697443871707343381
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -136,7 +136,7 @@ MonoBehaviour:
   m_removeObjectAfterTime: 999
   m_beginSearchForObjestAfterXTime: 0
   m_returnType: 0
-  m_teamOparator: {fileID: 0}
+  m_teamOparator: {fileID: 7153689478510602468}
   m_doTeamBlackbaordCheck: 1
 --- !u!114 &1122099354575024655
 MonoBehaviour:
@@ -159,7 +159,7 @@ MonoBehaviour:
   m_beginSearchForObjestAfterXTime: 0
   m_returnType: 0
   m_teamOparator: {fileID: 0}
-  m_doTeamBlackbaordCheck: 1
+  m_doTeamBlackbaordCheck: 0
 --- !u!114 &4306655261103073577
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -180,7 +180,7 @@ MonoBehaviour:
   m_removeObjectAfterTime: 4
   m_beginSearchForObjestAfterXTime: 0
   m_returnType: 0
-  m_teamOparator: {fileID: 0}
+  m_teamOparator: {fileID: 7153689478510602468}
   m_doTeamBlackbaordCheck: 1
 --- !u!114 &701750821329183620
 MonoBehaviour:
@@ -202,7 +202,7 @@ MonoBehaviour:
   m_removeObjectAfterTime: 4
   m_beginSearchForObjestAfterXTime: 0
   m_returnType: 0
-  m_teamOparator: {fileID: 0}
+  m_teamOparator: {fileID: 7153689478510602468}
   m_doTeamBlackbaordCheck: 1
 --- !u!65 &7832060520106513687
 BoxCollider:
@@ -5119,7 +5119,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1305677453081620289}
   m_Layer: 0
-  m_Name: extractAI
+  m_Name: extractTeamAI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5154,6 +5154,7 @@ GameObject:
   - component: {fileID: 4502821555607359634}
   - component: {fileID: 8431284040979946857}
   - component: {fileID: 4670219777722272495}
+  - component: {fileID: 7153689478510602468}
   - component: {fileID: 2367188205530176646}
   - component: {fileID: 3769362347106215873}
   - component: {fileID: 2287828638122841492}
@@ -5213,7 +5214,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: 009eaeb3a5d3f9a4885f43d2aa402696, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -5270,6 +5271,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_behaviorSet: {fileID: 11400000, guid: 650a62d9671176647947f3c7a879c1da, type: 2}
+  m_blackboard: {fileID: 2367188205530176646}
+--- !u!114 &7153689478510602468
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7532682592863108319}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8406a3cc6f030e748a7cfaf9c43e58cf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_teamId: T1
   m_blackboard: {fileID: 2367188205530176646}
 --- !u!114 &2367188205530176646
 MonoBehaviour:

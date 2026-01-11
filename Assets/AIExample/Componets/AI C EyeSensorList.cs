@@ -16,6 +16,10 @@ public class AI_C_EyeSensorList : MonoBehaviour
     public float m_beginSearchForObjestAfterXTime = 0;
     public AI_C_EyeSensor_ReturnType m_returnType = AI_C_EyeSensor_ReturnType.Nearest;
 
+    [Header("team")]
+    public AICTeamOparator m_teamOparator = null;
+    public bool m_doTeamBlackbaordCheck = true;
+
     private List<AI_C_EyeSensorList_dataPoint> m_totalOblects = new List<AI_C_EyeSensorList_dataPoint>();
 
     private void OnTriggerEnter(Collider collision)
@@ -27,6 +31,22 @@ public class AI_C_EyeSensorList : MonoBehaviour
 
         if (collision.gameObject.tag == m_searchingFor && collision.gameObject.activeSelf == true)
         {
+            if (m_teamOparator != null && m_teamOparator.IsOnSameTeam(collision.gameObject) == true)
+            {
+                return;
+            }
+
+            if (m_teamOparator != null && m_doTeamBlackbaordCheck == true)
+            {
+                for (int i = 0; i < m_teamOparator.GetAllOnMyTeam().Count; i++)
+                {
+                    if (m_teamOparator.GetBlackboardOfTeamMate(i) != null && ((GameObject)m_teamOparator.GetBlackboardOfTeamMate(i).GetObject(m_inputLocation)) == collision.gameObject)
+                    {
+                        return;
+                    }
+                }
+            }
+
             for (int i = 0; i < m_totalOblects.Count; i++)
             {
                 if (collision.gameObject == m_totalOblects[i].m_gameObject)
