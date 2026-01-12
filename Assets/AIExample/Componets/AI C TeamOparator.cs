@@ -12,6 +12,18 @@ public class AICTeamOparator : MonoBehaviour
     private static Dictionary<string,List<GameObject>> m_teamDataObject = new Dictionary<string,List<GameObject>>();
     private static Dictionary<string, List<MEB_BaseBlackboard>> m_teamDataBlackboard = new Dictionary<string, List<MEB_BaseBlackboard>>();
 
+    public GameObject GetLeaderOfTeam(string team)
+    {
+        for (int i = 0; i < m_teamDataObject[team].Count; i++)
+        {
+            if (m_teamDataObject[team][i] != null)
+            {
+                return m_teamDataObject[team][i];
+            }
+        }
+
+        return null;
+    }
 
     public GameObject GetLeader()
     {

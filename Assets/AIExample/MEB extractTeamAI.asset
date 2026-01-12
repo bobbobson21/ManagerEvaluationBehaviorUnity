@@ -1,0 +1,455 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d965daca05cc0c5428d4779d6f614210, type: 3}
+  m_Name: MEB extractTeamAI
+  m_EditorClassIdentifier: 
+  m_items:
+  - m_items:
+    - rid: 8401229911979720835
+    m_isScoped: 0
+    m_isForMainThread: 0
+    m_nonColapsed: 1
+  - m_items:
+    - rid: 324397009209655356
+    - rid: 6310419766989553722
+    m_isScoped: 1
+    m_isForMainThread: 0
+    m_nonColapsed: 0
+  - m_items:
+    - rid: 324396942948302923
+    - rid: 324396942948302925
+    - rid: 324396972871516242
+    - rid: 324397068597854295
+    - rid: 8401230053211373626
+    m_isScoped: 1
+    m_isForMainThread: 1
+    m_nonColapsed: 0
+  - m_items:
+    - rid: 8401230089267970107
+    - rid: 8401230089267970108
+    - rid: 8401230089267970109
+    m_isScoped: 1
+    m_isForMainThread: 0
+    m_nonColapsed: 1
+  - m_items:
+    - rid: 324396940330795072
+    m_isScoped: 0
+    m_isForMainThread: 0
+    m_nonColapsed: 1
+  references:
+    version: 2
+    RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }
+    - rid: 324396940330795072
+      type: {class: MEB_BaseBehaviourData_Item, ns: MEBS.Runtime, asm: Assembly-CSharp}
+      data:
+        m_runBeforeEval:
+        - rid: 324396940330795073
+        m_runAfterEval: []
+        m_useInEval:
+        - rid: 324396940330795075
+        - rid: 324396940330795076
+        - rid: 324396940330795077
+        m_evalurators:
+        - rid: 324396942948302921
+        - rid: 324396940330795074
+        m_noneEvalurationManager:
+          rid: -2
+        m_isNormalManager: 0
+        m_nonColapsed: 0
+    - rid: 324396940330795073
+      type: {class: MEB_BaseBehaviourData_ItemSettings, ns: MEBS.Runtime, asm: Assembly-CSharp}
+      data:
+        m_class: UserManger_GunBlackboardInterface
+        m_displayName: UserManger_GunBlackboardInterface
+        m_displayDiscription: "\n\nvaild blackboard data: \nstoreAmmoMaxIn: (intBlackboardKeyAsString)\nstoreAmmoTotalIn:
+          (intBlackboardKeyAsString)\nstoreAmmoClipIn: (intBlackboardKeyAsString)"
+        m_blackboardIdenifyers:
+        - storeTargetLocationIn
+        - storeAmmoTotalIn
+        - storeAmmoClipIn
+        m_blackboardKeys:
+        - ammoMax
+        - ammoTotal
+        - ammoCurrentClip
+        m_displayBlackboardSettingExpanded: 0
+        m_displayCustomSettingExpanded: 0
+        m_displayDebugSettingsExpanded: 0
+    - rid: 324396940330795074
+      type: {class: MEB_BaseBehaviourData_ItemSettings, ns: MEBS.Runtime, asm: Assembly-CSharp}
+      data:
+        m_class: MEBS.Runtime.MEB_E_EvalHighest
+        m_displayName: MEB_E_EvalHighest
+        m_displayDiscription: Gets all the managers in the 'managers to evalurate'
+          section to return an int thougth MEB_I_IntScoop.GetIntEvalValue(). The
+          one that returns the higest value, that also isn't already blocked, moves
+          on the rest are blocked from execution.
+        m_blackboardIdenifyers: []
+        m_blackboardKeys: []
+        m_displayBlackboardSettingExpanded: 0
+        m_displayCustomSettingExpanded: 0
+        m_displayDebugSettingsExpanded: 0
+    - rid: 324396940330795075
+      type: {class: Manager_MakeEyeFollowPathSettings, ns: , asm: Assembly-CSharp}
+      data:
+        m_class: UserManger_MakeEyeFollowPath
+        m_displayName: UserManger_MakeEyeFollowPath
+        m_displayDiscription: makes the eye follow the path currently being walked
+        m_blackboardIdenifyers: []
+        m_blackboardKeys: []
+        m_displayBlackboardSettingExpanded: 0
+        m_displayCustomSettingExpanded: 0
+        m_displayDebugSettingsExpanded: 0
+        m_speed: 10
+    - rid: 324396940330795076
+      type: {class: MEB_BaseBehaviourData_ItemSettings, ns: MEBS.Runtime, asm: Assembly-CSharp}
+      data:
+        m_class: UserManger_ReloadGun
+        m_displayName: UserManger_ReloadGun
+        m_displayDiscription: reloads the gun
+        m_blackboardIdenifyers: []
+        m_blackboardKeys: []
+        m_displayBlackboardSettingExpanded: 0
+        m_displayCustomSettingExpanded: 0
+        m_displayDebugSettingsExpanded: 0
+    - rid: 324396940330795077
+      type: {class: Manager_FireGunSettings, ns: , asm: Assembly-CSharp}
+      data:
+        m_class: UserManger_FireGun
+        m_displayName: UserManger_FireGun
+        m_displayDiscription: "Fires a gun towards the attacker. \n\nvaild blackboard
+          data: \ngetAttackObjectFrom: (gameObjectBlackboardKeyAsString)"
+        m_blackboardIdenifyers:
+        - getAttackObjectFrom
+        m_blackboardKeys:
+        - attackerObj
+        m_displayBlackboardSettingExpanded: 0
+        m_displayCustomSettingExpanded: 0
+        m_displayDebugSettingsExpanded: 0
+        m_shootScope: 0.8
+        m_shootDistance: 6
+        m_speed: 10
+        m_speedMedium: 12
+        m_speedFast: 16
+    - rid: 324396942948302921
+      type: {class: MEB_BaseBehaviourData_BlackboardCondBlockSettings, ns: MEBS.Runtime, asm: Assembly-CSharp}
+      data:
+        m_class: MEBS.Runtime.MEB_E_EvalBlackboardCondBlock
+        m_displayName: MEB_E_EvalBlackboardCondBlock
+        m_displayDiscription: "If any bool registed to this managers black board
+          list returns false all the managers int 'managers to evalurate' section
+          are blocked from being exacuted not just the first one. \n\nvalid blackboard
+          data: \n???: (BoolBlackboardKeyAsString)"
+        m_blackboardIdenifyers:
+        - 0:???
+        m_blackboardKeys:
+        - extraAgressive
+        m_displayBlackboardSettingExpanded: 0
+        m_displayCustomSettingExpanded: 0
+        m_displayDebugSettingsExpanded: 0
+        m_inverted: 0
+        m_blockRangeStartPoint: 2
+        m_blockRangeEndPoint: 2147483647
+    - rid: 324396942948302923
+      type: {class: MEB_BaseBehaviourData_Item, ns: MEBS.Runtime, asm: Assembly-CSharp}
+      data:
+        m_runBeforeEval: []
+        m_runAfterEval: []
+        m_useInEval: []
+        m_evalurators: []
+        m_noneEvalurationManager:
+          rid: 324396942948302924
+        m_isNormalManager: 1
+        m_nonColapsed: 1
+    - rid: 324396942948302924
+      type: {class: MEB_BaseBehaviourData_ItemSettings, ns: MEBS.Runtime, asm: Assembly-CSharp}
+      data:
+        m_class: UserManger_AgressionReset
+        m_displayName: UserManger_AgressionReset
+        m_displayDiscription: "resets agression levels\n\nvaild blackboard data:
+          \nstoreIsAgressiveIn: (boolBlackboardKeyAsString)"
+        m_blackboardIdenifyers:
+        - storeIsAgressiveIn
+        m_blackboardKeys:
+        - extraAgressive
+        m_displayBlackboardSettingExpanded: 0
+        m_displayCustomSettingExpanded: 0
+        m_displayDebugSettingsExpanded: 0
+    - rid: 324396942948302925
+      type: {class: MEB_BaseBehaviourData_Item, ns: MEBS.Runtime, asm: Assembly-CSharp}
+      data:
+        m_runBeforeEval: []
+        m_runAfterEval: []
+        m_useInEval: []
+        m_evalurators: []
+        m_noneEvalurationManager:
+          rid: 324396942948302926
+        m_isNormalManager: 1
+        m_nonColapsed: 1
+    - rid: 324396942948302926
+      type: {class: MEB_BaseBehaviourData_ItemSettings, ns: MEBS.Runtime, asm: Assembly-CSharp}
+      data:
+        m_class: UserManger_SpottedAgression
+        m_displayName: UserManger_SpottedAgression
+        m_displayDiscription: "gets agressive if spotted by our attacker object.\n\nvaild
+          blackboard data: \ngetAttackObjectFrom: (gameObjectBlackboardKeyAsString)\nstoreIsAgressiveIn:
+          (boolBlackboardKeyAsString)"
+        m_blackboardIdenifyers:
+        - storeIsAgressiveIn
+        - getAttackObjectFrom
+        m_blackboardKeys:
+        - extraAgressive
+        - attackerObj
+        m_displayBlackboardSettingExpanded: 0
+        m_displayCustomSettingExpanded: 0
+        m_displayDebugSettingsExpanded: 0
+    - rid: 324396972871516242
+      type: {class: MEB_BaseBehaviourData_Item, ns: MEBS.Runtime, asm: Assembly-CSharp}
+      data:
+        m_runBeforeEval: []
+        m_runAfterEval: []
+        m_useInEval: []
+        m_evalurators: []
+        m_noneEvalurationManager:
+          rid: 324396972871516243
+        m_isNormalManager: 1
+        m_nonColapsed: 1
+    - rid: 324396972871516243
+      type: {class: Manager_GreedyAgressionSettings, ns: , asm: Assembly-CSharp}
+      data:
+        m_class: UserManger_GreedyAgression
+        m_displayName: UserManger_GreedyAgression
+        m_displayDiscription: "Makes the AI agressive if the amout of items needed
+          is to high.\n\nvaild blackboard data: \ngetResourceCountFrom :(intBlackboardKeyAsString)\ngetdesiredResourceCountFrom
+          :(intBlackboardKeyAsString)\nstoreIsAgressiveIn: (boolBlackboardKeyAsString)"
+        m_blackboardIdenifyers:
+        - getResourceCountFrom
+        - getdesiredResourceCountFrom
+        - storeIsAgressiveIn
+        m_blackboardKeys:
+        - resourceCount
+        - desiredResourceCount
+        - extraAgressive
+        m_displayBlackboardSettingExpanded: 0
+        m_displayCustomSettingExpanded: 0
+        m_displayDebugSettingsExpanded: 0
+        m_greedAmount: 45
+    - rid: 324397009209655356
+      type: {class: MEB_BaseBehaviourData_Item, ns: MEBS.Runtime, asm: Assembly-CSharp}
+      data:
+        m_runBeforeEval: []
+        m_runAfterEval: []
+        m_useInEval: []
+        m_evalurators: []
+        m_noneEvalurationManager:
+          rid: 324397009209655357
+        m_isNormalManager: 1
+        m_nonColapsed: 1
+    - rid: 324397009209655357
+      type: {class: Manager_GoToExtractSettings, ns: , asm: Assembly-CSharp}
+      data:
+        m_class: UserManger_FailedToExtractDeath
+        m_displayName: UserManger_FailedToExtractDeath
+        m_displayDiscription: Kills the AI after the time has passed if it has not
+          extracted.
+        m_blackboardIdenifyers: []
+        m_blackboardKeys: []
+        m_displayBlackboardSettingExpanded: 0
+        m_displayCustomSettingExpanded: 0
+        m_displayDebugSettingsExpanded: 0
+        m_extractIn: 360
+        m_lable: kill AI in
+    - rid: 324397068597854295
+      type: {class: MEB_BaseBehaviourData_Item, ns: MEBS.Runtime, asm: Assembly-CSharp}
+      data:
+        m_runBeforeEval: []
+        m_runAfterEval: []
+        m_useInEval: []
+        m_evalurators: []
+        m_noneEvalurationManager:
+          rid: 324397068597854296
+        m_isNormalManager: 1
+        m_nonColapsed: 1
+    - rid: 324397068597854296
+      type: {class: Manager_PanicAgressionSettings, ns: , asm: Assembly-CSharp}
+      data:
+        m_class: UserManger_PanicAgression
+        m_displayName: UserManger_PanicAgression
+        m_displayDiscription: "Makes the AI agressive if the amout of items needed
+          is to high.\n\nvaild blackboard data: \ngetResourceCountFrom :(intBlackboardKeyAsString)\ngetDesiredResourceCountFrom
+          :(intBlackboardKeyAsString)\nstoreIsAgressiveIn: (boolBlackboardKeyAsString)"
+        m_blackboardIdenifyers:
+        - getResourceCountFrom
+        - getDesiredResourceCountFrom
+        - storeIsAgressiveIn
+        m_blackboardKeys:
+        - resourceCount
+        - desiredResourceCount
+        - extraAgressive
+        m_displayBlackboardSettingExpanded: 0
+        m_displayCustomSettingExpanded: 0
+        m_displayDebugSettingsExpanded: 0
+        m_panicIn: 180
+        m_panicIfFraction: 0.75
+    - rid: 6310419766989553722
+      type: {class: MEB_BaseBehaviourData_Item, ns: MEBS.Runtime, asm: Assembly-CSharp}
+      data:
+        m_runBeforeEval: []
+        m_runAfterEval: []
+        m_useInEval: []
+        m_evalurators: []
+        m_noneEvalurationManager:
+          rid: 6310419766989553723
+        m_isNormalManager: 1
+        m_nonColapsed: 1
+    - rid: 6310419766989553723
+      type: {class: MEB_BaseBehaviourData_ItemSettings, ns: MEBS.Runtime, asm: Assembly-CSharp}
+      data:
+        m_class: UserManger_DeathHandler
+        m_displayName: UserManger_DeathHandler
+        m_displayDiscription: make the npc die correctly
+        m_blackboardIdenifyers: []
+        m_blackboardKeys: []
+        m_displayBlackboardSettingExpanded: 0
+        m_displayCustomSettingExpanded: 0
+        m_displayDebugSettingsExpanded: 0
+    - rid: 8401229911979720835
+      type: {class: MEB_BaseBehaviourData_Item, ns: MEBS.Runtime, asm: Assembly-CSharp}
+      data:
+        m_runBeforeEval: []
+        m_runAfterEval: []
+        m_useInEval: []
+        m_evalurators: []
+        m_noneEvalurationManager:
+          rid: 8401229911979720836
+        m_isNormalManager: 1
+        m_nonColapsed: 1
+    - rid: 8401229911979720836
+      type: {class: Manager_GoToExtractSettings, ns: , asm: Assembly-CSharp}
+      data:
+        m_class: UserManger_WantsToExtractEarly
+        m_displayName: UserManger_WantsToExtractEarly
+        m_displayDiscription: "Makes the npc want to exit early if the require resource
+          count is met.\n\nvaild blackboard data: \ngetResourceCountFrom :(intBlackboardKeyAsString)\ngetDesiredResourceCountFrom
+          :(intBlackboardKeyAsString)"
+        m_blackboardIdenifyers:
+        - getResourceCountFrom
+        - getDesiredResourceCountFrom
+        m_blackboardKeys:
+        - resourceCount
+        - desiredResourceCount
+        m_displayBlackboardSettingExpanded: 0
+        m_displayCustomSettingExpanded: 0
+        m_displayDebugSettingsExpanded: 0
+        m_extractIn: 30
+        m_lable: early extract in
+    - rid: 8401230053211373626
+      type: {class: MEB_BaseBehaviourData_Item, ns: MEBS.Runtime, asm: Assembly-CSharp}
+      data:
+        m_runBeforeEval: []
+        m_runAfterEval: []
+        m_useInEval: []
+        m_evalurators: []
+        m_noneEvalurationManager:
+          rid: 8401230053211373627
+        m_isNormalManager: 1
+        m_nonColapsed: 1
+    - rid: 8401230053211373627
+      type: {class: Manager_InitalAgressionSettings, ns: , asm: Assembly-CSharp}
+      data:
+        m_class: UserManger_InitalAgression
+        m_displayName: UserManger_InitalAgression
+        m_displayDiscription: "makes us not agressive untill a certain amout of time
+          has passed.\n\nvaild blackboard data: \nstoreIsAgressiveIn: (boolBlackboardKeyAsString)"
+        m_blackboardIdenifyers:
+        - storeIsAgressiveIn
+        m_blackboardKeys:
+        - extraAgressive
+        m_displayBlackboardSettingExpanded: 0
+        m_displayCustomSettingExpanded: 0
+        m_displayDebugSettingsExpanded: 0
+        m_allowAgressionInMin: 8
+        m_allowAgressionInMax: 12
+    - rid: 8401230089267970107
+      type: {class: MEB_BaseBehaviourData_Item, ns: MEBS.Runtime, asm: Assembly-CSharp}
+      data:
+        m_runBeforeEval: []
+        m_runAfterEval: []
+        m_useInEval: []
+        m_evalurators:
+        - rid: 8401230089267970112
+        m_noneEvalurationManager:
+          rid: -2
+        m_isNormalManager: 0
+        m_nonColapsed: 1
+    - rid: 8401230089267970108
+      type: {class: MEB_BaseBehaviourData_Item, ns: MEBS.Runtime, asm: Assembly-CSharp}
+      data:
+        m_runBeforeEval: []
+        m_runAfterEval: []
+        m_useInEval: []
+        m_evalurators:
+        - rid: 8401230089267970111
+        m_noneEvalurationManager:
+          rid: -2
+        m_isNormalManager: 0
+        m_nonColapsed: 1
+    - rid: 8401230089267970109
+      type: {class: MEB_BaseBehaviourData_Item, ns: MEBS.Runtime, asm: Assembly-CSharp}
+      data:
+        m_runBeforeEval: []
+        m_runAfterEval: []
+        m_useInEval: []
+        m_evalurators: []
+        m_noneEvalurationManager:
+          rid: 8401230089267970110
+        m_isNormalManager: 1
+        m_nonColapsed: 1
+    - rid: 8401230089267970110
+      type: {class: MEB_BaseBehaviourData_ItemSettings, ns: MEBS.Runtime, asm: Assembly-CSharp}
+      data:
+        m_class: MEBS.Runtime.MEB_M_WalkTo
+        m_displayName: MEB_M_WalkTo
+        m_displayDiscription: "Makes the NPC move towards a desired location. \n\nvalid
+          blackboard data: \ntarget: (vector3BlackboardKeyAsString) \nspeed: (floatBlackboardKeyAsString)
+          def = (navAgentSpeed)\nshouldMove: (boolBlackboardKeyAsString) def = true"
+        m_blackboardIdenifyers:
+        - target
+        m_blackboardKeys:
+        - moveTo
+        m_displayBlackboardSettingExpanded: 0
+        m_displayCustomSettingExpanded: 0
+        m_displayDebugSettingsExpanded: 0
+    - rid: 8401230089267970111
+      type: {class: MEB_BaseBehaviourData_ItemSettings, ns: MEBS.Runtime, asm: Assembly-CSharp}
+      data:
+        m_class: UserManger_Eval_IsNotLeader
+        m_displayName: UserManger_Eval_IsNotLeader
+        m_displayDiscription: Allows exacuteion if the AI is NOT the leader of its
+          team.
+        m_blackboardIdenifyers: []
+        m_blackboardKeys: []
+        m_displayBlackboardSettingExpanded: 0
+        m_displayCustomSettingExpanded: 0
+        m_displayDebugSettingsExpanded: 0
+    - rid: 8401230089267970112
+      type: {class: MEB_BaseBehaviourData_ItemSettings, ns: MEBS.Runtime, asm: Assembly-CSharp}
+      data:
+        m_class: UserManger_Eval_IsLeader
+        m_displayName: UserManger_Eval_IsLeader
+        m_displayDiscription: Allows exacuteion if the AI is the leader of its team.
+        m_blackboardIdenifyers: []
+        m_blackboardKeys: []
+        m_displayBlackboardSettingExpanded: 0
+        m_displayCustomSettingExpanded: 0
+        m_displayDebugSettingsExpanded: 0
