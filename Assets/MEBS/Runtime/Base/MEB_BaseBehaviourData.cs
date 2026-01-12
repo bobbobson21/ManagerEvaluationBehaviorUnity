@@ -44,12 +44,6 @@ namespace MEBS.Runtime
     public class MEB_BaseBehaviourData_Item //for handling evaluration scopes and individual managers
     {
         [SerializeReference]
-        public List<MEB_BaseBehaviourData_ItemSettings> m_runBeforeEval;
-
-        [SerializeReference]
-        public List<MEB_BaseBehaviourData_ItemSettings> m_runAfterEval;
-
-        [SerializeReference]
         public List<MEB_BaseBehaviourData_ItemSettings> m_useInEval;
 
         [SerializeReference]
@@ -87,24 +81,6 @@ namespace MEBS.Runtime
             }
             else
             {
-                for (int i = 0; i < m_runBeforeEval.Count; i++)
-                {
-                    try
-                    {
-                        Type type = Type.GetType(m_runBeforeEval[i].m_class);
-                        MEB_BaseManager instance = (MEB_BaseManager)Activator.CreateInstance(type);
-                        instance.SetBlackboardKeys(m_runBeforeEval[i].m_blackboardIdenifyers, m_runBeforeEval[i].m_blackboardKeys);
-                        instance.m_chainState = MEB_BaseManager_ChainState.ChainMiddle;
-                        instance.m_itemSettings = m_runBeforeEval[i];
-
-                        returnList.Add(instance);
-                    }
-                    catch
-                    {
-                        Debug.LogWarning($"MEB_BBD_I_E_RBETC==F: manager ({i}, {m_runBeforeEval[i].m_class}) invalid name is wrong");
-                    }
-                }
-
                 int failureCount = 0;
 
                 for (int i = 0; i < m_useInEval.Count; i++)
@@ -147,24 +123,6 @@ namespace MEBS.Runtime
                     catch
                     {
                         Debug.LogWarning($"MEB_BBD_I_E_ETC==F: manager ({i}, {m_evalurators[i].m_class}) invalid name is wrong");
-                    }
-                }
-
-                for (int i = 0; i < m_runAfterEval.Count; i++)
-                {
-                    try
-                    {
-                        Type type = Type.GetType(m_runAfterEval[i].m_class);
-                        MEB_BaseManager instance = (MEB_BaseManager)Activator.CreateInstance(type);
-                        instance.SetBlackboardKeys(m_runAfterEval[i].m_blackboardIdenifyers, m_runAfterEval[i].m_blackboardKeys);
-                        instance.m_chainState = MEB_BaseManager_ChainState.ChainMiddle;
-                        instance.m_itemSettings = m_runAfterEval[i];
-
-                        returnList.Add(instance);
-                    }
-                    catch
-                    {
-                        Debug.LogWarning($"MEB_BBD_I_E_RAETC==F: manager ({i}, {m_runAfterEval[i].m_class}) invalid name is wrong");
                     }
                 }
 

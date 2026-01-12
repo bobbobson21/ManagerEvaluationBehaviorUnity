@@ -166,8 +166,6 @@ namespace MEBS.Editor
                 item.m_isNormalManager = false;
 
                 item.m_evalurators = new List<MEB_BaseBehaviourData_ItemSettings>();
-                item.m_runAfterEval = new List<MEB_BaseBehaviourData_ItemSettings>();
-                item.m_runBeforeEval = new List<MEB_BaseBehaviourData_ItemSettings>();
                 item.m_useInEval = new List<MEB_BaseBehaviourData_ItemSettings>();
 
                 return item;
@@ -351,38 +349,9 @@ namespace MEBS.Editor
 
                 GUILayout.EndHorizontal();
 
-                GUILayout.BeginVertical(EditorStyles.helpBox, GUILayout.Height(0));
-                GUILayout.Label("before evaluration", EditorStyles.boldLabel); //before eval
-                MEB_BaseBehaviourData_ItemSettings managerData = RenderAddManagerField(true, false, false);
-
-                if (managerData != null)
-                {
-                    item.m_runBeforeEval.Add( managerData );
-                }
-
-                for (int i = 0; i < item.m_runBeforeEval.Count; i++)
-                {
-                    int moveToIndex = RenderManager(item.m_runBeforeEval[i], i);
-
-                    if (moveToIndex < 0)
-                    {
-                        item.m_runBeforeEval.RemoveAt(i);
-                    }
-                    else
-                    {
-                        if (moveToIndex != i && moveToIndex < item.m_runBeforeEval.Count)
-                        {
-                            MEB_BaseBehaviourData_ItemSettings subItem = item.m_runBeforeEval[i];
-                            item.m_runBeforeEval.RemoveAt(i);
-                            item.m_runBeforeEval.Insert(moveToIndex, subItem);
-                        }
-                    }
-                }
-                GUILayout.EndVertical();//section divide
-
                 GUILayout.BeginVertical(EditorStyles.helpBox, GUILayout.Height(2));
                 GUILayout.Label("evaluators", EditorStyles.boldLabel); //eval
-                managerData = RenderAddManagerField(false, false, true);
+                MEB_BaseBehaviourData_ItemSettings managerData = RenderAddManagerField(false, false, true);
 
                 if (managerData != null)
                 {
@@ -436,36 +405,6 @@ namespace MEBS.Editor
                         }
                     }
                 }
-                GUILayout.EndVertical(); //section divide
-
-                GUILayout.BeginVertical(EditorStyles.helpBox, GUILayout.Height(2));
-                GUILayout.Label("after evaluration", EditorStyles.boldLabel); //after eval
-                managerData = RenderAddManagerField(true, false, false);
-
-                if (managerData != null)
-                {
-                    item.m_runAfterEval.Add(managerData);
-                }
-
-                for (int i = 0; i < item.m_runAfterEval.Count; i++)
-                {
-                    int moveToIndex = RenderManager(item.m_runAfterEval[i], i);
-
-                    if (moveToIndex < 0)
-                    {
-                        item.m_runAfterEval.RemoveAt(i);
-                    }
-                    else
-                    {
-                        if (moveToIndex != i && moveToIndex < item.m_runAfterEval.Count)
-                        {
-                            MEB_BaseBehaviourData_ItemSettings subItem = item.m_runAfterEval[i];
-                            item.m_runAfterEval.RemoveAt(i);
-                            item.m_runAfterEval.Insert(moveToIndex, subItem);
-                        }
-                    }
-                }
-
                 GUILayout.EndVertical(); //section divide
             }
             GUILayout.EndVertical();

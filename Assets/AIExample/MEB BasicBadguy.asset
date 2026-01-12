@@ -17,65 +17,53 @@ MonoBehaviour:
     - rid: 8164751483659092274
     m_isScoped: 0
     m_isForMainThread: 0
+    m_nonColapsed: 1
   - m_items:
-    - rid: 324396789511487488
-    m_isScoped: 0
+    - rid: 5459895752802959418
+    - rid: 5459895752802959424
+    m_isScoped: 1
     m_isForMainThread: 0
+    m_nonColapsed: 0
   - m_items:
-    - rid: 324396837991612652
-    m_isScoped: 0
+    - rid: 5459895752802959426
+    - rid: 5459895752802959428
+    m_isScoped: 1
     m_isForMainThread: 0
+    m_nonColapsed: 0
   references:
     version: 2
     RefIds:
     - rid: -2
       type: {class: , ns: , asm: }
-    - rid: 324396789511487488
+    - rid: 5459895752802959418
       type: {class: MEB_BaseBehaviourData_Item, ns: MEBS.Runtime, asm: Assembly-CSharp}
       data:
-        m_runBeforeEval: []
-        m_runAfterEval:
-        - rid: 324396789511487489
         m_useInEval:
-        - rid: 324396789511487492
-        - rid: 4792260105386852633
-        - rid: 4792260105386852504
-        - rid: 4792260105386852503
+        - rid: 5459895752802959420
+        - rid: 5459895752802959421
+        - rid: 5459895752802959422
+        - rid: 5459895752802959423
         m_evalurators:
-        - rid: 324396789511487490
+        - rid: 5459895752802959419
         m_noneEvalurationManager:
           rid: -2
         m_isNormalManager: 0
-    - rid: 324396789511487489
-      type: {class: MEB_BaseBehaviourData_ItemSettings, ns: MEBS.Runtime, asm: Assembly-CSharp}
-      data:
-        m_class: MEBS.Runtime.MEB_M_WalkTo
-        m_displayName: MEB_M_WalkTo
-        m_displayDiscription: "Makes the NPC move towards a desired location. \n\nvalid
-          blackboard data: \ntarget: (vector3BlackboardKeyAsString) \nspeed: (floatBlackboardKeyAsString)
-          def = (navAgentSpeed)"
-        m_blackboardIdenifyers:
-        - target
-        m_blackboardKeys:
-        - movePos
-        m_displayBlackboardSettingExpanded: 0
-        m_displayCustomSettingExpanded: 0
-        m_displayDebugSettingsExpanded: 0
-    - rid: 324396789511487490
+        m_nonColapsed: 0
+    - rid: 5459895752802959419
       type: {class: MEB_BaseBehaviourData_ItemSettings, ns: MEBS.Runtime, asm: Assembly-CSharp}
       data:
         m_class: MEBS.Runtime.MEB_E_EvalHighest
         m_displayName: MEB_E_EvalHighest
         m_displayDiscription: Gets all the managers in the 'managers to evalurate'
-          section to return an int thougth MEB_I_IntScoop.GetIntEvalValue(). The
-          one that returns the higest value, that also isn't already blocked, moves
-          on the rest are blocked from execution.
+          section to return an int thougth MEB_I_IntScoop.GetIntEvalValue(float delta).
+          The one that returns the higest value, that also isn't already blocked,
+          moves on the rest are blocked from execution.
         m_blackboardIdenifyers: []
         m_blackboardKeys: []
         m_displayBlackboardSettingExpanded: 0
         m_displayCustomSettingExpanded: 0
         m_displayDebugSettingsExpanded: 0
-    - rid: 324396789511487492
+    - rid: 5459895752802959420
       type: {class: MEB_BaseBehaviourData_ItemSettings, ns: MEBS.Runtime, asm: Assembly-CSharp}
       data:
         m_class: UserManger_Flee
@@ -91,101 +79,26 @@ MonoBehaviour:
         m_displayBlackboardSettingExpanded: 0
         m_displayCustomSettingExpanded: 0
         m_displayDebugSettingsExpanded: 0
-    - rid: 324396837991612652
-      type: {class: MEB_BaseBehaviourData_Item, ns: MEBS.Runtime, asm: Assembly-CSharp}
-      data:
-        m_runBeforeEval:
-        - rid: 324396837991612653
-        m_runAfterEval: []
-        m_useInEval:
-        - rid: 8164751483659092182
-        - rid: 324396837991612663
-        - rid: 324396837991612673
-        m_evalurators:
-        - rid: 324396837991612654
-        m_noneEvalurationManager:
-          rid: -2
-        m_isNormalManager: 0
-    - rid: 324396837991612653
+    - rid: 5459895752802959421
       type: {class: MEB_BaseBehaviourData_ItemSettings, ns: MEBS.Runtime, asm: Assembly-CSharp}
       data:
-        m_class: UserManger_GunBlackboardInterface
-        m_displayName: UserManger_GunBlackboardInterface
-        m_displayDiscription: "\n\nvaild blackboard data: \nstoreAmmoMaxIn: (intBlackboardKeyAsString)\nstoreAmmoTotalIn:
-          (intBlackboardKeyAsString)\nstoreAmmoClipIn: (intBlackboardKeyAsString)"
-        m_blackboardIdenifyers:
-        - storeAmmoMaxIn
-        - storeAmmoTotalIn
-        - storeAmmoClipIn
-        m_blackboardKeys:
-        - ammoMax
-        - ammoTotal
-        - ammoCurrentClip
-        m_displayBlackboardSettingExpanded: 0
-        m_displayCustomSettingExpanded: 0
-        m_displayDebugSettingsExpanded: 0
-    - rid: 324396837991612654
-      type: {class: MEB_BaseBehaviourData_ItemSettings, ns: MEBS.Runtime, asm: Assembly-CSharp}
-      data:
-        m_class: MEBS.Runtime.MEB_E_EvalHighest
-        m_displayName: MEB_E_EvalHighest
-        m_displayDiscription: Gets all the managers in the 'managers to evalurate'
-          section to return an int thougth MEB_I_IntScoop.GetIntEvalValue(). The
-          one that returns the higest value, that also isn't already blocked, moves
-          on the rest are blocked from execution.
-        m_blackboardIdenifyers: []
-        m_blackboardKeys: []
-        m_displayBlackboardSettingExpanded: 0
-        m_displayCustomSettingExpanded: 0
-        m_displayDebugSettingsExpanded: 0
-    - rid: 324396837991612663
-      type: {class: Manager_FireGunSettings, ns: , asm: Assembly-CSharp}
-      data:
-        m_class: UserManger_FireGun
-        m_displayName: UserManger_FireGun
-        m_displayDiscription: "=Fires a gun towards the attacker. \n\nvaild blackboard
-          data: \ngetAttackObjectFrom: (gameObjectBlackboardKeyAsString)"
-        m_blackboardIdenifyers:
-        - getAttackObjectFrom
-        m_blackboardKeys:
-        - attackerObj
-        m_displayBlackboardSettingExpanded: 0
-        m_displayCustomSettingExpanded: 0
-        m_displayDebugSettingsExpanded: 0
-        m_shootScope: 0.97
-        m_shootDistance: 4
-        m_speed: 10
-        m_speedMedium: 12
-        m_speedFast: 14
-    - rid: 324396837991612673
-      type: {class: MEB_BaseBehaviourData_ItemSettings, ns: MEBS.Runtime, asm: Assembly-CSharp}
-      data:
-        m_class: UserManger_ReloadGun
-        m_displayName: UserManger_ReloadGun
-        m_displayDiscription: reloads the gun
-        m_blackboardIdenifyers: []
-        m_blackboardKeys: []
-        m_displayBlackboardSettingExpanded: 0
-        m_displayCustomSettingExpanded: 0
-        m_displayDebugSettingsExpanded: 0
-    - rid: 4792260105386852503
-      type: {class: Manager_WanderSettings, ns: , asm: Assembly-CSharp}
-      data:
-        m_class: UserManger_Wander
-        m_displayName: UserManger_Wander
-        m_displayDiscription: "Makes the NPC wander around the place at will.\n\nvaild
-          blackboard data: \nstoreTargetLocationIn: (vector3BlackboardKeyAsString)"
+        m_class: UserManger_GetItem
+        m_displayName: UserManger_GetItem
+        m_displayDiscription: "moves the npc to the location of an item \n\nvaild
+          blackboard data: \nstoreTargetLocationIn: (vector3BlackboardKeyAsString)\ngetHealthObjectFrom:
+          (gameObjectBlackboardKeyAsString)\ngetAmmoObjectFromKey: (gameObjectBlackboardKeyAsString)"
         m_blackboardIdenifyers:
         - storeTargetLocationIn
+        - getHealthObjectFrom
+        - getAmmoObjectFrom
         m_blackboardKeys:
         - movePos
+        - healthObject
+        - ammoObject
         m_displayBlackboardSettingExpanded: 0
-        m_displayCustomSettingExpanded: 1
+        m_displayCustomSettingExpanded: 0
         m_displayDebugSettingsExpanded: 0
-        m_minRadius: 5
-        m_radius: 10
-        m_delayBetweenWandering: 4
-    - rid: 4792260105386852504
+    - rid: 5459895752802959422
       type: {class: Manager_GetCloseSettings, ns: , asm: Assembly-CSharp}
       data:
         m_class: UserManger_GetClose
@@ -205,26 +118,102 @@ MonoBehaviour:
         m_saftyRadius: 5
         m_minimumVelocity: 0.1
         m_randMoveRadius: 2
-    - rid: 4792260105386852633
-      type: {class: MEB_BaseBehaviourData_ItemSettings, ns: MEBS.Runtime, asm: Assembly-CSharp}
+    - rid: 5459895752802959423
+      type: {class: Manager_WanderSettings, ns: , asm: Assembly-CSharp}
       data:
-        m_class: UserManger_GetItem
-        m_displayName: UserManger_GetItem
-        m_displayDiscription: "moves the npc to the location of an item \n\nvaild
-          blackboard data: \nstoreTargetLocationIn: (vector3BlackboardKeyAsString)\ngetHealthObjectFrom:
-          (gameObjectBlackboardKeyAsString)\ngetAmmoObjectFromKey: (gameObjectBlackboardKeyAsString)"
+        m_class: UserManger_Wander
+        m_displayName: UserManger_Wander
+        m_displayDiscription: "Makes the NPC wander around the place at will.\n\nvaild
+          blackboard data: \nstoreTargetLocationIn: (vector3BlackboardKeyAsString)"
         m_blackboardIdenifyers:
         - storeTargetLocationIn
-        - getHealthObjectFrom
-        - getAmmoObjectFrom
         m_blackboardKeys:
         - movePos
-        - healthObject
-        - ammoObject
         m_displayBlackboardSettingExpanded: 0
         m_displayCustomSettingExpanded: 0
         m_displayDebugSettingsExpanded: 0
-    - rid: 8164751483659092182
+        m_minRadius: 5
+        m_radius: 10
+        m_delayBetweenWandering: 1
+    - rid: 5459895752802959424
+      type: {class: MEB_BaseBehaviourData_Item, ns: MEBS.Runtime, asm: Assembly-CSharp}
+      data:
+        m_useInEval: []
+        m_evalurators: []
+        m_noneEvalurationManager:
+          rid: 5459895752802959425
+        m_isNormalManager: 1
+        m_nonColapsed: 1
+    - rid: 5459895752802959425
+      type: {class: MEB_BaseBehaviourData_ItemSettings, ns: MEBS.Runtime, asm: Assembly-CSharp}
+      data:
+        m_class: MEBS.Runtime.MEB_M_WalkTo
+        m_displayName: MEB_M_WalkTo
+        m_displayDiscription: "Makes the NPC move towards a desired location. \n\nvalid
+          blackboard data: \ntarget: (vector3BlackboardKeyAsString) \nspeed: (floatBlackboardKeyAsString)
+          def = (navAgentSpeed)\nshouldMove: (boolBlackboardKeyAsString) def = true"
+        m_blackboardIdenifyers:
+        - target
+        m_blackboardKeys:
+        - movePos
+        m_displayBlackboardSettingExpanded: 0
+        m_displayCustomSettingExpanded: 0
+        m_displayDebugSettingsExpanded: 0
+    - rid: 5459895752802959426
+      type: {class: MEB_BaseBehaviourData_Item, ns: MEBS.Runtime, asm: Assembly-CSharp}
+      data:
+        m_useInEval: []
+        m_evalurators: []
+        m_noneEvalurationManager:
+          rid: 5459895752802959427
+        m_isNormalManager: 1
+        m_nonColapsed: 1
+    - rid: 5459895752802959427
+      type: {class: MEB_BaseBehaviourData_ItemSettings, ns: MEBS.Runtime, asm: Assembly-CSharp}
+      data:
+        m_class: UserManger_GunBlackboardInterface
+        m_displayName: UserManger_GunBlackboardInterface
+        m_displayDiscription: "\n\nvaild blackboard data: \nstoreAmmoMaxIn: (intBlackboardKeyAsString)\nstoreAmmoTotalIn:
+          (intBlackboardKeyAsString)\nstoreAmmoClipIn: (intBlackboardKeyAsString)"
+        m_blackboardIdenifyers:
+        - storeAmmoMaxIn
+        - storeAmmoTotalIn
+        - storeAmmoClipIn
+        m_blackboardKeys:
+        - ammoMax
+        - ammoTotal
+        - ammoCurrentClip
+        m_displayBlackboardSettingExpanded: 1
+        m_displayCustomSettingExpanded: 0
+        m_displayDebugSettingsExpanded: 0
+    - rid: 5459895752802959428
+      type: {class: MEB_BaseBehaviourData_Item, ns: MEBS.Runtime, asm: Assembly-CSharp}
+      data:
+        m_useInEval:
+        - rid: 5459895752802959430
+        - rid: 5459895752802959431
+        - rid: 5459895752802959432
+        m_evalurators:
+        - rid: 5459895752802959429
+        m_noneEvalurationManager:
+          rid: -2
+        m_isNormalManager: 0
+        m_nonColapsed: 1
+    - rid: 5459895752802959429
+      type: {class: MEB_BaseBehaviourData_ItemSettings, ns: MEBS.Runtime, asm: Assembly-CSharp}
+      data:
+        m_class: MEBS.Runtime.MEB_E_EvalHighest
+        m_displayName: MEB_E_EvalHighest
+        m_displayDiscription: Gets all the managers in the 'managers to evalurate'
+          section to return an int thougth MEB_I_IntScoop.GetIntEvalValue(float delta).
+          The one that returns the higest value, that also isn't already blocked,
+          moves on the rest are blocked from execution.
+        m_blackboardIdenifyers: []
+        m_blackboardKeys: []
+        m_displayBlackboardSettingExpanded: 0
+        m_displayCustomSettingExpanded: 0
+        m_displayDebugSettingsExpanded: 0
+    - rid: 5459895752802959430
       type: {class: Manager_MakeEyeFollowPathSettings, ns: , asm: Assembly-CSharp}
       data:
         m_class: UserManger_MakeEyeFollowPath
@@ -236,16 +225,45 @@ MonoBehaviour:
         m_displayCustomSettingExpanded: 0
         m_displayDebugSettingsExpanded: 0
         m_speed: 10
+    - rid: 5459895752802959431
+      type: {class: Manager_FireGunSettings, ns: , asm: Assembly-CSharp}
+      data:
+        m_class: UserManger_FireGun
+        m_displayName: UserManger_FireGun
+        m_displayDiscription: "Fires a gun towards the attacker. \n\nvaild blackboard
+          data: \ngetAttackObjectFrom: (gameObjectBlackboardKeyAsString)"
+        m_blackboardIdenifyers:
+        - getAttackObjectFrom
+        m_blackboardKeys:
+        - attackerObj
+        m_displayBlackboardSettingExpanded: 0
+        m_displayCustomSettingExpanded: 0
+        m_displayDebugSettingsExpanded: 0
+        m_shootScope: 0.97
+        m_shootDistance: 4
+        m_speed: 10
+        m_speedMedium: 12
+        m_speedFast: 14
+    - rid: 5459895752802959432
+      type: {class: MEB_BaseBehaviourData_ItemSettings, ns: MEBS.Runtime, asm: Assembly-CSharp}
+      data:
+        m_class: UserManger_ReloadGun
+        m_displayName: UserManger_ReloadGun
+        m_displayDiscription: reloads the gun
+        m_blackboardIdenifyers: []
+        m_blackboardKeys: []
+        m_displayBlackboardSettingExpanded: 0
+        m_displayCustomSettingExpanded: 0
+        m_displayDebugSettingsExpanded: 0
     - rid: 8164751483659092274
       type: {class: MEB_BaseBehaviourData_Item, ns: MEBS.Runtime, asm: Assembly-CSharp}
       data:
-        m_runBeforeEval: []
-        m_runAfterEval: []
         m_useInEval: []
         m_evalurators: []
         m_noneEvalurationManager:
           rid: 8164751483659092275
         m_isNormalManager: 1
+        m_nonColapsed: 1
     - rid: 8164751483659092275
       type: {class: MEB_BaseBehaviourData_ItemSettings, ns: MEBS.Runtime, asm: Assembly-CSharp}
       data:
