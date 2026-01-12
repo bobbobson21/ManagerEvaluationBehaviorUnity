@@ -36,13 +36,17 @@ public class AI_C_EyeSensorList : MonoBehaviour
                 return;
             }
 
+
             if (m_teamOparator != null && m_doTeamBlackbaordCheck == true)
             {
                 for (int i = 0; i < m_teamOparator.GetAllOnMyTeam().Count; i++)
                 {
                     if (m_teamOparator.GetBlackboardOfTeamMate(i) != null && ((GameObject)m_teamOparator.GetBlackboardOfTeamMate(i).GetObject(m_inputLocation)) == collision.gameObject)
                     {
-                        return;
+                        if (m_teamOparator.GetObjectOfTeamMate(i) != null && m_teamOparator.GetObjectOfTeamMate(i) != gameObject && m_teamOparator.GetObjectOfTeamMate(i) != gameObject.transform.parent.gameObject)
+                        {
+                            return;
+                        }
                     }
                 }
             }

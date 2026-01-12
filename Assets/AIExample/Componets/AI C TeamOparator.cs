@@ -56,6 +56,11 @@ public class AICTeamOparator : MonoBehaviour
         return m_teamDataBlackboard[m_teamId][ai];
     }
 
+    public GameObject GetObjectOfTeamMate(int ai)
+    {
+        return m_teamDataObject[m_teamId][ai];
+    }
+
     public string GetTeamOfObject(GameObject ai)
     {
         foreach (var item in m_teamDataObject)
