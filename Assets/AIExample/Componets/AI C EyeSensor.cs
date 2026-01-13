@@ -53,7 +53,7 @@ public class AI_C_EyeSensor : MonoBehaviour
                 {
                     if (m_teamOparator.GetBlackboardOfTeamMate(i) != null && ((GameObject)m_teamOparator.GetBlackboardOfTeamMate(i).GetObject(m_inputLocation)) == collision.gameObject)
                     {
-                        if (m_teamOparator.GetObjectOfTeamMate(i) != null && m_teamOparator.GetObjectOfTeamMate(i) != gameObject && m_teamOparator.GetObjectOfTeamMate(i) != gameObject.transform.parent.gameObject)
+                        if (m_teamOparator.GetBlackboardOfTeamMate(i).gameObject.tag == gameObject.tag)
                         {
                             return;
                         }
