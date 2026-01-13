@@ -5161,7 +5161,7 @@ GameObject:
   - component: {fileID: 5130441536529181798}
   - component: {fileID: 5640599060716311151}
   m_Layer: 0
-  m_Name: AI_A
+  m_Name: Team_AI
   m_TagString: AIUnit
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5270,7 +5270,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2a0d7c359b079f4781ab3b7e6da1112, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_behaviorSet: {fileID: 11400000, guid: 650a62d9671176647947f3c7a879c1da, type: 2}
+  m_behaviorSet: {fileID: 11400000, guid: 5c1f1e230b723994ba95651dc1989aab, type: 2}
   m_blackboard: {fileID: 2367188205530176646}
 --- !u!114 &7153689478510602468
 MonoBehaviour:

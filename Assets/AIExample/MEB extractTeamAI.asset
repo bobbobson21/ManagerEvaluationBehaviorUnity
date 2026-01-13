@@ -31,6 +31,7 @@ MonoBehaviour:
   - m_items:
     - rid: 5459895752802959444
     - rid: 5459895754177118209
+    - rid: 6805889325134250046
     - rid: 5459895752802959442
     m_isScoped: 1
     m_isForMainThread: 0
@@ -749,6 +750,31 @@ MonoBehaviour:
         m_displayBlackboardSettingExpanded: 0
         m_displayCustomSettingExpanded: 0
         m_displayDebugSettingsExpanded: 0
+    - rid: 6805889325134250046
+      type: {class: MEB_BaseBehaviourData_Item, ns: MEBS.Runtime, asm: Assembly-CSharp}
+      data:
+        m_useInEval: []
+        m_evalurators: []
+        m_noneEvalurationManager:
+          rid: 6805889325134250047
+        m_isNormalManager: 1
+        m_nonColapsed: 1
+    - rid: 6805889325134250047
+      type: {class: Manager_GoToExtractSettings, ns: , asm: Assembly-CSharp}
+      data:
+        m_class: UserManger_GoToExtractAsTeam
+        m_displayName: UserManger_GoToExtractAsTeam
+        m_displayDiscription: "Makes the AI go to extract.\n\nvaild blackboard data:
+          \nstoreTargetLocationIn: (vector3BlackboardKeyAsString)"
+        m_blackboardIdenifyers:
+        - storeTargetLocationIn
+        m_blackboardKeys:
+        - movePos
+        m_displayBlackboardSettingExpanded: 0
+        m_displayCustomSettingExpanded: 0
+        m_displayDebugSettingsExpanded: 0
+        m_extractIn: 240
+        m_lable: extract is in
     - rid: 8401230053211373626
       type: {class: MEB_BaseBehaviourData_Item, ns: MEBS.Runtime, asm: Assembly-CSharp}
       data:

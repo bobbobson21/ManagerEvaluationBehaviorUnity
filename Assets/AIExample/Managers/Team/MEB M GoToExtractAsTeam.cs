@@ -52,7 +52,7 @@ public class UserManger_GoToExtractAsTeam : MEB_BaseManager//, MEB_I_IntScoop
 
     public override void EvaluationEnd(int index, float delta)
     {
-        bool shouldBlock = false;
+        bool goToExitIfPossible = true;
         bool foundAnExit = false;
         m_extractIn -= delta;
 
@@ -62,22 +62,22 @@ public class UserManger_GoToExtractAsTeam : MEB_BaseManager//, MEB_I_IntScoop
 
             if (teammate.m_extractObject != null)
             {
-                foundAnExit = true;
+                foundAnExit = true; //we also need to have an exit to go to
             }
 
             if (teammate.m_resourceCount <= teammate.m_desiredResourceCount)
             {
-                shouldBlock = true;
-                return;
+                goToExitIfPossible = false; //we cant go to the exit if evy team mate hasnt met there resource count
             }
         }
 
         if (m_extractIn <= 0)
         {
-            shouldBlock = false;
+            m_director.m_blackboard.SetObject("wantsToExtract", true);
+            goToExitIfPossible = true; //we do need to go to the exit reguardless if every NPC is done
         }
 
-        if (shouldBlock == true || foundAnExit == false)
+        if (goToExitIfPossible == false || foundAnExit == false)
         {
             BlockMoveToExecutionForCycle();
         }
@@ -86,6 +86,13 @@ public class UserManger_GoToExtractAsTeam : MEB_BaseManager//, MEB_I_IntScoop
     public override void OnInitialized()
     {
         m_teamOparator = m_director.m_gameObject.GetComponent<AICTeamOparator>();
+
+        Manager_GoToExtractSettings settings = (Manager_GoToExtractSettings)m_itemSettings;
+
+        if (settings != null)
+        { 
+            m_extractIn = settings.m_extractIn;
+        }
     }
 
     public override void OnStart() //put stuff in these if you need something to happen when the manager leaves or enters exacuteion
@@ -99,15 +106,27 @@ public class UserManger_GoToExtractAsTeam : MEB_BaseManager//, MEB_I_IntScoop
 
     public override void OnUpdate(float delta, int index)
     {
-        float dist = float.MaxValue;
+        float closestDist = float.MaxValue;
         GameObject extractPoint = null;
 
         for (int i = 0; i < m_teamOparator.GetAllOnMyTeam().Count; i++)
         {
             UserBlackboard_BasicBadguy teammate = (UserBlackboard_BasicBadguy)m_teamOparator.GetBlackboardOfTeamMate(i);
+            if (teammate.m_extractObject != null)
+            {
+                float currentDist = (teammate.m_extractObject.transform.position - m_director.m_gameObject.transform.position).magnitude;
 
-            if(teammate)
+                if (currentDist <= closestDist)
+                {
+                    closestDist = currentDist;
+                    extractPoint = teammate.m_extractObject;
+                }
+            }
+        }
 
+        if (extractPoint != null)
+        {
+            m_director.m_blackboard.SetObject(m_storeTargetLocationInKey, extractPoint.transform.position);
         }
     }
 }

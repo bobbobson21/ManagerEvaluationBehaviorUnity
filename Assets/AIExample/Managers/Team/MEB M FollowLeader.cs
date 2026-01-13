@@ -82,6 +82,12 @@ public class UserManger_FollowLeader : MEB_BaseManager, MEB_I_IntScoop
 
     public int GetIntEvalValue(float delta)
     {
+        GameObject obj = m_teamOparator.GetLeader();
+        if ((obj.transform.position - m_director.m_gameObject.transform.position).magnitude > 16)
+        {
+            return 100;
+        }
+
         return 1;
     }
 }
