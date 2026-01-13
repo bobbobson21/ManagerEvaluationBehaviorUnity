@@ -71,9 +71,13 @@ public class UserManger_FollowLeader : MEB_BaseManager, MEB_I_IntScoop
         GameObject obj = m_teamOparator.GetLeader();
         Vector3 destanation = m_director.m_gameObject.transform.position;
 
-        if ((obj.transform.position - m_director.m_gameObject.transform.position).magnitude > 6)
+        if ((obj.transform.position - m_director.m_gameObject.transform.position).magnitude > 3)
         {
             destanation = destanation + ((obj.transform.position - m_director.m_gameObject.transform.position).normalized * 2);
+        }
+        else
+        {
+            destanation = obj.transform.position + (new Vector3(Random.Range(-1.0f, 1.0f), 0, Random.Range(-1.0f, 1.0f))).normalized * 3;
         }
 
         m_director.m_blackboard.SetObject(m_storeTargetLocationInKey, destanation);
@@ -82,11 +86,11 @@ public class UserManger_FollowLeader : MEB_BaseManager, MEB_I_IntScoop
 
     public int GetIntEvalValue(float delta)
     {
-        GameObject obj = m_teamOparator.GetLeader();
+        /*GameObject obj = m_teamOparator.GetLeader();
         if ((obj.transform.position - m_director.m_gameObject.transform.position).magnitude > 16)
         {
             return 100;
-        }
+        }*/
 
         return 1;
     }

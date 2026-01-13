@@ -65,7 +65,7 @@ public class UserManger_GoToExtractAsTeam : MEB_BaseManager//, MEB_I_IntScoop
                 foundAnExit = true; //we also need to have an exit to go to
             }
 
-            if (teammate.m_resourceCount <= teammate.m_desiredResourceCount)
+            if (teammate.m_resourceCount < teammate.m_desiredResourceCount)
             {
                 goToExitIfPossible = false; //we cant go to the exit if evy team mate hasnt met there resource count
             }
@@ -112,7 +112,7 @@ public class UserManger_GoToExtractAsTeam : MEB_BaseManager//, MEB_I_IntScoop
         for (int i = 0; i < m_teamOparator.GetAllOnMyTeam().Count; i++)
         {
             UserBlackboard_BasicBadguy teammate = (UserBlackboard_BasicBadguy)m_teamOparator.GetBlackboardOfTeamMate(i);
-            if (teammate.m_extractObject != null)
+            if (teammate.m_extractObject != null && m_director.m_gameObject.tag == teammate.gameObject.tag)
             {
                 float currentDist = (teammate.m_extractObject.transform.position - m_director.m_gameObject.transform.position).magnitude;
 

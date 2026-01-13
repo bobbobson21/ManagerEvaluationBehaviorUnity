@@ -25,6 +25,7 @@ MonoBehaviour:
     - rid: 324396972871516242
     - rid: 324397068597854295
     - rid: 8401230053211373626
+    - rid: 8401230120955936826
     m_isScoped: 1
     m_isForMainThread: 1
     m_nonColapsed: 0
@@ -41,7 +42,7 @@ MonoBehaviour:
     - rid: 5459895752802959433
     m_isScoped: 1
     m_isForMainThread: 0
-    m_nonColapsed: 1
+    m_nonColapsed: 0
   references:
     version: 2
     RefIds:
@@ -323,7 +324,7 @@ MonoBehaviour:
       data:
         m_useInEval:
         - rid: 5459895752802959453
-        - rid: 5459895752802959455
+        - rid: 8401230120955936828
         - rid: 5459895752802959456
         - rid: 5459895752802959457
         - rid: 5459895752802959458
@@ -367,8 +368,8 @@ MonoBehaviour:
         - ' 0:???'
         m_blackboardKeys:
         - extraAgressive
-        m_displayBlackboardSettingExpanded: 1
-        m_displayCustomSettingExpanded: 1
+        m_displayBlackboardSettingExpanded: 0
+        m_displayCustomSettingExpanded: 0
         m_displayDebugSettingsExpanded: 0
         m_inverted: 1
         m_blockRangeStartPoint: 6
@@ -431,23 +432,6 @@ MonoBehaviour:
         m_uniquePointCount: 6
         m_maxAttemptsForUniquePoint: 12
         m_uniqueRadius: 5
-    - rid: 5459895752802959455
-      type: {class: MEB_BaseBehaviourData_ItemSettings, ns: MEBS.Runtime, asm: Assembly-CSharp}
-      data:
-        m_class: UserManger_GoToResource
-        m_displayName: UserManger_GoToResource
-        m_displayDiscription: "Makes the npc move to a resource\n\nvaild blackboard
-          data: \ngetResourceObjectFrom: (gameObjectBlackboardKeyAsString)\nstoreTargetLocationIn:
-          (vector3BlackboardKeyAsString)"
-        m_blackboardIdenifyers:
-        - getResourceObjectFrom
-        - storeTargetLocationIn
-        m_blackboardKeys:
-        - resourceObject
-        - movePos
-        m_displayBlackboardSettingExpanded: 1
-        m_displayCustomSettingExpanded: 0
-        m_displayDebugSettingsExpanded: 0
     - rid: 5459895752802959456
       type: {class: MEB_BaseBehaviourData_ItemSettings, ns: MEBS.Runtime, asm: Assembly-CSharp}
       data:
@@ -565,6 +549,7 @@ MonoBehaviour:
         m_useInEval:
         - rid: 5459895774150393924
         - rid: 5459895774150393920
+        - rid: 8401230120955936829
         - rid: 5459895774150393858
         - rid: 5459895774150393859
         - rid: 5459895774150393861
@@ -576,7 +561,7 @@ MonoBehaviour:
         m_noneEvalurationManager:
           rid: -2
         m_isNormalManager: 0
-        m_nonColapsed: 0
+        m_nonColapsed: 1
     - rid: 5459895754177118210
       type: {class: MEB_BaseBehaviourData_ItemSettings, ns: MEBS.Runtime, asm: Assembly-CSharp}
       data:
@@ -695,8 +680,8 @@ MonoBehaviour:
         m_displayCustomSettingExpanded: 0
         m_displayDebugSettingsExpanded: 0
         m_inverted: 1
-        m_blockRangeStartPoint: 2
-        m_blockRangeEndPoint: 2
+        m_blockRangeStartPoint: 3
+        m_blockRangeEndPoint: 3
     - rid: 5459895774150393923
       type: {class: MEB_BaseBehaviourData_BlackboardCondBlockSettings, ns: MEBS.Runtime, asm: Assembly-CSharp}
       data:
@@ -714,7 +699,7 @@ MonoBehaviour:
         m_displayCustomSettingExpanded: 0
         m_displayDebugSettingsExpanded: 0
         m_inverted: 0
-        m_blockRangeStartPoint: 3
+        m_blockRangeStartPoint: 4
         m_blockRangeEndPoint: 2147483647
     - rid: 5459895774150393924
       type: {class: MEB_BaseBehaviourData_ItemSettings, ns: MEBS.Runtime, asm: Assembly-CSharp}
@@ -800,3 +785,62 @@ MonoBehaviour:
         m_displayDebugSettingsExpanded: 0
         m_allowAgressionInMin: 8
         m_allowAgressionInMax: 12
+    - rid: 8401230120955936826
+      type: {class: MEB_BaseBehaviourData_Item, ns: MEBS.Runtime, asm: Assembly-CSharp}
+      data:
+        m_useInEval: []
+        m_evalurators: []
+        m_noneEvalurationManager:
+          rid: 8401230120955936827
+        m_isNormalManager: 1
+        m_nonColapsed: 1
+    - rid: 8401230120955936827
+      type: {class: MEB_BaseBehaviourData_ItemSettings, ns: MEBS.Runtime, asm: Assembly-CSharp}
+      data:
+        m_class: UserManger_TeamAgression
+        m_displayName: UserManger_TeamAgression
+        m_displayDiscription: "makesus agressive some one sees us or our teammates\n\nvaild
+          blackboard data: \nstoreIsAgressiveIn: (boolBlackboardKeyAsString)"
+        m_blackboardIdenifyers:
+        - storeIsAgressiveIn
+        m_blackboardKeys:
+        - extraAgressive
+        m_displayBlackboardSettingExpanded: 0
+        m_displayCustomSettingExpanded: 0
+        m_displayDebugSettingsExpanded: 0
+    - rid: 8401230120955936828
+      type: {class: MEB_BaseBehaviourData_ItemSettings, ns: MEBS.Runtime, asm: Assembly-CSharp}
+      data:
+        m_class: UserManger_GoToResourceEndable
+        m_displayName: UserManger_GoToResourceEndable
+        m_displayDiscription: "Makes the npc move to a resource\n\nvaild blackboard
+          data: \ngetResourceObjectFrom: (gameObjectBlackboardKeyAsString)\ngetResourceCountFrom
+          :(intBlackboardKeyAsString)\ngetDesiredResourceCountFrom :(intBlackboardKeyAsString)\nstoreTargetLocationIn:
+          (vector3BlackboardKeyAsString)"
+        m_blackboardIdenifyers:
+        - getResourceObjectFrom
+        - getResourceCountFrom
+        - getDesiredResourceCountFrom
+        - storeTargetLocationIn
+        m_blackboardKeys:
+        - resourceObject
+        - resourceCount
+        - desiredResourceCount
+        - movePos
+        m_displayBlackboardSettingExpanded: 0
+        m_displayCustomSettingExpanded: 0
+        m_displayDebugSettingsExpanded: 0
+    - rid: 8401230120955936829
+      type: {class: MEB_BaseBehaviourData_ItemSettings, ns: MEBS.Runtime, asm: Assembly-CSharp}
+      data:
+        m_class: UserManger_StickWithOtherTeammates
+        m_displayName: UserManger_StickWithOtherTeammates
+        m_displayDiscription: "Makes the AI follow its team leader.\n\nvaild blackboard
+          data: \nstoreTargetLocationIn: (vector3BlackboardKeyAsString)"
+        m_blackboardIdenifyers:
+        - storeTargetLocationIn
+        m_blackboardKeys:
+        - movePos
+        m_displayBlackboardSettingExpanded: 0
+        m_displayCustomSettingExpanded: 0
+        m_displayDebugSettingsExpanded: 0
