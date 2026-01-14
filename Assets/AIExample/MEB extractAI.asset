@@ -491,7 +491,7 @@ MonoBehaviour:
         m_blackboardKeys:
         - resourceObject
         - movePos
-        m_displayBlackboardSettingExpanded: 1
+        m_displayBlackboardSettingExpanded: 0
         m_displayCustomSettingExpanded: 0
         m_displayDebugSettingsExpanded: 0
     - rid: 5459895752802959456

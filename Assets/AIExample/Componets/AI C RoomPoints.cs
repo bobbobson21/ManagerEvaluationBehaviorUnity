@@ -24,6 +24,8 @@ public class AICRoomPoints : MonoBehaviour
         Gizmos.color = new Color(1, 0.1f, 0, 1);
         Gizmos.DrawWireSphere(transform.position, m_clearRadius);
 
+        Gizmos.DrawSphere(transform.position, 0.5f);
+
         Gizmos.color = new Color(0, 0.5f, 1, 1);
         Gizmos.DrawWireSphere(transform.position, m_reachRadius);
     }

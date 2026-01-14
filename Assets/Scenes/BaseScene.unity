@@ -2084,8 +2084,8 @@ Transform:
   m_GameObject: {fileID: 131324082}
   serializedVersion: 2
   m_LocalRotation: {x: -0.0010357928, y: -0, z: -0, w: 0.99999946}
-  m_LocalPosition: {x: 12, y: 19.9, z: -38.8}
-  m_LocalScale: {x: 21.192, y: 1.210519, z: 32.329277}
+  m_LocalPosition: {x: 10.71, y: 19.9, z: -38.8}
+  m_LocalScale: {x: 24.313581, y: 1.210519, z: 32.329277}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1424456514}
@@ -5123,7 +5123,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4928611397255844807, guid: 299bd7dc79e9d554ebc85b5fc5356c50, type: 3}
       propertyPath: m_reachRadius
-      value: 29.4
+      value: 40
       objectReference: {fileID: 0}
     - target: {fileID: 7267797193597354067, guid: 299bd7dc79e9d554ebc85b5fc5356c50, type: 3}
       propertyPath: m_Name
@@ -7569,6 +7569,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1408928370}
     m_Modifications:
+    - target: {fileID: 4928611397255844807, guid: 299bd7dc79e9d554ebc85b5fc5356c50, type: 3}
+      propertyPath: m_reachRadius
+      value: 15.4
+      objectReference: {fileID: 0}
     - target: {fileID: 7267797193597354067, guid: 299bd7dc79e9d554ebc85b5fc5356c50, type: 3}
       propertyPath: m_Name
       value: roompoints (22)
@@ -11488,6 +11492,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1408928370}
     m_Modifications:
+    - target: {fileID: 4928611397255844807, guid: 299bd7dc79e9d554ebc85b5fc5356c50, type: 3}
+      propertyPath: m_reachRadius
+      value: 15.4
+      objectReference: {fileID: 0}
     - target: {fileID: 7267797193597354067, guid: 299bd7dc79e9d554ebc85b5fc5356c50, type: 3}
       propertyPath: m_Name
       value: roompoints (25)
@@ -26812,6 +26820,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1408928370}
     m_Modifications:
+    - target: {fileID: 4928611397255844807, guid: 299bd7dc79e9d554ebc85b5fc5356c50, type: 3}
+      propertyPath: m_reachRadius
+      value: 15.4
+      objectReference: {fileID: 0}
     - target: {fileID: 7267797193597354067, guid: 299bd7dc79e9d554ebc85b5fc5356c50, type: 3}
       propertyPath: m_Name
       value: roompoints (24)
@@ -27665,6 +27677,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1408928370}
     m_Modifications:
+    - target: {fileID: 4928611397255844807, guid: 299bd7dc79e9d554ebc85b5fc5356c50, type: 3}
+      propertyPath: m_reachRadius
+      value: 15.4
+      objectReference: {fileID: 0}
     - target: {fileID: 7267797193597354067, guid: 299bd7dc79e9d554ebc85b5fc5356c50, type: 3}
       propertyPath: m_Name
       value: roompoints (23)
