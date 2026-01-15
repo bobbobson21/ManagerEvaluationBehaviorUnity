@@ -56,7 +56,7 @@ public class UserManger_Eval_IsNotLeader : MEB_BaseManager, MEB_I_EvalScoop
     public override void EvaluationStart(int index, float delta)
     { 
         int arrayLength = (m_endPointOfScope - m_startPointOfScope);
-        bool isLeader = m_teamOparator.IsLeader();
+        bool isLeader = m_teamOparator.IsMyLeader();
 
         for (int i = 0; i < arrayLength; i++)
         {

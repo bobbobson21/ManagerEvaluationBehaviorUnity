@@ -43,6 +43,11 @@ MonoBehaviour:
     m_isScoped: 1
     m_isForMainThread: 0
     m_nonColapsed: 0
+  - m_items:
+    - rid: 6805889367801856058
+    m_isScoped: 0
+    m_isForMainThread: 0
+    m_nonColapsed: 1
   references:
     version: 2
     RefIds:
@@ -123,9 +128,9 @@ MonoBehaviour:
         - desiredResourceCount
         - extraAgressive
         m_displayBlackboardSettingExpanded: 0
-        m_displayCustomSettingExpanded: 0
+        m_displayCustomSettingExpanded: 1
         m_displayDebugSettingsExpanded: 0
-        m_greedAmount: 45
+        m_greedAmount: 35
     - rid: 324397009209655356
       type: {class: MEB_BaseBehaviourData_Item, ns: MEBS.Runtime, asm: Assembly-CSharp}
       data:
@@ -561,7 +566,7 @@ MonoBehaviour:
         m_noneEvalurationManager:
           rid: -2
         m_isNormalManager: 0
-        m_nonColapsed: 1
+        m_nonColapsed: 0
     - rid: 5459895754177118210
       type: {class: MEB_BaseBehaviourData_ItemSettings, ns: MEBS.Runtime, asm: Assembly-CSharp}
       data:
@@ -760,6 +765,39 @@ MonoBehaviour:
         m_displayDebugSettingsExpanded: 0
         m_extractIn: 240
         m_lable: extract is in
+    - rid: 6805889367801856058
+      type: {class: MEB_BaseBehaviourData_Item, ns: MEBS.Runtime, asm: Assembly-CSharp}
+      data:
+        m_useInEval:
+        - rid: 6805889367801856060
+        m_evalurators:
+        - rid: 6805889367801856059
+        m_noneEvalurationManager:
+          rid: -2
+        m_isNormalManager: 0
+        m_nonColapsed: 1
+    - rid: 6805889367801856059
+      type: {class: MEB_BaseBehaviourData_ItemSettings, ns: MEBS.Runtime, asm: Assembly-CSharp}
+      data:
+        m_class: UserManger_Eval_IsLeader
+        m_displayName: UserManger_Eval_IsLeader
+        m_displayDiscription: Allows exacuteion if the AI is the leader of its team.
+        m_blackboardIdenifyers: []
+        m_blackboardKeys: []
+        m_displayBlackboardSettingExpanded: 0
+        m_displayCustomSettingExpanded: 0
+        m_displayDebugSettingsExpanded: 0
+    - rid: 6805889367801856060
+      type: {class: MEB_BaseBehaviourData_ItemSettings, ns: MEBS.Runtime, asm: Assembly-CSharp}
+      data:
+        m_class: UserManger_ChangeTeamLeader
+        m_displayName: UserManger_ChangeTeamLeader
+        m_displayDiscription: changes the leader of this AIs team base on given factors
+        m_blackboardIdenifyers: []
+        m_blackboardKeys: []
+        m_displayBlackboardSettingExpanded: 0
+        m_displayCustomSettingExpanded: 0
+        m_displayDebugSettingsExpanded: 0
     - rid: 8401230053211373626
       type: {class: MEB_BaseBehaviourData_Item, ns: MEBS.Runtime, asm: Assembly-CSharp}
       data:

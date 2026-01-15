@@ -32,7 +32,7 @@ MonoBehaviour:
     - rid: 8401230053211373626
     m_isScoped: 1
     m_isForMainThread: 1
-    m_nonColapsed: 0
+    m_nonColapsed: 1
   - m_items:
     - rid: 5459895752802959444
     - rid: 5459895752802959442
@@ -125,7 +125,7 @@ MonoBehaviour:
         - desiredResourceCount
         - extraAgressive
         m_displayBlackboardSettingExpanded: 0
-        m_displayCustomSettingExpanded: 0
+        m_displayCustomSettingExpanded: 1
         m_displayDebugSettingsExpanded: 0
         m_greedAmount: 45
     - rid: 324397009209655356

@@ -9,38 +9,66 @@ public class AICTeamOparator : MonoBehaviour
     public string m_teamId = "";
     public MEB_BaseBlackboard m_blackboard;
 
-    private static Dictionary<string,List<GameObject>> m_teamDataObject = new Dictionary<string,List<GameObject>>();
+    private static Dictionary<string, GameObject> m_teamLeaderData = new Dictionary<string, GameObject>();
+    private static Dictionary<string, List<GameObject>> m_teamDataObject = new Dictionary<string, List<GameObject>>();
     private static Dictionary<string, List<MEB_BaseBlackboard>> m_teamDataBlackboard = new Dictionary<string, List<MEB_BaseBlackboard>>();
 
     public GameObject GetLeaderOfTeam(string team)
     {
-        for (int i = 0; i < m_teamDataObject[team].Count; i++)
+        if (m_teamLeaderData.ContainsKey(m_teamId) == true && m_teamLeaderData[team] != null)
         {
-            if (m_teamDataObject[team][i] != null)
+            return m_teamLeaderData[team];
+        }
+        else
+        {
+
+            for (int i = 0; i < m_teamDataObject[team].Count; i++)
             {
-                return m_teamDataObject[team][i];
+                if (m_teamDataObject[team][i] != null)
+                {
+                    m_teamLeaderData[team] = m_teamDataObject[team][i];
+                    return m_teamLeaderData[team];
+                }
             }
         }
 
         return null;
     }
 
-    public GameObject GetLeader()
+    public GameObject GetMyLeader()
     {
-        for (int i = 0; i < m_teamDataObject[m_teamId].Count; i++)
+        if (m_teamLeaderData.ContainsKey(m_teamId) == true && m_teamLeaderData[m_teamId] != null)
         {
-            if (m_teamDataObject[m_teamId][i] != null)
+            return m_teamLeaderData[m_teamId];
+        }
+        else
+        {
+            for (int i = 0; i < m_teamDataObject[m_teamId].Count; i++)
             {
-                return m_teamDataObject[m_teamId][i];
+                if (m_teamDataObject[m_teamId][i] != null)
+                {
+                    m_teamLeaderData[m_teamId] = m_teamDataObject[m_teamId][i];
+                    return m_teamLeaderData[m_teamId];
+                }
             }
         }
 
         return null;
     }
 
-    public bool IsLeader()
+    public void SetMyLeader(GameObject leader)
     {
-        return (GetLeader() == gameObject);
+        m_teamLeaderData[m_teamId] = leader;
+    }
+
+    public void SetLeaderOfTeam(string team, GameObject leader)
+    {
+        m_teamLeaderData[team] = leader;
+    }
+
+    public bool IsMyLeader()
+    {
+        return (GetMyLeader() == gameObject);
     }
 
     public bool IsOnSameTeam(GameObject ai)

@@ -68,7 +68,7 @@ public class UserManger_FollowLeader : MEB_BaseManager, MEB_I_IntScoop
 
     public override void OnUpdate(float delta, int index)
     {
-        GameObject obj = m_teamOparator.GetLeader();
+        GameObject obj = m_teamOparator.GetMyLeader();
         Vector3 destanation = m_director.m_gameObject.transform.position;
 
         if ((obj.transform.position - m_director.m_gameObject.transform.position).magnitude > 3)
