@@ -17,8 +17,18 @@ public class Manager_InitalAgressionSettings : MEB_BaseBehaviourData_ItemSetting
 
         if (m_displayCustomSettingExpanded == true)
         {
-            float.TryParse(EditorGUILayout.TextField("allow agression in min", m_allowAgressionInMin.ToString()), out m_allowAgressionInMin);
-            float.TryParse(EditorGUILayout.TextField("allow agression in max", m_allowAgressionInMax.ToString()), out m_allowAgressionInMax);
+            if (MEB_UI_BehaviourEditor.InRestrictedEditMode() == false)
+            {
+                float.TryParse(EditorGUILayout.TextField("allow agression in min", m_allowAgressionInMin.ToString()), out m_allowAgressionInMin);
+                float.TryParse(EditorGUILayout.TextField("allow agression in max", m_allowAgressionInMax.ToString()), out m_allowAgressionInMax);
+            }
+            else
+            {
+                MEB_GUI_Styles.BeginLockedTextStyle();
+                EditorGUILayout.TextField("allow agression in min", m_allowAgressionInMin.ToString());
+                EditorGUILayout.TextField("allow agression in max", m_allowAgressionInMax.ToString());
+                MEB_GUI_Styles.EndLockedTextStyle();
+            }
         }
 
         GUILayout.EndVertical();

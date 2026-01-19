@@ -19,7 +19,16 @@ public class Manager_GoToExtractSettings : MEB_BaseBehaviourData_ItemSettings
 
         if (m_displayCustomSettingExpanded == true)
         {
-            float.TryParse(EditorGUILayout.TextField(m_lable, m_extractIn.ToString()), out m_extractIn);
+            if (MEB_UI_BehaviourEditor.InRestrictedEditMode() == false)
+            {
+                float.TryParse(EditorGUILayout.TextField(m_lable, m_extractIn.ToString()), out m_extractIn);
+            }
+            else
+            { 
+                MEB_GUI_Styles.BeginLockedTextStyle();
+                EditorGUILayout.TextField(m_lable, m_extractIn.ToString());
+                MEB_GUI_Styles.EndLockedTextStyle();
+            }
         }
 
         GUILayout.EndVertical();

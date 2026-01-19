@@ -21,11 +21,26 @@ public class Manager_WanderSettings : MEB_BaseBehaviourData_ItemSettings
 
         if (m_displayCustomSettingExpanded == true)
         {
-            float.TryParse(EditorGUILayout.TextField("radius", m_radius.ToString()), out m_radius);
-            float.TryParse(EditorGUILayout.TextField("min radius", m_minRadius.ToString()), out m_minRadius);
-            GUILayout.Space(8);
+            if (MEB_UI_BehaviourEditor.InRestrictedEditMode() == false)
+            {
+                float.TryParse(EditorGUILayout.TextField("radius", m_radius.ToString()), out m_radius);
+                float.TryParse(EditorGUILayout.TextField("min radius", m_minRadius.ToString()), out m_minRadius);
+                GUILayout.Space(8);
 
-            float.TryParse(EditorGUILayout.TextField("delay", m_delayBetweenWandering.ToString()), out m_delayBetweenWandering);
+                float.TryParse(EditorGUILayout.TextField("delay", m_delayBetweenWandering.ToString()), out m_delayBetweenWandering);
+            }
+            else
+            {
+                MEB_GUI_Styles.BeginLockedTextStyle();
+
+                EditorGUILayout.TextField("radius", m_radius.ToString());
+                EditorGUILayout.TextField("min radius", m_minRadius.ToString());
+                GUILayout.Space(8);
+
+                EditorGUILayout.TextField("delay", m_delayBetweenWandering.ToString());
+
+                MEB_GUI_Styles.EndLockedTextStyle();
+            }
         }
 
         GUILayout.EndVertical();

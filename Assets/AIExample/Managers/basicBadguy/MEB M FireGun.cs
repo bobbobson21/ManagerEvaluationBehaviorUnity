@@ -22,12 +22,28 @@ public class Manager_FireGunSettings : MEB_BaseBehaviourData_ItemSettings
 
         if (m_displayCustomSettingExpanded == true)
         {
-            float.TryParse(EditorGUILayout.TextField("shoot if in scope of", m_shootScope.ToString()), out m_shootScope);
-            float.TryParse(EditorGUILayout.TextField("shoot if in scope of", m_shootDistance.ToString()), out m_shootDistance);
-            GUILayout.Space(8);
-            float.TryParse(EditorGUILayout.TextField("gun movement speed", m_speed.ToString()), out m_speed);
-            float.TryParse(EditorGUILayout.TextField("speed at 50% health", m_speedMedium.ToString()), out m_speedMedium);
-            float.TryParse(EditorGUILayout.TextField("speed at 25% health", m_speedFast.ToString()), out m_speedFast);
+            if (MEB_UI_BehaviourEditor.InRestrictedEditMode() == false)
+            {
+                float.TryParse(EditorGUILayout.TextField("shoot if in scope of", m_shootScope.ToString()), out m_shootScope);
+                float.TryParse(EditorGUILayout.TextField("shoot if in scope of", m_shootDistance.ToString()), out m_shootDistance);
+                GUILayout.Space(8);
+                float.TryParse(EditorGUILayout.TextField("gun movement speed", m_speed.ToString()), out m_speed);
+                float.TryParse(EditorGUILayout.TextField("speed at 50% health", m_speedMedium.ToString()), out m_speedMedium);
+                float.TryParse(EditorGUILayout.TextField("speed at 25% health", m_speedFast.ToString()), out m_speedFast);
+            }
+            else
+            {
+                MEB_GUI_Styles.BeginLockedTextStyle();
+
+                EditorGUILayout.TextField("shoot if in scope of", m_shootScope.ToString());
+                EditorGUILayout.TextField("shoot if in scope of", m_shootDistance.ToString());
+                GUILayout.Space(8);
+                EditorGUILayout.TextField("gun movement speed", m_speed.ToString());
+                EditorGUILayout.TextField("speed at 50% health", m_speedMedium.ToString());
+                EditorGUILayout.TextField("speed at 25% health", m_speedFast.ToString());
+
+                MEB_GUI_Styles.EndLockedTextStyle();
+            }
         }
 
         GUILayout.EndVertical();

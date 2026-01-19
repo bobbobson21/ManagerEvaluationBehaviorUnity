@@ -21,27 +21,29 @@ namespace MEBS.Editor
 
     public class MEB_UI_BehaviourEditor : EditorWindow
     {
+        private static MEB_BaseBehaviourData m_currentRenderedObject = null;
+
         private MEB_BaseBehaviourData m_loadedObject = null;
         private Vector2 m_scrollPos = Vector2.zero;
 
-        private static List<MEB_UI_BehaviourEditor_ManagerData> m_listDataNormalScoped = new List<MEB_UI_BehaviourEditor_ManagerData>();
+        private static List<MEB_UI_BehaviourEditor_ManagerData> m_listDataNormalScoped = new List<MEB_UI_BehaviourEditor_ManagerData>(); //for the add manager drop down UI
         private static List<MEB_UI_BehaviourEditor_ManagerData> m_listDataNormal = new List<MEB_UI_BehaviourEditor_ManagerData>();
         private static List<MEB_UI_BehaviourEditor_ManagerData> m_listDataEval = new List<MEB_UI_BehaviourEditor_ManagerData>();
 
         private float m_refreshRateMax = 0.1f;
         private float m_currentRefreshRatePoint = 0;
 
-        public static void AddNormalManagerWithScopeRequirement(MEB_UI_BehaviourEditor_ManagerData manager)
+        public static void AddNormalManagerWithScopeRequirement(MEB_UI_BehaviourEditor_ManagerData manager) //for the add manager drop down UI
         {
             m_listDataNormalScoped.Add(manager);
         }
 
-        public static void AddNormalManager(MEB_UI_BehaviourEditor_ManagerData manager)
+        public static void AddNormalManager(MEB_UI_BehaviourEditor_ManagerData manager) //for the add manager drop down UI
         {
             m_listDataNormal.Add(manager);
         }
 
-        public static void AddEvalManager(MEB_UI_BehaviourEditor_ManagerData manager)
+        public static void AddEvalManager(MEB_UI_BehaviourEditor_ManagerData manager) //for the add manager drop down UI
         {
             m_listDataEval.Add(manager);
         }
@@ -70,7 +72,7 @@ namespace MEBS.Editor
 
         public static void OpenWindow(MEB_BaseBehaviourData data)
         {
-            MEB_UI_BehaviourEditor window = GetWindow<MEB_UI_BehaviourEditor>("MEB manager evaluation behaviour editor"); //cant have more than one
+            MEB_UI_BehaviourEditor window = CreateWindow<MEB_UI_BehaviourEditor>("MEB manager evaluation behaviour editor"); //cant have more than one
 
             if (window.m_loadedObject == null)
             {
@@ -85,9 +87,24 @@ namespace MEBS.Editor
             window.m_loadedObject = data;
         }
 
+        public static bool OnGUIIsInDebug()
+        {
+            return (m_currentRenderedObject.m_runtimeObject != null && Application.isPlaying == true);
+        }
+
+        public bool InDebug()
+        {
+            return (m_loadedObject != null && m_loadedObject.m_runtimeObject != null && Application.isPlaying == true);
+        }
+
+        public static bool InRestrictedEditMode()
+        {
+            return (Application.isPlaying == true);
+        }
+
         private MEB_BaseBehaviourData_ItemSettings RenderAddManagerField(bool displayNormalManagers,  bool displayNormalManagersScoped, bool displayEvalManagers)
         {
-            if (Application.isPlaying == true) { return null; }
+            if (InRestrictedEditMode() == true) { return null; }
 
             int width = 256;
             int height = 19;
@@ -156,7 +173,7 @@ namespace MEBS.Editor
 
         private MEB_BaseBehaviourData_Item RenderAddEvalField()
         {
-            if (Application.isPlaying == true) { return null; }
+            if (InRestrictedEditMode() == true) { return null; }
 
             int width = 44;
 
@@ -176,7 +193,7 @@ namespace MEBS.Editor
 
         private MEB_BaseBehaviourData_ChainScopeItemWapper RenderAddScopeField()
         {
-            if (Application.isPlaying == true) { return null; }
+            if (InRestrictedEditMode() == true) { return null; }
 
             int width = 44;
             int widthButtonMain = 132;
@@ -205,7 +222,7 @@ namespace MEBS.Editor
 
         private int RenderScopeIndexField(int itemIndex)
         {
-            if (Application.isPlaying == true) { return itemIndex; }
+            if (InRestrictedEditMode() == true) { return itemIndex; }
 
             int indexButtonWidth = 120;
             int indexButtonHeight = 19;
@@ -223,7 +240,7 @@ namespace MEBS.Editor
 
         private int RenderDeleteField(int itemIndex)
         {
-            if (Application.isPlaying == true) { return itemIndex; }
+            if (InRestrictedEditMode() == true) { return itemIndex; }
 
             int buttonWidth = 88;
 
@@ -256,7 +273,7 @@ namespace MEBS.Editor
 
             GUILayout.FlexibleSpace();
 
-            if (item.m_runtimeManager != null && Application.isPlaying == true)
+            if (item.m_runtimeManager != null && InDebug() == true)
             {
                 EditorGUILayout.Toggle(item.m_runtimeManager.IsAllowedToExecute(), GUILayout.Width(22));
             }
@@ -269,29 +286,41 @@ namespace MEBS.Editor
             GUILayout.Space(smallSpace);
             GUILayout.Label(item.m_displayDiscription, MEB_GUI_Styles.NormalTextStyle());
 
-            if (Application.isPlaying == false)
+            GUILayout.Space(bigSpace);
+            GUILayout.BeginVertical(EditorStyles.helpBox); //start of blackboard settings
+            item.m_displayBlackboardSettingExpanded = EditorGUILayout.Foldout(item.m_displayBlackboardSettingExpanded, "blackboard values");
+
+            if (item.m_displayBlackboardSettingExpanded == true)
             {
-                GUILayout.Space(bigSpace);
-                GUILayout.BeginVertical(EditorStyles.helpBox); //start of blackboard settings
-                item.m_displayBlackboardSettingExpanded = EditorGUILayout.Foldout(item.m_displayBlackboardSettingExpanded, "blackboard values");
+                GUILayout.Label("index: idenifyer as text, key as text");
+                GUILayout.Space(smallSpace);
 
-                if (item.m_displayBlackboardSettingExpanded == true)
+                for (int i = 0; i < item.m_blackboardKeys.Count; i++) //renders keys
                 {
-                    GUILayout.Label("index: idenifyer as text, key as text");
-                    GUILayout.Space(smallSpace);
+                    GUILayout.BeginHorizontal();
+                    GUILayout.Label($"{i}: ", GUILayout.Width(arrayindexWidth));
 
-                    for (int i = 0; i < item.m_blackboardKeys.Count; i++) //renders keys
+                    if (InRestrictedEditMode() == false)
                     {
-                        GUILayout.BeginHorizontal();
-                        GUILayout.Label($"{i}: ", GUILayout.Width(arrayindexWidth));
                         item.m_blackboardIdenifyers[i] = EditorGUILayout.TextField(item.m_blackboardIdenifyers[i]);
                         item.m_blackboardKeys[i] = EditorGUILayout.TextField(item.m_blackboardKeys[i]);
-                        GUILayout.EndHorizontal();
                     }
+                    else
+                    {
+                        MEB_GUI_Styles.BeginLockedTextStyle();
+                        GUILayout.TextField(item.m_blackboardIdenifyers[i]);
+                        GUILayout.TextField(item.m_blackboardKeys[i]);
+                        MEB_GUI_Styles.EndLockedTextStyle();
 
-                    GUILayout.BeginHorizontal(); //renders add and remove buttons
-                    GUILayout.FlexibleSpace();
+                    }
+                    GUILayout.EndHorizontal();
+                }
 
+                GUILayout.BeginHorizontal(); //renders add and remove buttons
+                GUILayout.FlexibleSpace();
+
+                if (InRestrictedEditMode() == false)
+                {
                     if (GUILayout.Button("+", GUILayout.Width(buttonWidth)) == true)
                     {
                         item.m_blackboardIdenifyers.Add(""); //add nothing let the user fill it out
@@ -305,17 +334,12 @@ namespace MEBS.Editor
                         item.m_blackboardIdenifyers.RemoveAt(indexToRemove);
                         item.m_blackboardKeys.RemoveAt(indexToRemove);
                     }
-
-                    GUILayout.EndHorizontal();
                 }
-                GUILayout.EndVertical(); //end of blackbord settings
-                item.OnGUI();
+
+                GUILayout.EndHorizontal();
             }
-            else 
-            {
-                item.OnGUI();
-                GUILayout.Space(yPadding);
-            }
+            GUILayout.EndVertical(); //end of blackbord settings
+            item.OnGUI();
 
             GUILayout.EndVertical();
             
@@ -433,8 +457,6 @@ namespace MEBS.Editor
                 GUILayout.BeginHorizontal();
                 MEB_BaseBehaviourData_ItemSettings managerData = RenderAddManagerField(true, true, false);
                 MEB_BaseBehaviourData_Item evalData = RenderAddEvalField();
-
-
                 GUILayout.FlexibleSpace();
 
                 itemIndex = RenderScopeIndexField(itemIndex);
@@ -554,6 +576,8 @@ namespace MEBS.Editor
 
         private void OnGUI()
         {
+            m_currentRenderedObject = m_loadedObject;
+
             GUILayout.BeginHorizontal();
             MEB_BaseBehaviourData_ItemSettings managerData = RenderAddManagerField(true, false, false);
             MEB_BaseBehaviourData_Item evalData = RenderAddEvalField();
@@ -561,7 +585,7 @@ namespace MEBS.Editor
             GUILayout.EndHorizontal();
 
 
-            if (Application.isPlaying == true && m_loadedObject.m_runtimeName != "")
+            if (Application.isPlaying == true && m_loadedObject.m_runtimeObject != null && m_loadedObject.m_runtimeName != "")
             {
                 GUILayout.Label($"debug data is from object: {m_loadedObject.m_runtimeName}");
             }
@@ -656,6 +680,8 @@ namespace MEBS.Editor
             }
 
             EditorGUILayout.EndScrollView();
+
+            m_currentRenderedObject = null;
         }
 
         private void OnDestroy()

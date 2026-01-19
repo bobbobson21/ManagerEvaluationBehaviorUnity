@@ -25,16 +25,36 @@ public class Manager_WanderUniqueSetting : MEB_BaseBehaviourData_ItemSettings
 
         if (m_displayCustomSettingExpanded == true)
         {
-            float.TryParse(EditorGUILayout.TextField("max radius", m_maxRadius.ToString()), out m_maxRadius);
-            float.TryParse(EditorGUILayout.TextField("min radius", m_minRadius.ToString()), out m_minRadius);
-            GUILayout.Space(8);
+            if (MEB_UI_BehaviourEditor.InRestrictedEditMode() == false)
+            {
+                float.TryParse(EditorGUILayout.TextField("max radius", m_maxRadius.ToString()), out m_maxRadius);
+                float.TryParse(EditorGUILayout.TextField("min radius", m_minRadius.ToString()), out m_minRadius);
+                GUILayout.Space(8);
 
-            float.TryParse(EditorGUILayout.TextField("delay", m_delayBetweenWandering.ToString()), out m_delayBetweenWandering);
-            GUILayout.Space(8);
+                float.TryParse(EditorGUILayout.TextField("delay", m_delayBetweenWandering.ToString()), out m_delayBetweenWandering);
+                GUILayout.Space(8);
 
-            int.TryParse(EditorGUILayout.TextField("unique point count", m_uniquePointCount.ToString()), out m_uniquePointCount);
-            int.TryParse(EditorGUILayout.TextField("unique point attempts", m_maxAttemptsForUniquePoint.ToString()), out m_maxAttemptsForUniquePoint);
-            float.TryParse(EditorGUILayout.TextField("unique radius", m_uniqueRadius.ToString()), out m_uniqueRadius);
+                int.TryParse(EditorGUILayout.TextField("unique point count", m_uniquePointCount.ToString()), out m_uniquePointCount);
+                int.TryParse(EditorGUILayout.TextField("unique point attempts", m_maxAttemptsForUniquePoint.ToString()), out m_maxAttemptsForUniquePoint);
+                float.TryParse(EditorGUILayout.TextField("unique radius", m_uniqueRadius.ToString()), out m_uniqueRadius);
+            }
+            else
+            {
+                MEB_GUI_Styles.BeginLockedTextStyle();
+
+                EditorGUILayout.TextField("max radius", m_maxRadius.ToString());
+                EditorGUILayout.TextField("min radius", m_minRadius.ToString());
+                GUILayout.Space(8);
+
+                EditorGUILayout.TextField("delay", m_delayBetweenWandering.ToString());
+                GUILayout.Space(8);
+
+                EditorGUILayout.TextField("unique point count", m_uniquePointCount.ToString());
+                EditorGUILayout.TextField("unique point attempts", m_maxAttemptsForUniquePoint.ToString());
+                EditorGUILayout.TextField("unique radius", m_uniqueRadius.ToString());
+
+                MEB_GUI_Styles.EndLockedTextStyle();
+            }
         }
 
         GUILayout.EndVertical();

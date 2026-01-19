@@ -8,7 +8,7 @@ using UnityEngine;
 [CustomEditor(typeof(MEB_C_Directorlinear))]
 public class MEB_C_DebugButton : Editor
 {
-    private static void SendToDebug(MEB_BaseBehaviourData behaviour, MEB_DirectorBase director, string item)
+    private static void SendToDebug(MEB_BaseBehaviourData behaviour, MEB_DirectorBase director, UnityEngine.Object runtimeObject, string item)
     {
         for (int i = 0; i < director.GetManagerCount(); i++)
         {
@@ -16,6 +16,7 @@ public class MEB_C_DebugButton : Editor
         }
 
         behaviour.m_runtimeName = $"({director.m_gameObject.transform.parent.gameObject.name}) -> ({director.m_gameObject.name}) -> ({item})";
+        behaviour.m_runtimeObject = runtimeObject;
 
         MEB_UI_BehaviourEditor.OpenWindow(behaviour);
     }
@@ -36,7 +37,7 @@ public class MEB_C_DebugButton : Editor
 
                 if (directorLinear != null)
                 {
-                    SendToDebug(directorLinear.m_behaviorSet, directorLinear.m_directorInterface, "MEB_C_Directorlinear"); 
+                    SendToDebug(directorLinear.m_behaviorSet, directorLinear.m_directorInterface, directorLinear, "MEB_C_Directorlinear"); 
                     return;
                 }
 
@@ -44,7 +45,7 @@ public class MEB_C_DebugButton : Editor
 
                 if (directorLOD != null)
                 {
-                    SendToDebug(directorLOD.m_behaviorSet, directorLOD.m_directorInterface, "MEB_C_DirectorLod");
+                    SendToDebug(directorLOD.m_behaviorSet, directorLOD.m_directorInterface, directorLOD, "MEB_C_DirectorLod");
                     return;
                 }
 
@@ -52,7 +53,7 @@ public class MEB_C_DebugButton : Editor
 
                 if (directorThreaded != null)
                 {
-                    SendToDebug(directorThreaded.m_behaviorSet, directorThreaded.m_directorInterface, "MEB_C_Directorlinear");
+                    SendToDebug(directorThreaded.m_behaviorSet, directorThreaded.m_directorInterface, directorThreaded, "MEB_C_DirectorThreaded");
                     return;
                 }
             }

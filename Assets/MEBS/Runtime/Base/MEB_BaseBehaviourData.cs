@@ -194,5 +194,9 @@ namespace MEBS.Runtime
         [NonSerialized]
         [HideInInspector]
         public string m_runtimeName = "";
+
+        [NonSerialized]
+        [HideInInspector]
+        public UnityEngine.Object m_runtimeObject = null; //if equal to null all run time debug data is not observed
     }
 }

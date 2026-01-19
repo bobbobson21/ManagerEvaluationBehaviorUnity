@@ -18,7 +18,16 @@ public class Manager_MakeEyeFollowPathSettings : MEB_BaseBehaviourData_ItemSetti
 
         if (m_displayCustomSettingExpanded == true)
         {
-            float.TryParse(EditorGUILayout.TextField("gun movement speed", m_speed.ToString()), out m_speed);
+            if (MEB_UI_BehaviourEditor.InRestrictedEditMode() == false)
+            {
+                float.TryParse(EditorGUILayout.TextField("gun movement speed", m_speed.ToString()), out m_speed);
+            }
+            else
+            {
+                MEB_GUI_Styles.BeginLockedTextStyle();
+                EditorGUILayout.TextField("gun movement speed", m_speed.ToString());
+                MEB_GUI_Styles.EndLockedTextStyle();
+            }
         }
 
         GUILayout.EndVertical();

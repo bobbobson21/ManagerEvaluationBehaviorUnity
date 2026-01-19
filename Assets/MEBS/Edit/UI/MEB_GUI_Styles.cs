@@ -5,8 +5,31 @@ using UnityEngine;
 
 namespace MEBS.Editor
 {
-    internal class MEB_GUI_Styles
+    public class MEB_GUI_Styles
     {
+        private static Color m_oldCol_Norm = Color.white;
+        private static Color m_oldCol_Hover = Color.white;
+        private static Color m_oldCol_Act = Color.white;
+
+        public static void BeginLockedTextStyle()
+        {
+            m_oldCol_Norm = EditorStyles.textField.normal.textColor;
+            EditorStyles.textField.normal.textColor = Color.gray;
+
+            m_oldCol_Hover = EditorStyles.textField.hover.textColor;
+            EditorStyles.textField.hover.textColor = Color.gray;
+
+            m_oldCol_Act = EditorStyles.textField.active.textColor;
+            EditorStyles.textField.active.textColor = Color.gray;
+        }
+
+        public static void EndLockedTextStyle()
+        {
+            EditorStyles.textField.normal.textColor = m_oldCol_Norm;
+            EditorStyles.textField.hover.textColor = m_oldCol_Hover;
+            EditorStyles.textField.active.textColor = m_oldCol_Act;
+        }
+
         public static GUIStyle TitleTextStyle() //the title style used on the main page
         {
             GUIStyle textStyle = new GUIStyle();

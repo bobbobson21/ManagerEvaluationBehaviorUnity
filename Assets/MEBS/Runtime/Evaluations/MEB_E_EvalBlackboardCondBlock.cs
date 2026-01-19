@@ -1,4 +1,5 @@
-﻿using MEBS.Runtime;
+﻿using MEBS.Editor;
+using MEBS.Runtime;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
@@ -41,6 +42,7 @@ namespace MEBS.Runtime
         public int m_blockRangeStartPoint = 0;
         public int m_blockRangeEndPoint = int.MaxValue;
 
+#if UNITY_EDITOR
         public override void OnGUI()
         {
             int spaceY = 8;
@@ -48,17 +50,32 @@ namespace MEBS.Runtime
             GUILayout.BeginVertical(EditorStyles.helpBox); //start of blackboard settings
             m_displayCustomSettingExpanded = EditorGUILayout.Foldout(m_displayCustomSettingExpanded, "custom values");
 
+
             if (m_displayCustomSettingExpanded == true)
             {
-                m_inverted = EditorGUILayout.Toggle("invert logic", m_inverted);
-                GUILayout.Space(spaceY);
+                if (MEB_UI_BehaviourEditor.InRestrictedEditMode() == false)
+                {
+                    m_inverted = EditorGUILayout.Toggle("invert logic", m_inverted);
+                    GUILayout.Space(spaceY);
 
-                int.TryParse(EditorGUILayout.TextField("block range start", m_blockRangeStartPoint.ToString()), out m_blockRangeStartPoint);
-                int.TryParse(EditorGUILayout.TextField("block range end", m_blockRangeEndPoint.ToString()), out m_blockRangeEndPoint);
+                    int.TryParse(EditorGUILayout.TextField("block range start", m_blockRangeStartPoint.ToString()), out m_blockRangeStartPoint);
+                    int.TryParse(EditorGUILayout.TextField("block range end", m_blockRangeEndPoint.ToString()), out m_blockRangeEndPoint);
+                }
+                else
+                {
+                    EditorGUILayout.Toggle("invert logic", m_inverted);
+                    GUILayout.Space(spaceY);
+
+                    MEB_GUI_Styles.BeginLockedTextStyle();
+                    EditorGUILayout.TextField("block range start", m_blockRangeStartPoint.ToString());
+                    EditorGUILayout.TextField("block range end", m_blockRangeEndPoint.ToString());
+                    MEB_GUI_Styles.EndLockedTextStyle();
+                }
             }
 
             GUILayout.EndVertical();
         }
+#endif
     }
 
     public class MEB_E_EvalBlackboardCondBlock : MEB_BaseManager, MEB_I_EvalScoop

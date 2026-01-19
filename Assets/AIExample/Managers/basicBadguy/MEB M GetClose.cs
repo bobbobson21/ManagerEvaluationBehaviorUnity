@@ -22,9 +22,22 @@ public class Manager_GetCloseSettings : MEB_BaseBehaviourData_ItemSettings
 
         if (m_displayCustomSettingExpanded == true)
         {
-            float.TryParse(EditorGUILayout.TextField("safty radius", m_saftyRadius.ToString()), out m_saftyRadius);
-            float.TryParse(EditorGUILayout.TextField("minimum Velocity", m_minimumVelocity.ToString()), out m_minimumVelocity);
-            float.TryParse(EditorGUILayout.TextField("rand move radius", m_randMoveRadius.ToString()), out m_randMoveRadius);
+            if (MEB_UI_BehaviourEditor.InRestrictedEditMode() == false)
+            {
+                float.TryParse(EditorGUILayout.TextField("safty radius", m_saftyRadius.ToString()), out m_saftyRadius);
+                float.TryParse(EditorGUILayout.TextField("minimum Velocity", m_minimumVelocity.ToString()), out m_minimumVelocity);
+                float.TryParse(EditorGUILayout.TextField("rand move radius", m_randMoveRadius.ToString()), out m_randMoveRadius);
+            }
+            else
+            {
+                MEB_GUI_Styles.BeginLockedTextStyle();
+
+                EditorGUILayout.TextField("safty radius", m_saftyRadius.ToString());
+                EditorGUILayout.TextField("minimum Velocity", m_minimumVelocity.ToString());
+                EditorGUILayout.TextField("rand move radius", m_randMoveRadius.ToString());
+
+                MEB_GUI_Styles.EndLockedTextStyle();
+            }
         }
 
         GUILayout.EndVertical();

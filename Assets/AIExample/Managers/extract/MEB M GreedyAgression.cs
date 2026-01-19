@@ -16,7 +16,16 @@ public class Manager_GreedyAgressionSettings : MEB_BaseBehaviourData_ItemSetting
 
         if (m_displayCustomSettingExpanded == true)
         {
-            int.TryParse(EditorGUILayout.TextField("greedy limit", m_greedAmount.ToString()), out m_greedAmount);
+            if (MEB_UI_BehaviourEditor.InRestrictedEditMode() == false)
+            {
+                int.TryParse(EditorGUILayout.TextField("greedy limit", m_greedAmount.ToString()), out m_greedAmount);
+            }
+            else
+            {
+                MEB_GUI_Styles.BeginLockedTextStyle();
+                EditorGUILayout.TextField("greedy limit", m_greedAmount.ToString());
+                MEB_GUI_Styles.EndLockedTextStyle();
+            }
         }
 
         GUILayout.EndVertical();

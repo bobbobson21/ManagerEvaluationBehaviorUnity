@@ -10,6 +10,7 @@ public class Manager_PanicAgressionSettings : MEB_BaseBehaviourData_ItemSettings
     public float m_panicIn = 20;
     public float  m_panicIfFraction= 20;
 
+#if UNITY_EDITOR
     public override void OnGUI()
     {
         GUILayout.BeginVertical(EditorStyles.helpBox); //start of blackboard settings
@@ -17,12 +18,23 @@ public class Manager_PanicAgressionSettings : MEB_BaseBehaviourData_ItemSettings
 
         if (m_displayCustomSettingExpanded == true)
         {
-            float.TryParse(EditorGUILayout.TextField("panic in", m_panicIn.ToString()), out m_panicIn);
-            float.TryParse(EditorGUILayout.TextField("panic if %", m_panicIfFraction.ToString()), out m_panicIfFraction);
+            if (MEB_UI_BehaviourEditor.InRestrictedEditMode() == false)
+            {
+                float.TryParse(EditorGUILayout.TextField("panic in", m_panicIn.ToString()), out m_panicIn);
+                float.TryParse(EditorGUILayout.TextField("panic if %", m_panicIfFraction.ToString()), out m_panicIfFraction);
+            }
+            else
+            {
+                MEB_GUI_Styles.BeginLockedTextStyle();
+                EditorGUILayout.TextField("panic in", m_panicIn.ToString());
+                EditorGUILayout.TextField("panic if %", m_panicIfFraction.ToString());
+                MEB_GUI_Styles.EndLockedTextStyle();
+            }
         }
 
         GUILayout.EndVertical();
     }
+#endif
 }
 
 #if UNITY_EDITOR
