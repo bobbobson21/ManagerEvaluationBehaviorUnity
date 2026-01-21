@@ -24,6 +24,7 @@ namespace MEBS.Editor
         private static MEB_BaseBehaviourData m_currentRenderedObject = null;
 
         private MEB_BaseBehaviourData m_loadedObject = null;
+        private string m_editorId = "";
         private Vector2 m_scrollPos = Vector2.zero;
 
         private static List<MEB_UI_BehaviourEditor_ManagerData> m_listDataNormalScoped = new List<MEB_UI_BehaviourEditor_ManagerData>(); //for the add manager drop down UI
@@ -74,15 +75,15 @@ namespace MEBS.Editor
         {
             MEB_UI_BehaviourEditor window = CreateWindow<MEB_UI_BehaviourEditor>("MEB manager evaluation behaviour editor"); //cant have more than one
 
-            if (window.m_loadedObject == null)
-            {
-                window.position = new Rect(500, 0, Screen.currentResolution.width / 2, Screen.currentResolution.height / 2);
-            }
+            window.position = new Rect(500, 0, Screen.currentResolution.width / 2, Screen.currentResolution.height / 2);
 
             if (data.m_items == null)
             {
                 data.m_items = new List<MEB_BaseBehaviourData_ChainScopeItemWapper>();
             }
+
+            window.m_editorId = window.GetHashCode().ToString();
+            data.m_editorId = window.m_editorId;
 
             window.m_loadedObject = data;
         }
@@ -558,6 +559,11 @@ namespace MEBS.Editor
         private void Update()
         {
             if (m_loadedObject == null)
+            {
+                Close();
+                return;
+            }
+            else if (m_editorId != m_loadedObject.m_editorId)
             {
                 Close();
             }

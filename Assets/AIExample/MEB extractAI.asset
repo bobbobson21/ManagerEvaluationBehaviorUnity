@@ -45,6 +45,7 @@ MonoBehaviour:
     m_isScoped: 1
     m_isForMainThread: 0
     m_nonColapsed: 1
+  m_editorId: -48164
   references:
     version: 2
     RefIds:
