@@ -304,8 +304,6 @@ namespace MEBS.Editor
 
                     if (InRestrictedEditMode() == false)
                     {
-                        item.m_blackboardIdenifyers[i] = EditorGUILayout.TextField(item.m_blackboardIdenifyers[i]);
-
                         bool shouldEndTextColor = false;
 
                         if (m_loadedObject.m_allowBlackboardDebugHighlighting == true)
@@ -330,18 +328,24 @@ namespace MEBS.Editor
                                 MEB_GUI_Styles.BeginTextStyleWithNuberColor();
                                 shouldEndTextColor = true;
                             }
-                            else if (item.m_blackboardIdenifyers[i].ToLower().IndexOf("store") == 0)
+                            else if (item.m_blackboardIdenifyers[i].ToLower().IndexOf("store") == 0 || item.m_blackboardIdenifyers[i].ToLower().IndexOf("set") == 0)
                             {
                                 MEB_GUI_Styles.BeginTextStyle(Color.cyan);
                                 shouldEndTextColor = true;
                             }
-                            else if (item.m_blackboardIdenifyers[i].ToLower().IndexOf("get") == 0)
+                            else if (item.m_blackboardIdenifyers[i].ToLower().IndexOf("get") == 0 || item.m_blackboardIdenifyers[i].ToLower().IndexOf("obtain") == 0)
                             {
                                 MEB_GUI_Styles.BeginTextStyle(Color.dodgerBlue);
                                 shouldEndTextColor = true;
                             }
+                            else if (item.m_blackboardIdenifyers[i].Contains("???") == true)
+                            {
+                                MEB_GUI_Styles.BeginTextStyle(Color.limeGreen);
+                                shouldEndTextColor = true;
+                            }
                         }
 
+                        item.m_blackboardIdenifyers[i] = EditorGUILayout.TextField(item.m_blackboardIdenifyers[i]);
                         item.m_blackboardKeys[i] = EditorGUILayout.TextField(item.m_blackboardKeys[i]);
 
                         if (shouldEndTextColor == true)
