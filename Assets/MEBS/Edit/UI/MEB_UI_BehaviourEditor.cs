@@ -636,8 +636,11 @@ namespace MEBS.Editor
             MEB_BaseBehaviourData_Item evalData = RenderAddEvalField();
             MEB_BaseBehaviourData_ChainScopeItemWapper scopeData = RenderAddScopeField();
 
-            GUILayout.Label("   allow blackboard input highlighting:", GUILayout.ExpandWidth(false));
-            m_loadedObject.m_allowBlackboardDebugHighlighting = EditorGUILayout.Toggle(m_loadedObject.m_allowBlackboardDebugHighlighting);
+            if (InRestrictedEditMode() == false)
+            {
+                GUILayout.Label("   allow blackboard input highlighting:", GUILayout.ExpandWidth(false));
+                m_loadedObject.m_allowBlackboardDebugHighlighting = EditorGUILayout.Toggle(m_loadedObject.m_allowBlackboardDebugHighlighting);
+            }
 
             GUILayout.EndHorizontal();
 
