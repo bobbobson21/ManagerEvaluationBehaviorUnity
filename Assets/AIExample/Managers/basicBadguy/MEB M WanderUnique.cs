@@ -40,7 +40,7 @@ public class Manager_WanderUniqueSetting : MEB_BaseBehaviourData_ItemSettings
             }
             else
             {
-                MEB_GUI_Styles.BeginLockedTextStyle();
+                MEB_GUI_Styles.BeginTextStyleWithLockedColor();
 
                 EditorGUILayout.TextField("max radius", m_maxRadius.ToString());
                 EditorGUILayout.TextField("min radius", m_minRadius.ToString());
@@ -53,7 +53,7 @@ public class Manager_WanderUniqueSetting : MEB_BaseBehaviourData_ItemSettings
                 EditorGUILayout.TextField("unique point attempts", m_maxAttemptsForUniquePoint.ToString());
                 EditorGUILayout.TextField("unique radius", m_uniqueRadius.ToString());
 
-                MEB_GUI_Styles.EndLockedTextStyle();
+                MEB_GUI_Styles.EndTextStyle();
             }
         }
 

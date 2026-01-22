@@ -31,7 +31,7 @@ public class Manager_WanderSettings : MEB_BaseBehaviourData_ItemSettings
             }
             else
             {
-                MEB_GUI_Styles.BeginLockedTextStyle();
+                MEB_GUI_Styles.BeginTextStyleWithLockedColor();
 
                 EditorGUILayout.TextField("radius", m_radius.ToString());
                 EditorGUILayout.TextField("min radius", m_minRadius.ToString());
@@ -39,7 +39,7 @@ public class Manager_WanderSettings : MEB_BaseBehaviourData_ItemSettings
 
                 EditorGUILayout.TextField("delay", m_delayBetweenWandering.ToString());
 
-                MEB_GUI_Styles.EndLockedTextStyle();
+                MEB_GUI_Styles.EndTextStyle();
             }
         }
 

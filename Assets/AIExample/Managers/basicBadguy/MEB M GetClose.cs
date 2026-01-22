@@ -30,13 +30,13 @@ public class Manager_GetCloseSettings : MEB_BaseBehaviourData_ItemSettings
             }
             else
             {
-                MEB_GUI_Styles.BeginLockedTextStyle();
+                MEB_GUI_Styles.BeginTextStyleWithLockedColor();
 
                 EditorGUILayout.TextField("safty radius", m_saftyRadius.ToString());
                 EditorGUILayout.TextField("minimum Velocity", m_minimumVelocity.ToString());
                 EditorGUILayout.TextField("rand move radius", m_randMoveRadius.ToString());
 
-                MEB_GUI_Styles.EndLockedTextStyle();
+                MEB_GUI_Styles.EndTextStyle();
             }
         }
 

@@ -11,23 +11,65 @@ namespace MEBS.Editor
         private static Color m_oldCol_Hover = Color.white;
         private static Color m_oldCol_Act = Color.white;
 
-        public static void BeginLockedTextStyle()
+        private static Color m_oldCol_OnNorm = Color.white;
+        private static Color m_oldCol_OnHover = Color.white;
+        private static Color m_oldCol_OnAct = Color.white;
+
+        public static void BeginTextStyle(Color col)
         {
             m_oldCol_Norm = EditorStyles.textField.normal.textColor;
-            EditorStyles.textField.normal.textColor = Color.gray;
+            EditorStyles.textField.normal.textColor = col;
 
             m_oldCol_Hover = EditorStyles.textField.hover.textColor;
-            EditorStyles.textField.hover.textColor = Color.gray;
+            EditorStyles.textField.hover.textColor = col;
 
             m_oldCol_Act = EditorStyles.textField.active.textColor;
-            EditorStyles.textField.active.textColor = Color.gray;
+            EditorStyles.textField.active.textColor = col;
+
+            m_oldCol_OnNorm = EditorStyles.textField.onNormal.textColor;
+            EditorStyles.textField.onNormal.textColor = col;
+
+            m_oldCol_OnHover = EditorStyles.textField.onHover.textColor;
+            EditorStyles.textField.onHover.textColor = col;
+
+            m_oldCol_OnAct = EditorStyles.textField.onActive.textColor;
+            EditorStyles.textField.onActive.textColor = col;
         }
 
-        public static void EndLockedTextStyle()
+        public static void EndTextStyle()
         {
             EditorStyles.textField.normal.textColor = m_oldCol_Norm;
             EditorStyles.textField.hover.textColor = m_oldCol_Hover;
             EditorStyles.textField.active.textColor = m_oldCol_Act;
+
+            EditorStyles.textField.onNormal.textColor = m_oldCol_OnNorm;
+            EditorStyles.textField.onHover.textColor = m_oldCol_OnHover;
+            EditorStyles.textField.onActive.textColor = m_oldCol_OnAct;
+        }
+
+        public static void BeginTextStyleWithLockedColor()
+        {
+            BeginTextStyle(Color.gray);
+        }
+
+        public static void BeginTextStyleWithGameObjectColor()
+        {
+            BeginTextStyle(Color.cyan);
+        }
+
+        public static void BeginTextStyleWithVectorColor()
+        {
+            BeginTextStyle(Color.yellow);
+        }
+
+        public static void BeginTextStyleWithBoolColor()
+        {
+            BeginTextStyle(Color.darkRed);
+        }
+
+        public static void BeginTextStyleWithNuberColor()
+        {
+            BeginTextStyle(Color.green);
         }
 
         public static GUIStyle TitleTextStyle() //the title style used on the main page

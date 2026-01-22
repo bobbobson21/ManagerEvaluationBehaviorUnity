@@ -66,10 +66,10 @@ namespace MEBS.Runtime
                     EditorGUILayout.Toggle("invert logic", m_inverted);
                     GUILayout.Space(spaceY);
 
-                    MEB_GUI_Styles.BeginLockedTextStyle();
+                    MEB_GUI_Styles.BeginTextStyleWithLockedColor();
                     EditorGUILayout.TextField("block range start", m_blockRangeStartPoint.ToString());
                     EditorGUILayout.TextField("block range end", m_blockRangeEndPoint.ToString());
-                    MEB_GUI_Styles.EndLockedTextStyle();
+                    MEB_GUI_Styles.EndTextStyle();
                 }
             }
 

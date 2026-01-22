@@ -34,6 +34,7 @@ namespace MEBS.Editor
         private float m_refreshRateMax = 0.1f;
         private float m_currentRefreshRatePoint = 0;
 
+
         public static void AddNormalManagerWithScopeRequirement(MEB_UI_BehaviourEditor_ManagerData manager) //for the add manager drop down UI
         {
             m_listDataNormalScoped.Add(manager);
@@ -304,14 +305,56 @@ namespace MEBS.Editor
                     if (InRestrictedEditMode() == false)
                     {
                         item.m_blackboardIdenifyers[i] = EditorGUILayout.TextField(item.m_blackboardIdenifyers[i]);
+
+                        bool shouldEndTextColor = false;
+
+                        if (m_loadedObject.m_allowBlackboardDebugHighlighting == true)
+                        {
+                            if (item.m_blackboardIdenifyers[i].ToLower().IndexOf("gameobject") == 0)
+                            {
+                                MEB_GUI_Styles.BeginTextStyleWithGameObjectColor();
+                                shouldEndTextColor = true;
+                            }
+                            else if (item.m_blackboardIdenifyers[i].ToLower().IndexOf("vector") == 0)
+                            {
+                                MEB_GUI_Styles.BeginTextStyleWithVectorColor();
+                                shouldEndTextColor = true;
+                            }
+                            else if (item.m_blackboardIdenifyers[i].ToLower().IndexOf("bool") == 0)
+                            {
+                                MEB_GUI_Styles.BeginTextStyleWithBoolColor();
+                                shouldEndTextColor = true;
+                            }
+                            else if (item.m_blackboardIdenifyers[i].ToLower().IndexOf("float") == 0 || item.m_blackboardIdenifyers[i].ToLower().IndexOf("int") == 0 || item.m_blackboardIdenifyers[i].ToLower().IndexOf("double") == 0)
+                            {
+                                MEB_GUI_Styles.BeginTextStyleWithNuberColor();
+                                shouldEndTextColor = true;
+                            }
+                            else if (item.m_blackboardIdenifyers[i].ToLower().IndexOf("store") == 0)
+                            {
+                                MEB_GUI_Styles.BeginTextStyle(Color.cyan);
+                                shouldEndTextColor = true;
+                            }
+                            else if (item.m_blackboardIdenifyers[i].ToLower().IndexOf("get") == 0)
+                            {
+                                MEB_GUI_Styles.BeginTextStyle(Color.dodgerBlue);
+                                shouldEndTextColor = true;
+                            }
+                        }
+
                         item.m_blackboardKeys[i] = EditorGUILayout.TextField(item.m_blackboardKeys[i]);
+
+                        if (shouldEndTextColor == true)
+                        {
+                            MEB_GUI_Styles.EndTextStyle();
+                        }
                     }
                     else
                     {
-                        MEB_GUI_Styles.BeginLockedTextStyle();
+                        MEB_GUI_Styles.BeginTextStyleWithLockedColor();
                         GUILayout.TextField(item.m_blackboardIdenifyers[i]);
                         GUILayout.TextField(item.m_blackboardKeys[i]);
-                        MEB_GUI_Styles.EndLockedTextStyle();
+                        MEB_GUI_Styles.EndTextStyle();
 
                     }
                     GUILayout.EndHorizontal();
@@ -588,6 +631,10 @@ namespace MEBS.Editor
             MEB_BaseBehaviourData_ItemSettings managerData = RenderAddManagerField(true, false, false);
             MEB_BaseBehaviourData_Item evalData = RenderAddEvalField();
             MEB_BaseBehaviourData_ChainScopeItemWapper scopeData = RenderAddScopeField();
+
+            GUILayout.Label("   allow blackboard input highlighting:", GUILayout.ExpandWidth(false));
+            m_loadedObject.m_allowBlackboardDebugHighlighting = EditorGUILayout.Toggle(m_loadedObject.m_allowBlackboardDebugHighlighting);
+
             GUILayout.EndHorizontal();
 
 

@@ -193,7 +193,10 @@ namespace MEBS.Runtime
 
         //[NonSerialized]
         [HideInInspector]
-        public string m_editorId = ""; 
+        public string m_editorId = "";
+
+        [HideInInspector]
+        public bool m_allowBlackboardDebugHighlighting = true;
 
         [NonSerialized]
         [HideInInspector]

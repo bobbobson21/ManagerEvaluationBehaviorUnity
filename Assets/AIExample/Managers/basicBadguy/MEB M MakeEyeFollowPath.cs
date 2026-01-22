@@ -24,9 +24,9 @@ public class Manager_MakeEyeFollowPathSettings : MEB_BaseBehaviourData_ItemSetti
             }
             else
             {
-                MEB_GUI_Styles.BeginLockedTextStyle();
+                MEB_GUI_Styles.BeginTextStyleWithLockedColor();
                 EditorGUILayout.TextField("gun movement speed", m_speed.ToString());
-                MEB_GUI_Styles.EndLockedTextStyle();
+                MEB_GUI_Styles.EndTextStyle();
             }
         }
 

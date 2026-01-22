@@ -33,7 +33,7 @@ public class Manager_FireGunSettings : MEB_BaseBehaviourData_ItemSettings
             }
             else
             {
-                MEB_GUI_Styles.BeginLockedTextStyle();
+                MEB_GUI_Styles.BeginTextStyleWithLockedColor();
 
                 EditorGUILayout.TextField("shoot if in scope of", m_shootScope.ToString());
                 EditorGUILayout.TextField("shoot if in scope of", m_shootDistance.ToString());
@@ -42,7 +42,7 @@ public class Manager_FireGunSettings : MEB_BaseBehaviourData_ItemSettings
                 EditorGUILayout.TextField("speed at 50% health", m_speedMedium.ToString());
                 EditorGUILayout.TextField("speed at 25% health", m_speedFast.ToString());
 
-                MEB_GUI_Styles.EndLockedTextStyle();
+                MEB_GUI_Styles.EndTextStyle();
             }
         }
 

@@ -23,13 +23,15 @@ MonoBehaviour:
     - rid: 5459895752802959424
     m_isScoped: 1
     m_isForMainThread: 0
-    m_nonColapsed: 0
+    m_nonColapsed: 1
   - m_items:
     - rid: 5459895752802959426
     - rid: 5459895752802959428
     m_isScoped: 1
     m_isForMainThread: 0
     m_nonColapsed: 0
+  m_editorId: -47460
+  m_allowBlackboardDebugHighlighting: 1
   references:
     version: 2
     RefIds:
@@ -48,7 +50,7 @@ MonoBehaviour:
         m_noneEvalurationManager:
           rid: -2
         m_isNormalManager: 0
-        m_nonColapsed: 0
+        m_nonColapsed: 1
     - rid: 5459895752802959419
       type: {class: MEB_BaseBehaviourData_ItemSettings, ns: MEBS.Runtime, asm: Assembly-CSharp}
       data:
@@ -95,7 +97,7 @@ MonoBehaviour:
         - movePos
         - healthObject
         - ammoObject
-        m_displayBlackboardSettingExpanded: 0
+        m_displayBlackboardSettingExpanded: 1
         m_displayCustomSettingExpanded: 0
         m_displayDebugSettingsExpanded: 0
     - rid: 5459895752802959422
