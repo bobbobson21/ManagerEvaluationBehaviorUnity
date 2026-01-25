@@ -109,7 +109,7 @@ public class UserManger_GreedyAgression : MEB_BaseManager//, MEB_I_IntScoop
         }
     }
 
-    /*public override void OnStart() //put stuff in these if you need something to happen when the manager leaves or enters exacuteion
+    /*public override void OnStart() //put stuff in these if you need something to happen when the manager leaves or enters Executeion
     {
     }
 

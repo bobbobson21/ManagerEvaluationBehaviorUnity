@@ -53,7 +53,7 @@ public class UserManger_Eval_TimeBlock_UI : MEB_UI_BehaviourEditor_ManagerData
         UserManger_Eval_TimeBlockSettings data = new UserManger_Eval_TimeBlockSettings();
         data.m_class = "UserManger_Eval_TimeBlock";
         data.m_displayName = m_name;
-        data.m_displayDiscription = "Blocks manager in evaluration from exacuteing after X amount of time.";
+        data.m_displayDiscription = "Blocks manager in evaluration from Executeing after X amount of time.";
 
         return data;
     }

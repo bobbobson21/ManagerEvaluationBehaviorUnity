@@ -42,7 +42,7 @@ namespace MEBS.Runtime
         }
 
         /// <summary>
-        /// after a cycle this gets exacuted to reenable the manager, it must always be re-exacuted after or before the start of an evaluation the cycle
+        /// after a cycle this gets Executed to reenable the manager, it must always be re-Executed after or before the start of an evaluation the cycle
         /// </summary>
         public void ResetMoveState()
         {
@@ -50,7 +50,7 @@ namespace MEBS.Runtime
         }
 
         /// <summary>
-        /// it will run OnStart, and OnEnd if needed dependeing on if we are allowed to excute and if it was allowed to exacute on the prior cycle
+        /// it will run OnStart, and OnEnd if needed dependeing on if we are allowed to excute and if it was allowed to Execute on the prior cycle
         /// </summary>
         public void AssessMoveResponce()
         {
@@ -68,7 +68,7 @@ namespace MEBS.Runtime
         }
 
         /// <summary>
-        /// finds out if this manager is allowed to exacute but not nessasayly if its exacuteing
+        /// finds out if this manager is allowed to Execute but not nessasayly if its Executeing
         /// </summary>
         /// <returns>is the manager active</returns>
         public bool IsAllowedToExecute()
@@ -111,14 +111,14 @@ namespace MEBS.Runtime
         }
 
         /// <summary>
-        /// gets exacuted when the manager is loaded in; only gets exacuted once
+        /// gets Executed when the manager is loaded in; only gets Executed once
         /// </summary>
         public virtual void OnInitialized()
         {
         }
 
         /// <summary>
-        /// gets exacuted if we have not been deativated on this cycle but we were on the prior ones; DONE IN EVALUATION STAGE
+        /// gets Executed if we have not been deativated on this cycle but we were on the prior ones; DONE IN EVALUATION STAGE
         /// </summary>
         public virtual void OnStart()
         {
@@ -132,9 +132,9 @@ namespace MEBS.Runtime
         }
     
         /// <summary>
-        /// gets exacuted if active; DONE IN EXACUTEION STAGE
+        /// gets Executed if active; DONE IN ExecuteION STAGE
         /// </summary>
-        /// <param name="delta">delta time between exacuteions</param>
+        /// <param name="delta">delta time between Executeions</param>
         /// <param name="index">our index in the directors vector</param>
         public virtual void OnUpdate(float delta, int index)
         {

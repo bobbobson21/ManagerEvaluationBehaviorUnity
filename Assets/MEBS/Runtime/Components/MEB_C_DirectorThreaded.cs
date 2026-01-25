@@ -79,13 +79,13 @@ public class MEB_C_DirectorThreaded : MonoBehaviour
         }
     }
 
-    private static void ThreadExacute(object data)
+    private static void ThreadExecute(object data)
     {
         MEB_C_DirectorThreaded_ThreadData input = (MEB_C_DirectorThreaded_ThreadData)data;
 
         for (int i = 0; i < input.m_managersToExcute.Count; i++)
         {
-            input.m_director.Exacute(input.m_managersToExcute[i], input.m_time);
+            input.m_director.Execute(input.m_managersToExcute[i], input.m_time);
         }
     }
 
@@ -98,12 +98,12 @@ public class MEB_C_DirectorThreaded : MonoBehaviour
 
         for (int i = 0; i < m_mainThreadManagerList.Count; i++)
         {
-           m_directorInterface.Exacute(i, Time.deltaTime);
+           m_directorInterface.Execute(i, Time.deltaTime);
         }
 
         for (int i = 0; i < m_threadCount; i++)
         {
-            Thread thread = new Thread(new ParameterizedThreadStart(ThreadExacute));
+            Thread thread = new Thread(new ParameterizedThreadStart(ThreadExecute));
 
             MEB_C_DirectorThreaded_ThreadData threadData = new MEB_C_DirectorThreaded_ThreadData();
             threadData.m_managersToExcute = m_threadedManagersList[i];

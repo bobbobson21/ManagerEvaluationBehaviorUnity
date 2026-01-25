@@ -58,7 +58,7 @@ public class UserManger_FollowLeader : MEB_BaseManager, MEB_I_IntScoop
         m_teamOparator = m_director.m_gameObject.GetComponent<AICTeamOparator>();
     }
 
-    /*public override void OnStart() //put stuff in these if you need something to happen when the manager leaves or enters exacuteion
+    /*public override void OnStart() //put stuff in these if you need something to happen when the manager leaves or enters Executeion
     {
     }
 

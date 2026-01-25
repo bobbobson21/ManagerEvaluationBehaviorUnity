@@ -55,7 +55,7 @@ public class UserManger_ReloadGun : MEB_BaseManager, MEB_I_IntScoop
         m_reloadEffect = m_director.m_gameObject.GetComponent<ParticleSystem>();
     }
 
-    public override void OnStart() //put stuff in these if you need something to happen when the manager leaves or enters exacuteion
+    public override void OnStart() //put stuff in these if you need something to happen when the manager leaves or enters Executeion
     {
         m_gunObject.Reload();
         m_reloadEffect.Play();

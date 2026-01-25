@@ -71,7 +71,7 @@ namespace MEBS.Runtime
                 }
             }
 
-            for (int i = 0; i < arrayLength; i++) //blocks all but highest evalurated item from entering exacuteion
+            for (int i = 0; i < arrayLength; i++) //blocks all but highest evalurated item from entering Executeion
             {
                 int otherManagerIndex = ((index + m_endPointOfScope) - arrayLength) + i;
                 MEB_BaseManager manager = m_director.GetManagerByIndex(otherManagerIndex);

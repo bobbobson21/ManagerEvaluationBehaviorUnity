@@ -23,7 +23,7 @@ namespace MEBS.Editor
             MEB_BaseBehaviourData_ItemSettings data = new MEB_BaseBehaviourData_ItemSettings();
             data.m_class = "MEBS.Runtime." + m_name;
             data.m_displayName = m_name;
-            data.m_displayDiscription = "Sequentially alternates between all the manager in the 'manager to evalurate' section to only exacute one of them. Managers which failed to make it to exacuteion before this will be skiped over.";
+            data.m_displayDiscription = "Sequentially alternates between all the manager in the 'manager to evalurate' section to only Execute one of them. Managers which failed to make it to Executeion before this will be skiped over.";
 
             return data;
         }

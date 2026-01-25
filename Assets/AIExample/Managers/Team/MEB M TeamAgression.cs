@@ -75,7 +75,7 @@ public class UserManger_TeamAgression : MEB_BaseManager//, MEB_I_IntScoop
         m_ourBlackboard = (UserBlackboard_BasicBadguy)m_director.m_blackboard;
     }
 
-    /*public override void OnStart() //put stuff in these if you need something to happen when the manager leaves or enters exacuteion
+    /*public override void OnStart() //put stuff in these if you need something to happen when the manager leaves or enters Executeion
     {
     }
 

@@ -71,7 +71,7 @@ public class UserManger_GetItem : MEB_BaseManager, MEB_I_IntScoop
         //put on loaded into game code here
     }
 
-    /*public override void OnStart() //put stuff in these if you need something to happen when the manager leaves or enters exacuteion
+    /*public override void OnStart() //put stuff in these if you need something to happen when the manager leaves or enters Executeion
     {
     }
 

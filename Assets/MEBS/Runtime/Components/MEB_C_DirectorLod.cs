@@ -76,7 +76,7 @@ public class MEB_C_DirectorLod : MonoBehaviour
 
         for (int i = 0; i < m_directorInterface.GetManagerCount(); i++)
         {
-            m_directorInterface.Exacute(i, Time.deltaTime);
+            m_directorInterface.Execute(i, Time.deltaTime);
         }
     }
 }

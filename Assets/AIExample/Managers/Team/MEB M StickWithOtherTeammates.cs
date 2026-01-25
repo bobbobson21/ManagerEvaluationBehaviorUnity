@@ -73,7 +73,7 @@ public class UserManger_StickWithOtherTeammates : MEB_BaseManager, MEB_I_IntScoo
         m_flip = (Random.Range(0, 1) == 1);
     }
 
-    /*public override void OnStart() //put stuff in these if you need something to happen when the manager leaves or enters exacuteion
+    /*public override void OnStart() //put stuff in these if you need something to happen when the manager leaves or enters Executeion
     {
     }
 

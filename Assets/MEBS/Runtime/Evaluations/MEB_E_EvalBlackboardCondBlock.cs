@@ -25,7 +25,7 @@ namespace MEBS.Editor
             MEB_BaseBehaviourData_BlackboardCondBlockSettings data = new MEB_BaseBehaviourData_BlackboardCondBlockSettings();
             data.m_class = "MEBS.Runtime." + m_name;
             data.m_displayName = m_name;
-            data.m_displayDiscription = "If any bool registed to this managers black board list returns false all the managers int 'managers to evalurate' section are blocked from being exacuted not just the first one. \n\nvalid blackboard data: \n???: (BoolBlackboardKeyAsString)";
+            data.m_displayDiscription = "If any bool registed to this managers black board list returns false all the managers int 'managers to evalurate' section are blocked from being Executed not just the first one. \n\nvalid blackboard data: \n???: (BoolBlackboardKeyAsString)";
 
             return data;
         }

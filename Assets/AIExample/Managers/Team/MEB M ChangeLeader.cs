@@ -59,7 +59,7 @@ public class UserManger_ChangeTeamLeader : MEB_BaseManager//, MEB_I_IntScoop
         m_ourBlackboard = (UserBlackboard_BasicBadguy)m_director.m_blackboard;
     }
 
-    public override void OnStart() //put stuff in these if you need something to happen when the manager leaves or enters exacuteion
+    public override void OnStart() //put stuff in these if you need something to happen when the manager leaves or enters Executeion
     {
         for (int i = 0; i < m_teamOparator.GetAllOnMyTeam().Count; i++)
         {

@@ -25,7 +25,7 @@ namespace MEBS.Editor
             MEB_BaseBehaviourData_ItemSettings data = new MEB_BaseBehaviourData_ItemSettings();
             data.m_class = "MEBS.Runtime." + m_name;
             data.m_displayName = m_name;
-            data.m_displayDiscription = $"Gets all the managers to return an int and exacutes them in order of highest retured int to lowest ingoring all managers that return {int.MinValue}. A given manager will not stop being exacuted untill it fails self evaluration or untill it callesback MEB_I_BoolScoop.GetBoolEvalValue() with false to say the current plan failed";
+            data.m_displayDiscription = $"Gets all the managers to return an int and Executes them in order of highest retured int to lowest ingoring all managers that return {int.MinValue}. A given manager will not stop being Executed untill it fails self evaluration or untill it callesback MEB_I_BoolScoop.GetBoolEvalValue() with false to say the current plan failed";
 
             return data;
         }
@@ -37,7 +37,7 @@ namespace MEBS.Runtime
 {
     public class MEB_E_EvalPlan_DataPoint
     {
-        public MEB_BaseManager m_managerToExacute = null;
+        public MEB_BaseManager m_managerToExecute = null;
         public int m_arrayIndex = 0;
         public int m_score = 0;
     }
@@ -48,7 +48,7 @@ namespace MEBS.Runtime
         private int m_endPointOfScope = 0;
 
         private List<MEB_E_EvalPlan_DataPoint> m_sortedManagers = new List<MEB_E_EvalPlan_DataPoint>();
-        int m_currentExacutionIndex = 0;
+        int m_currentExecutionIndex = 0;
 
         public void SetEvaluationScope(int start, int end)
         {
@@ -68,7 +68,7 @@ namespace MEBS.Runtime
                     MEB_BaseManager manager = m_director.GetManagerByIndex(otherManagerIndex);
 
                     MEB_E_EvalPlan_DataPoint dataPoint = new MEB_E_EvalPlan_DataPoint();
-                    dataPoint.m_managerToExacute = manager;
+                    dataPoint.m_managerToExecute = manager;
                     dataPoint.m_score = int.MinValue;
                     dataPoint.m_arrayIndex = i;
 
@@ -87,32 +87,32 @@ namespace MEBS.Runtime
                 m_sortedManagers.Sort((a,b) => (a.m_score.CompareTo( b.m_score )));
             }
 
-            if (m_currentExacutionIndex < m_sortedManagers.Count && m_sortedManagers[m_currentExacutionIndex].m_score > int.MinValue) //can we exacute this part of the plan
+            if (m_currentExecutionIndex < m_sortedManagers.Count && m_sortedManagers[m_currentExecutionIndex].m_score > int.MinValue) //can we Execute this part of the plan
             {
                 for (int i = 0; i < arrayLength; i++) //if yes black all but current manager
                 {
                     int otherManagerIndex = ((index + m_endPointOfScope) - arrayLength) + i;
                     MEB_BaseManager manager = m_director.GetManagerByIndex(otherManagerIndex);
 
-                    if (i != m_sortedManagers[m_currentExacutionIndex].m_arrayIndex)
+                    if (i != m_sortedManagers[m_currentExecutionIndex].m_arrayIndex)
                     {
                         manager.BlockMoveToExecutionForCycle();
                     }
                 }
 
-                int exacuteManagerIndex = ((index + m_endPointOfScope) - arrayLength) + m_sortedManagers[m_currentExacutionIndex].m_arrayIndex;
-                MEB_BaseManager exacuteManager = m_director.GetManagerByIndex(exacuteManagerIndex);
+                int ExecuteManagerIndex = ((index + m_endPointOfScope) - arrayLength) + m_sortedManagers[m_currentExecutionIndex].m_arrayIndex;
+                MEB_BaseManager ExecuteManager = m_director.GetManagerByIndex(ExecuteManagerIndex);
 
-                if (exacuteManager.IsAllowedToExecute() == false) //find out if current manager is done exacuting
+                if (ExecuteManager.IsAllowedToExecute() == false) //find out if current manager is done Executing
                 {
-                    m_currentExacutionIndex++;
+                    m_currentExecutionIndex++;
                 }
 
                 try
                 {
-                    if(((MEB_I_BoolScoop)exacuteManager).GetBoolEvalValue(delta) == false) //also check to see if the current manager wants the whole plan redone 
+                    if(((MEB_I_BoolScoop)ExecuteManager).GetBoolEvalValue(delta) == false) //also check to see if the current manager wants the whole plan redone 
                     {
-                        m_currentExacutionIndex = 0;
+                        m_currentExecutionIndex = 0;
                         m_sortedManagers.Clear();
                     }
                 }
@@ -120,9 +120,9 @@ namespace MEBS.Runtime
                 {
                 }
             }
-            else //if we can not exacute this part redo plan
+            else //if we can not Execute this part redo plan
             {
-                m_currentExacutionIndex = 0;
+                m_currentExecutionIndex = 0;
                 m_sortedManagers.Clear();
             }
         }

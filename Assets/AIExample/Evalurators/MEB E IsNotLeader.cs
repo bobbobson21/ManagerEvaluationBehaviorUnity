@@ -23,7 +23,7 @@ public class UserManger_Eval_IsNotLeader_UI : MEB_UI_BehaviourEditor_ManagerData
         MEB_BaseBehaviourData_ItemSettings data = new MEB_BaseBehaviourData_ItemSettings();
         data.m_class = "UserManger_Eval_IsNotLeader";
         data.m_displayName = m_name;
-        data.m_displayDiscription = "Allows exacuteion if the AI is NOT the leader of its team.";
+        data.m_displayDiscription = "Allows Executeion if the AI is NOT the leader of its team.";
 
         return data;
     }

@@ -9,16 +9,23 @@ namespace MEBS.Runtime
         public MEB_BaseBlackboard m_blackboard = null;
         public GameObject m_gameObject = null;
 
+        public bool m_canEval = true;
+        public bool m_canExec = true;
+
         public void Evaluate(int index, float delta)
         {
+            if (m_canEval == false) { return; }
+
             m_managers[index].ResetMoveState();
 
             m_managers[index].EvaluationStart(index, delta);
             m_managers[index].EvaluationEnd(index, delta);
         }
 
-        public void Exacute(int index, float delta)
+        public void Execute(int index, float delta)
         {
+            if (m_canExec == false) { return; }
+
             m_managers[index].AssessMoveResponce();
 
             if (m_managers[index].IsAllowedToExecute() == true)

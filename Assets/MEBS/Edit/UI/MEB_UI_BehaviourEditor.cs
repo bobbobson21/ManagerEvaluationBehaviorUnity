@@ -1,4 +1,5 @@
 using MEBS.Runtime;
+using System;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEditor.Callbacks;
@@ -33,7 +34,6 @@ namespace MEBS.Editor
 
         private float m_refreshRateMax = 0.1f;
         private float m_currentRefreshRatePoint = 0;
-
 
         public static void AddNormalManagerWithScopeRequirement(MEB_UI_BehaviourEditor_ManagerData manager) //for the add manager drop down UI
         {
@@ -104,6 +104,20 @@ namespace MEBS.Editor
             return (Application.isPlaying == true);
         }
 
+        public bool IsValid()
+        {
+            if (m_loadedObject == null)
+            {
+                return false;
+            }
+            else if (m_editorId != m_loadedObject.m_editorId)
+            {
+                return false;
+            }
+
+            return true;
+        }
+
         private MEB_BaseBehaviourData_ItemSettings RenderAddManagerField(bool displayNormalManagers,  bool displayNormalManagersScoped, bool displayEvalManagers)
         {
             if (InRestrictedEditMode() == true) { return null; }
@@ -116,18 +130,18 @@ namespace MEBS.Editor
             if (displayNormalManagersScoped == true) {arrayLength += m_listDataNormalScoped.Count; }
             if (displayEvalManagers == true) { arrayLength += m_listDataEval.Count; }
 
-            MEB_UI_BehaviourEditor_ManagerData[] resultExacuteableList = new MEB_UI_BehaviourEditor_ManagerData[arrayLength];
+            MEB_UI_BehaviourEditor_ManagerData[] resultExecuteableList = new MEB_UI_BehaviourEditor_ManagerData[arrayLength];
             string[] resultList = new string[arrayLength];
             int writePoint = 1;
 
-            resultExacuteableList[0] = null;
+            resultExecuteableList[0] = null;
             resultList[0] = "+ (none)";
 
             if (displayNormalManagers == true)
             {
                 for (int i = 0; i < m_listDataNormal.Count; i++)
                 {
-                    resultExacuteableList[writePoint] = m_listDataNormal[i];
+                    resultExecuteableList[writePoint] = m_listDataNormal[i];
                     resultList[writePoint] = m_listDataNormal[i].m_name;
                     writePoint++;
                 }
@@ -137,7 +151,7 @@ namespace MEBS.Editor
             {
                 for (int i = 0; i < m_listDataNormalScoped.Count; i++)
                 {
-                    resultExacuteableList[writePoint] = m_listDataNormalScoped[i];
+                    resultExecuteableList[writePoint] = m_listDataNormalScoped[i];
                     resultList[writePoint] = m_listDataNormalScoped[i].m_name;
                     writePoint++;
                 }
@@ -147,7 +161,7 @@ namespace MEBS.Editor
             {
                 for (int i = 0; i < m_listDataEval.Count; i++)
                 {
-                    resultExacuteableList[writePoint] = m_listDataEval[i];
+                    resultExecuteableList[writePoint] = m_listDataEval[i];
                     resultList[writePoint] = m_listDataEval[i].m_name;
                     writePoint++;
                 }
@@ -161,9 +175,9 @@ namespace MEBS.Editor
 
             EditorStyles.popup.fixedHeight = oldVal;
 
-            if (resultExacuteableList[indexOfRequestedManager] != null)
+            if (resultExecuteableList[indexOfRequestedManager] != null)
             {
-                MEB_BaseBehaviourData_ItemSettings settings = resultExacuteableList[indexOfRequestedManager].CreateInstance();
+                MEB_BaseBehaviourData_ItemSettings settings = resultExecuteableList[indexOfRequestedManager].CreateInstance();
                 settings.m_blackboardIdenifyers = new List<string>();
                 settings.m_blackboardKeys = new List<string>();
 
@@ -603,16 +617,27 @@ namespace MEBS.Editor
             return false;
         }
 
+        private void Awake()
+        {
+            if (IsValid() == false)
+            {
+                try
+                {
+                    Close();
+                }
+                catch (NullReferenceException)
+                {
+                    //do nothing it can not be removed
+                }
+            }
+        }
+
         private void Update()
         {
-            if (m_loadedObject == null)
+            if (IsValid() == false)
             {
                 Close();
                 return;
-            }
-            else if (m_editorId != m_loadedObject.m_editorId)
-            {
-                Close();
             }
 
             if (Application.isPlaying == true)
@@ -631,7 +656,7 @@ namespace MEBS.Editor
         {
             m_currentRenderedObject = m_loadedObject;
 
-            GUILayout.BeginHorizontal();
+            GUILayout.BeginHorizontal(MEB_GUI_Styles.BarStyle());
             MEB_BaseBehaviourData_ItemSettings managerData = RenderAddManagerField(true, false, false);
             MEB_BaseBehaviourData_Item evalData = RenderAddEvalField();
             MEB_BaseBehaviourData_ChainScopeItemWapper scopeData = RenderAddScopeField();

@@ -25,7 +25,7 @@ namespace MEBS.Editor
             MEB_BaseBehaviourData_BlackboardCompareBlockSettings data = new MEB_BaseBehaviourData_BlackboardCompareBlockSettings();
             data.m_class = "MEBS.Runtime." + m_name;
             data.m_displayName = m_name;
-            data.m_displayDiscription = "it takes in two inputs A and B and compares then and if the compare is false all the manager 'managers to evalurate' section are blocked from being exacuted not just the first one. \n\nvalid blackboard data: \nA: (numBlackboardKeyAsString) \nB: (numBlackboardKeyAsString)";
+            data.m_displayDiscription = "it takes in two inputs A and B and compares then and if the compare is false all the manager 'managers to evalurate' section are blocked from being Executed not just the first one. \n\nvalid blackboard data: \nA: (numBlackboardKeyAsString) \nB: (numBlackboardKeyAsString)";
 
             return data;
         }

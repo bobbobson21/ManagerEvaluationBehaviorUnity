@@ -2,6 +2,7 @@
 
 using UnityEditor;
 using UnityEngine;
+using static UnityEngine.Rendering.DebugUI.MessageBox;
 
 namespace MEBS.Editor
 {
@@ -70,6 +71,17 @@ namespace MEBS.Editor
         public static void BeginTextStyleWithNuberColor()
         {
             BeginTextStyle(Color.green);
+        }
+
+        public static GUIStyle BarStyle() //the title style used on the main page
+        {
+            GUIStyle style = new GUIStyle();
+
+            style.normal.background = new Texture2D(1, 1);
+            style.normal.background.SetPixel( 0, 0, new Color(0, 0, 0, 0.2f));
+            style.normal.background.Apply();
+
+            return style;
         }
 
         public static GUIStyle TitleTextStyle() //the title style used on the main page
