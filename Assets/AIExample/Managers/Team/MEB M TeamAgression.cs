@@ -59,7 +59,7 @@ public class UserManger_TeamAgression : MEB_BaseManager//, MEB_I_IntScoop
             if (m_ourBlackboard.m_attackerObj != null && m_teamOparator.GetObjectOfTeamMate(i) != m_director.m_gameObject && teamMate.m_attackerObj == m_ourBlackboard.m_attackerObj && m_director.m_gameObject.tag == teamMate.gameObject.tag)
             {
                 UserBlackboard_BasicBadguy themData = m_ourBlackboard.m_attackerObj.GetComponent<UserBlackboard_BasicBadguy>();
-                if (themData.m_attackerObj == m_director.m_gameObject || themData.m_attackerObj == teamMate.m_attackerObj)
+                if (themData != null && themData.m_attackerObj == m_director.m_gameObject || themData.m_attackerObj == teamMate.m_attackerObj)
                 { 
                     return;
                 }

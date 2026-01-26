@@ -45,7 +45,7 @@ MonoBehaviour:
     m_isScoped: 1
     m_isForMainThread: 0
     m_nonColapsed: 1
-  m_editorId: -24996
+  m_editorId: -53698
   m_allowBlackboardDebugHighlighting: 1
   references:
     version: 2
@@ -664,7 +664,7 @@ MonoBehaviour:
         - storeIsAgressiveIn
         m_blackboardKeys:
         - extraAgressive
-        m_displayBlackboardSettingExpanded: 1
+        m_displayBlackboardSettingExpanded: 0
         m_displayCustomSettingExpanded: 0
         m_displayDebugSettingsExpanded: 0
         m_allowAgressionInMin: 8
