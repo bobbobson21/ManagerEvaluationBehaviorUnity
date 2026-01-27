@@ -22,6 +22,9 @@ namespace MEBS.Editor
 
     public class MEB_UI_BehaviourEditor : EditorWindow
     {
+        private delegate void EventHandleOnNewMEBEditorWindow(MEB_UI_BehaviourEditor window, MEB_BaseBehaviourData asset);
+        private static event EventHandleOnNewMEBEditorWindow e_OnWidowCreated;
+
         private static MEB_BaseBehaviourData m_currentRenderedObject = null;
 
         private MEB_BaseBehaviourData m_loadedObject = null;
@@ -74,19 +77,25 @@ namespace MEBS.Editor
 
         public static void OpenWindow(MEB_BaseBehaviourData data)
         {
-            MEB_UI_BehaviourEditor window = CreateWindow<MEB_UI_BehaviourEditor>("MEB manager evaluation behaviour editor"); //cant have more than one
-
-            window.position = new Rect(500, 0, Screen.currentResolution.width / 2, Screen.currentResolution.height / 2);
-
             if (data.m_items == null)
             {
                 data.m_items = new List<MEB_BaseBehaviourData_ChainScopeItemWapper>();
             }
 
+            MEB_UI_BehaviourEditor window = CreateWindow<MEB_UI_BehaviourEditor>("MEB manager evaluation behaviour editor"); //cant have more than one
+
+            window.position = new Rect(500, 0, Screen.currentResolution.width / 2, Screen.currentResolution.height / 2);
             window.m_editorId = window.GetHashCode().ToString();
+            window.m_loadedObject = data;
+
             data.m_editorId = window.m_editorId;
 
-            window.m_loadedObject = data;
+            if (e_OnWidowCreated != null) //says the windows being made
+            {
+                e_OnWidowCreated(window, data);
+            }
+
+            e_OnWidowCreated += window.RevalidateWindowAfterWindowCreation;
         }
 
         public static bool OnGUIIsInDebug()
@@ -116,6 +125,14 @@ namespace MEBS.Editor
             }
 
             return true;
+        }
+
+        private void RevalidateWindowAfterWindowCreation(MEB_UI_BehaviourEditor window, MEB_BaseBehaviourData asset)
+        {
+            if (IsValid() == false || asset == m_loadedObject)
+            {
+                Close();
+            }
         }
 
         private MEB_BaseBehaviourData_ItemSettings RenderAddManagerField(bool displayNormalManagers,  bool displayNormalManagersScoped, bool displayEvalManagers)
@@ -524,11 +541,6 @@ namespace MEBS.Editor
                 itemIndex = RenderScopeIndexField(itemIndex);
                 itemIndex = RenderDeleteField(itemIndex);
 
-                if (itemIndex == 0)
-                {
-                    int i = 0;
-                }
-
                 GUILayout.EndHorizontal();
                 GUILayout.Space(yPadding);
 
@@ -773,6 +785,8 @@ namespace MEBS.Editor
         {
             EditorUtility.SetDirty(m_loadedObject);
             AssetDatabase.SaveAssetIfDirty(m_loadedObject);
+
+            e_OnWidowCreated -= RevalidateWindowAfterWindowCreation;
         }
     }
 }
