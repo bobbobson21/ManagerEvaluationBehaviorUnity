@@ -23,7 +23,7 @@ MonoBehaviour:
     - rid: 6310419766989553722
     m_isScoped: 1
     m_isForMainThread: 0
-    m_nonColapsed: 1
+    m_nonColapsed: 0
   - m_items:
     - rid: 324396942948302923
     - rid: 324396942948302925
@@ -32,7 +32,7 @@ MonoBehaviour:
     - rid: 8401230053211373626
     m_isScoped: 1
     m_isForMainThread: 1
-    m_nonColapsed: 1
+    m_nonColapsed: 0
   - m_items:
     - rid: 5459895752802959444
     - rid: 5459895752802959442
@@ -45,7 +45,7 @@ MonoBehaviour:
     m_isScoped: 1
     m_isForMainThread: 0
     m_nonColapsed: 1
-  m_editorId: -53698
+  m_editorId: -64714
   m_allowBlackboardDebugHighlighting: 1
   references:
     version: 2
