@@ -48,7 +48,7 @@ MonoBehaviour:
     m_isScoped: 0
     m_isForMainThread: 0
     m_nonColapsed: 1
-  m_editorId: -46112
+  m_editorId: -28780
   m_allowBlackboardDebugHighlighting: 1
   references:
     version: 2
@@ -130,7 +130,7 @@ MonoBehaviour:
         - desiredResourceCount
         - extraAgressive
         m_displayBlackboardSettingExpanded: 0
-        m_displayCustomSettingExpanded: 1
+        m_displayCustomSettingExpanded: 0
         m_displayDebugSettingsExpanded: 0
         m_greedAmount: 35
     - rid: 324397009209655356

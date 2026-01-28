@@ -386,11 +386,8 @@ namespace MEBS.Editor
                     }
                     else
                     {
-                        MEB_GUI_Styles.BeginTextStyleWithLockedColor();
-                        GUILayout.TextField(item.m_blackboardIdenifyers[i]);
-                        GUILayout.TextField(item.m_blackboardKeys[i]);
-                        MEB_GUI_Styles.EndTextStyle();
-
+                        MEB_GUI_Layout.LockedInputStyle(item.m_blackboardIdenifyers[i]);
+                        MEB_GUI_Layout.LockedInputStyle(item.m_blackboardKeys[i]);
                     }
                     GUILayout.EndHorizontal();
                 }

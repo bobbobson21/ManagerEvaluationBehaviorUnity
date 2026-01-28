@@ -50,7 +50,7 @@ namespace MEBS.Editor
 
         public static void BeginTextStyleWithLockedColor()
         {
-            BeginTextStyle(Color.gray);
+            BeginTextStyle(Color.cyan);
         }
 
         public static void BeginTextStyleWithGameObjectColor()
@@ -71,6 +71,22 @@ namespace MEBS.Editor
         public static void BeginTextStyleWithNuberColor()
         {
             BeginTextStyle(Color.green);
+        }
+
+        public static GUIStyle GetLockedStyle()
+        {
+            GUIStyle newStyle = new GUIStyle();
+            Color lockedCol = Color.gray;
+
+            newStyle.normal.textColor = lockedCol;
+            newStyle.hover.textColor = lockedCol;
+            newStyle.active.textColor = lockedCol;
+
+            newStyle.onNormal.textColor = lockedCol;
+            newStyle.onHover.textColor = lockedCol;
+            newStyle.onActive.textColor = lockedCol;
+
+            return newStyle;
         }
 
         public static GUIStyle BarStyle() //the title style used on the main page
