@@ -24,7 +24,7 @@ namespace MEBS.Editor
 
         public static void LockedInputStyle(string lable, string text, GUIStyle style = null)
         {
-            int lableWidth = 400;
+            int lableWidth = 148;
             int inputHeight = 16;
 
             if (style == null)
@@ -33,7 +33,7 @@ namespace MEBS.Editor
             }
 
             GUILayout.BeginHorizontal();
-            GUILayout.Label(text, GUILayout.Width(lableWidth), GUILayout.MinWidth(lableWidth), GUILayout.MaxWidth(lableWidth));
+            GUILayout.Label(lable, GUILayout.Width(lableWidth), GUILayout.MinWidth(lableWidth), GUILayout.MaxWidth(lableWidth));
 
             GUILayout.BeginVertical(style, GUILayout.ExpandWidth(true), GUILayout.Height(inputHeight));
             EditorGUILayout.SelectableLabel(text, MEB_GUI_Styles.GetLockedStyle(), GUILayout.ExpandWidth(false), GUILayout.MinWidth(0), GUILayout.Height(inputHeight));

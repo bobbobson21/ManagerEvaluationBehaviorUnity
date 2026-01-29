@@ -50,7 +50,7 @@ namespace MEBS.Editor
 
         public static void BeginTextStyleWithLockedColor()
         {
-            BeginTextStyle(Color.cyan);
+            BeginTextStyle(Color.gray);
         }
 
         public static void BeginTextStyleWithGameObjectColor()

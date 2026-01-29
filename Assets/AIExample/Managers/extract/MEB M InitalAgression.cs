@@ -24,10 +24,8 @@ public class Manager_InitalAgressionSettings : MEB_BaseBehaviourData_ItemSetting
             }
             else
             {
-                MEB_GUI_Styles.BeginTextStyleWithLockedColor();
-                EditorGUILayout.TextField("allow agression in min", m_allowAgressionInMin.ToString());
-                EditorGUILayout.TextField("allow agression in max", m_allowAgressionInMax.ToString());
-                MEB_GUI_Styles.EndTextStyle();
+                MEB_GUI_Layout.LockedInputStyle("allow agression in min", m_allowAgressionInMin.ToString());
+                MEB_GUI_Layout.LockedInputStyle("allow agression in max", m_allowAgressionInMax.ToString());
             }
         }
 

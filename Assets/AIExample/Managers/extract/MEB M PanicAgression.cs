@@ -25,10 +25,8 @@ public class Manager_PanicAgressionSettings : MEB_BaseBehaviourData_ItemSettings
             }
             else
             {
-                MEB_GUI_Styles.BeginTextStyleWithLockedColor();
-                EditorGUILayout.TextField("panic in", m_panicIn.ToString());
-                EditorGUILayout.TextField("panic if %", m_panicIfFraction.ToString());
-                MEB_GUI_Styles.EndTextStyle();
+                MEB_GUI_Layout.LockedInputStyle("panic in", m_panicIn.ToString());
+                MEB_GUI_Layout.LockedInputStyle("panic if %", m_panicIfFraction.ToString());
             }
         }
 

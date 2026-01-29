@@ -79,18 +79,15 @@ namespace MEBS.Runtime
                 }
                 else
                 {
-                    MEB_GUI_Styles.BeginTextStyleWithLockedColor();
-                    EditorGUILayout.TextField("num type", m_numType.ToString());
-                    EditorGUILayout.TextField("oparation type", m_oparationType.ToString());
-                    MEB_GUI_Styles.EndTextStyle();
+                    MEB_GUI_Layout.LockedInputStyle("num type", m_numType.ToString());
+                    MEB_GUI_Layout.LockedInputStyle("oparation type", m_oparationType.ToString());
+                    GUILayout.Space(spaceY);
 
                     EditorGUILayout.Toggle("invert logic", m_inverted);
                     GUILayout.Space(spaceY);
 
-                    MEB_GUI_Styles.BeginTextStyleWithLockedColor();
-                    EditorGUILayout.TextField("block range start", m_blockRangeStartPoint.ToString());
-                    EditorGUILayout.TextField("block range end", m_blockRangeEndPoint.ToString());
-                    MEB_GUI_Styles.EndTextStyle();
+                    MEB_GUI_Layout.LockedInputStyle("block range start", m_blockRangeStartPoint.ToString());
+                    MEB_GUI_Layout.LockedInputStyle("block range end", m_blockRangeEndPoint.ToString());
                 }
             }
 

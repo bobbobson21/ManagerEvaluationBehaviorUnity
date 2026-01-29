@@ -31,15 +31,11 @@ public class Manager_WanderSettings : MEB_BaseBehaviourData_ItemSettings
             }
             else
             {
-                MEB_GUI_Styles.BeginTextStyleWithLockedColor();
-
-                EditorGUILayout.TextField("radius", m_radius.ToString());
-                EditorGUILayout.TextField("min radius", m_minRadius.ToString());
+                MEB_GUI_Layout.LockedInputStyle("radius", m_radius.ToString());
+                MEB_GUI_Layout.LockedInputStyle("min radius", m_minRadius.ToString());
                 GUILayout.Space(8);
 
-                EditorGUILayout.TextField("delay", m_delayBetweenWandering.ToString());
-
-                MEB_GUI_Styles.EndTextStyle();
+                MEB_GUI_Layout.LockedInputStyle("delay", m_delayBetweenWandering.ToString());
             }
         }
 

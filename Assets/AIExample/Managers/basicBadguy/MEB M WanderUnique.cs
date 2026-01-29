@@ -40,20 +40,16 @@ public class Manager_WanderUniqueSetting : MEB_BaseBehaviourData_ItemSettings
             }
             else
             {
-                MEB_GUI_Styles.BeginTextStyleWithLockedColor();
-
-                EditorGUILayout.TextField("max radius", m_maxRadius.ToString());
-                EditorGUILayout.TextField("min radius", m_minRadius.ToString());
+                MEB_GUI_Layout.LockedInputStyle("max radius", m_maxRadius.ToString());
+                MEB_GUI_Layout.LockedInputStyle("min radius", m_minRadius.ToString());
                 GUILayout.Space(8);
 
-                EditorGUILayout.TextField("delay", m_delayBetweenWandering.ToString());
+                MEB_GUI_Layout.LockedInputStyle("delay", m_delayBetweenWandering.ToString());
                 GUILayout.Space(8);
 
-                EditorGUILayout.TextField("unique point count", m_uniquePointCount.ToString());
-                EditorGUILayout.TextField("unique point attempts", m_maxAttemptsForUniquePoint.ToString());
-                EditorGUILayout.TextField("unique radius", m_uniqueRadius.ToString());
-
-                MEB_GUI_Styles.EndTextStyle();
+                MEB_GUI_Layout.LockedInputStyle("unique point count", m_uniquePointCount.ToString());
+                MEB_GUI_Layout.LockedInputStyle("unique point attempts", m_maxAttemptsForUniquePoint.ToString());
+                MEB_GUI_Layout.LockedInputStyle("unique radius", m_uniqueRadius.ToString());
             }
         }
 

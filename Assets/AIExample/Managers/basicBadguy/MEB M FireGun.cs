@@ -33,16 +33,12 @@ public class Manager_FireGunSettings : MEB_BaseBehaviourData_ItemSettings
             }
             else
             {
-                MEB_GUI_Styles.BeginTextStyleWithLockedColor();
-
-                EditorGUILayout.TextField("shoot if in scope of", m_shootScope.ToString());
-                EditorGUILayout.TextField("shoot if in scope of", m_shootDistance.ToString());
+                MEB_GUI_Layout.LockedInputStyle("shoot if in scope of", m_shootScope.ToString());
+                MEB_GUI_Layout.LockedInputStyle("shoot if in scope of", m_shootDistance.ToString());
                 GUILayout.Space(8);
-                EditorGUILayout.TextField("gun movement speed", m_speed.ToString());
-                EditorGUILayout.TextField("speed at 50% health", m_speedMedium.ToString());
-                EditorGUILayout.TextField("speed at 25% health", m_speedFast.ToString());
-
-                MEB_GUI_Styles.EndTextStyle();
+                MEB_GUI_Layout.LockedInputStyle("gun movement speed", m_speed.ToString());
+                MEB_GUI_Layout.LockedInputStyle("speed at 50% health", m_speedMedium.ToString());
+                MEB_GUI_Layout.LockedInputStyle("speed at 25% health", m_speedFast.ToString());
             }
         }
 

@@ -22,9 +22,7 @@ public class Manager_GreedyAgressionSettings : MEB_BaseBehaviourData_ItemSetting
             }
             else
             {
-                MEB_GUI_Styles.BeginTextStyleWithLockedColor();
-                EditorGUILayout.TextField("greedy limit", m_greedAmount.ToString());
-                MEB_GUI_Styles.EndTextStyle();
+                MEB_GUI_Layout.LockedInputStyle("greedy limit", m_greedAmount.ToString());
             }
         }
 

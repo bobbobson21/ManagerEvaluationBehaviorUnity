@@ -25,9 +25,7 @@ public class Manager_GoToExtractSettings : MEB_BaseBehaviourData_ItemSettings
             }
             else
             { 
-                MEB_GUI_Styles.BeginTextStyleWithLockedColor();
-                EditorGUILayout.TextField(m_lable, m_extractIn.ToString());
-                MEB_GUI_Styles.EndTextStyle();
+                MEB_GUI_Layout.LockedInputStyle(m_lable, m_extractIn.ToString());
             }
         }
 
