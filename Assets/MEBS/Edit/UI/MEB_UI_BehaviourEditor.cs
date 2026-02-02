@@ -681,7 +681,9 @@ namespace MEBS.Editor
 
             if (Application.isPlaying == true && m_loadedObject.m_runtimeObject != null && m_loadedObject.m_runtimeName != "")
             {
+                GUILayout.BeginHorizontal(MEB_GUI_Styles.BarStyle());
                 GUILayout.Label($"debug data is from object: {m_loadedObject.m_runtimeName}");
+                GUILayout.EndHorizontal();
             }
 
             m_scrollPos = EditorGUILayout.BeginScrollView(m_scrollPos);
