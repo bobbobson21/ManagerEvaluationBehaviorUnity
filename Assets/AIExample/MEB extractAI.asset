@@ -23,7 +23,7 @@ MonoBehaviour:
     - rid: 6310419766989553722
     m_isScoped: 1
     m_isForMainThread: 0
-    m_nonColapsed: 0
+    m_nonColapsed: 1
   - m_items:
     - rid: 324396942948302923
     - rid: 324396942948302925
@@ -32,7 +32,7 @@ MonoBehaviour:
     - rid: 8401230053211373626
     m_isScoped: 1
     m_isForMainThread: 1
-    m_nonColapsed: 0
+    m_nonColapsed: 1
   - m_items:
     - rid: 5459895752802959444
     - rid: 5459895752802959442
@@ -45,7 +45,7 @@ MonoBehaviour:
     m_isScoped: 1
     m_isForMainThread: 0
     m_nonColapsed: 1
-  m_editorId: -81966
+  m_editorId: -211304
   m_allowBlackboardDebugHighlighting: 0
   references:
     version: 2
@@ -356,7 +356,7 @@ MonoBehaviour:
         m_blackboardIdenifyers: []
         m_blackboardKeys: []
         m_displayBlackboardSettingExpanded: 0
-        m_displayCustomSettingExpanded: 0
+        m_displayCustomSettingExpanded: 1
         m_displayDebugSettingsExpanded: 0
         m_blockInStart: 260
         m_blockInEnd: 3.402823e+38
@@ -591,7 +591,7 @@ MonoBehaviour:
         - movePos
         - attackerObj
         m_displayBlackboardSettingExpanded: 0
-        m_displayCustomSettingExpanded: 1
+        m_displayCustomSettingExpanded: 0
         m_displayDebugSettingsExpanded: 0
         m_saftyRadius: 5
         m_minimumVelocity: 0.1

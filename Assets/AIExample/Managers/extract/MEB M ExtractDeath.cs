@@ -44,7 +44,9 @@ public class UserManger_FailedToExtractDeath : MEB_BaseManager//, MEB_I_IntScoop
 
     public override void EvaluationEnd(int index, float delta)
     {
-        if (m_doneJob == true) { BlockMoveToExecutionForCycle(); }
+        m_lifeTime -= delta;
+
+        if (m_lifeTime > 0 || m_doneJob == true) { BlockMoveToExecutionForCycle(); }
     }
 
     public override void OnInitialized()
@@ -57,23 +59,18 @@ public class UserManger_FailedToExtractDeath : MEB_BaseManager//, MEB_I_IntScoop
         }
     }
 
-    /*public override void OnStart() //put stuff in these if you need something to happen when the manager leaves or enters Executeion
+    public override void OnStart() //put stuff in these if you need something to happen when the manager leaves or enters Executeion
     {
+        Debug.Log($"AI ({m_director.m_gameObject.transform.parent.gameObject}) failed to extract in time and they will now die.");
+        m_director.m_blackboard.SetObject("health", 0);
+        m_doneJob = true;
     }
 
     public override void OnEnd()
     {
-    }*/
+    }
 
     public override void OnUpdate(float delta, int index)
     {
-        m_lifeTime -= delta;
-
-        if (m_lifeTime <= 0)
-        {
-            Debug.Log($"AI ({m_director.m_gameObject.transform.parent.gameObject}) failed to extract in time and they will now die.");
-            m_director.m_blackboard.SetObject("health", 0);
-            m_doneJob = true;
-        }
     }
 }

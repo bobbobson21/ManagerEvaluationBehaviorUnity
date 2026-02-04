@@ -74,10 +74,14 @@ public class UserManger_DeathHandler : MEB_BaseManager//, MEB_I_IntScoop
         MEB_C_DirectorLod directiorlod = m_director.m_gameObject.GetComponent<MEB_C_DirectorLod>();
 
         NavMeshAgent agent = m_director.m_gameObject.GetComponent<NavMeshAgent>();
+        Rigidbody solidBody = m_director.m_gameObject.GetComponent<Rigidbody>();
+        Collider solidCollider = m_director.m_gameObject.GetComponent<Collider>();
 
         if (directior != null) { Object.Destroy(directior); }
         if (directiorlod != null) { Object.Destroy(directiorlod); }
-        if (agent != null) { Object.Destroy(agent); }
 
+        if (agent != null) { Object.Destroy(agent); }
+        if (solidBody != null) { Object.Destroy(solidBody); }
+        if (solidCollider != null) { Object.Destroy(solidCollider); }
     }
 }

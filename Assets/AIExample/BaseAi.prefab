@@ -111,6 +111,10 @@ MonoBehaviour:
   m_eyePosition: {x: 0, y: 1.1, z: 0}
   m_removeFromBlackboardIfNotVisible: 0
   m_removeObjectAfterTime: 2
+  m_beginSearchForObjestAfterXTime: 0
+  m_returnType: 0
+  m_teamOparator: {fileID: 0}
+  m_doTeamBlackbaordCheck: 1
 --- !u!114 &5200228457455301454
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -129,6 +133,10 @@ MonoBehaviour:
   m_eyePosition: {x: 0, y: 1.1, z: 0}
   m_removeFromBlackboardIfNotVisible: 1
   m_removeObjectAfterTime: 1
+  m_beginSearchForObjestAfterXTime: 0
+  m_returnType: 0
+  m_teamOparator: {fileID: 0}
+  m_doTeamBlackbaordCheck: 1
 --- !u!114 &1182155854278125798
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -147,6 +155,10 @@ MonoBehaviour:
   m_eyePosition: {x: 0, y: 1.1, z: 0}
   m_removeFromBlackboardIfNotVisible: 1
   m_removeObjectAfterTime: 1
+  m_beginSearchForObjestAfterXTime: 0
+  m_returnType: 0
+  m_teamOparator: {fileID: 0}
+  m_doTeamBlackbaordCheck: 1
 --- !u!65 &7832060520106513687
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -5214,7 +5226,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_behaviorSet: {fileID: 11400000, guid: 7970831d8773989469b183b0f07e1767, type: 2}
   m_blackboard: {fileID: 2367188205530176646}
-  m_exportManagersWithDebugConnection: 0
 --- !u!114 &2367188205530176646
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5231,12 +5242,18 @@ MonoBehaviour:
   m_healthObject: {fileID: 0}
   m_ammoObject: {fileID: 0}
   m_eyeObject: {fileID: 0}
+  m_resourceObject: {fileID: 0}
+  m_extractObject: {fileID: 0}
   m_movePos: {x: 0, y: 0, z: 0}
   m_healthMax: 100
   m_health: 100
   m_ammoMax: 25
   m_ammoTotal: 25
   m_ammoClip: 25
+  m_resourceCount: 0
+  m_desiredResourceCount: 0
+  m_wantsToExtract: 0
+  m_extraAgressive: 0
 --- !u!65 &3769362347106215873
 BoxCollider:
   m_ObjectHideFlags: 0
