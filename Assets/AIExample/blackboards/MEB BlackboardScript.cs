@@ -2,6 +2,32 @@ using System;
 using MEBS.Runtime;
 using UnityEngine;
 
+
+/*#if MEB_BLACKBOARD_UI_INTERACTOR
+    ClassName, UserBlackboard_BasicBadguy;
+
+     GameObject, m_attackerObj, null;
+     GameObject, m_healthObject, null;
+     GameObject, m_ammoObject, null;
+     GameObject, m_eyeObject, null;
+     GameObject, m_resourceObject, null;
+     GameObject, m_extractObject, null;
+
+     Vector3, m_movePos, 0, 0, 0;
+     int, m_healthMax, 100;
+     int, m_health, 100;
+
+     int, m_ammoMax, 50;
+     int, m_ammoTotal, 50;
+     int, m_ammoClip, 25;
+
+     int, m_resourceCount, 0;
+     int, m_desiredResourceCount, 0;
+     bool, m_wantsToExtract, false;
+     bool, m_extraAgressive, false;
+#endif*/
+
+
 public class UserBlackboard_BasicBadguy : MEB_BaseBlackboard
 {
     public GameObject m_attackerObj = null;
