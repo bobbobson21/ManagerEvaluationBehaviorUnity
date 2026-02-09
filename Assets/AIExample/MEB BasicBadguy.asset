@@ -30,7 +30,7 @@ MonoBehaviour:
     m_isScoped: 1
     m_isForMainThread: 0
     m_nonColapsed: 0
-  m_editorId: -20426
+  m_editorId: -45140
   m_allowBlackboardDebugHighlighting: 1
   references:
     version: 2
@@ -97,7 +97,7 @@ MonoBehaviour:
         - movePos
         - healthObject
         - ammoObject
-        m_displayBlackboardSettingExpanded: 1
+        m_displayBlackboardSettingExpanded: 0
         m_displayCustomSettingExpanded: 0
         m_displayDebugSettingsExpanded: 0
     - rid: 5459895752802959422
@@ -115,7 +115,7 @@ MonoBehaviour:
         - attackerObj
         - movePos
         m_displayBlackboardSettingExpanded: 0
-        m_displayCustomSettingExpanded: 1
+        m_displayCustomSettingExpanded: 0
         m_displayDebugSettingsExpanded: 0
         m_saftyRadius: 5
         m_minimumVelocity: 0.1

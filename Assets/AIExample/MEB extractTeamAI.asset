@@ -48,7 +48,7 @@ MonoBehaviour:
     m_isScoped: 0
     m_isForMainThread: 0
     m_nonColapsed: 1
-  m_editorId: -106518
+  m_editorId: -46470
   m_allowBlackboardDebugHighlighting: 1
   references:
     version: 2
@@ -323,7 +323,7 @@ MonoBehaviour:
         - target
         m_blackboardKeys:
         - movePos
-        m_displayBlackboardSettingExpanded: 1
+        m_displayBlackboardSettingExpanded: 0
         m_displayCustomSettingExpanded: 0
         m_displayDebugSettingsExpanded: 0
     - rid: 5459895752802959444
