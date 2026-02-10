@@ -285,7 +285,7 @@ namespace MEBS.Editor
             return itemIndex;
         }
 
-        private int RenderManager(MEB_BaseBehaviourData_ItemSettings item, int itemIndex)
+        private int RenderManager(MEB_BaseBehaviourData_ItemSettings item, int itemIndex, List<MEB_BaseBehaviourData_ItemSettings> reportToUi = null)
         {
             int bigSpace = 8;
             int smallSpace = 4;
@@ -295,6 +295,15 @@ namespace MEBS.Editor
 
             int xPadding = 8;
             int yPadding = 4;
+
+            int itemIndexOrignal = itemIndex;
+            if (reportToUi != null)
+            {
+                for (int i = 0; i < reportToUi.Count; i++)
+                {
+                    reportToUi[i].OnManagerInEvalurationScopeStartGUI(itemIndexOrignal);
+                }
+            }
 
             GUILayout.BeginHorizontal();
             GUILayout.Space(xPadding);
@@ -425,6 +434,14 @@ namespace MEBS.Editor
 
             GUILayout.Space(yPadding);
 
+            if (reportToUi != null)
+            {
+                for (int i = 0; i < reportToUi.Count; i++)
+                {
+                    reportToUi[i].OnManagerInEvalurationScopeEndGUI(itemIndexOrignal);
+                }
+            }
+
             return itemIndex;
         }
 
@@ -487,9 +504,17 @@ namespace MEBS.Editor
                     item.m_useInEval.Add(managerData);
                 }
 
+                if (item.m_evalurators != null)
+                {
+                    for (int i = 0; i < item.m_evalurators.Count; i++)
+                    {
+                        item.m_evalurators[i].OnManagerInEvalurationScopeStartGUI(int.MinValue);
+                    }
+                }
+
                 for (int i = 0; i < item.m_useInEval.Count; i++)
                 {
-                    int moveToIndex = RenderManager(item.m_useInEval[i], i);
+                    int moveToIndex = RenderManager(item.m_useInEval[i], i, item.m_evalurators);
 
                     if (moveToIndex < 0)
                     {
@@ -503,6 +528,14 @@ namespace MEBS.Editor
                             item.m_useInEval.RemoveAt(i);
                             item.m_useInEval.Insert(moveToIndex, subItem);
                         }
+                    }
+                }
+
+                if (item.m_useInEval != null)
+                {
+                    for (int i = 0; i < item.m_useInEval.Count; i++)
+                    {
+                        item.m_useInEval[i].OnManagerInEvalurationScopeEndGUI(int.MaxValue);
                     }
                 }
                 GUILayout.EndVertical(); //section divide

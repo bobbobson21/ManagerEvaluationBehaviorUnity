@@ -1,0 +1,70 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d965daca05cc0c5428d4779d6f614210, type: 3}
+  m_Name: new behavior set
+  m_EditorClassIdentifier: 
+  m_items:
+  - m_items:
+    - rid: 8514444564440285246
+    m_isScoped: 0
+    m_isForMainThread: 0
+    m_nonColapsed: 1
+  m_editorId: -113452
+  m_allowBlackboardDebugHighlighting: 1
+  references:
+    version: 2
+    RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }
+    - rid: 8514444564440285246
+      type: {class: MEB_BaseBehaviourData_Item, ns: MEBS.Runtime, asm: Assembly-CSharp}
+      data:
+        m_useInEval:
+        - rid: 8514444564440285249
+        m_evalurators:
+        - rid: 8514444564440285248
+        m_noneEvalurationManager:
+          rid: -2
+        m_isNormalManager: 0
+        m_nonColapsed: 1
+    - rid: 8514444564440285248
+      type: {class: MEB_BaseBehaviourData_BlackboardCondBlockSettings, ns: MEBS.Runtime, asm: Assembly-CSharp}
+      data:
+        m_class: MEBS.Runtime.MEB_E_EvalBlackboardCondBlock
+        m_displayName: MEB_E_EvalBlackboardCondBlock
+        m_displayDiscription: "If any bool registed to this managers black board
+          list returns false all the managers int 'managers to evalurate' section
+          are blocked from being Executed not just the first one. \n\nvalid blackboard
+          data: \n???: (BoolBlackboardKeyAsString)"
+        m_blackboardIdenifyers: []
+        m_blackboardKeys: []
+        m_displayBlackboardSettingExpanded: 0
+        m_displayCustomSettingExpanded: 0
+        m_displayDebugSettingsExpanded: 0
+        m_inverted: 0
+        m_blockRangeStartPoint: 0
+        m_blockRangeEndPoint: 2147483647
+    - rid: 8514444564440285249
+      type: {class: Manager_WanderSettings, ns: , asm: Assembly-CSharp}
+      data:
+        m_class: UserManger_Wander
+        m_displayName: UserManger_Wander
+        m_displayDiscription: "Makes the NPC wander around the place at will.\n\nvaild
+          blackboard data: \nstoreTargetLocationIn: (vector3BlackboardKeyAsString)"
+        m_blackboardIdenifyers: []
+        m_blackboardKeys: []
+        m_displayBlackboardSettingExpanded: 0
+        m_displayCustomSettingExpanded: 0
+        m_displayDebugSettingsExpanded: 0
+        m_minRadius: 5
+        m_radius: 10
+        m_delayBetweenWandering: 1

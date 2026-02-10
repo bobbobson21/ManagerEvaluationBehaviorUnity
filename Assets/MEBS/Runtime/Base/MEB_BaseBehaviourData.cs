@@ -38,6 +38,16 @@ namespace MEBS.Runtime
         {
             
         }
+
+        public virtual void OnManagerInEvalurationScopeStartGUI(int relativeScopeIndex)
+        {
+
+        }
+
+        public virtual void OnManagerInEvalurationScopeEndGUI(int relativeScopeIndex)
+        {
+
+        }
     }
 
     [Serializable]

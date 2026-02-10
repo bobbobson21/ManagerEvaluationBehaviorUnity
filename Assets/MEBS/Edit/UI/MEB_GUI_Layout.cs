@@ -41,6 +41,38 @@ namespace MEBS.Editor
 
             GUILayout.EndHorizontal();
         }
+
+        public static void BeginAffectBox(Color col, params GUILayoutOption[] options)
+        {
+            col.a = 0.9f;
+
+            int xPadding = 4;
+            int yPadding = 4;
+
+            GUIStyle style = new GUIStyle();
+            style.normal.background = new Texture2D(1, 1);
+            style.normal.background.SetPixel(1, 1, col);
+
+            GUILayout.BeginHorizontal();
+            GUILayout.Space(xPadding);
+
+            GUILayout.BeginVertical(style);
+            GUILayout.Space(yPadding);
+        }
+
+        public static void EndAffectBox()
+        {
+            int xPadding = 4;
+            int yPadding = 4;
+
+            GUILayout.Space(yPadding);
+            GUILayout.EndVertical();
+
+            GUILayout.Space(xPadding);
+            GUILayout.EndHorizontal();
+
+            GUILayout.Space(yPadding);
+        }
     }
 }
 

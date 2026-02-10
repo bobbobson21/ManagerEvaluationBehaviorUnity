@@ -8,24 +8,24 @@ using UnityEngine;
 namespace MEBS.Editor
 {
     [InitializeOnLoad]
-    public class MEB_E_EvalBlackboardCondBlock_UI : MEB_UI_BehaviourEditor_ManagerData
+    public class MEB_E_EvalManagerCondBlock_UI : MEB_UI_BehaviourEditor_ManagerData
     {
-        static MEB_E_EvalBlackboardCondBlock_UI()
+        static MEB_E_EvalManagerCondBlock_UI()
         {
-            MEB_UI_BehaviourEditor.AddEvalManager(new MEB_E_EvalBlackboardCondBlock_UI());
+            MEB_UI_BehaviourEditor.AddEvalManager(new MEB_E_EvalManagerCondBlock_UI());
         }
 
-        public MEB_E_EvalBlackboardCondBlock_UI()
+        public MEB_E_EvalManagerCondBlock_UI()
         {
-            m_name = "MEB_E_EvalBlackboardCondBlock";
+            m_name = "MEB_E_EvalManagerCondBlock";
         }
 
         public override MEB_BaseBehaviourData_ItemSettings CreateInstance()
         {
-            MEB_BaseBehaviourData_BlackboardCondBlockSettings data = new MEB_BaseBehaviourData_BlackboardCondBlockSettings();
+            MEB_BaseBehaviourData_ManagerCondBlockSettings data = new MEB_BaseBehaviourData_ManagerCondBlockSettings();
             data.m_class = "MEBS.Runtime." + m_name;
             data.m_displayName = m_name;
-            data.m_displayDiscription = "If any bool registed to this managers black board list returns false all the managers int 'managers to evalurate' section are blocked from being Executed not just the first one. \n\nvalid blackboard data: \n???: (BoolBlackboardKeyAsString)";
+            data.m_displayDiscription = "if any of the manages betweeen the blocked section are blocked then all of them are blocked. If any mamager in the blocked section is blocked the managers escape section will be allowed to exacute otherwise they will not be.";
 
             return data;
         }
@@ -35,14 +35,15 @@ namespace MEBS.Editor
 
 namespace MEBS.Runtime
 {
-    public class MEB_BaseBehaviourData_BlackboardCondBlockSettings : MEB_BaseBehaviourData_ItemSettings
+    public class MEB_BaseBehaviourData_ManagerCondBlockSettings : MEB_BaseBehaviourData_ItemSettings
     {
         public bool m_inverted = false;
 
         public int m_blockRangeStartPoint = 0;
         public int m_blockRangeEndPoint = int.MaxValue;
 
-        private bool startedRender = false;
+        public int m_escapeRangeStartPoint = int.MaxValue;
+        public int m_escapeRangeEndPoint = int.MaxValue;
 
 #if UNITY_EDITOR
         public override void OnGUI()
@@ -62,6 +63,12 @@ namespace MEBS.Runtime
 
                     int.TryParse(EditorGUILayout.TextField("block range start", m_blockRangeStartPoint.ToString()), out m_blockRangeStartPoint);
                     int.TryParse(EditorGUILayout.TextField("block range end", m_blockRangeEndPoint.ToString()), out m_blockRangeEndPoint);
+
+                    int.TryParse(EditorGUILayout.TextField("escape range start", m_escapeRangeStartPoint.ToString()), out m_escapeRangeStartPoint);
+                    int.TryParse(EditorGUILayout.TextField("escape range end", m_escapeRangeEndPoint.ToString()), out m_escapeRangeEndPoint);
+
+                    if (m_escapeRangeStartPoint <= m_blockRangeEndPoint) { m_escapeRangeStartPoint = m_blockRangeEndPoint + 1; }
+                    if (m_escapeRangeEndPoint <= m_blockRangeEndPoint) { m_escapeRangeEndPoint = m_blockRangeEndPoint + 1; }
                 }
                 else
                 {
@@ -70,41 +77,29 @@ namespace MEBS.Runtime
 
                     MEB_GUI_Layout.LockedInputStyle("block range start", m_blockRangeStartPoint.ToString());
                     MEB_GUI_Layout.LockedInputStyle("block range end", m_blockRangeEndPoint.ToString());
+
+                    MEB_GUI_Layout.LockedInputStyle("block range start", m_escapeRangeStartPoint.ToString());
+                    MEB_GUI_Layout.LockedInputStyle("block range end", m_escapeRangeEndPoint.ToString());
                 }
             }
 
             GUILayout.EndVertical();
         }
-
-        public override void OnManagerInEvalurationScopeStartGUI(int relativeScopeIndex)
-        {
-            if (relativeScopeIndex == m_blockRangeStartPoint && startedRender == false)
-            {
-                startedRender = true;
-                MEB_GUI_Layout.BeginAffectBox(Color.blue);
-            }
-        }
-
-        public override void OnManagerInEvalurationScopeEndGUI(int relativeScopeIndex)
-        {
-            if ((relativeScopeIndex == m_blockRangeStartPoint || relativeScopeIndex == int.MaxValue) && startedRender == true)
-            {
-                startedRender = false;
-                MEB_GUI_Layout.EndAffectBox();
-            }
-        }
 #endif
     }
 
-    public class MEB_E_EvalBlackboardCondBlock : MEB_BaseManager, MEB_I_EvalScoop
+    public class MEB_E_EvalManagerCondBlock : MEB_BaseManager, MEB_I_EvalScoop
     {
         private bool m_inverted = false;
-        private int m_blockRangeStartPoint = 0;
-        private int m_blockRangeEndPoint = int.MaxValue;
+        public int m_blockRangeStartPoint = 0;
+        public int m_blockRangeEndPoint = int.MaxValue;
+
+        public int m_escapeRangeStartPoint = int.MaxValue;
+        public int m_escapeRangeEndPoint = int.MaxValue;
 
         private int m_startPointOfScope = 0;
         private int m_endPointOfScope = 0;
-        private List<string> m_boolsToEval = new List<string>();
+
 
         public void SetEvaluationScope(int start, int end)
         {
@@ -112,41 +107,33 @@ namespace MEBS.Runtime
             m_endPointOfScope = end;
         }
 
-        public override void SetBlackboardKeys(List<string> idenifyers, List<string> keys)
-        {
-            m_boolsToEval = keys;
-        }
-
         public override void OnInitialized()
         {
-            MEB_BaseBehaviourData_BlackboardCondBlockSettings settings = (MEB_BaseBehaviourData_BlackboardCondBlockSettings)m_itemSettings;
+            MEB_BaseBehaviourData_ManagerCondBlockSettings settings = (MEB_BaseBehaviourData_ManagerCondBlockSettings)m_itemSettings;
 
             if (settings != null)
             {
                 m_inverted = settings.m_inverted;
                 m_blockRangeStartPoint = settings.m_blockRangeStartPoint;
                 m_blockRangeEndPoint = settings.m_blockRangeEndPoint;
+                m_escapeRangeStartPoint = settings.m_escapeRangeStartPoint;
+                m_escapeRangeEndPoint = settings.m_escapeRangeEndPoint;
             }
         }
 
         public override void EvaluationStart(int index, float delta)
         {
             int arrayLength = (m_endPointOfScope - m_startPointOfScope);
-            bool conditionOfEval = !m_inverted;
+            bool isblocked = m_inverted;
 
-            for (int i = 0; i < m_boolsToEval.Count; i++) //if a bool is false we enter fail
+            for (int i = 0; i < arrayLength; i++)
             {
-                try
+                int otherManagerIndex = ((index + m_endPointOfScope) - arrayLength) + i;
+                MEB_BaseManager manager = m_director.GetManagerByIndex(otherManagerIndex);
+
+                if (manager.IsAllowedToExecute() == false && i < m_escapeRangeStartPoint == true) //fins out if we are blocked or not
                 {
-                    if (((bool)m_director.m_blackboard.GetObject(m_boolsToEval[i])) == false)
-                    {
-                        conditionOfEval = m_inverted;
-                        break;
-                    }
-                }
-                catch
-                {
-                    Debug.LogError($"ERROR: MEB_EBCB_ES_TC==F: EvalBlackboardCondBlock failed to obtain value from blackboard with key ({m_boolsToEval[i]}, {i}) for unkown reasons");
+                    isblocked = !m_inverted;
                 }
             }
 
@@ -155,12 +142,21 @@ namespace MEBS.Runtime
                 int otherManagerIndex = ((index + m_endPointOfScope) - arrayLength) + i;
                 MEB_BaseManager manager = m_director.GetManagerByIndex(otherManagerIndex);
 
-                if (conditionOfEval == false && i >= m_blockRangeStartPoint && i <= m_blockRangeEndPoint)
+                if (isblocked == true)
                 {
-                    manager.BlockMoveToExecutionForCycle();
+                    if (i >= m_blockRangeStartPoint && i <= m_blockRangeEndPoint) //blocks the block range
+                    {
+                        manager.BlockMoveToExecutionForCycle();
+                    }
+                }
+                else
+                {
+                    if (i >= m_escapeRangeStartPoint && i <= m_escapeRangeStartPoint) //blocks the start range
+                    {
+                        manager.BlockMoveToExecutionForCycle();
+                    }
                 }
             }
-
         }
 
         public override void EvaluationEnd(int index, float delta)
