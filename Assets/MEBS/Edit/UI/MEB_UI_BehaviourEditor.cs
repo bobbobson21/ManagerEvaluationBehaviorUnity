@@ -531,11 +531,11 @@ namespace MEBS.Editor
                     }
                 }
 
-                if (item.m_useInEval != null)
+                if (item.m_evalurators != null)
                 {
-                    for (int i = 0; i < item.m_useInEval.Count; i++)
+                    for (int i = 0; i < item.m_evalurators.Count; i++)
                     {
-                        item.m_useInEval[i].OnManagerInEvalurationScopeEndGUI(int.MaxValue);
+                        item.m_evalurators[i].OnManagerInEvalurationScopeEndGUI(int.MaxValue);
                     }
                 }
                 GUILayout.EndVertical(); //section divide

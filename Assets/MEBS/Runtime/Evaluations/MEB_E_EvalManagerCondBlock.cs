@@ -45,6 +45,8 @@ namespace MEBS.Runtime
         public int m_escapeRangeStartPoint = int.MaxValue;
         public int m_escapeRangeEndPoint = int.MaxValue;
 
+        private bool m_p_isRenderingScope = false;
+
 #if UNITY_EDITOR
         public override void OnGUI()
         {
@@ -84,6 +86,34 @@ namespace MEBS.Runtime
             }
 
             GUILayout.EndVertical();
+        }
+
+        public override void OnManagerInEvalurationScopeStartGUI(int relativeScopeIndex)
+        {
+            if (relativeScopeIndex == m_blockRangeStartPoint && m_p_isRenderingScope == false)
+            {
+                m_p_isRenderingScope = true;
+                Color col = Color.magenta;
+
+                MEB_GUI_Layout.BeginAffectBox(col);
+            }
+
+            if (relativeScopeIndex == m_escapeRangeStartPoint && m_p_isRenderingScope == false)
+            {
+                m_p_isRenderingScope = true;
+                Color col = Color.lavender;
+
+                MEB_GUI_Layout.BeginAffectBox(col);
+            }
+        }
+
+        public override void OnManagerInEvalurationScopeEndGUI(int relativeScopeIndex)
+        {
+            if ((relativeScopeIndex == m_blockRangeEndPoint || relativeScopeIndex == m_escapeRangeEndPoint || relativeScopeIndex == int.MaxValue) && m_p_isRenderingScope == true)
+            {
+                m_p_isRenderingScope = false;
+                MEB_GUI_Layout.EndAffectBox();
+            }
         }
 #endif
     }
