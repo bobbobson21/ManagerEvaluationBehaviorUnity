@@ -62,6 +62,8 @@ namespace MEBS.Runtime
 
                     int.TryParse(EditorGUILayout.TextField("block range start", m_blockRangeStartPoint.ToString()), out m_blockRangeStartPoint);
                     int.TryParse(EditorGUILayout.TextField("block range end", m_blockRangeEndPoint.ToString()), out m_blockRangeEndPoint);
+                    if (m_blockRangeStartPoint < 0) { m_blockRangeStartPoint = 0; }
+                    if (m_blockRangeEndPoint < m_blockRangeStartPoint) { m_blockRangeEndPoint = m_blockRangeStartPoint; }
                 }
                 else
                 {
@@ -78,7 +80,10 @@ namespace MEBS.Runtime
 
         public override void OnManagerInEvalurationScopeStartGUI(int relativeScopeIndex)
         {
-            if (relativeScopeIndex == m_blockRangeStartPoint && m_p_isRenderingScope == false)
+            int startPoint = m_blockRangeStartPoint;
+            if (startPoint < 0) { startPoint = 0; }
+
+            if (relativeScopeIndex == startPoint && m_p_isRenderingScope == false)
             {
                 m_p_isRenderingScope = true;
                 Color col = Color.cyan;

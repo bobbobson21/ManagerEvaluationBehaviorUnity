@@ -69,8 +69,11 @@ namespace MEBS.Runtime
                     int.TryParse(EditorGUILayout.TextField("escape range start", m_escapeRangeStartPoint.ToString()), out m_escapeRangeStartPoint);
                     int.TryParse(EditorGUILayout.TextField("escape range end", m_escapeRangeEndPoint.ToString()), out m_escapeRangeEndPoint);
 
+                    if (m_blockRangeStartPoint < 0) { m_blockRangeStartPoint = 0; }
+                    if (m_blockRangeEndPoint < m_blockRangeStartPoint) { m_blockRangeEndPoint = m_blockRangeStartPoint; }
+
                     if (m_escapeRangeStartPoint <= m_blockRangeEndPoint) { m_escapeRangeStartPoint = m_blockRangeEndPoint + 1; }
-                    if (m_escapeRangeEndPoint <= m_blockRangeEndPoint) { m_escapeRangeEndPoint = m_blockRangeEndPoint + 1; }
+                    if (m_escapeRangeEndPoint < m_escapeRangeStartPoint) { m_escapeRangeEndPoint = m_escapeRangeStartPoint; }
                 }
                 else
                 {
@@ -90,7 +93,10 @@ namespace MEBS.Runtime
 
         public override void OnManagerInEvalurationScopeStartGUI(int relativeScopeIndex)
         {
-            if (relativeScopeIndex == m_blockRangeStartPoint && m_p_isRenderingScope == false)
+            int startPoint = m_blockRangeStartPoint;
+            if (startPoint < 0) { startPoint = 0; }
+
+            if (relativeScopeIndex == startPoint && m_p_isRenderingScope == false)
             {
                 m_p_isRenderingScope = true;
                 Color col = Color.magenta;
